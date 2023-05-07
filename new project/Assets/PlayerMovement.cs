@@ -16,11 +16,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     Vector2 movementInput;
 
+    Animator animator;
+
+    SpriteRenderer spriteRenderer;
+
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();    
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void LoadData(GameData data)
     {
@@ -39,32 +45,65 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             //try movement using the player's both x and y inputs
             bool success = TryMove(movementInput);
-            if (!success)
+            if (!success && movementInput.x > 0)
             {
                 //try movement using the player's movement only in the x direction;
                 success = TryMove(new Vector2(movementInput.x, 0));
-
-                if (!success)
-                {
-                    //try movement using the player's movement only in the x direction;
-                    success = TryMove(new Vector2(0, movementInput.y));
-                }
             }
+            if (!success && movementInput.y > 0)
+            {
+                //try movement using the player's movement only in the x direction;
+                success = TryMove(new Vector2(0, movementInput.y));
+            }
+            
 
+            animator.SetBool("isMoving", success);
+
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
+        //Set direction of sprite to movement direction
+        if (movementInput.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (movementInput.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (movementInput.y > 0 && movementInput.x ==0)
+        {
+            animator.SetBool("isMovingUp", true);
+            animator.SetBool("isMovingDown", false);
+
+        }
+        else if (movementInput.y < 0 && movementInput.x == 0)
+        {
+            animator.SetBool("isMovingUp", false);
+            animator.SetBool("isMovingDown", true);
         }
 
     }
     private bool TryMove(Vector2 direction)
     {
-        int count = rb.Cast(
-        direction,
-        movementFilter,
-        castCollisions,
-        movespeed * Time.fixedDeltaTime + collisionOffset);
-        if (count == 0)
-        {
-            rb.MovePosition(rb.position + direction * movespeed * Time.fixedDeltaTime);
+        if (direction != Vector2.zero) { 
+            int count = rb.Cast(
+            direction,
+            movementFilter,
+            castCollisions,
+            movespeed * Time.fixedDeltaTime + collisionOffset);
+            if (count == 0)
+            {
+                rb.MovePosition(rb.position + direction * movespeed * Time.fixedDeltaTime);
                 return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
