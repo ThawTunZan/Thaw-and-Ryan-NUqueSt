@@ -9,7 +9,7 @@ using System;
 public class EnemyAI : MonoBehaviour
 {
     public Rigidbody2D player;
-    public float movespeed = 100f;
+    public float movespeed = 1f;
 
     public Rigidbody2D enemy;
 
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
         float y_diff = gameObject.transform.position.y - player.transform.position.y;
         
         float r = FindRadius(x_diff,y_diff);
-        if (r <= 200 && r >= 50)
+        if (r <= 5 && r >= 1)
         {
             Debug.Log("aggro");
             Vector2 enemy_path = new Vector2(x_diff / r, y_diff / r);
