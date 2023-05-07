@@ -56,36 +56,57 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 success = TryMove(new Vector2(0, movementInput.y));
             }
             
-
-            animator.SetBool("isMoving", success);
+            if (movementInput.x != 0 && movementInput.y !=0)
+            {
+                animator.SetBool("isMovingSide", true);
+                animator.SetBool("isMovingUp", false);
+                animator.SetBool("isMovingDown", false);
+            }
+            //animator.SetBool("isMoving", success);
 
         }
         else
         {
-            animator.SetBool("isMoving", false);
+            animator.SetBool("isMovingSide", false);
+            animator.SetBool("isMovingUp", false);
+            animator.SetBool("isMovingDown", false);
         }
 
         //Set direction of sprite to movement direction
         if (movementInput.x < 0)
         {
             spriteRenderer.flipX = true;
+            animator.SetBool("isMovingSide", true);
         }
         else if (movementInput.x > 0)
         {
             spriteRenderer.flipX = false;
+            animator.SetBool("isMovingSide", true);
         }
-        else if (movementInput.y > 0 && movementInput.x ==0)
+        else
+        {
+
+        }
+        if (movementInput.y > 0 && movementInput.x == 0)
         {
             animator.SetBool("isMovingUp", true);
             animator.SetBool("isMovingDown", false);
+            animator.SetBool("isMovingSide", false); 
 
         }
         else if (movementInput.y < 0 && movementInput.x == 0)
         {
             animator.SetBool("isMovingUp", false);
             animator.SetBool("isMovingDown", true);
+            animator.SetBool("isMovingSide", false);
         }
-
+        else if (movementInput.x != 0 && movementInput.y == 0) 
+        {
+            animator.SetBool("isMovingSide", true);
+            animator.SetBool("isMovingUp", false);
+            animator.SetBool("isMovingDown", false);
+        }
+        
     }
     private bool TryMove(Vector2 direction)
     {
