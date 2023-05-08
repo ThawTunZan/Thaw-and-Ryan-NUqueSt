@@ -45,12 +45,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             //try movement using the player's both x and y inputs
             bool success = TryMove(movementInput);
-            if (!success && movementInput.x > 0)
+            if (!success && movementInput.x != 0)
             {
                 //try movement using the player's movement only in the x direction;
                 success = TryMove(new Vector2(movementInput.x, 0));
             }
-            if (!success && movementInput.y > 0)
+            if (!success && movementInput.y != 0)
             {
                 //try movement using the player's movement only in the x direction;
                 success = TryMove(new Vector2(0, movementInput.y));
