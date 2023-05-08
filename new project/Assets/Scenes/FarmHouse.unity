@@ -3519,6 +3519,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9082491253928029061, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2136044700}
     - target: {fileID: 9082491253928029062, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -96700,6 +96704,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &2136044700 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8890131048757355296, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+  m_PrefabInstance: {fileID: 3554719985208622673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3554719985208622673
 PrefabInstance:
   m_ObjectHideFlags: 0

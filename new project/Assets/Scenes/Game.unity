@@ -4896,7 +4896,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411049295}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &978999467
 MonoBehaviour:
@@ -28349,49 +28349,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1904192235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
-  m_PrefabInstance: {fileID: 9082491255212297457}
-  m_PrefabAsset: {fileID: 0}
---- !u!1839735485 &1904192242
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904192235}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
 --- !u!1001 &4317114393337754665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28402,14 +28359,6 @@ PrefabInstance:
     - target: {fileID: 508191923027943610, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 548739915530322310, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.005869776
-      objectReference: {fileID: 0}
-    - target: {fileID: 548739915530322310, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.16587794
       objectReference: {fileID: 0}
     - target: {fileID: 711032083742041747, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: swordSideAttackObject
@@ -28427,21 +28376,9 @@ PrefabInstance:
       propertyPath: swordAttackGameObject
       value: 
       objectReference: {fileID: 431374958}
-    - target: {fileID: 1986041023617247516, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986041023617247516, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2458595976668929069, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2458595976668929069, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.02600002
       objectReference: {fileID: 0}
     - target: {fileID: 2776711247500443465, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_SortingOrder
@@ -28450,10 +28387,6 @@ PrefabInstance:
     - target: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3728158146374553949, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
@@ -28509,11 +28442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7175655506905969668, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8890131048757355296, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_BodyType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
