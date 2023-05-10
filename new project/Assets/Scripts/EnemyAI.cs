@@ -5,9 +5,15 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using Unity.Mathematics;
 using System;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    private Transform playerTransform;
+    private NavMeshAgent nav;
+
     public Rigidbody2D player;
     public float movespeed = 1f;
 
@@ -27,6 +33,9 @@ public class EnemyAI : MonoBehaviour
     {
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
         animator = enemy.GetComponent<Animator>();
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        nav = enemy.GetComponent<NavMeshAgent>();
     }
     private void Update()
     {
@@ -44,19 +53,22 @@ public class EnemyAI : MonoBehaviour
         float r = FindRadius(x_diff, y_diff);
         if (r <= 5 && r >= 1)
         {
-            Debug.Log("aggro");
-            Vector2 enemy_path = new Vector2(x_diff / r, y_diff / r);
-
+            nav.SetDestination(playerTransform.position);
+            //Debug.Log("aggro");
+           // Vector2 enemy_path = new Vector2(x_diff / r, y_diff / r);
+            
             if (gameObject.transform.position.x > player.transform.position.x)
             {
-                enemy_path.x *= -1;
+                //enemy_path.x *= -1;
                 enemySpriteRenderer.flipX = true;
             }
             else
             {
-                enemy_path.x = math.abs(enemy_path.x);
+                //enemy_path.x = math.abs(enemy_path.x);
                 enemySpriteRenderer.flipX = false;
             }
+          //  navigate.destination = playerTransform.position;
+            /*
             if (gameObject.transform.position.y > player.transform.position.y)
             {
                 enemy_path.y *= -1;
@@ -66,6 +78,7 @@ public class EnemyAI : MonoBehaviour
                 enemy_path.y = math.abs(enemy_path.y);
             }
             enemy.MovePosition(enemy.position + enemy_path * movespeed * Time.fixedDeltaTime);
+            */
         }
     }
 
