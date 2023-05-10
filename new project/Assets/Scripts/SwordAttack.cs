@@ -7,6 +7,7 @@ public class SwordAttack : MonoBehaviour
 {
     public GameObject swordSideAttackObject;
     public GameObject swordUpDownAttackObject;
+    //public GameObject rb;
     Collider2D swordCollider;
     Collider2D swordUpDownCollider;
 
@@ -54,9 +55,6 @@ public class SwordAttack : MonoBehaviour
         swordUpDownCollider.transform.localPosition = new Vector3(upAttackOffset.x, (float)(upAttackOffset.y - 0.226));
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        col.collider.SendMessage("OnHit", swordDamage);
-    }
+    
 }
 

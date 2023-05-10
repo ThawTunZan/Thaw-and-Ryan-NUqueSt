@@ -28360,6 +28360,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 548739915530322310, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 711032083742041747, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: swordSideAttackObject
       value: 
@@ -28379,10 +28383,6 @@ PrefabInstance:
     - target: {fileID: 2458595976668929069, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2776711247500443465, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-      propertyPath: m_SortingOrder
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_Name
@@ -28444,7 +28444,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7446964951454154378, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: m_TagString
+      value: SwordAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890131048757355296, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3176357357384317461, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
 --- !u!1001 &9082491255212297457
 PrefabInstance:
@@ -28453,18 +28462,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5938833953888796748, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 9082491253928029061, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1411049289}
+    - target: {fileID: 9082491253928029062, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9082491253928029063, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: m_Size.x
       value: 0.1341548
