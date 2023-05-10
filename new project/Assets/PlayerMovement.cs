@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         animator = GetComponent<Animator>();    
         spriteRenderer = GetComponent<SpriteRenderer>();
         swordAttack = GetComponent<SwordAttack>();
+
+        
+
         
     }
     public void LoadData(GameData data)
