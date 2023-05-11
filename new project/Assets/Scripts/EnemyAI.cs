@@ -8,6 +8,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.AI;
+using System.Linq;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -23,19 +24,154 @@ public class EnemyAI : MonoBehaviour
 
     SpriteRenderer enemySpriteRenderer;
     Animator animator;
-    public float FindRadius(float x,float y)
+
+    private double[] interestMap = new double[8];
+    private double[] avoidanceMap = new double[8];
+    double[] weightedMap = new double[8];
+    private Vector3[] dirArray;
+    
+   
+    public double FindRadius(double x,double y)
     {
-        float r = math.sqrt((x*x) + (y*y));
+        double r = math.sqrt((x*x) + (y*y));
         return r;
     }
+    private double normaliseVector(double x, double y)
+    {
+        return math.sqrt((x*x) + (y*y));
+    }
+    private void populateIntMap(double x_toTarget, double y_toTarget, double radius)
+    {
+        double componentOfDiag = math.sqrt((radius * radius) / 2);
+        interestMap[0] = ((0 * x_toTarget) + (radius * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North 
+        interestMap[1] = ((componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North-East 
+        interestMap[2] = ((radius * x_toTarget) + (0 * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //East 
+        interestMap[3] = ((componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //South-East
+        interestMap[4] = ((0 * x_toTarget) + (-radius * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //South
+        interestMap[5] = ((-componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) /  (radius * normaliseVector(x_toTarget, y_toTarget));    //South-West
+        interestMap[6] = ((-radius * x_toTarget) + (0 * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //West
+        interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North-West
 
+    }
+
+    private void populateAvoidMap()
+    {
+        Vector2 sizeBox = new Vector2(0.028f, 0.028f); 
+        RaycastHit2D hitUp = Physics2D.BoxCast(transform.position,sizeBox,0, Vector3.up, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitRight = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.right, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitDown = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.down, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitLeft = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.left, 1f, LayerMask.GetMask("Obstacles"));
+        
+        Vector3 dirNE = new Vector3(1f, 1f, 0f).normalized;
+        Vector3 dirSE = new Vector3(1f,-1f, 0f).normalized;
+        Vector3 dirSW = new Vector3(-1f, -1f, 0f).normalized;
+        Vector3 dirNW = new Vector3(-1f, 1f, 0f).normalized;
+
+        RaycastHit2D hitNE = Physics2D.BoxCast(transform.position, sizeBox, 0, dirNE, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitSE = Physics2D.BoxCast(transform.position, sizeBox, 0, dirSE, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitSW = Physics2D.BoxCast(transform.position, sizeBox, 0, dirSE, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitNW = Physics2D.BoxCast(transform.position, sizeBox, 0, dirNW, 1f, LayerMask.GetMask("Obstacles"));
+
+        if (hitUp.collider)
+        {
+            avoidanceMap[0] = 1 - (hitUp.distance / 0.8);
+            Debug.Log(hitUp);
+        }
+        else
+        {
+            avoidanceMap[0] = -1;
+           // Debug.Log(hitUp);
+        }
+        if (hitRight.collider)
+        {
+            avoidanceMap[2] = 1 - (hitRight.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[2] = -1;
+        }
+        if (hitDown.collider)
+        {
+            avoidanceMap[4] = 1 - (hitDown.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[4] = -1;
+        }
+        if (hitLeft.collider)
+        {
+            avoidanceMap[6] = 1 - (hitLeft.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[6] = -1;
+        }
+        if (hitNE.collider)
+        {
+            avoidanceMap[1] = 1 - (hitNE.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[1] = -1;
+        }
+        if (hitSE.collider)
+        {
+            avoidanceMap[3] = 1 - (hitSE.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[3] = -1;
+        }
+        if (hitSW.collider)
+        {
+            avoidanceMap[5] = 1 - (hitSW.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[5] = -1;
+        }
+        if (hitNW.collider)
+        {
+            avoidanceMap[7] = 1 - (hitNW.distance / 0.8);
+        }
+        else
+        {
+            avoidanceMap[7] = -1;
+        }
+    }
+
+    private void weighTheMaps()
+    {
+        for (int x = 0; x < 8; x+= 1)
+        {
+            weightedMap[x] = interestMap[x] - avoidanceMap[x];
+        }
+        string arrayString = "[" + string.Join(", ", System.Array.ConvertAll(weightedMap, v => v.ToString())) + "]";
+        Debug.Log(arrayString);
+
+        string interestarrayString = "interest: [" + string.Join(", ", System.Array.ConvertAll(interestMap, v => v.ToString())) + "]";
+        Debug.Log(interestarrayString);
+
+        string avoidarrayString = "avoidance: [" + string.Join(", ", System.Array.ConvertAll(avoidanceMap, v => v.ToString())) + "]";
+        Debug.Log(avoidarrayString);
+
+    }
     private void Start()
     {
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
         animator = enemy.GetComponent<Animator>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        nav = enemy.GetComponent<NavMeshAgent>();
+
+        dirArray = new Vector3[8];
+        dirArray[0] = Vector3.up;
+        dirArray[1] = new Vector3(1f, 1f, 0f).normalized;
+        dirArray[2] = Vector3.right;
+        dirArray[3] = new Vector3(1f, -1f, 0f).normalized;
+        dirArray[4] = Vector3.down;
+        dirArray[5] = new Vector3(-1f, -1f, 0f).normalized;
+        dirArray[6] = Vector3.left;
+        dirArray[7] = new Vector3(-1f, 1f, 0f).normalized;
     }
     private void Update()
     {
@@ -45,18 +181,33 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private Vector3 findProjection(double x, double y, int index)
+    {
+        Vector3 result = new Vector3();
+        result.x = (float)(dirArray[index].x * 0.4);
+        result.y = (float)(dirArray[index].y * 0.4);
+        result.z = (float)dirArray[index].z;
+        //double u_square = ((dirArray[index].x * 5) * (dirArray[index].x * 5)) + (dirArray[index].y * 5 * dirArray[index].y * 5);
+       // double dotProduct =((x * dirArray[index].x * 5) + (y * dirArray[index].y * 5)) / u_square;
+
+      //  result.x *= (float)dotProduct;
+      //  result.y *= (float)dotProduct;
+       // result.z *= (float)dotProduct;
+
+
+        return result;
+    }
+
     private void followPlayer()
     {
-        float x_diff = gameObject.transform.position.x - player.transform.position.x;
-        float y_diff = gameObject.transform.position.y - player.transform.position.y;
+        double x_diff = player.transform.position.x - gameObject.transform.position.x;
+        double y_diff = player.transform.position.y - gameObject.transform.position.y;
 
-        float r = FindRadius(x_diff, y_diff);
-        if (r <= 5 && r >= 1)
+        double r = FindRadius(x_diff, y_diff);
+        if (r <= 5 && r >= 0.4)
         {
-            nav.SetDestination(playerTransform.position);
             //Debug.Log("aggro");
-           // Vector2 enemy_path = new Vector2(x_diff / r, y_diff / r);
-            
+            Vector2 enemy_path = new Vector2((float)(x_diff / r), (float)(y_diff / r));
             if (gameObject.transform.position.x > player.transform.position.x)
             {
                 //enemy_path.x *= -1;
@@ -67,18 +218,15 @@ public class EnemyAI : MonoBehaviour
                 //enemy_path.x = math.abs(enemy_path.x);
                 enemySpriteRenderer.flipX = false;
             }
-          //  navigate.destination = playerTransform.position;
-            /*
-            if (gameObject.transform.position.y > player.transform.position.y)
-            {
-                enemy_path.y *= -1;
-            }
-            else
-            {
-                enemy_path.y = math.abs(enemy_path.y);
-            }
+            populateIntMap(x_diff, y_diff, 5);
+            populateAvoidMap();
+            weighTheMaps();
+
+            int indexOfMax = Array.IndexOf(weightedMap, weightedMap.Max());
+
+            enemy_path = findProjection(x_diff, y_diff, indexOfMax);
+
             enemy.MovePosition(enemy.position + enemy_path * movespeed * Time.fixedDeltaTime);
-            */
         }
     }
 
