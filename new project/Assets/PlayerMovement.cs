@@ -26,16 +26,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     private SwordAttack swordAttack;
 
+    public PlayerPositionSO startingPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();    
         spriteRenderer = GetComponent<SpriteRenderer>();
         swordAttack = GetComponent<SwordAttack>();
-
-        
-
-        
+        if (startingPosition.transittedScene == true)
+        {
+            Debug.Log("test");
+            this.transform.position = startingPosition.InitialValue;
+            startingPosition.transittedScene = false;
+        }
     }
     public void LoadData(GameData data)
     {

@@ -13,14 +13,11 @@ using System.Linq;
 public class EnemyAI : MonoBehaviour
 {
     private Transform playerTransform;
-    private NavMeshAgent nav;
 
     public Rigidbody2D player;
     public float movespeed = 1f;
 
     public Rigidbody2D enemy;
-
-    Vector2 enemyMovement;
 
     SpriteRenderer enemySpriteRenderer;
     Animator animator;
@@ -146,14 +143,14 @@ public class EnemyAI : MonoBehaviour
         {
             weightedMap[x] = interestMap[x] - avoidanceMap[x];
         }
-        string arrayString = "[" + string.Join(", ", System.Array.ConvertAll(weightedMap, v => v.ToString())) + "]";
-        Debug.Log(arrayString);
+      //  string arrayString = "[" + string.Join(", ", System.Array.ConvertAll(weightedMap, v => v.ToString())) + "]";
+      //  Debug.Log(arrayString);
 
-        string interestarrayString = "interest: [" + string.Join(", ", System.Array.ConvertAll(interestMap, v => v.ToString())) + "]";
-        Debug.Log(interestarrayString);
+       // string interestarrayString = "interest: [" + string.Join(", ", System.Array.ConvertAll(interestMap, v => v.ToString())) + "]";
+       // Debug.Log(interestarrayString);
 
-        string avoidarrayString = "avoidance: [" + string.Join(", ", System.Array.ConvertAll(avoidanceMap, v => v.ToString())) + "]";
-        Debug.Log(avoidarrayString);
+       // string avoidarrayString = "avoidance: [" + string.Join(", ", System.Array.ConvertAll(avoidanceMap, v => v.ToString())) + "]";
+       // Debug.Log(avoidarrayString);
 
     }
     private void Start()
