@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class ToChangeScene : MonoBehaviour
 {
     public int indexOfScene;
-
     public Vector3 playerPosition;
     public PlayerPositionSO storePlayerPosition;
 

@@ -13,11 +13,9 @@ using System.Linq;
 public class EnemyAI : MonoBehaviour
 {
     private Transform playerTransform;
-
     public Rigidbody2D player;
-    public float movespeed = 1f;
-
     public Rigidbody2D enemy;
+    public float movespeed = 1f;
 
     SpriteRenderer enemySpriteRenderer;
     Animator animator;
@@ -27,16 +25,22 @@ public class EnemyAI : MonoBehaviour
     double[] weightedMap = new double[8];
     private Vector3[] dirArray;
     
-   
     public double FindRadius(double x,double y)
     {
         double r = math.sqrt((x*x) + (y*y));
         return r;
     }
+
     private double normaliseVector(double x, double y)
     {
         return math.sqrt((x*x) + (y*y));
     }
+
+    /*
+     * Calculating the values of each elements of the interest map based on the dot product between the directional vectors from enemy to the player and the directional vectors
+       of the 8 directions
+     * Ranges from -1 to 1 where -1 is directly opposite and 1 means that the respective direction is parallel to the directional vector from enemy to player
+     */
     private void populateIntMap(double x_toTarget, double y_toTarget, double radius)
     {
         double componentOfDiag = math.sqrt((radius * radius) / 2);
@@ -51,6 +55,10 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    /*
+     * Calculating the values of each elements of the avoidance map based on how far the enemy is from the player. Higher value means further
+     * ranges from 1 to 0 where 0 is the closest (0.8) and 1 means furthest
+     */
     private void populateAvoidMap()
     {
         Vector2 sizeBox = new Vector2(0.028f, 0.028f); 
@@ -76,7 +84,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            avoidanceMap[0] = -1;
+            avoidanceMap[0] = -1;   //it is assigned -1 to make the difference more drastic for testing purposes
            // Debug.Log(hitUp);
         }
         if (hitRight.collider)
@@ -137,21 +145,15 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /*
+     * To get the resultant map
+     */
     private void weighTheMaps()
     {
         for (int x = 0; x < 8; x+= 1)
         {
             weightedMap[x] = interestMap[x] - avoidanceMap[x];
         }
-      //  string arrayString = "[" + string.Join(", ", System.Array.ConvertAll(weightedMap, v => v.ToString())) + "]";
-      //  Debug.Log(arrayString);
-
-       // string interestarrayString = "interest: [" + string.Join(", ", System.Array.ConvertAll(interestMap, v => v.ToString())) + "]";
-       // Debug.Log(interestarrayString);
-
-       // string avoidarrayString = "avoidance: [" + string.Join(", ", System.Array.ConvertAll(avoidanceMap, v => v.ToString())) + "]";
-       // Debug.Log(avoidarrayString);
-
     }
     private void Start()
     {
@@ -170,6 +172,7 @@ public class EnemyAI : MonoBehaviour
         dirArray[6] = Vector3.left;
         dirArray[7] = new Vector3(-1f, 1f, 0f).normalized;
     }
+
     private void Update()
     {
         if (animator.GetBool("alive") == true)
@@ -184,14 +187,6 @@ public class EnemyAI : MonoBehaviour
         result.x = (float)(dirArray[index].x * 0.4);
         result.y = (float)(dirArray[index].y * 0.4);
         result.z = (float)dirArray[index].z;
-        //double u_square = ((dirArray[index].x * 5) * (dirArray[index].x * 5)) + (dirArray[index].y * 5 * dirArray[index].y * 5);
-       // double dotProduct =((x * dirArray[index].x * 5) + (y * dirArray[index].y * 5)) / u_square;
-
-      //  result.x *= (float)dotProduct;
-      //  result.y *= (float)dotProduct;
-       // result.z *= (float)dotProduct;
-
-
         return result;
     }
 
@@ -203,16 +198,13 @@ public class EnemyAI : MonoBehaviour
         double r = FindRadius(x_diff, y_diff);
         if (r <= 5 && r >= 0.4)
         {
-            //Debug.Log("aggro");
             Vector2 enemy_path = new Vector2((float)(x_diff / r), (float)(y_diff / r));
             if (gameObject.transform.position.x > player.transform.position.x)
             {
-                //enemy_path.x *= -1;
                 enemySpriteRenderer.flipX = true;
             }
             else
             {
-                //enemy_path.x = math.abs(enemy_path.x);
                 enemySpriteRenderer.flipX = false;
             }
             populateIntMap(x_diff, y_diff, 5);

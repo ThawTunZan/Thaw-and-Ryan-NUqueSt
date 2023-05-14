@@ -6,34 +6,34 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
-    public float movespeed = 1f;
-
+    //for movement
     public Rigidbody2D rb;
-
-    public float collisionOffset = 0.05f;
-
     public ContactFilter2D movementFilter;
-
     Vector2 movementInput;
+    public float movespeed = 1f;
+    public float collisionOffset = 0.05f;
+    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>(); //to check for collision
 
+    //To animate player
     Animator animator;
-
     SpriteRenderer spriteRenderer;
-
-    bool canMove = true;
-
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-
     private SwordAttack swordAttack;
 
+    //Scriptable Objects
     public PlayerPositionSO startingPosition;
+
+    //misc
+    bool canMove = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         animator = GetComponent<Animator>();    
         spriteRenderer = GetComponent<SpriteRenderer>();
         swordAttack = GetComponent<SwordAttack>();
+
+        //To transit to the correct position when changing scene/level/map
         if (startingPosition.transittedScene == true)
         {
             Debug.Log("test");
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             startingPosition.transittedScene = false;
         }
     }
+
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (canMove)
         {
-            //executed if there is a player keyboard input
+            //executed if there is a player keyboard input, the subsequent ifs are to slide along an obstacle
             if (movementInput != Vector2.zero)
             {
                 //try movement using the player's both x and y inputs
@@ -70,15 +71,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     //try movement using the player's movement only in the x direction;
                     success = TryMove(new Vector2(0, movementInput.y));
                 }
-
                 if (movementInput.x != 0 && movementInput.y != 0)
                 {
                     animator.SetBool("isMovingSide", true);
                     animator.SetBool("isMovingUp", false);
                     animator.SetBool("isMovingDown", false);
                 }
-                //animator.SetBool("isMoving", success);
-
             }
             else
             {
@@ -87,7 +85,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 animator.SetBool("isMovingDown", false);
             }
 
-            //Set direction of sprite to movement direction
+            //Set the direction sprite faces based on movement direction
             if (movementInput.x < 0)
             {
                 spriteRenderer.flipX = true;
@@ -102,6 +100,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             {
 
             }
+            //to move up animation
             if (movementInput.y > 0 && movementInput.x == 0)
             {
                 animator.SetBool("isMovingUp", true);
@@ -109,12 +108,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 animator.SetBool("isMovingSide", false);
 
             }
+            //to move down animation
             else if (movementInput.y < 0 && movementInput.x == 0)
             {
                 animator.SetBool("isMovingUp", false);
                 animator.SetBool("isMovingDown", true);
                 animator.SetBool("isMovingSide", false);
             }
+            //to move side animation
             else if (movementInput.x != 0 && movementInput.y == 0)
             {
                 animator.SetBool("isMovingSide", true);
@@ -124,6 +125,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
         
     }
+
+    /*
+     * To check for collision
+     * Takes in a Vector2 parameter to test for directions
+     * returns true if it is a valid route and moves in that direction(e.g not blocked by obstacle in that particular direction)
+     */
     private bool TryMove(Vector2 direction)
     {
         if (direction != Vector2.zero) { 
@@ -148,12 +155,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
- 
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
     }
-
     void OnFire()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
@@ -168,36 +173,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             animator.SetTrigger("swordAttackSide");
         }
-        
+
     }
 
+    /*
+     * execute the corresponding function in the script swordAttack bsaed on the state of current animation and the x direction the player is facing
+     */
     public void PerformSwordAttack()
     {
         LockMovement();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") && spriteRenderer.flipX == true)
         {
-            //print("attack left");
             swordAttack.AttackLeft();
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") && spriteRenderer.flipX == false)
         {
-            //print("attack right");
             swordAttack.AttackRight();
         }
         
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up"))
         {
-            //print("attack up");
             swordAttack.AttackUp();
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_down"))
         {
-            //print("attack down");
             swordAttack.AttackDown();
         }
         
     }
 
+    //To lock movement when attacking;
     public void LockMovement()
     {
         canMove = false;
