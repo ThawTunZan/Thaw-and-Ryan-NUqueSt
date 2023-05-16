@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
     private Transform playerTransform;
     public Rigidbody2D player;
     public Rigidbody2D enemy;
-    public float movespeed = 1f;
+    public float movespeed = 0.1f;
 
     SpriteRenderer enemySpriteRenderer;
     Animator animator;
@@ -24,6 +24,10 @@ public class EnemyAI : MonoBehaviour
     private double[] avoidanceMap = new double[8];
     double[] weightedMap = new double[8];
     private Vector3[] dirArray;
+
+    Vector3 enemy_path;
+    public bool obstructed;
+    Vector3 lastKnown;
     
     public double FindRadius(double x,double y)
     {
@@ -41,18 +45,24 @@ public class EnemyAI : MonoBehaviour
        of the 8 directions
      * Ranges from -1 to 1 where -1 is directly opposite and 1 means that the respective direction is parallel to the directional vector from enemy to player
      */
-    private void populateIntMap(double x_toTarget, double y_toTarget, double radius)
+    private void populateIntMap(double x_toTarget, double y_toTarget, double radius, double r, bool isObstructed)
     {
-        double componentOfDiag = math.sqrt((radius * radius) / 2);
-        interestMap[0] = ((0 * x_toTarget) + (radius * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North 
-        interestMap[1] = ((componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North-East 
-        interestMap[2] = ((radius * x_toTarget) + (0 * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //East 
-        interestMap[3] = ((componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //South-East
-        interestMap[4] = ((0 * x_toTarget) + (-radius * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //South
-        interestMap[5] = ((-componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) /  (radius * normaliseVector(x_toTarget, y_toTarget));    //South-West
-        interestMap[6] = ((-radius * x_toTarget) + (0 * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //West
-        interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (radius * normaliseVector(x_toTarget, y_toTarget));    //North-West
-
+        double componentOfDiag = math.sqrt((5 * 5) / 2);
+        interestMap[0] = ((0 * x_toTarget) + (5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North 
+        interestMap[1] = ((componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-East 
+        interestMap[2] = ((5 * x_toTarget) + (0 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //East 
+        interestMap[3] = ((componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //South-East
+        interestMap[4] = ((0 * x_toTarget) + (-5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //South
+        interestMap[5] = ((-componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) /  (5 * normaliseVector(x_toTarget, y_toTarget));    //South-West
+        interestMap[6] = ((-5 * x_toTarget) + (0 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //West
+        interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-West
+        if (r < 0.58 && !isObstructed)
+        {
+            for (int x = 0; x < 8; x += 1)
+            {
+                interestMap[x] *= -1;
+            }
+        }
     }
 
     /*
@@ -62,98 +72,138 @@ public class EnemyAI : MonoBehaviour
     private void populateAvoidMap()
     {
         Vector2 sizeBox = new Vector2(0.028f, 0.028f); 
-        RaycastHit2D hitUp = Physics2D.BoxCast(transform.position,sizeBox,0, Vector3.up, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitRight = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.right, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitDown = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.down, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitLeft = Physics2D.BoxCast(transform.position, sizeBox, 0, Vector3.left, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position,Vector3.up, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector3.down, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector3.left, 0.5f, LayerMask.GetMask("Obstacles"));
         
-        Vector3 dirNE = new Vector3(1f, 1f, 0f).normalized;
-        Vector3 dirSE = new Vector3(1f,-1f, 0f).normalized;
-        Vector3 dirSW = new Vector3(-1f, -1f, 0f).normalized;
-        Vector3 dirNW = new Vector3(-1f, 1f, 0f).normalized;
+        Vector3 dirNE = new Vector3(0.5f, 0.5f, 0f).normalized;
+        Vector3 dirSE = new Vector3(0.5f,-0.5f, 0f).normalized;
+        Vector3 dirSW = new Vector3(-0.5f, -0.5f, 0f).normalized;
+        Vector3 dirNW = new Vector3(-0.5f, 0.5f, 0f).normalized;
 
-        RaycastHit2D hitNE = Physics2D.BoxCast(transform.position, sizeBox, 0, dirNE, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitSE = Physics2D.BoxCast(transform.position, sizeBox, 0, dirSE, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitSW = Physics2D.BoxCast(transform.position, sizeBox, 0, dirSE, 1f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitNW = Physics2D.BoxCast(transform.position, sizeBox, 0, dirNW, 1f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitNE = Physics2D.Raycast(transform.position, dirNE, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitSE = Physics2D.Raycast(transform.position, dirSE, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 0.5f, LayerMask.GetMask("Obstacles"));
 
         if (hitUp.collider)
         {
-            avoidanceMap[0] = 1 - (hitUp.distance / 0.8);
-            Debug.Log(hitUp);
+            avoidanceMap[0] = 1 - ((hitUp.distance - 0.075) / 0.5);
+          //  Debug.Log(hitUp);
         }
         else
         {
-            avoidanceMap[0] = -1;   //it is assigned -1 to make the difference more drastic for testing purposes
-           // Debug.Log(hitUp);
+            avoidanceMap[0] = 0; 
         }
         if (hitRight.collider)
         {
-            avoidanceMap[2] = 1 - (hitRight.distance / 0.8);
+            avoidanceMap[2] = 1 - ((hitRight.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[2] = -1;
+            avoidanceMap[2] = 0;
         }
         if (hitDown.collider)
         {
-            avoidanceMap[4] = 1 - (hitDown.distance / 0.8);
+            avoidanceMap[4] = 1 - ((hitDown.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[4] = -1;
+            avoidanceMap[4] = 0;
         }
         if (hitLeft.collider)
         {
-            avoidanceMap[6] = 1 - (hitLeft.distance / 0.8);
+            avoidanceMap[6] = 1 - ((hitLeft.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[6] = -1;
+            avoidanceMap[6] = 0;
         }
         if (hitNE.collider)
         {
-            avoidanceMap[1] = 1 - (hitNE.distance / 0.8);
+            avoidanceMap[1] = 1 - ((hitNE.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[1] = -1;
+            avoidanceMap[1] = 0;
         }
         if (hitSE.collider)
         {
-            avoidanceMap[3] = 1 - (hitSE.distance / 0.8);
+            avoidanceMap[3] = 1 - ((hitSE.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[3] = -1;
+            avoidanceMap[3] = 0;
         }
         if (hitSW.collider)
         {
-            avoidanceMap[5] = 1 - (hitSW.distance / 0.8);
+            avoidanceMap[5] = 1 - ((hitSW.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[5] = -1;
+            avoidanceMap[5] = 0;
         }
         if (hitNW.collider)
         {
-            avoidanceMap[7] = 1 - (hitNW.distance / 0.8);
+            avoidanceMap[7] = 1 - ((hitNW.distance - 0.075) / 0.5);
         }
         else
         {
-            avoidanceMap[7] = -1;
+            avoidanceMap[7] = 0;
         }
     }
 
-    /*
-     * To get the resultant map
-     */
-    private void weighTheMaps()
+    private Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
     {
-        for (int x = 0; x < 8; x+= 1)
+        double xToPlayer = player.transform.position.x - enemy.transform.position.x;
+        double yToPlayer = player.transform.position.y - enemy.transform.position.y;
+        double r = FindRadius(xToPlayer, yToPlayer);
+        Vector3 dirToPlayer = new Vector3((float)xToPlayer, (float)yToPlayer, 0);
+        bool isObstructed = Physics2D.Raycast(transform.position, dirToPlayer, (float)r, LayerMask.GetMask("Obstacles"));
+
+        Vector3 resultantVector = new Vector3();
+        if ((radius > 0.7 || radius < 0.58) || (isObstructed))
         {
-            weightedMap[x] = interestMap[x] - avoidanceMap[x];
+            for (int x = 0; x < 8; x += 1)
+            {
+                weightedMap[x] = interestMap[x] - avoidanceMap[x];
+                if (weightedMap[x] > 0)
+                {
+                    resultantVector += (dirArray[x] * (float)weightedMap[x]).normalized * (float)0.20;
+                }
+
+            }
+            return resultantVector;
         }
+        else if (radius >= 0.58 && radius <= 0.7 && !isObstructed)
+        {
+            Vector3 resultantVectorCircle = new Vector3();
+            if (obstructed == false)
+            {
+                resultantVectorCircle = new Vector3((float)y_diff * -1, (float)x_diff, 0);
+                if (Physics2D.Raycast(enemy.position, resultantVectorCircle, 0.08f, LayerMask.GetMask("Obstacles","enemy")))
+                {
+                    //print("collision detected");
+                    resultantVectorCircle = new Vector3((float)y_diff, (float)x_diff * -1, 0);
+                    obstructed = true;
+                }
+            }
+            else if (obstructed == true) 
+            {
+                resultantVectorCircle = new Vector3((float)y_diff, (float)x_diff * -1, 0);
+                if (Physics2D.Raycast(enemy.position, resultantVectorCircle, 0.08f, LayerMask.GetMask("Obstacles","enemy")))
+                {
+                    //print("collision detected");
+                    resultantVectorCircle = new Vector3((float)y_diff * -1, (float)x_diff, 0);
+                    obstructed = false;
+                }
+            }
+            return resultantVectorCircle;
+            
+        }
+        return Vector3.zero;
+
     }
     private void Start()
     {
@@ -171,6 +221,11 @@ public class EnemyAI : MonoBehaviour
         dirArray[5] = new Vector3(-1f, -1f, 0f).normalized;
         dirArray[6] = Vector3.left;
         dirArray[7] = new Vector3(-1f, 1f, 0f).normalized;
+
+        enemy_path = Vector3.zero;
+        obstructed = false;
+
+        lastKnown = new Vector3();
     }
 
     private void Update()
@@ -181,24 +236,26 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private Vector3 findProjection(double x, double y, int index)
+    private void updatePlayerPos(double x, double y)
     {
-        Vector3 result = new Vector3();
-        result.x = (float)(dirArray[index].x * 0.4);
-        result.y = (float)(dirArray[index].y * 0.4);
-        result.z = (float)dirArray[index].z;
-        return result;
+        lastKnown.x = (float)x;
+        lastKnown.y = (float)y;
     }
+
 
     private void followPlayer()
     {
-        double x_diff = player.transform.position.x - gameObject.transform.position.x;
-        double y_diff = player.transform.position.y - gameObject.transform.position.y;
+        double x_diff = player.transform.position.x - enemy.transform.position.x;
+        double y_diff = player.transform.position.y - enemy.transform.position.y;
 
+        Vector3 dirVector = new Vector3((float)x_diff, (float)y_diff, 0);
         double r = FindRadius(x_diff, y_diff);
-        if (r <= 5 && r >= 0.4)
+
+        bool isObstructed = Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles"));
+
+        if (r <= 5 && !Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
-            Vector2 enemy_path = new Vector2((float)(x_diff / r), (float)(y_diff / r));
+            updatePlayerPos(player.transform.position.x, player.transform.position.y);
             if (gameObject.transform.position.x > player.transform.position.x)
             {
                 enemySpriteRenderer.flipX = true;
@@ -207,15 +264,28 @@ public class EnemyAI : MonoBehaviour
             {
                 enemySpriteRenderer.flipX = false;
             }
-            populateIntMap(x_diff, y_diff, 5);
+            populateIntMap(x_diff, y_diff, 5, r, isObstructed);
             populateAvoidMap();
-            weighTheMaps();
 
-            int indexOfMax = Array.IndexOf(weightedMap, weightedMap.Max());
+            enemy_path = weighTheMaps(x_diff, y_diff, r);
+            enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
+        }
+        else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
+        {
+            if ((lastKnown.x  - enemy.transform.position.x)< 0)
+            {
+                enemySpriteRenderer.flipX = true;
+            }
+            else
+            {
+                enemySpriteRenderer.flipX = false;
+            }
+            double newR = FindRadius((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y));
+            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), 5, newR, isObstructed);
+            populateAvoidMap();
 
-            enemy_path = findProjection(x_diff, y_diff, indexOfMax);
-
-            enemy.MovePosition(enemy.position + enemy_path * movespeed * Time.fixedDeltaTime);
+            enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);
+            enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
         }
     }
 
