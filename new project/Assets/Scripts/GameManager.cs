@@ -6,15 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public float health;
     public static GameManager instance;
-    void Start()
+    public int level;
+    public float exp;
+
+    void Awake()
     { 
-        instance = this;
         if (instance != null)
         {
             Debug.LogError("Found more than one GameManager in the scene. Destroying the newest one.-Thaw");
             Destroy(this.gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);  //else
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 }

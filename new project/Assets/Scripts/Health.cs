@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDataPersistence
 {
     public float maxHealth = 100;
     public float health;
@@ -13,15 +13,29 @@ public class Health : MonoBehaviour
     private void Start()
     {
         //DontDestroyOnLoad(gameObject);
-        health = maxHealth;
-        GameManager.instance.health = health;
-        hasCollided = false;
-        healthBar.SetMaxHealth(health);
+        health = GameManager.instance.health;
+        hasCollided = false;                        //used to ensure that u take damage exactly once when you are in aggro range
+        healthBar.SetHealth(health);
+        healthBar.SetMaxHealth(maxHealth);
     }
     private void Update()
     {
         GameManager.instance.health = health;
+        healthBar.SetHealth(health);
     }
+
+    public void LoadData(GameData data)
+    {
+        health = data.maxHealth;
+        healthBar.SetMaxHealth(health);
+        maxHealth = data.maxHealth;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.maxHealth = maxHealth;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
