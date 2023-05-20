@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int level;
     public float exp;
-
-    void Awake()
+    public Inventory inventory;
+    void Start()
     { 
         if (instance != null)
         {
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        instance.inventory = new Inventory(21);
+        DontDestroyOnLoad(gameObject);  //else
     }
 }

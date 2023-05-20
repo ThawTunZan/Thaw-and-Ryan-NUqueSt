@@ -11,8 +11,8 @@ public class Inventory
         public CollectableType type;
         public int count;
         public int maxAllowed;
-
         public Sprite icon;
+        public string iconName;
 
         public Slot()
         {
@@ -34,8 +34,14 @@ public class Inventory
         {
             this.type = item.type;
             this.icon = item.icon;
+            this.iconName = item.icon.name;
             count++;
         }
+        public void AfterDeserialization()
+        {
+            this.icon = Resources.Load<Sprite>(iconName);
+        }
+
     }
 
     public List<Slot> slots = new List<Slot>();

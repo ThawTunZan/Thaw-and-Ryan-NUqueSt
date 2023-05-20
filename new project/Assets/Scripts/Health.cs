@@ -28,10 +28,11 @@ public class Health : MonoBehaviour, IDataPersistence
     {
         health = data.maxHealth;
         healthBar.SetMaxHealth(health);
+        healthBar.SetHealth(health);
         maxHealth = data.maxHealth;
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.maxHealth = maxHealth;
     }

@@ -97,21 +97,11 @@ public class DataPersistenceManager : MonoBehaviour
         //reference to PlayerMovement's method
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref gameData);
+            dataPersistenceObj.SaveData(gameData);
         }
         //saves in local folder
         dataHandler.Save(gameData);
     }
-
-    /*
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-    */
-    /*
-     * Finds all objects that are active MonoBehavior and amongst them that implements IDataPersistence and store them in IEnumerable<IDataPersistence> collection
-     */
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();

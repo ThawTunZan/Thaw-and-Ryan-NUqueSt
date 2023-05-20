@@ -7,5 +7,5 @@ public interface IDataPersistence
     void LoadData(GameData data);
 
     //ref to save because we are changing the file and not reading it
-    void SaveData(ref GameData data);
+    void SaveData(GameData data);
 }

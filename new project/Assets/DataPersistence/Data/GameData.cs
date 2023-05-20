@@ -12,6 +12,7 @@ public class GameData
     //public string name;
     public int gameScene;
     public float maxHealth;
+    public Inventory inventory;
 
     
     //default value;
@@ -20,5 +21,6 @@ public class GameData
         playerPosition = Vector3.zero;
         gameScene = 0;
         maxHealth = 100;
+        inventory = new Inventory(21);
     }
 }
