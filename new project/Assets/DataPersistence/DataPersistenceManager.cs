@@ -86,7 +86,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-       // Debug.Log("Loaded player position is " + gameData.playerPosition);
     }
 
     /*
