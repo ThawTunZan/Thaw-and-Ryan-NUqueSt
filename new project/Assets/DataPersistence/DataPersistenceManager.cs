@@ -16,6 +16,10 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance { get; private set; }
 
+    public bool sceneTransitted;
+
+
+
     //to maintain singleton
     private void Awake()
     {
@@ -29,6 +33,7 @@ public class DataPersistenceManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        sceneTransitted = false;
     }
 
     //calls OnSceneLoaded function and OnSceneUnloaded respectively for when this gameObject is enabled
@@ -50,7 +55,10 @@ public class DataPersistenceManager : MonoBehaviour
     {
         Debug.Log("OnSceneLoaded Called");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        if (!sceneTransitted)
+        {
+            LoadGame();
+        }
     }
 
     //Saves the game when the scene is unloaded
@@ -70,10 +78,10 @@ public class DataPersistenceManager : MonoBehaviour
      *Current gameData is equal to the data that is being loaded when being called by the Load() function that is located in the fileDataHandler class/script
      *Iterates through the list of all the gameObjects that implements the interface IDataPersistence and calls the LoadData method in each of their respective gameObjects
     */
-    public void LoadGame()
+    public async void LoadGame()
     {
-
-        this.gameData = dataHandler.Load();
+        this.gameData = await DatabaseManager.instance.LoadGameData();
+       // this.gameData = dataHandler.Load();
         //if no saved data found
         if (this.gameData == null)
         {       
@@ -100,6 +108,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
         //saves in local folder
         dataHandler.Save(gameData);
+        DatabaseManager.instance.CreateUser(gameData);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
@@ -110,6 +119,7 @@ public class DataPersistenceManager : MonoBehaviour
     
     public bool HasGameData()
     {
+        //LoadGame();
         return this.gameData != null;
     }
     

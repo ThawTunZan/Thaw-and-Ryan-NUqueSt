@@ -39,12 +39,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             Debug.Log("test");
             this.transform.position = startingPosition.InitialValue;
             startingPosition.transittedScene = false;
+            DataPersistenceManager.instance.sceneTransitted = false;
         }
     }
 
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
+        print("why is this being called");
     }
 
     public void SaveData(GameData data)

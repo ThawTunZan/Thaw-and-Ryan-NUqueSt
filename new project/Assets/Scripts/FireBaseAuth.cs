@@ -43,6 +43,7 @@ public class FireBaseAuth : MonoBehaviour
             if (dependencyStatus == DependencyStatus.Available)
             {
                 //If they are avalible Initialize Firebase
+                print("test");
                 InitializeFirebase();
             }
             else

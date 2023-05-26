@@ -22,6 +22,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
+        inventory = new Inventory(21);
         inventory = data.inventory;
         foreach (Inventory.Slot slot in inventory.slots)
         {

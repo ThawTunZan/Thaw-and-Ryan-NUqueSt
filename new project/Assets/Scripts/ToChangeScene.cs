@@ -18,6 +18,7 @@ public class ToChangeScene : MonoBehaviour
             print("player has entered the GoBackHome collider, switching scene to FarmHouse");
             storePlayerPosition.InitialValue = playerPosition;
             storePlayerPosition.transittedScene = true;
+            DataPersistenceManager.instance.sceneTransitted = true;
             SceneManager.LoadScene(indexOfScene, LoadSceneMode.Single);          
         }
     }
