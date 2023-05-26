@@ -32,6 +32,7 @@ public class FireBaseAuth : MonoBehaviour
     public TMP_Text warningRegisterText;
 
     public string playeremail;
+    GameData gameData;
 
     private string userID;
     void Awake()
@@ -68,6 +69,7 @@ public class FireBaseAuth : MonoBehaviour
         //Call the login coroutine passing the email and password
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
         playeremail = emailLoginField.text;
+        DataPersistenceManager.instance.userName = emailLoginField.text;
     }
     //Function for the register button
     public void RegisterButton()

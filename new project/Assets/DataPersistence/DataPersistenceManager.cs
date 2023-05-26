@@ -18,6 +18,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool sceneTransitted;
 
+    public string userName;
+
 
 
     //to maintain singleton
@@ -108,7 +110,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
         //saves in local folder
         dataHandler.Save(gameData);
-        DatabaseManager.instance.CreateUser(gameData);
+        DatabaseManager.instance.CreateUser(gameData, userName);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {

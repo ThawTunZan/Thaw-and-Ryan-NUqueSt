@@ -8,18 +8,18 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public GameObject loginUI;
     public GameObject registerUI;
-    /**
+    /*
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.-Thaw");
+            Destroy(this.gameObject);
+            return;
         }
-        else if (instance != null)
-        {
-            Debug.Log("instance already exists, destroying object!");
-            Destroy(this);
-        }
+        
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
     */
 

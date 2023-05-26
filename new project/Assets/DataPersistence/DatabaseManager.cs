@@ -11,6 +11,7 @@ public class DatabaseManager : MonoBehaviour
     private DatabaseReference dbReference;
     private DatabaseReference userRef;
     public static DatabaseManager instance { get; private set; }
+    public string userEmail;
     void Awake()
     {
         if (instance != null)
@@ -22,14 +23,16 @@ public class DatabaseManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         userID = SystemInfo.deviceUniqueIdentifier;
+        //userID = userEmail;
         //Get the root reference location of database
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         userRef = dbReference.Child("users").Child(userID);
     }
 
-    public void CreateUser(GameData data)
+    public void CreateUser(GameData data, string userName)
     {
         string json = JsonUtility.ToJson(data);
+        print(userEmail);
         dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
     }
 
