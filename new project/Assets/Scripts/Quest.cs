@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerQuests player = collision.GetComponent<PlayerQuests>();
+
+        if (player)
+        {
+            
+        }
+    }
 }

@@ -32,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     float original_speed;
 
     private DialogueVariables dialogueVariables;
+    private PlayerQuests player;
 
     private void Awake()
     {

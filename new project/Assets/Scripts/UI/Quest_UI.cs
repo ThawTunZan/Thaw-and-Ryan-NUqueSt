@@ -25,11 +25,11 @@ public class Quest_UI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ToggleInventory();
+            ToggleQuestList();
         }
     }
 
-    public void ToggleInventory()
+    public void ToggleQuestList()
     {
         if (!questPanel.activeSelf)
         {
