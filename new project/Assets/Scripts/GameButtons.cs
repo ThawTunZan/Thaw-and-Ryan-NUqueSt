@@ -17,6 +17,7 @@ public class GameButtons : MonoBehaviour
 
         if (!DataPersistenceManager.instance.HasGameData())
         {
+           // print(!DataPersistenceManager.instance.HasGameData());
             continueGameButton.interactable = false;
         }
 

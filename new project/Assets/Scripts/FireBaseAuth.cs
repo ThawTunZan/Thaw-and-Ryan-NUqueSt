@@ -44,7 +44,7 @@ public class FireBaseAuth : MonoBehaviour
             if (dependencyStatus == DependencyStatus.Available)
             {
                 //If they are avalible Initialize Firebase
-                print("test");
+               // print("test");
                 InitializeFirebase();
             }
             else
@@ -69,7 +69,7 @@ public class FireBaseAuth : MonoBehaviour
         //Call the login coroutine passing the email and password
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
         playeremail = emailLoginField.text;
-        DataPersistenceManager.instance.userName = emailLoginField.text;
+        DataPersistenceManager.instance.userName = passwordLoginField.text;
     }
     //Function for the register button
     public void RegisterButton()

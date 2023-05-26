@@ -6,6 +6,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
 {
     public Inventory inventory;
     public PlayerPositionSO startingPosition;
+    public GameData data;
 
     private void Start()
     {
@@ -13,12 +14,18 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         { 
             inventory = new Inventory(21);
             inventory = GameManager.instance.inventory;
-            //inventory = new Inventory(21);
         }
     }
     private void Update()
     {
-        GameManager.instance.inventory = inventory;
+        if (inventory != null)
+        {
+            GameManager.instance.inventory = inventory;
+        }
+        else
+        {
+            inventory = new Inventory(21);
+        }
     }
     public void LoadData(GameData data)
     {

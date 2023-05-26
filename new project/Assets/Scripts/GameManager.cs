@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public int level;
     public float exp;
     public Inventory inventory;
-    void Start()
+    void Awake()
     { 
         if (instance != null)
         {

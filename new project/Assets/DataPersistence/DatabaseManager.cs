@@ -9,7 +9,6 @@ public class DatabaseManager : MonoBehaviour
 {
     private string userID;
     private DatabaseReference dbReference;
-    private DatabaseReference userRef;
     public static DatabaseManager instance { get; private set; }
     public string userEmail;
     void Awake()
@@ -22,30 +21,26 @@ public class DatabaseManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        userID = SystemInfo.deviceUniqueIdentifier;
-        //userID = userEmail;
-        //Get the root reference location of database
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        userRef = dbReference.Child("users").Child(userID);
     }
 
     public void CreateUser(GameData data, string userName)
     {
         string json = JsonUtility.ToJson(data);
-        print(userEmail);
-        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+        dbReference.Child("users").Child(userName).SetRawJsonValueAsync(json);
     }
 
 
-    public async Task<GameData> LoadGameData()
+    public async Task<GameData> LoadGameData(string userName)
     {
-        if (!string.IsNullOrEmpty(userID))
+        if (!string.IsNullOrEmpty(userName))
         {
-            var task = userRef.GetValueAsync();
+          var task = dbReference.Child("users").Child(userName).GetValueAsync();
 
-            await task; // Wait for the task to complete asynchronously
+             await task; // Wait for the task to complete asynchronously
 
             if (task.IsFaulted)
+
             {
                 Debug.LogError("Failed to retrieve user data: " + task.Exception);
                 return null;
@@ -56,7 +51,7 @@ public class DatabaseManager : MonoBehaviour
             {
                 string jsonData = snapshot.GetRawJsonValue();
                 GameData gameData = JsonUtility.FromJson<GameData>(jsonData);
-
+                PlayerItems playerItems = FindObjectOfType<PlayerItems>();
                 return gameData;
             }
             else
@@ -71,6 +66,4 @@ public class DatabaseManager : MonoBehaviour
             return null;
         }
     }
-
-    // Other code...
 }

@@ -12,10 +12,8 @@ public class ToChangeScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("GoBackHome collision is triggered");
         if (collision.CompareTag("Player"))
         {
-            print("player has entered the GoBackHome collider, switching scene to FarmHouse");
             storePlayerPosition.InitialValue = playerPosition;
             storePlayerPosition.transittedScene = true;
             DataPersistenceManager.instance.sceneTransitted = true;

@@ -33,11 +33,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         spriteRenderer = GetComponent<SpriteRenderer>();
         swordAttack = GetComponent<SwordAttack>();
 
-        //To transit to the correct position when changing scene/level/map
         if (startingPosition.transittedScene == true)
         {
-            Debug.Log("test");
-            this.transform.position = startingPosition.InitialValue;
+            transform.position = startingPosition.InitialValue;
             startingPosition.transittedScene = false;
             DataPersistenceManager.instance.sceneTransitted = false;
         }
@@ -45,7 +43,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.playerPosition;
+        transform.position = data.playerPosition;
         print("why is this being called");
     }
 

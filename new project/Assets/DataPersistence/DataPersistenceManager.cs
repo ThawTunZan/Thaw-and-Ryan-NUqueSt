@@ -34,7 +34,6 @@ public class DataPersistenceManager : MonoBehaviour
         
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         sceneTransitted = false;
     }
 
@@ -55,7 +54,7 @@ public class DataPersistenceManager : MonoBehaviour
     //calls the findAllDataPersistenceObjects function followed by the LoadGame
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded Called");
+        //Debug.Log("OnSceneLoaded Called");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         if (!sceneTransitted)
         {
@@ -66,14 +65,18 @@ public class DataPersistenceManager : MonoBehaviour
     //Saves the game when the scene is unloaded
     public void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("OnSceneUnloaded called");
+       // Debug.Log("OnSceneUnloaded called");
         SaveGame();
     }
 
 
     public void NewGame()
     {
-        this.gameData = new GameData();
+        gameData = new GameData();
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     /*
@@ -82,10 +85,9 @@ public class DataPersistenceManager : MonoBehaviour
     */
     public async void LoadGame()
     {
-        this.gameData = await DatabaseManager.instance.LoadGameData();
-       // this.gameData = dataHandler.Load();
+        gameData = await DatabaseManager.instance.LoadGameData(userName);
         //if no saved data found
-        if (this.gameData == null)
+        if (gameData == null)
         {       
             Debug.Log("No saved data was found. New game needs to be started. Please click NewGame Button -Thaw");
 
@@ -109,7 +111,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(gameData);
         }
         //saves in local folder
-        dataHandler.Save(gameData);
+       // dataHandler.Save(gameData);
         DatabaseManager.instance.CreateUser(gameData, userName);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
@@ -121,8 +123,11 @@ public class DataPersistenceManager : MonoBehaviour
     
     public bool HasGameData()
     {
-        //LoadGame();
-        return this.gameData != null;
+        if (DatabaseManager.instance.LoadGameData(userName) != null)
+        {
+            return true;
+        }
+        return false;
     }
     
 }
