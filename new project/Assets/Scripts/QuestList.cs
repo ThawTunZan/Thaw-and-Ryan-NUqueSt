@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Ink.Runtime;
 
 [System.Serializable]
 public class QuestList
@@ -9,33 +11,28 @@ public class QuestList
     public class QuestSlot
     {
         public int count;
-        public int maxAllowed;
-        public int temp;
         public string questName;
         public string questDescription;
+        public bool done;
 
-        public QuestSlot()
-        {
-            count = 0;
-            temp = 0;
-            maxAllowed = 1;
-        }
-
-        public bool CanAddItem()
-        {
-            if (count < maxAllowed)
-            {
-                return true;
-            }
-            return false;
-        }
+        // add more requirements here for different quests
+        public int slimesRequired;
 
         public void AddItem(string quest_name, string quest_description)
         {
             questName = quest_name;
             questDescription = quest_description;
-            temp = 1;
+            QuestHandler(quest_name);
             count++;
+        }
+
+        // add more quests here
+        public void QuestHandler(string quest_name)
+        {
+            if (quest_name == "MA1511")
+            {
+                slimesRequired = 2;
+            }
         }
     }
 
@@ -54,7 +51,7 @@ public class QuestList
     {
         foreach (QuestSlot questSlot in questSlots)
         {
-            if (questSlot.CanAddItem())
+            if (questSlot.count == 0)
             {
                 questSlot.AddItem(questName, questDescription);
                 return;

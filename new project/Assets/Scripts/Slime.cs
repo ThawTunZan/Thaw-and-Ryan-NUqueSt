@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static QuestList;
 
 public class Slime : MonoBehaviour
 {
     Animator animator;
 
+    public PlayerQuests player;
+
     public void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("alive", true);
+        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
     public float Health { 
         set
@@ -24,6 +28,14 @@ public class Slime : MonoBehaviour
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
+                for (int i = 0; i < 5; i++)
+                {
+                    if (player.questList.questSlots[i].count == 1)
+                    {
+                        player.questList.questSlots[i].slimesRequired--;
+                    }
+                }
+                Invoke(nameof(SlimeDeath), 1f);
             }
         }
         get
@@ -48,5 +60,10 @@ public class Slime : MonoBehaviour
             SwordAttack swordAttack = col.gameObject.GetComponentInParent<SwordAttack>();
             OnHit(swordAttack.swordDamage);
         }
+    }
+
+    private void SlimeDeath()
+    {
+        Destroy(this.gameObject);
     }
 }

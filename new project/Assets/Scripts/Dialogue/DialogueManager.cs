@@ -112,8 +112,9 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = currentLine;
             if (currentLine.StartsWith("Quest Started"))
             {
+                // referencing dictionary in DialogueVariables which references variables from globals.ink
                 string questName = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questName")).value;
-                string questDescription = ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questDesc")).value;
+                string questDescription = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questDesc")).value;
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.AddQuest(questName, questDescription);
             }
@@ -146,7 +147,7 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
+        // the code below in green is not needed (i think lol)
         //StartCoroutine(SelectFirstChoice());
     }
 
