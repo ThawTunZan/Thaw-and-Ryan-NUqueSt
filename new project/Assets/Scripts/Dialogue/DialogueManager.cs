@@ -112,11 +112,13 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = currentLine;
             if (currentLine.StartsWith("Quest Started"))
             {
-                // referencing dictionary in DialogueVariables which references variables from globals.ink
+                // referencing dictionary in DialogueVariables script which references variables from globals.ink file
                 string questName = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questName")).value;
                 string questDescription = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questDesc")).value;
+
+                // add quest to Quest List under Player Quests component in Player via QuestList script
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-                player.AddQuest(questName, questDescription);
+                player.questList.Add(questName, questDescription);
             }
             DisplayChoices();
         }
