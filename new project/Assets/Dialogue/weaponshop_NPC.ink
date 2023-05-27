@@ -8,7 +8,7 @@ How can I help you?
         We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {questDone:I do not require assistance for now.|{questStarted:I have already given you a quest. -> in_quest|Could you get rid of the slimes in my shop? -> not_in_quest}}
+        {questDone:I do not require assistance for now.|{questStarted:I have already given you a quest. -> in_quest|Could you get rid of the slimes in my shop? -> start_quest}}
         -> DONE
     * [Leave]
         Goodbye.
@@ -26,11 +26,13 @@ How can I help you?
 
 -> END
 
-=== not_in_quest ===
+=== start_quest ===
 * [Yes]
     Great!
     ~ questName = "MA1511"
+    ~ questDesc = "Kill two slimes"
     ~ questStarted = true
+    Quest Started.
     -> DONE
 * [No]
     Okay, goodbye.

@@ -13,8 +13,8 @@ public class QuestSlot_UI : MonoBehaviour
     {
         if (questSlot != null)
         {
-            questNameText.text = questSlot.count.ToString();
-            questDescriptionText.text = questSlot.count.ToString();
+            questNameText.text = questSlot.questName;
+            questDescriptionText.text = questSlot.questDescription;
         }
     }
 

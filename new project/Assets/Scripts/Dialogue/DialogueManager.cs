@@ -108,7 +108,15 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            string currentLine = currentStory.Continue();
+            dialogueText.text = currentLine;
+            if (currentLine.StartsWith("Quest Started"))
+            {
+                string questName = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questName")).value;
+                string questDescription = ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questDesc")).value;
+                player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+                player.AddQuest(questName, questDescription);
+            }
             DisplayChoices();
         }
         else

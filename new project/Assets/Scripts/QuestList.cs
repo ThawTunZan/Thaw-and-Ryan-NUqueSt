@@ -11,6 +11,8 @@ public class QuestList
         public int count;
         public int maxAllowed;
         public int temp;
+        public string questName;
+        public string questDescription;
 
         public QuestSlot()
         {
@@ -28,8 +30,10 @@ public class QuestList
             return false;
         }
 
-        public void AddItem(string questName, string questDescription)
+        public void AddItem(string quest_name, string quest_description)
         {
+            questName = quest_name;
+            questDescription = quest_description;
             temp = 1;
             count++;
         }
