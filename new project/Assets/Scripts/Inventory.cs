@@ -19,6 +19,8 @@ public class Inventory
             type = CollectableType.NONE;
             count = 0;
             maxAllowed = 32;
+            icon = null;
+            iconName = null;    
         }
 
         public bool CanAddItem()
@@ -34,6 +36,7 @@ public class Inventory
         {
             this.type = item.type;
             this.icon = item.icon;
+            this.maxAllowed = 32;
             this.iconName = item.icon.name;
             count++;
         }

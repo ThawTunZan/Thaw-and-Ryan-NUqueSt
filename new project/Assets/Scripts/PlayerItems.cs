@@ -18,14 +18,14 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     }
     private void Update()
     {
-        if (inventory != null)
-        {
+      //  if (inventory != null)
+     //   {
             GameManager.instance.inventory = inventory;
-        }
-        else
-        {
-            inventory = new Inventory(21);
-        }
+       // }
+      //  else
+      //  {
+        //    inventory = new Inventory(21);
+       // }
     }
     public void LoadData(GameData data)
     {
