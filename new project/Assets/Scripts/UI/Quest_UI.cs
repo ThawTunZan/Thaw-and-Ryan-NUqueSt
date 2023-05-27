@@ -51,7 +51,7 @@ public class Quest_UI : MonoBehaviour
         {
             for (int i = 0; i < questSlots.Count; i++)
             {
-                if (player.questList.questSlots[i].temp == 1)
+                if (player.questList.questSlots[i].count == 1)
                 {
                     questSlots[i].SetItem(player.questList.questSlots[i]);
                 }

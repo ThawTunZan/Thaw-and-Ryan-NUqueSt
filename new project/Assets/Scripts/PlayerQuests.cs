@@ -10,9 +10,4 @@ public class PlayerQuests : MonoBehaviour
     {
         questList = new QuestList(5);
     }
-
-    public void AddQuest(string questName, string questDescription)
-    {
-        questList.Add(questName, questDescription);
-    }
 }

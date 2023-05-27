@@ -8,13 +8,16 @@ public class QuestSlot_UI : MonoBehaviour
 {
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI questDescriptionText;
+    public GameObject questStatus;
 
     public void SetItem(QuestList.QuestSlot questSlot)
     {
+
         if (questSlot != null)
         {
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
+            QuestHandler(questSlot);
         }
     }
 
@@ -22,5 +25,18 @@ public class QuestSlot_UI : MonoBehaviour
     {
         questNameText.text = "";
         questDescriptionText.text = "";
+    }
+
+    // add quests completion requirement here
+    public void QuestHandler(QuestList.QuestSlot questSlot)
+    {
+        if (questSlot.questName == "MA1511")
+        {
+            if (questSlot.slimesRequired <= 0)
+            {
+                questSlot.done = true;
+                questStatus.SetActive(true);
+            }
+        }
     }
 }
