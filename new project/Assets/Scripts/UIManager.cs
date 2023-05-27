@@ -5,12 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static UIManager instance { get; private set; }
     public GameObject loginUI;
     public GameObject registerUI;
-    /*
+    
     private void Awake()
     {
+        /*
         if (instance != null)
         {
             Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.-Thaw");
@@ -19,9 +20,10 @@ public class UIManager : MonoBehaviour
         }
         
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
+        */
     }
-    */
+    
 
     public void LoginScreen()
     {

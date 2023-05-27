@@ -31,12 +31,15 @@ public class FireBaseAuth : MonoBehaviour
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
 
-    public string playeremail;
-    GameData gameData;
+    public GameObject uiManager;
+    public UIManager uiManagerScript;
+
+  //  GameData gameData;
 
     private string userID;
     void Awake()
     {
+        uiManagerScript = uiManager.GetComponent<UIManager>();
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -44,7 +47,6 @@ public class FireBaseAuth : MonoBehaviour
             if (dependencyStatus == DependencyStatus.Available)
             {
                 //If they are avalible Initialize Firebase
-               // print("test");
                 InitializeFirebase();
             }
             else
@@ -68,7 +70,6 @@ public class FireBaseAuth : MonoBehaviour
     {
         //Call the login coroutine passing the email and password
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
-        playeremail = emailLoginField.text;
         DataPersistenceManager.instance.userName = passwordLoginField.text;
     }
     //Function for the register button
@@ -119,8 +120,8 @@ public class FireBaseAuth : MonoBehaviour
             //Now get the result
             User = LoginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
-            //warningLoginText.text = "";
-            //confirmLoginText.text = "Logged In";
+            warningLoginText.text = "";
+            confirmLoginText.text = "Logged In";
             LoginScreen();
         }
     }
@@ -165,7 +166,7 @@ public class FireBaseAuth : MonoBehaviour
                         message = "Missing Password";
                         break;
                     case AuthError.WeakPassword:
-                        message = "Weak Password";
+                        message = "Weak Password. Minimum 6 characters!";
                         break;
                     case AuthError.EmailAlreadyInUse:
                         message = "Email Already In Use";
@@ -201,8 +202,8 @@ public class FireBaseAuth : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
-                        UIManager.instance.LoginScreen();
-                        warningRegisterText.text = "";
+                        uiManagerScript.LoginScreen();
+                        confirmLoginText.text = "Account is created! Please click the back button and proceed to login!";
                     }
                 }
             }
