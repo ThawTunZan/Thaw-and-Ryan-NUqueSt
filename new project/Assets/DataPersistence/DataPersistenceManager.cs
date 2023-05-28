@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storange Config")]
-    [SerializeField] private string fileName;
-
-    private FileDataHandler dataHandler;
 
     private GameData gameData;
 
