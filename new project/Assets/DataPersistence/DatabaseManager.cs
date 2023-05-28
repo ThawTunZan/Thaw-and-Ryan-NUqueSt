@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
-using Firebase.Database;
 using System.Threading.Tasks;
+using PlayFab.ClientModels;
+using PlayFab;
 
 public class DatabaseManager : MonoBehaviour
 {
     private string userID;
-    private DatabaseReference dbReference;
     public static DatabaseManager instance { get; private set; }
-    public string userEmail;
+    public GameData databaseGameData;
+
     void Awake()
     {
         if (instance != null)
@@ -21,49 +21,45 @@ public class DatabaseManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
-
+    
     public void CreateUser(GameData data, string userName)
     {
         string json = JsonUtility.ToJson(data);
-        dbReference.Child("users").Child(userName).SetRawJsonValueAsync(json);
+        var request = new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string>
+            {
+                {userName, json}
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
     }
-
-
-    public async Task<GameData> LoadGameData(string userName)
+    
+    public GameData LoadGameData(string userName)
     {
-        if (!string.IsNullOrEmpty(userName))
-        {
-          var task = dbReference.Child("users").Child(userName).GetValueAsync();
-
-             await task; // Wait for the task to complete asynchronously
-
-            if (task.IsFaulted)
-
-            {
-                Debug.LogError("Failed to retrieve user data: " + task.Exception);
-                return null;
-            }
-
-            DataSnapshot snapshot = task.Result;
-            if (snapshot.Exists)
-            {
-                string jsonData = snapshot.GetRawJsonValue();
-                GameData gameData = JsonUtility.FromJson<GameData>(jsonData);
-                PlayerItems playerItems = FindObjectOfType<PlayerItems>();
-                return gameData;
-            }
-            else
-            {
-                Debug.LogWarning("User data not found!");
-                return null;
-            }
-        }
-        else
-        {
-            Debug.LogWarning("User ID is empty!");
-            return null;
-        }
+        userID = userName;
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnError);
+        return databaseGameData;
     }
+
+    public void OnDataSend(UpdateUserDataResult result)
+    {
+        Debug.Log("Successfully saved!");
+    }
+    public void OnCharactersDataRecieved(GetUserDataResult result)
+    {
+        Debug.Log("Recieved character data!");
+        if (result.Data != null && result.Data.ContainsKey(userID))
+        {
+            databaseGameData = JsonUtility.FromJson<GameData>(result.Data[userID].Value);
+            
+        }
+        Debug.LogWarning("User data not found - at DatabaseManager.cs");
+    }
+    void OnError(PlayFabError error)
+    {
+        print(error.ErrorMessage);
+    }
+
 }

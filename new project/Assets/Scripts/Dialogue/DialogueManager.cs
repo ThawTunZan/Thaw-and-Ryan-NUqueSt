@@ -7,7 +7,7 @@ using Ink.Runtime;
 using Story = Ink.Runtime.Story;
 using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
-using Ink.UnityIntegration;
+
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,8 +16,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
-    [Header("Globals Ink File")]
-    [SerializeField] private InkFile globalsInkFile;
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
     public static DialogueManager GetInstance()

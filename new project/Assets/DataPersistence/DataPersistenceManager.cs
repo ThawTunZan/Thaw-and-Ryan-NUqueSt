@@ -1,4 +1,3 @@
-using Firebase.Database;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -80,9 +79,10 @@ public class DataPersistenceManager : MonoBehaviour
      *Current gameData is equal to the data that is being loaded when being called by the Load() function that is located in the fileDataHandler class/script
      *Iterates through the list of all the gameObjects that implements the interface IDataPersistence and calls the LoadData method in each of their respective gameObjects
     */
-    public async void LoadGame()
+    public void LoadGame()
     {
-        gameData = await DatabaseManager.instance.LoadGameData(userName);
+        gameData = DatabaseManager.instance.LoadGameData(userName);
+       // DatabaseManager.instance.LoadGameData(ref gameData, userName);
         //if no saved data found
         if (gameData == null)
         {       
