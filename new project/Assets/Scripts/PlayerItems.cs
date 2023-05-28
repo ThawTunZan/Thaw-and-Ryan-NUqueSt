@@ -33,7 +33,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         inventory = data.inventory;
         foreach (Inventory.Slot slot in inventory.slots)
         {
-            slot.AfterDeserialization();
+            //slot.AfterDeserialization(slot.iconName);
+            slot.icon = Resources.Load<Sprite>("Collectable");
         }
         
     }

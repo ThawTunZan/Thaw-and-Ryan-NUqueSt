@@ -34,15 +34,16 @@ public class Inventory
 
         public void AddItem(Collectable item)
         {
-            this.type = item.type;
-            this.icon = item.icon;
-            this.maxAllowed = 32;
-            this.iconName = item.icon.name;
+            type = item.type;
+            icon = item.icon;
+            maxAllowed = 32;
+            iconName = item.icon.name;
             count++;
         }
-        public void AfterDeserialization()
+        public void AfterDeserialization(string iconNAME)
         {
-            this.icon = Resources.Load<Sprite>(iconName);
+            string path = "Prefab/" + iconName;
+            icon = Resources.Load<Sprite>(iconNAME);
         }
 
     }

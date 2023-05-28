@@ -50,12 +50,8 @@ public class DataPersistenceManager : MonoBehaviour
     //calls the findAllDataPersistenceObjects function followed by the LoadGame
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("OnSceneLoaded Called");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        if (!sceneTransitted)
-        {
-            LoadGame();
-        }
+        LoadGame();
     }
 
     //Saves the game when the scene is unloaded
@@ -69,10 +65,6 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         gameData = new GameData();
-        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
-        {
-            dataPersistenceObj.LoadData(gameData);
-        }
     }
 
     /*
@@ -107,8 +99,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        //saves in local folder
-       // dataHandler.Save(gameData);
         DatabaseManager.instance.CreateUser(gameData, userName);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()

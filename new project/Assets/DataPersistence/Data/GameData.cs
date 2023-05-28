@@ -19,7 +19,7 @@ public class GameData
     public GameData()
     {
         playerPosition = Vector3.zero;
-        gameScene = 0;
+        gameScene = 3;
         maxHealth = 100;
         inventory = new Inventory(21);
     }
