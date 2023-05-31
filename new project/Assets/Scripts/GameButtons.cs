@@ -15,11 +15,10 @@ public class GameButtons : MonoBehaviour
     private void Start()
     {
 
-        if (!DataPersistenceManager.instance.HasGameData())
-        {
-           // print(!DataPersistenceManager.instance.HasGameData());
-            continueGameButton.interactable = false;
-        }
+       // if (!DataPersistenceManager.instance.HasGameData())
+       // {
+       //     continueGameButton.interactable = false;
+      //  }
 
     }
     public void NewGame()
@@ -33,6 +32,7 @@ public class GameButtons : MonoBehaviour
     public void ContinueGame()
     {
         DisableMenuButtons();
+        // DataPersistenceManager.instance.LoadGame();
         SceneManager.LoadSceneAsync("PlayerHouse");
     }
 

@@ -5,14 +5,17 @@ using Ink.Runtime;
 //using Choice = Ink.Runtime.Choice;
 
 
-public class DialogueVariables
+public class DialogueVariables : IDataPersistence
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
+
+    private Story globalVariablesStory;
+    private const string saveVariablesKey = "INK_VARIABLES";
 
     public DialogueVariables(TextAsset loadGlobalsJSON)
     {
         // create the story
-        Story globalVariablesStory = new Story(loadGlobalsJSON.text);
+        globalVariablesStory = new Story(loadGlobalsJSON.text);
 
         variables = new Dictionary<string, Ink.Runtime.Object>();
         foreach (string name in globalVariablesStory.variablesState)
@@ -60,5 +63,19 @@ public class DialogueVariables
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
         return variableValue;
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (globalVariablesStory != null) 
+        {
+           // data.storyState = globalVariablesStory.state;
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+      //  string jsonState = JsonUtility.ToJson(data.storyState);
+      //  globalVariablesStory.state.LoadJson(jsonState);
     }
 }

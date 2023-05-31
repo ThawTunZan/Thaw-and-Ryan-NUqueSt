@@ -1,7 +1,9 @@
+using Ink.Parsed;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
 
 [System.Serializable]
 
@@ -13,6 +15,8 @@ public class GameData
     public int gameScene;
     public float maxHealth;
     public Inventory inventory;
+   // public StoryState storyState;
+    public string story;
 
     
     //default value;
@@ -22,5 +26,6 @@ public class GameData
         gameScene = 3;
         maxHealth = 100;
         inventory = new Inventory(21);
+        story = "";
     }
 }

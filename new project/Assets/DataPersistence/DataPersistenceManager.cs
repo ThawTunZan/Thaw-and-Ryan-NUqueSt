@@ -14,11 +14,6 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool sceneTransitted;
 
-    public string userName;
-
-
-
-    //to maintain singleton
     private void Awake()
     {
         if (instance != null)
@@ -37,14 +32,11 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        
+        SceneManager.sceneLoaded -= OnSceneLoaded;     
     }
 
     //calls the findAllDataPersistenceObjects function followed by the LoadGame
@@ -54,17 +46,15 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    //Saves the game when the scene is unloaded
-    public void OnSceneUnloaded(Scene scene)
-    {
-       // Debug.Log("OnSceneUnloaded called");
-        SaveGame();
-    }
-
 
     public void NewGame()
     {
         gameData = new GameData();
+        DatabaseManager.instance.databaseGameData = new GameData();
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     /*
@@ -73,8 +63,7 @@ public class DataPersistenceManager : MonoBehaviour
     */
     public void LoadGame()
     {
-        gameData = DatabaseManager.instance.LoadGameData(userName);
-       // DatabaseManager.instance.LoadGameData(ref gameData, userName);
+        gameData = DatabaseManager.instance.LoadGameData();
         //if no saved data found
         if (gameData == null)
         {       
@@ -99,7 +88,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        DatabaseManager.instance.CreateUser(gameData, userName);
+        DatabaseManager.instance.CreateUser(gameData);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
@@ -110,7 +99,7 @@ public class DataPersistenceManager : MonoBehaviour
     
     public bool HasGameData()
     {
-        if (DatabaseManager.instance.LoadGameData(userName) != null)
+        if (DatabaseManager.instance.LoadGameData() != null)
         {
             return true;
         }
