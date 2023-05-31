@@ -14,6 +14,7 @@ public class PlayfabManager : MonoBehaviour
     
     [Header("Login")]
     public TMP_InputField emailLoginField;
+    public TMP_InputField usernameLoginField;
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
     public TMP_Text confirmLoginText;
@@ -40,18 +41,25 @@ public class PlayfabManager : MonoBehaviour
             Password = passwordLoginField.text
         };
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
-        DataPersistenceManager.instance.userName = passwordLoginField.text;
+        DataPersistenceManager.instance.userName = usernameLoginField.text;
     }
     //Function for the register button
     public void RegisterButton()
     {
-        var request = new RegisterPlayFabUserRequest
+        if (passwordRegisterVerifyField.text == passwordRegisterField.text)
         {
-            Email = emailRegisterField.text,
-            Password = passwordRegisterField.text,
-            RequireBothUsernameAndEmail = false
-        };
-        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+            var request = new RegisterPlayFabUserRequest
+            {
+                Email = emailRegisterField.text,
+                Password = passwordRegisterField.text,
+                RequireBothUsernameAndEmail = false
+            };
+            PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+        }
+        else 
+        {
+            warningRegisterText.text = "Passwords do not match! Please double check your passwords to ensure that they match!";
+        }
     }
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
