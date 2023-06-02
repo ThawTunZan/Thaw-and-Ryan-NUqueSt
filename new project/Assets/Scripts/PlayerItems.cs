@@ -11,9 +11,10 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     private void Start()
     {
         if (startingPosition.transittedScene)
-        { 
+        {
             inventory = new Inventory(21);
             inventory = GameManager.instance.inventory;
+            //startingPosition.transittedScene = false;
         }
     }
     private void Update()

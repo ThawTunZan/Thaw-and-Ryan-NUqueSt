@@ -1,22 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using Unity.VisualScripting.FullSerializer;
 //using Story = Ink.Runtime.Story;
 //using Choice = Ink.Runtime.Choice;
 
 
-public class DialogueVariables : IDataPersistence
+public class DialogueVariables
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
 
-    private Story globalVariablesStory;
-    private const string saveVariablesKey = "INK_VARIABLES";
+    public Story globalVariablesStory;
 
     public DialogueVariables(TextAsset loadGlobalsJSON)
     {
+        GameData data = DataPersistenceManager.instance.gameData;
         // create the story
         globalVariablesStory = new Story(loadGlobalsJSON.text);
 
+        if (!string.IsNullOrEmpty(data.story))
+        {
+            Debug.Log("Loading JSON data: " + data.story);
+            try
+            {
+                
+                globalVariablesStory.state.LoadJson(data.story);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Error loading JSON data: " + e.Message);
+            }
+            Debug.Log("JSON data loaded successfully.");
+        }
         variables = new Dictionary<string, Ink.Runtime.Object>();
         foreach (string name in globalVariablesStory.variablesState)
         {
@@ -46,7 +61,7 @@ public class DialogueVariables : IDataPersistence
         }
     }
 
-    private void VariablesToStory(Story story)
+    public void VariablesToStory(Story story)
     {
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
         {
@@ -64,18 +79,14 @@ public class DialogueVariables : IDataPersistence
         }
         return variableValue;
     }
-
-    public void SaveData(GameData data)
+    public string saveVariables()
     {
-        if (globalVariablesStory != null) 
+        if (globalVariablesStory != null)
         {
-           // data.storyState = globalVariablesStory.state;
+            VariablesToStory(globalVariablesStory);
+            Debug.Log(JsonUtility.ToJson(globalVariablesStory));
+            return globalVariablesStory.state.ToJson();
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-      //  string jsonState = JsonUtility.ToJson(data.storyState);
-      //  globalVariablesStory.state.LoadJson(jsonState);
+        else { return null; }
     }
 }

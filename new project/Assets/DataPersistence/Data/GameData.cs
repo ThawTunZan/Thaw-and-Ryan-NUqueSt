@@ -15,8 +15,9 @@ public class GameData
     public int gameScene;
     public float maxHealth;
     public Inventory inventory;
-   // public StoryState storyState;
     public string story;
+    public string storyState;
+    public List<int> weaponsmithNPC;           // quest progress for WeaponSmith NPC
 
     
     //default value;
@@ -26,6 +27,7 @@ public class GameData
         gameScene = 3;
         maxHealth = 100;
         inventory = new Inventory(21);
-        story = "";
+        storyState = "";
+        weaponsmithNPC = new List<int>() { 0, 0, 0};
     }
 }

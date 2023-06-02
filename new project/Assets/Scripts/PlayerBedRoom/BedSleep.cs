@@ -22,6 +22,7 @@ public class BedSleep : MonoBehaviour
 
     public void SaveData()
     {
+        print("BEDTIME SLEEPYSLEEEEEEEEEEPY");
         DataPersistenceManager.instance.SaveGame();
        // data.playerPosition = new Vector3(0.6816905f, 0.6025486f, 0);
     }

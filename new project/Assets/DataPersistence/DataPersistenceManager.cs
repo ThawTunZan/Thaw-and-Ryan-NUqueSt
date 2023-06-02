@@ -7,7 +7,7 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storange Config")]
 
-    private GameData gameData;
+    public GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance { get; private set; }
@@ -19,12 +19,12 @@ public class DataPersistenceManager : MonoBehaviour
         if (instance != null)
         {
             Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.-Thaw");
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
         sceneTransitted = false;
     }
 
@@ -42,8 +42,13 @@ public class DataPersistenceManager : MonoBehaviour
     //calls the findAllDataPersistenceObjects function followed by the LoadGame
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+       
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
+        
+        if (!sceneTransitted)
+        {
+            LoadGame();
+        }
     }
 
 
