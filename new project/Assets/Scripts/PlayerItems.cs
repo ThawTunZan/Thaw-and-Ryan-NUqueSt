@@ -6,7 +6,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
 {
     public Inventory inventory;
     public PlayerPositionSO startingPosition;
-    public GameData data;
+    //public GameData data;
     public SpriteRenderer player;
 
     private void Start()
