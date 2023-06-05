@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,7 +9,7 @@ public class Inventory
     [System.Serializable]
     public class Slot
     {
-        public CollectableType type;
+        public string itemName;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -16,7 +17,7 @@ public class Inventory
 
         public Slot()
         {
-            type = CollectableType.NONE;
+            itemName = "";
             count = 0;
             maxAllowed = 32;
             icon = null;
@@ -32,14 +33,28 @@ public class Inventory
             return false;
         }
 
-        public void AddItem(Collectable item)
+        public void AddItem(Item item)
         {
-            type = item.type;
-            icon = item.icon;
+            this.itemName = item.data.itemName;
+            this.icon = item.data.icon;
             maxAllowed = 32;
-            iconName = item.icon.name;
             count++;
         }
+
+        public void RemoveItem()
+        {
+            if (count>0)
+            {
+                count--;
+
+                if (count == 0)
+                {
+                    icon = null;
+                    itemName = "";
+                }
+            }
+        }
+
         public void AfterDeserialization(string iconNAME)
         {
             string path = "Prefab/" + iconName;
@@ -59,11 +74,11 @@ public class Inventory
         }
     }
 
-    public void Add(Collectable item)
+    public void Add(Item item)
     {
         foreach(Slot slot in slots)
         {
-            if(slot.type == item.type && slot.CanAddItem())
+            if(slot.itemName == item.data.itemName && slot.CanAddItem())
             {
                 slot.AddItem(item);
                 return;
@@ -72,10 +87,26 @@ public class Inventory
 
         foreach(Slot slot in slots)
         {
-            if(slot.type == CollectableType.NONE)
+            if(slot.itemName == "")
             {
                 slot.AddItem(item);
                 return;
+            }
+        }
+    }
+
+    public void Remove(int index)
+    {
+        slots[index].RemoveItem();
+    }
+
+    public void Remove(int index, int numToRemove)
+    {
+        if (slots[index].count >= numToRemove)
+        {
+            for (int i = 0; i < numToRemove; i++)
+            {
+                Remove(index);
             }
         }
     }
