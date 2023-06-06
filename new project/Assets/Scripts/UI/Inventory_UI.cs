@@ -65,8 +65,12 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * The first if is for setting up inventory. The second if is for setting up toolbar.
-     * If the player's inventory and/or toolbar has white squares then that means the inventory and/or toolbar is not properly setup here.
+     * The if is for setting up inventory. The else if is for setting up toolbar.
+     * If the player's inventory/toolbar has white squares then that means the inventory/toolbar is not properly setup here.
+     * This function is called whenever a player enters a new scene, or when the player opens the inventory by pressing TAB.
+     * This Refresh needs to happen as there are two different inventories. One inventory is the inventory UI, and the other 
+     * inventory is the player's actual inventory (in script). The Refresh will get the items from the player inventory and 
+     * make it visible on the inventory UI. Same goes for toolbar.
      */
     void Refresh()
     {
@@ -101,11 +105,18 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    /*
+     * This function is called when a player drags an item out of their inventory/toolbar and drops it out (by releasing when cursor is 
+     * outside of any UI). It is attached to RemoveItem_Panel under Canvas.
+     */
     public void RemoveAmountUI()
     {
         dropPanel.SetActive(true);
     }
 
+    /*
+     * This function is called when player clicks OK on the drop panel. It handles the item to remove and the amount removed.
+     */
     public void Remove()
     {
         Item itemToDrop = ItemManager.instance.GetItemByName(
@@ -143,7 +154,7 @@ public class Inventory_UI : MonoBehaviour
 
     /*
      * The four functions below that start with "Slot" are Event Triggers found in every Slot
-     * Each Slot has their own slotID
+     * Each Slot has their own slotID, which is done by SetupSlots() function.
      */
     public void SlotBeginDrag(Slot_UI slot)
     {
@@ -178,6 +189,9 @@ public class Inventory_UI : MonoBehaviour
         Debug.Log("Dropping " + draggedSlot.slotID + " on " + slot.slotID);
     }
 
+    /*
+     * This function makes the image of the item being dragged to follow the cursor
+     */
     private void MoveToMousePosition(GameObject toMove)
     {
         if(canvas != null)
@@ -191,6 +205,9 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    /*
+     * This handles the slotID of the inventory and toolbar slots. slotID is used in dragging items.
+     */
     void SetupSlots()
     {
         int counter = 0;

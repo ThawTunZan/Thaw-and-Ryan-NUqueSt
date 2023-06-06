@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    /*
+     * Holds all references to inventory. Manages multiple inventories (inventory, toolbar, etc).
+     */
+
     //public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
 
     //[Header("Backpack")]

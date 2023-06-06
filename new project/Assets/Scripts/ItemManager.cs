@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    /*
+     * This script is used to check which prefab is associated with which item type.
+     * Without this script, when dropping items, the item disappears from the world.
+     */
+
     public Item[] items;
 
     private Dictionary<string, Item> nameToItemDict = new Dictionary<string, Item>();
