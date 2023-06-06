@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerItems : MonoBehaviour, IDataPersistence
 {
     public Inventory inventory;
+    public Inventory toolbar;
     public PlayerPositionSO startingPosition;
-    //public GameData data;
     public SpriteRenderer player;
 
     private void Start()
@@ -16,11 +16,14 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         { 
             inventory = new Inventory(21);
             inventory = GameManager.instance.inventory;
+            toolbar = new Inventory(7);
+            toolbar = GameManager.instance.toolbar;
         }
     }
     private void Update()
     {
         GameManager.instance.inventory = inventory;
+        GameManager.instance.toolbar = toolbar;
     }
 
     public void DropItem(Item item)
@@ -47,18 +50,25 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         inventory = new Inventory(21);
+        toolbar = new Inventory(7);
         inventory = data.inventory;
+        toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)
         {
             //slot.AfterDeserialization(slot.iconName);
             slot.icon = Resources.Load<Sprite>("Collectable");
         }
-        
+        foreach (Inventory.Slot slot in toolbar.slots)
+        {
+            //slot.AfterDeserialization(slot.iconName);
+            slot.icon = Resources.Load<Sprite>("Collectable");
+        }
     }
 
     public void SaveData(GameData data)
     {
         data.inventory = inventory;
+        data.toolbar = toolbar;
     }
 
 }

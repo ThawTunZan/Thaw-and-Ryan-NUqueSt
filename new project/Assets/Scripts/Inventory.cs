@@ -15,6 +15,18 @@ public class Inventory
         public Sprite icon;
         public string iconName;
 
+        public bool IsEmpty
+        {
+            get
+            {
+                if (itemName == "" && count == 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public Slot()
         {
             itemName = "";
@@ -24,9 +36,9 @@ public class Inventory
             iconName = null;    
         }
 
-        public bool CanAddItem()
+        public bool CanAddItem(string itemName)
         {
-            if(count < maxAllowed)
+            if(this.itemName == itemName && count < maxAllowed)
             {
                 return true;
             }
@@ -39,6 +51,14 @@ public class Inventory
             this.icon = item.data.icon;
             maxAllowed = 32;
             count++;
+        }
+
+        public void AddItem(string itemName, Sprite icon, int maxAllowed)
+        {
+            this.itemName = itemName;
+            this.icon = icon;
+            count++;
+            this.maxAllowed = maxAllowed;
         }
 
         public void RemoveItem()
@@ -78,7 +98,7 @@ public class Inventory
     {
         foreach(Slot slot in slots)
         {
-            if(slot.itemName == item.data.itemName && slot.CanAddItem())
+            if(slot.itemName == item.data.itemName && slot.CanAddItem(item.data.itemName))
             {
                 slot.AddItem(item);
                 return;
@@ -108,6 +128,18 @@ public class Inventory
             {
                 Remove(index);
             }
+        }
+    }
+
+    public void MoveSlot(int fromIndex, int toIndex)
+    {
+        Slot fromSlot = slots[fromIndex];
+        Slot toSlot = slots[toIndex];
+
+        if (toSlot.IsEmpty || toSlot.CanAddItem(fromSlot.itemName))
+        {
+            toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+            fromSlot.RemoveItem();
         }
     }
 }

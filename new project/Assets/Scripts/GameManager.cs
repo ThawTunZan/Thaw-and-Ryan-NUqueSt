@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int level;
     public float exp;
     public Inventory inventory;
+    public Inventory toolbar;
 
     void Awake()
     { 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
         instance.inventory = new Inventory(21);
+        instance.toolbar = new Inventory(7);
         DontDestroyOnLoad(gameObject);  //else
     }
 }
