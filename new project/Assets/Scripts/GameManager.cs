@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     { 
         if (instance != null)
         {
-            Debug.LogError("Found more than one GameManager in the scene. Destroying the newest one.-Thaw");
+            //Debug.LogError("Found more than one GameManager in the scene. Destroying the newest one.-Thaw");
             Destroy(this.gameObject);
             return;
         }

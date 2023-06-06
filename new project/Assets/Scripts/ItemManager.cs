@@ -7,8 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     public Item[] items;
 
-    private Dictionary<string, Item> nameToItemDict =
-        new Dictionary<string, Item>();
+    private Dictionary<string, Item> nameToItemDict = new Dictionary<string, Item>();
 
     public static ItemManager instance;
 
@@ -16,7 +15,7 @@ public class ItemManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one ItemManager in the scene. Destroying the newest one.-Ryan");
+            //Debug.LogError("Found more than one ItemManager in the scene. Destroying the newest one.-Ryan");
             Destroy(this.gameObject);
             return;
         }

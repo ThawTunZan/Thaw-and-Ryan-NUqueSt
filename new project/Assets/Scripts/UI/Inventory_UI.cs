@@ -28,13 +28,9 @@ public class Inventory_UI : MonoBehaviour
     private PlayerMovement movement;
     float original_speed;
 
-    private void Awake()
-    {
-        canvas = FindObjectOfType<Canvas>();
-    }
-
     private void Start()
     {
+        canvas = FindObjectOfType<Canvas>();
         movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         SetupSlots();
         Refresh();
@@ -68,6 +64,10 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    /*
+     * The first if is for setting up inventory. The second if is for setting up toolbar.
+     * If the player's inventory and/or toolbar has white squares then that means the inventory and/or toolbar is not properly setup here.
+     */
     void Refresh()
     {
         if (slots.Count == player.inventory.slots.Count)
@@ -141,6 +141,10 @@ public class Inventory_UI : MonoBehaviour
         dropText.text = "1";
     }
 
+    /*
+     * The four functions below that start with "Slot" are Event Triggers found in every Slot
+     * Each Slot has their own slotID
+     */
     public void SlotBeginDrag(Slot_UI slot)
     {
         draggedSlot = slot;
@@ -151,27 +155,27 @@ public class Inventory_UI : MonoBehaviour
 
         MoveToMousePosition(draggedIcon.gameObject);
 
-        Debug.Log("Starting Drag");
+        Debug.Log("Starting Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrag()
     {
         MoveToMousePosition(draggedIcon.gameObject);
-        Debug.Log("In Drag");
+        Debug.Log("In Drag " + draggedSlot.slotID);
     }
 
     public void SlotEndDrag()
     {
         Destroy(draggedIcon.gameObject);
         draggedIcon = null;
-        Debug.Log("Ending Drag");
+        Debug.Log("Ending Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrop(Slot_UI slot)
     {
         player.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
         Refresh();
-        Debug.Log("Dropping");
+        Debug.Log("Dropping " + draggedSlot.slotID + " on " + slot.slotID);
     }
 
     private void MoveToMousePosition(GameObject toMove)
