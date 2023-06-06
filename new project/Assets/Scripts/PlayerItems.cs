@@ -26,31 +26,15 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public void DropItem(Item item)
     {
         Vector2 spawnLocation = transform.position;
-        Vector2 spawnOffset = Random.insideUnitCircle;
         if (player.flipX)
         {
-            Item droppedItem = Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
-            //droppedItem.rb2d.AddForce(spawnOffset * .02f, ForceMode2D.Impulse);
-            //StartCoroutine(StartTimer(droppedItem));
+            Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
         }
         else
         {
-            Item droppedItem = Instantiate(item, spawnLocation + new Vector2(0.2f, -0.1f), Quaternion.identity);
-            //droppedItem.rb2d.AddForce(spawnOffset * .02f, ForceMode2D.Impulse);
-            //StartCoroutine(StartTimer(droppedItem));
+            Instantiate(item, spawnLocation + new Vector2(0.2f, -0.1f), Quaternion.identity);
         }
     }
-
-    //private IEnumerator StartTimer(Item item)
-    //{
-    //    yield return new WaitForSeconds(3f);
-    //    StopItemMoving(item);
-    //}
-
-    //public void StopItemMoving(Item item)
-    //{
-    //    item.rb2d.velocity = Vector2.zero;
-    //}
 
     public void DropItem(Item item, int numToDrop)
     {

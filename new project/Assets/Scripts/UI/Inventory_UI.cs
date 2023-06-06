@@ -1,19 +1,27 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
+    [SerializeField] private Canvas canvas;
+
     public GameObject inventoryPanel;
 
     public PlayerItems player;
 
     public List<Slot_UI> slots = new List<Slot_UI>();
 
-    [SerializeField] private Canvas canvas;
+    public GameObject dropPanel;
+
+    public Button dropButton;
+
+    public TextMeshProUGUI dropText;
 
     private Slot_UI draggedSlot;
 
@@ -52,6 +60,7 @@ public class Inventory_UI : MonoBehaviour
         }
         else
         {
+            dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             movement.movespeed = original_speed;
         }
@@ -75,6 +84,11 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    public void RemoveAmountUI()
+    {
+        dropPanel.SetActive(true);
+    }
+
     public void Remove()
     {
         Item itemToDrop = ItemManager.instance.GetItemByName(
@@ -82,11 +96,27 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            player.DropItem(itemToDrop, player.inventory.slots[draggedSlot.slotID].count);
-            player.inventory.Remove(draggedSlot.slotID, player.inventory.slots[draggedSlot.slotID].count);
-            Refresh();
+            string text = dropText.text;
+            bool parseSuccess = int.TryParse(text.Trim(), out int amountToDrop);
+            if (parseSuccess)
+            {
+                player.DropItem(itemToDrop, amountToDrop);
+                player.inventory.Remove(draggedSlot.slotID, amountToDrop);
+                Refresh();
+            }
+            else
+            {
+                Debug.Log("FAILED TO DROP!!!");
+            }
+
+
+            //int amountToDrop = int.Parse(dropText.text);
+
+            //player.DropItem(itemToDrop, player.inventory.slots[draggedSlot.slotID].count);
+            //player.inventory.Remove(draggedSlot.slotID, player.inventory.slots[draggedSlot.slotID].count);
         }
 
+        dropPanel.SetActive(false);
         draggedSlot = null;
     }
 
