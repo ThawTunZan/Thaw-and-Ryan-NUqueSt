@@ -7,9 +7,9 @@ using Ink.Runtime;
 using Story = Ink.Runtime.Story;
 using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
+using Ink.UnityIntegration;
 
-
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     [Header("Dialogue UI")]
 
@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
     private bool dialogueIsPlaying;
-    
+
     private static DialogueManager instance;
 
     public PlayerMovement movement;
@@ -34,6 +34,12 @@ public class DialogueManager : MonoBehaviour
     private DialogueVariables dialogueVariables;
     private PlayerQuests player;
 
+    //quest progress
+    public List<int> weaponSmithNPC;
+    private bool questCompleted;
+    private bool questStarted;
+    GameData gameData;
+
     private void Awake()
     {
         if (instance != null)
@@ -41,7 +47,8 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
         instance = this;
-
+        gameData = DataPersistenceManager.instance.gameData;
+        weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
@@ -71,20 +78,22 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (!dialogueIsPlaying)
+        if (dialogueIsPlaying)
         {
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ContinueStory();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ContinueStory();
-        }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+
+        // print(questStarted);
         currentStory = new Story(inkJSON.text);
+
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         movement.movespeed = 0;
@@ -165,15 +174,12 @@ public class DialogueManager : MonoBehaviour
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
     }
-
-    public Ink.Runtime.Object GetVariableState(string variableName)
+    public void SaveData(GameData data)
     {
-        Ink.Runtime.Object variableValue = null;
-        dialogueVariables.variables.TryGetValue(variableName, out variableValue);
-        if (variableValue == null)
-        {
-            Debug.LogWarning("Ink Variable was found to be null: " + variableName);
-        }
-        return variableValue;
+        data.story = dialogueVariables.saveVariables();
+    }
+
+    public void LoadData(GameData data)
+    {
     }
 }

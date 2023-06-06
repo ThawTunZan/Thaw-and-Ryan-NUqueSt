@@ -13,11 +13,12 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     {
         player = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene)
-        { 
+        {
             inventory = new Inventory(21);
             inventory = GameManager.instance.inventory;
             toolbar = new Inventory(7);
             toolbar = GameManager.instance.toolbar;
+            //startingPosition.transittedScene = false;
         }
     }
     private void Update()

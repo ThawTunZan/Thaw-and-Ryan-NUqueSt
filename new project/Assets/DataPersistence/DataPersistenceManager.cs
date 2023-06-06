@@ -7,29 +7,24 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storange Config")]
 
-    private GameData gameData;
+    public GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance { get; private set; }
 
     public bool sceneTransitted;
 
-    public string userName;
-
-
-
-    //to maintain singleton
     private void Awake()
     {
         if (instance != null)
         {
             Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.-Thaw");
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
         sceneTransitted = false;
     }
 
@@ -37,34 +32,34 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        
+        SceneManager.sceneLoaded -= OnSceneLoaded;     
     }
 
     //calls the findAllDataPersistenceObjects function followed by the LoadGame
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
-    }
-
-    //Saves the game when the scene is unloaded
-    public void OnSceneUnloaded(Scene scene)
-    {
-       // Debug.Log("OnSceneUnloaded called");
-        SaveGame();
+       
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
+        
+        if (!sceneTransitted)
+        {
+            LoadGame();
+        }
     }
 
 
     public void NewGame()
     {
         gameData = new GameData();
+        DatabaseManager.instance.databaseGameData = new GameData();
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     /*
@@ -73,8 +68,7 @@ public class DataPersistenceManager : MonoBehaviour
     */
     public void LoadGame()
     {
-        gameData = DatabaseManager.instance.LoadGameData(userName);
-       // DatabaseManager.instance.LoadGameData(ref gameData, userName);
+        gameData = DatabaseManager.instance.LoadGameData();
         //if no saved data found
         if (gameData == null)
         {       
@@ -99,7 +93,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
-        DatabaseManager.instance.CreateUser(gameData, userName);
+        DatabaseManager.instance.CreateUser(gameData);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
@@ -110,7 +104,7 @@ public class DataPersistenceManager : MonoBehaviour
     
     public bool HasGameData()
     {
-        if (DatabaseManager.instance.LoadGameData(userName) != null)
+        if (DatabaseManager.instance.LoadGameData() != null)
         {
             return true;
         }

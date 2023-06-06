@@ -41,7 +41,6 @@ public class PlayfabManager : MonoBehaviour
             Password = passwordLoginField.text
         };
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
-        DataPersistenceManager.instance.userName = usernameLoginField.text;
     }
     //Function for the register button
     public void RegisterButton()
@@ -72,6 +71,8 @@ public class PlayfabManager : MonoBehaviour
     {
         warningLoginText.text = "";
         confirmLoginText.text = "Logged In";
+        DatabaseManager.instance.userID = usernameLoginField.text;
+        DataPersistenceManager.instance.LoadGame();
         LoginScreen();
     }
 

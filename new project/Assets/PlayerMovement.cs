@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         transform.position = data.playerPosition;
-        print("why is this being called");
     }
 
     public void SaveData(GameData data)

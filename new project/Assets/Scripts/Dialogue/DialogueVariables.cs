@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using Unity.VisualScripting.FullSerializer;
 //using Story = Ink.Runtime.Story;
 //using Choice = Ink.Runtime.Choice;
 
@@ -9,11 +10,28 @@ public class DialogueVariables
 {
     public Dictionary<string, Ink.Runtime.Object> variables { get; private set; }
 
+    public Story globalVariablesStory;
+
     public DialogueVariables(TextAsset loadGlobalsJSON)
     {
+        GameData data = DataPersistenceManager.instance.gameData;
         // create the story
-        Story globalVariablesStory = new Story(loadGlobalsJSON.text);
+        globalVariablesStory = new Story(loadGlobalsJSON.text);
 
+        if (!string.IsNullOrEmpty(data.story))
+        {
+            Debug.Log("Loading JSON data: " + data.story);
+            try
+            {
+                
+                globalVariablesStory.state.LoadJson(data.story);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Error loading JSON data: " + e.Message);
+            }
+            Debug.Log("JSON data loaded successfully.");
+        }
         variables = new Dictionary<string, Ink.Runtime.Object>();
         foreach (string name in globalVariablesStory.variablesState)
         {
@@ -43,7 +61,7 @@ public class DialogueVariables
         }
     }
 
-    private void VariablesToStory(Story story)
+    public void VariablesToStory(Story story)
     {
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in variables)
         {
@@ -60,5 +78,15 @@ public class DialogueVariables
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
         return variableValue;
+    }
+    public string saveVariables()
+    {
+        if (globalVariablesStory != null)
+        {
+            VariablesToStory(globalVariablesStory);
+            Debug.Log(JsonUtility.ToJson(globalVariablesStory));
+            return globalVariablesStory.state.ToJson();
+        }
+        else { return null; }
     }
 }

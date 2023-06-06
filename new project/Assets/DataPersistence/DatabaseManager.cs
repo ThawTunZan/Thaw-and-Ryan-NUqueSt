@@ -7,7 +7,7 @@ using PlayFab;
 
 public class DatabaseManager : MonoBehaviour
 {
-    private string userID;
+    public string userID;
     public static DatabaseManager instance { get; private set; }
     public GameData databaseGameData;
 
@@ -23,43 +23,51 @@ public class DatabaseManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     
-    public void CreateUser(GameData data, string userName)
+    public void CreateUser(GameData data)
     {
         string json = JsonUtility.ToJson(data);
         var request = new UpdateUserDataRequest
         {
             Data = new Dictionary<string, string>
             {
-                {userName, json}
+                {userID, json}
             }
         };
         PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
     }
     
-    public GameData LoadGameData(string userName)
+    public GameData LoadGameData()
     {
-        userID = userName;
-        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnError);
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnLoadGameDataError);
         return databaseGameData;
     }
 
     public void OnDataSend(UpdateUserDataResult result)
     {
-        Debug.Log("Successfully saved!");
+      //  Debug.Log("Successfully saved!");
     }
     public void OnCharactersDataRecieved(GetUserDataResult result)
     {
-        Debug.Log("Recieved character data!");
+      //  Debug.Log("Recieved character data!");
         if (result.Data != null && result.Data.ContainsKey(userID))
         {
+           // print(result.Data[userID].Value);
             databaseGameData = JsonUtility.FromJson<GameData>(result.Data[userID].Value);
-            
+
         }
-        Debug.LogWarning("User data not found - at DatabaseManager.cs");
+        else
+        {
+            Debug.LogWarning("User data not found - at DatabaseManager.cs");
+        }
     }
     void OnError(PlayFabError error)
     {
         print(error.ErrorMessage);
+    }
+
+    void OnLoadGameDataError(PlayFabError error)
+    {
+        Debug.LogError("Error loading game data: " + error.ErrorMessage);
     }
 
 }
