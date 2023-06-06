@@ -62,7 +62,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -204,9 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ec3ec838049ab44ab4d79ba9da7593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 1
   rb: {fileID: 8890131048757355296}
-  collisionOffset: 0.05
   movementFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -221,6 +219,8 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  movespeed: 1
+  collisionOffset: 0.05
   startingPosition: {fileID: 0}
 --- !u!114 &200457947472958697
 MonoBehaviour:
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory:
     slots: []
+  startingPosition: {fileID: 0}
 --- !u!114 &1138004660227280667
 MonoBehaviour:
   m_ObjectHideFlags: 0

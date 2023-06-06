@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public int level;
     public float exp;
     public Inventory inventory;
+    public int day;
+    public int time;
     void Awake()
     { 
         if (instance != null)
