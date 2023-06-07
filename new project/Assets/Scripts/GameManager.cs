@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     public int level;
     public float exp;
     public Inventory inventory;
+
+    // for day and night system
+    public float hours;
+    public float minutes;
+    public float seconds;
+    public float day;
     void Awake()
     { 
         if (instance != null)

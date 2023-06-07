@@ -4,27 +4,27 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Rendering.Universal;
 
-public class ClockManager : MonoBehaviour
+public class ClockManager : MonoBehaviour, IDataPersistence
 {
     public static ClockManager instance;
 
-    public int hours;
-    public int minutes;
-    public int days;
+    public float hours;
+    public float minutes;
+    public float days;
     public float seconds;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timeText;
-    public float intensity;
+    [SerializeField] private Volume ppv;
 
-    public Light2D globalLight;
+    public PlayerPositionSO startingPosition;
 
     private float tick;
 
     private void Awake()
     {
+        /*
         if (instance != null)
         {
             Debug.LogError("Found more than one ClockManager in the scene. Destroying the newest one.-Thaw");
@@ -33,28 +33,50 @@ public class ClockManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+        */
 
     }
     void Start()
     {
-        hours = 20;
-        minutes = 0;
-        days = 0;
-        tick = 0.1f;
-        globalLight = gameObject.GetComponent<Light2D>();
+        if (startingPosition.transittedScene) {
+            hours = GameManager.instance.hours;
+            minutes = GameManager.instance.minutes;
+            days = GameManager.instance.day;
+            // ppv = gameObject.GetComponent<Volume>();
+        }
+        else
+        {
+            hours = 8;
+            minutes = 0;
+            days = 0;
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameManager.instance.hours = hours;
+        GameManager.instance.minutes = minutes;
+        GameManager.instance.day = days;
+        string bufferMinutes = "";
+        string bufferHours = "";
+        if (hours < 10)
+        {
+            bufferHours = "0";
+        }
+        if (minutes < 10)
+        {
+            bufferMinutes = "0";
+        }
         dayText.text = "Day: " + days;
-        timeText.text = "Time: " + hours + " " + minutes;
+        timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
         CalcTime();
     }
 
     public void CalcTime()
     {
-
         tick += Time.fixedDeltaTime;
 
         if (tick >= 1)
@@ -85,11 +107,20 @@ public class ClockManager : MonoBehaviour
     {
         if (hours >= 18 && hours <= 21)
         {
-            globalLight.intensity = 1 - (((hours - 18) * 60 + minutes) / 240);
-            if (globalLight.intensity <= 0.3)
-            {
-                globalLight.intensity = 0.3f;
-            }
+            print((((hours - 18) * 60 + minutes) / 240));
+            ppv.weight = ((hours - 18) *60 + minutes) / 240;
         }
+        else
+        {
+            ppv.weight = 0;
+        }
+    }
+    public void LoadData(GameData data)
+    {
+        days = data.day;
+    }
+    public void SaveData(GameData data)
+    {
+        data.day = days;
     }
 }

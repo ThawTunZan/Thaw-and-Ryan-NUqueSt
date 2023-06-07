@@ -19,6 +19,8 @@ public class GameData
     public string storyState;
     public List<int> weaponsmithNPC;           // quest progress for WeaponSmith NPC
 
+    public float day;
+
     
     //default value;
     public GameData()
@@ -29,5 +31,7 @@ public class GameData
         inventory = new Inventory(21);
         storyState = "";
         weaponsmithNPC = new List<int>() { 0, 0, 0};
+
+        day = 0;
     }
 }
