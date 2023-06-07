@@ -7,11 +7,11 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public Inventory inventory;
     public Inventory toolbar;
     public PlayerPositionSO startingPosition;
-    public SpriteRenderer player;
+    public SpriteRenderer playerRenderer;
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene)
         {
             inventory = new Inventory("Inventory", 21);
@@ -30,7 +30,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public void DropItem(Item item)
     {
         Vector2 spawnLocation = transform.position;
-        if (player.flipX)
+        if (playerRenderer.flipX)
         {
             Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
         }

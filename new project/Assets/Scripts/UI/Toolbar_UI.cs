@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Toolbar_UI : MonoBehaviour
 
     private Slot_UI selectedSlot;
 
+    public PlayerItems playerItems;
+
     private void Start()
     {
         SelectSlot(0);
@@ -16,6 +19,7 @@ public class Toolbar_UI : MonoBehaviour
     private void Update()
     {
         CheckAlphaNumericKeys();
+        CheckLeftClick();
     }
 
     public void SelectSlot(int index)
@@ -33,33 +37,51 @@ public class Toolbar_UI : MonoBehaviour
 
     private void CheckAlphaNumericKeys()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        for (int i = 0; i < toolbarSlots.Count; i++)
         {
-            SelectSlot(0);
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                SelectSlot(i);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+    }
+
+    private void CheckLeftClick()
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            SelectSlot(1);
+            Debug.Log(selectedSlot.slotID);
+            UseItemFromToolbar(selectedSlot.slotID);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+    }
+
+    private void UseItemFromToolbar(int index)
+    {
+        if (toolbarSlots.Count > index)
         {
-            SelectSlot(2);
+            Slot_UI selectedSlot = toolbarSlots[index];
+            Inventory.Slot slot = playerItems.toolbar.slots[index];
+
+            if (!slot.IsEmpty)
+            {
+                // Perform the action based on the item in the slot
+                // For example, if it's a tomato, you can eat it
+                if (slot.itemName == "Tomato")
+                {
+                    // Perform the eat action here
+                    EatTomato();
+
+                    // Decrease the quantity of the item in the slot
+                    playerItems.toolbar.Remove(index, 1);
+                    selectedSlot.SetItem(slot);
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SelectSlot(3);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            SelectSlot(4);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            SelectSlot(5);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            SelectSlot(6);
-        }
+    }
+
+    private void EatTomato()
+    {
+        // Add the logic for eating a tomato here
+        // For example, increasing player health or applying any relevant effects
     }
 }

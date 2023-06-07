@@ -7,15 +7,15 @@ public class Collectable : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerItems player = collision.GetComponent<PlayerItems>();
+        PlayerItems playerItems = collision.GetComponent<PlayerItems>();
 
-        if(player)
+        if(playerItems)
         {
             Item item = GetComponent<Item>();
 
             if (item != null)
             {
-                player.inventory.Add(item);
+                playerItems.inventory.Add(item);
                 Destroy(this.gameObject);
             }
         }

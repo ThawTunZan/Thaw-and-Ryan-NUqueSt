@@ -14,7 +14,7 @@ public class Inventory_UI : MonoBehaviour
 
     public string inventoryName;
 
-    public PlayerItems player;
+    public PlayerItems playerItems;
 
     public List<Slot_UI> slots = new List<Slot_UI>();
 
@@ -30,6 +30,9 @@ public class Inventory_UI : MonoBehaviour
     private Slot_UI draggedSlot;
     private Image draggedIcon;
 
+    private Inventory_UI inventoryInCanvas;
+    private Inventory_UI toolbarInCanvas;
+
     private PlayerMovement movement;
     float original_speed;
 
@@ -37,8 +40,10 @@ public class Inventory_UI : MonoBehaviour
     {
         canvas = FindObjectOfType<Canvas>();
         movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        inventoryByName.Add("Inventory", player.inventory);
-        inventoryByName.Add("Toolbar", player.toolbar);
+        inventoryByName.Add("Inventory", playerItems.inventory);
+        inventoryByName.Add("Toolbar", playerItems.toolbar);
+        inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
+        toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
         SetupSlots();
         Refresh();
     }
@@ -72,7 +77,7 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * The if is for setting up inventory. The else if is for setting up toolbar.
+     * The first for loop is for setting up inventory. The second for loop is for setting up toolbar.
      * If the player's inventory/toolbar has white squares then that means the inventory/toolbar is not properly setup here.
      * This function is called whenever a player enters a new scene, or when the player opens the inventory by pressing TAB.
      * This Refresh needs to happen as there are two different inventories. One inventory is the inventory UI, and the other 
@@ -81,34 +86,26 @@ public class Inventory_UI : MonoBehaviour
      */
     void Refresh()
     {
-        Debug.Log(slots.Count);
-        if (slots.Count == player.inventory.slots.Count)
+        for (int i = 0; i < inventoryInCanvas.slots.Count; i++)
         {
-            for(int i = 0; i < slots.Count; i++)
+            if (playerItems.inventory.slots[i].itemName != "")
             {
-                if (player.inventory.slots[i].itemName != "")
-                {
-                    slots[i].SetItem(player.inventory.slots[i]);
-                }
-                else
-                {
-                    slots[i].SetEmpty();
-                }
+                inventoryInCanvas.slots[i].SetItem(playerItems.inventory.slots[i]);
+            }
+            else
+            {
+                inventoryInCanvas.slots[i].SetEmpty();
             }
         }
-
-        else if (slots.Count == player.toolbar.slots.Count)
+        for (int i = 0; i < toolbarInCanvas.slots.Count; i++)
         {
-            for (int i = 0; i < slots.Count; i++)
+            if (playerItems.toolbar.slots[i].itemName != "")
             {
-                if (player.toolbar.slots[i].itemName != "")
-                {
-                    slots[i].SetItem(player.toolbar.slots[i]);
-                }
-                else
-                {
-                    slots[i].SetEmpty();
-                }
+                toolbarInCanvas.slots[i].SetItem(playerItems.toolbar.slots[i]);
+            }
+            else
+            {
+                toolbarInCanvas.slots[i].SetEmpty();
             }
         }
     }
@@ -119,7 +116,8 @@ public class Inventory_UI : MonoBehaviour
      */
     public void RemoveAmountUI()
     {
-        Item itemToDrop = ItemManager.instance.GetItemByName(player.inventory.slots[draggedSlot.slotID].itemName);
+        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+        Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         if (itemToDrop != null)
         {
             dropPanel.SetActive(true);
@@ -131,13 +129,14 @@ public class Inventory_UI : MonoBehaviour
      */
     public void Remove()
     {
-        Item itemToDrop = ItemManager.instance.GetItemByName(player.inventory.slots[draggedSlot.slotID].itemName);
+        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+        Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         string text = dropText.text;
         bool parseSuccess = int.TryParse(text.Trim(), out int amountToDrop);
-        if (parseSuccess && amountToDrop <= player.inventory.slots[draggedSlot.slotID].count && amountToDrop >= 0)
+        if (parseSuccess && amountToDrop <= fromInventory.slots[draggedSlot.slotID].count && amountToDrop >= 0)
         {
-            player.DropItem(itemToDrop, amountToDrop);
-            player.inventory.Remove(draggedSlot.slotID, amountToDrop);
+            playerItems.DropItem(itemToDrop, amountToDrop);
+            fromInventory.Remove(draggedSlot.slotID, amountToDrop);
             Refresh();
         }
         else
@@ -153,7 +152,8 @@ public class Inventory_UI : MonoBehaviour
      */ 
     public void SetToMax()
     {
-        dropText.text = player.inventory.slots[draggedSlot.slotID].count.ToString();
+        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+        dropText.text = fromInventory.slots[draggedSlot.slotID].count.ToString();
     }
 
     public void SetToMin()
@@ -202,11 +202,15 @@ public class Inventory_UI : MonoBehaviour
     {
         Slot fromSlot = fromInventory.slots[fromIndex];
         Slot toSlot = toInventory.slots[toIndex];
+        int itemCount = fromSlot.count;
 
         if (toSlot.IsEmpty || toSlot.CanAddItem(fromSlot.itemName))
         {
-            toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
-            fromSlot.RemoveItem();
+            for (int i = 0; i < itemCount; i++)
+            {
+                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+                fromSlot.RemoveItem();
+            }
         }
     }
 

@@ -6345,7 +6345,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1201489193}
         m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
         m_MethodName: SetToMax
         m_Mode: 1
@@ -6645,8 +6645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 971110228}
   inventoryName: Inventory
-  inventoryManager: {fileID: 0}
-  player: {fileID: 759442951}
+  playerItems: {fileID: 759442951}
   slots:
   - {fileID: 65288480}
   - {fileID: 814081990}
@@ -9799,7 +9798,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1201489193}
         m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
         m_MethodName: SetToMin
         m_Mode: 1
@@ -11315,6 +11314,7 @@ MonoBehaviour:
   - {fileID: 1700282175}
   - {fileID: 389654189}
   - {fileID: 1468002555}
+  playerItems: {fileID: 0}
 --- !u!114 &1819581361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11329,8 +11329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 0}
   inventoryName: Toolbar
-  inventoryManager: {fileID: 0}
-  player: {fileID: 759442951}
+  playerItems: {fileID: 759442951}
   slots:
   - {fileID: 164436401}
   - {fileID: 1945800824}
