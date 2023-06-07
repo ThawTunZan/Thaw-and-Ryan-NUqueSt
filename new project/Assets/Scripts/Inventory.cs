@@ -14,6 +14,7 @@ public class Inventory
         public int maxAllowed;
         public Sprite icon;
         public string iconName;
+        public string inventoryName;
 
         public bool IsEmpty
         {
@@ -85,11 +86,14 @@ public class Inventory
 
     public List<Slot> slots = new List<Slot>();
 
-    public Inventory(int numSlots)
+    public string inventoryName;
+
+    public Inventory(string inventoryName, int numSlots)
     {
         for(int i = 0; i < numSlots; i++)
         {
             Slot slot = new Slot();
+            slot.inventoryName = inventoryName;
             slots.Add(slot);
         }
     }
@@ -128,18 +132,6 @@ public class Inventory
             {
                 Remove(index);
             }
-        }
-    }
-
-    public void MoveSlot(int fromIndex, int toIndex)
-    {
-        Slot fromSlot = slots[fromIndex];
-        Slot toSlot = slots[toIndex];
-
-        if (toSlot.IsEmpty || toSlot.CanAddItem(fromSlot.itemName))
-        {
-            toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
-            fromSlot.RemoveItem();
         }
     }
 }

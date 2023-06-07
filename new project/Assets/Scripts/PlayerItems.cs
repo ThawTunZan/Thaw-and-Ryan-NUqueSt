@@ -14,9 +14,9 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         player = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene)
         {
-            inventory = new Inventory(21);
+            inventory = new Inventory("Inventory", 21);
             inventory = GameManager.instance.inventory;
-            toolbar = new Inventory(7);
+            toolbar = new Inventory("Toolbar", 7);
             toolbar = GameManager.instance.toolbar;
             //startingPosition.transittedScene = false;
         }
@@ -50,8 +50,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        inventory = new Inventory(21);
-        toolbar = new Inventory(7);
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
         inventory = data.inventory;
         toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)

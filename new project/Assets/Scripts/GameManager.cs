@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        instance.inventory = new Inventory(21);
-        instance.toolbar = new Inventory(7);
+        instance.inventory = new Inventory("Inventory", 21);
+        instance.toolbar = new Inventory("Toolbar", 7);
         DontDestroyOnLoad(gameObject);  //else
     }
 }

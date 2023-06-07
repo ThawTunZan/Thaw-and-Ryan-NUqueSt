@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
+using static Inventory;
 
 public class Inventory_UI : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Inventory_UI : MonoBehaviour
     public Button dropButton;
     public TMP_InputField dropText;
 
+    public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
+
     private Slot_UI draggedSlot;
     private Image draggedIcon;
 
@@ -34,6 +37,8 @@ public class Inventory_UI : MonoBehaviour
     {
         canvas = FindObjectOfType<Canvas>();
         movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        inventoryByName.Add("Inventory", player.inventory);
+        inventoryByName.Add("Toolbar", player.toolbar);
         SetupSlots();
         Refresh();
     }
@@ -76,6 +81,7 @@ public class Inventory_UI : MonoBehaviour
      */
     void Refresh()
     {
+        Debug.Log(slots.Count);
         if (slots.Count == player.inventory.slots.Count)
         {
             for(int i = 0; i < slots.Count; i++)
@@ -166,30 +172,42 @@ public class Inventory_UI : MonoBehaviour
         draggedIcon.transform.SetParent(canvas.transform);
         draggedIcon.raycastTarget = false;
         draggedIcon.rectTransform.sizeDelta = new Vector2(50, 50);
-
         MoveToMousePosition(draggedIcon.gameObject);
-
-        Debug.Log("Starting Drag " + draggedSlot.slotID);
+        //Debug.Log("Starting Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrag()
     {
         MoveToMousePosition(draggedIcon.gameObject);
-        Debug.Log("In Drag " + draggedSlot.slotID);
+        //Debug.Log("In Drag " + draggedSlot.slotID);
     }
 
     public void SlotEndDrag()
     {
         Destroy(draggedIcon.gameObject);
         draggedIcon = null;
-        Debug.Log("Ending Drag " + draggedSlot.slotID);
+        //Debug.Log("Ending Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrop(Slot_UI slot)
     {
-        player.inventory.MoveSlot(draggedSlot.slotID, slot.slotID);
+        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+        Inventory toInventory = inventoryByName[slot.inventoryName];
+        MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);
         Refresh();
-        Debug.Log("Dropping " + draggedSlot.slotID + " on " + slot.slotID);
+        //Debug.Log("Dropping " + draggedSlot.slotID + " on " + slot.slotID);
+    }
+
+    public void MoveSlot(int fromIndex, Inventory fromInventory, int toIndex, Inventory toInventory)
+    {
+        Slot fromSlot = fromInventory.slots[fromIndex];
+        Slot toSlot = toInventory.slots[toIndex];
+
+        if (toSlot.IsEmpty || toSlot.CanAddItem(fromSlot.itemName))
+        {
+            toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+            fromSlot.RemoveItem();
+        }
     }
 
     /*
@@ -216,6 +234,7 @@ public class Inventory_UI : MonoBehaviour
         int counter = 0;
         foreach (Slot_UI slot in slots)
         {
+            slot.inventoryName = inventoryName;
             slot.slotID = counter;
             counter++;
         }
