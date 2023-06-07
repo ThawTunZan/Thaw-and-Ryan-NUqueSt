@@ -11,6 +11,8 @@ public class Inventory_UI : MonoBehaviour
 {
     public GameObject inventoryPanel;
 
+    public string inventoryName;
+
     public PlayerItems player;
 
     public List<Slot_UI> slots = new List<Slot_UI>();
@@ -111,7 +113,11 @@ public class Inventory_UI : MonoBehaviour
      */
     public void RemoveAmountUI()
     {
-        dropPanel.SetActive(true);
+        Item itemToDrop = ItemManager.instance.GetItemByName(player.inventory.slots[draggedSlot.slotID].itemName);
+        if (itemToDrop != null)
+        {
+            dropPanel.SetActive(true);
+        }
     }
 
     /*
@@ -119,29 +125,26 @@ public class Inventory_UI : MonoBehaviour
      */
     public void Remove()
     {
-        Item itemToDrop = ItemManager.instance.GetItemByName(
-            player.inventory.slots[draggedSlot.slotID].itemName);
-
-        if (itemToDrop != null)
+        Item itemToDrop = ItemManager.instance.GetItemByName(player.inventory.slots[draggedSlot.slotID].itemName);
+        string text = dropText.text;
+        bool parseSuccess = int.TryParse(text.Trim(), out int amountToDrop);
+        if (parseSuccess && amountToDrop <= player.inventory.slots[draggedSlot.slotID].count && amountToDrop >= 0)
         {
-            string text = dropText.text;
-            bool parseSuccess = int.TryParse(text.Trim(), out int amountToDrop);
-            if (parseSuccess && amountToDrop <= player.inventory.slots[draggedSlot.slotID].count && amountToDrop >= 0)
-            {
-                player.DropItem(itemToDrop, amountToDrop);
-                player.inventory.Remove(draggedSlot.slotID, amountToDrop);
-                Refresh();
-            }
-            else
-            {
-                Debug.Log("FAILED TO DROP!!!");
-            }
+            player.DropItem(itemToDrop, amountToDrop);
+            player.inventory.Remove(draggedSlot.slotID, amountToDrop);
+            Refresh();
         }
-
+        else
+        {
+            Debug.Log("FAILED TO DROP!!!");
+        }
         dropPanel.SetActive(false);
         draggedSlot = null;
     }
 
+    /* 
+     * Both these SetTo functions refer to the triple up arrows and triple down arrows on the drop panel
+     */ 
     public void SetToMax()
     {
         dropText.text = player.inventory.slots[draggedSlot.slotID].count.ToString();
