@@ -15,6 +15,7 @@ public class GameData
     public int gameScene;
     public float maxHealth;
     public Inventory inventory;
+    public Inventory toolbar;
     public string story;
     public string storyState;
     public List<int> weaponsmithNPC;           // quest progress for WeaponSmith NPC
@@ -29,6 +30,7 @@ public class GameData
         gameScene = 3;
         maxHealth = 100;
         inventory = new Inventory(21);
+        toolbar = new Inventory(7);
         storyState = "";
         weaponsmithNPC = new List<int>() { 0, 0, 0};
 
