@@ -9,10 +9,11 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.AI;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Transform playerTransform;
+    public Transform playerTransform;
     public Rigidbody2D player;
     public Rigidbody2D enemy;
     public float movespeed = 0.1f;
@@ -20,22 +21,24 @@ public class EnemyAI : MonoBehaviour
     SpriteRenderer enemySpriteRenderer;
     Animator animator;
 
-    private double[] interestMap = new double[8];
-    private double[] avoidanceMap = new double[8];
-    double[] weightedMap = new double[8];
-    private Vector3[] dirArray;
+    public double[] interestMap = new double[8];
+    public double[] avoidanceMap = new double[8];
+    public double[] weightedMap = new double[8];
+    public Vector3[] dirArray;
 
-    Vector3 enemy_path;
+    public Vector3 enemy_path;
     public bool obstructed;
-    Vector3 lastKnown;
-    
+    public Vector3 lastKnown;
+
+    public LayerMask layersToAvoid;
+
     public double FindRadius(double x,double y)
     {
         double r = math.sqrt((x*x) + (y*y));
         return r;
     }
 
-    private double normaliseVector(double x, double y)
+    public double normaliseVector(double x, double y)
     {
         return math.sqrt((x*x) + (y*y));
     }
@@ -45,7 +48,7 @@ public class EnemyAI : MonoBehaviour
        of the 8 directions
      * Ranges from -1 to 1 where -1 is directly opposite and 1 means that the respective direction is parallel to the directional vector from enemy to player
      */
-    private void populateIntMap(double x_toTarget, double y_toTarget, double radius, double r, bool isObstructed)
+    public void populateIntMap(double x_toTarget, double y_toTarget, double radius, double r, bool isObstructed)
     {
         double componentOfDiag = math.sqrt((5 * 5) / 2);
         interestMap[0] = ((0 * x_toTarget) + (5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North 
@@ -69,23 +72,25 @@ public class EnemyAI : MonoBehaviour
      * Calculating the values of each elements of the avoidance map based on how far the enemy is from the player. Higher value means further
      * ranges from 1 to 0 where 0 is the closest (0.8) and 1 means furthest
      */
-    private void populateAvoidMap()
+    public void populateAvoidMap()
     {
-        Vector2 sizeBox = new Vector2(0.028f, 0.028f); 
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position,Vector3.up, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector3.down, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector3.left, 0.5f, LayerMask.GetMask("Obstacles"));
+        layersToAvoid = LayerMask.GetMask("Obstacles", "enemy");
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position,Vector3.up, 0.5f, layersToAvoid);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, 0.5f, layersToAvoid);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector3.down, 0.5f, layersToAvoid);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector3.left, 0.5f, layersToAvoid);
         
-        Vector3 dirNE = new Vector3(0.5f, 0.5f, 0f).normalized;
-        Vector3 dirSE = new Vector3(0.5f,-0.5f, 0f).normalized;
-        Vector3 dirSW = new Vector3(-0.5f, -0.5f, 0f).normalized;
-        Vector3 dirNW = new Vector3(-0.5f, 0.5f, 0f).normalized;
+        Vector3 dirNE = new Vector3(1f, 1f, 0f).normalized;
+        Vector3 dirSE = new Vector3(1f,-1f, 0f).normalized;
+        Vector3 dirSW = new Vector3(-1f, -1f, 0f).normalized;
+        Vector3 dirNW = new Vector3(-1f, 1f, 0f).normalized;
 
-        RaycastHit2D hitNE = Physics2D.Raycast(transform.position, dirNE, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitSE = Physics2D.Raycast(transform.position, dirSE, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 0.5f, LayerMask.GetMask("Obstacles"));
-        RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 0.5f, LayerMask.GetMask("Obstacles"));
+        RaycastHit2D hitNE = Physics2D.Raycast(transform.position, dirNE, 0.5f, layersToAvoid);
+        RaycastHit2D hitSE = Physics2D.Raycast(transform.position, dirSE, 0.5f, layersToAvoid);
+        RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 0.5f, layersToAvoid);
+        RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 0.5f, layersToAvoid);
+
+        Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<CircleCollider2D>(), true);
 
         if (hitUp.collider)
         {
@@ -154,7 +159,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
+    public virtual Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
     {
         double xToPlayer = player.transform.position.x - enemy.transform.position.x;
         double yToPlayer = player.transform.position.y - enemy.transform.position.y;
@@ -163,7 +168,9 @@ public class EnemyAI : MonoBehaviour
         bool isObstructed = Physics2D.Raycast(transform.position, dirToPlayer, (float)r, LayerMask.GetMask("Obstacles"));
 
         Vector3 resultantVector = new Vector3();
-        if ((radius > 0.7 || radius < 0.58) || (isObstructed))
+
+        
+        if ((radius > 0.7 || radius < 0.58) || isObstructed)
         {
             for (int x = 0; x < 8; x += 1)
             {
@@ -172,40 +179,13 @@ public class EnemyAI : MonoBehaviour
                 {
                     resultantVector += (dirArray[x] * (float)weightedMap[x]).normalized * (float)0.20;
                 }
-
             }
             return resultantVector;
         }
-        else if (radius >= 0.58 && radius <= 0.7 && !isObstructed)
-        {
-            Vector3 resultantVectorCircle = new Vector3();
-            if (obstructed == false)
-            {
-                resultantVectorCircle = new Vector3((float)y_diff * -1, (float)x_diff, 0);
-                if (Physics2D.Raycast(enemy.position, resultantVectorCircle, 0.08f, LayerMask.GetMask("Obstacles","enemy")))
-                {
-                    //print("collision detected");
-                    resultantVectorCircle = new Vector3((float)y_diff, (float)x_diff * -1, 0);
-                    obstructed = true;
-                }
-            }
-            else if (obstructed == true) 
-            {
-                resultantVectorCircle = new Vector3((float)y_diff, (float)x_diff * -1, 0);
-                if (Physics2D.Raycast(enemy.position, resultantVectorCircle, 0.08f, LayerMask.GetMask("Obstacles","enemy")))
-                {
-                    //print("collision detected");
-                    resultantVectorCircle = new Vector3((float)y_diff * -1, (float)x_diff, 0);
-                    obstructed = false;
-                }
-            }
-            return resultantVectorCircle;
-            
-        }
-        return Vector3.zero;
 
+        return Vector3.zero;
     }
-    private void Start()
+    public void Start()
     {
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
         animator = enemy.GetComponent<Animator>();
@@ -228,7 +208,7 @@ public class EnemyAI : MonoBehaviour
         lastKnown = new Vector3();
     }
 
-    private void Update()
+    public void Update()
     {
         if (animator.GetBool("alive") == true)
         {
@@ -236,14 +216,14 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void updatePlayerPos(double x, double y)
+    public void updatePlayerPos(double x, double y)
     {
         lastKnown.x = (float)x;
         lastKnown.y = (float)y;
     }
 
 
-    private void followPlayer()
+    public void followPlayer()
     {
         double x_diff = player.transform.position.x - enemy.transform.position.x;
         double y_diff = player.transform.position.y - enemy.transform.position.y;
