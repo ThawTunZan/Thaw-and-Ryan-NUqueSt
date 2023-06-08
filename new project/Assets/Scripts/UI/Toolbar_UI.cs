@@ -13,6 +13,7 @@ public class Toolbar_UI : MonoBehaviour
 
     private void Start()
     {
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         SelectSlot(0);
     }
 
@@ -50,31 +51,26 @@ public class Toolbar_UI : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            Debug.Log(selectedSlot.slotID);
             UseItemFromToolbar(selectedSlot.slotID);
         }
     }
 
     private void UseItemFromToolbar(int index)
     {
-        if (toolbarSlots.Count > index)
+        Slot_UI selectedSlot = toolbarSlots[index];
+        Inventory.Slot slot = playerItems.toolbar.slots[index];
+        if (!slot.IsEmpty)
         {
-            Slot_UI selectedSlot = toolbarSlots[index];
-            Inventory.Slot slot = playerItems.toolbar.slots[index];
-
-            if (!slot.IsEmpty)
+            // Perform the action based on the item in the slot
+            // For example, if it's a tomato, you can eat it
+            if (slot.itemName == "Tomato")
             {
-                // Perform the action based on the item in the slot
-                // For example, if it's a tomato, you can eat it
-                if (slot.itemName == "Tomato")
-                {
-                    // Perform the eat action here
-                    EatTomato();
+                // Perform the eat action here
+                EatTomato();
 
-                    // Decrease the quantity of the item in the slot
-                    playerItems.toolbar.Remove(index, 1);
-                    selectedSlot.SetItem(slot);
-                }
+                // Decrease the quantity of the item in the slot
+                playerItems.toolbar.Remove(index, 1);
+                selectedSlot.SetItem(slot);
             }
         }
     }
