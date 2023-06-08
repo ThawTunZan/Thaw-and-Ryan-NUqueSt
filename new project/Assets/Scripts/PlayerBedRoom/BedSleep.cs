@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -10,6 +11,14 @@ public class BedSleep : MonoBehaviour
     public Button yesButton;
     public Button noButton;
 
+    public GameObject globalVolume;
+    private ClockManager clockManager;
+    public Animator transition;
+
+    private void Start()
+    {
+        clockManager = globalVolume.GetComponent<ClockManager>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Message.SetActive(true);
@@ -22,13 +31,37 @@ public class BedSleep : MonoBehaviour
 
     public void SaveData()
     {
-        print("BEDTIME SLEEPYSLEEEEEEEEEEPY");
+        clockManager.days += 1;
         DataPersistenceManager.instance.SaveGame();
-       // data.playerPosition = new Vector3(0.6816905f, 0.6025486f, 0);
+       // LoadGameData();
+        GoToSleep();
+    }
+    
+    private void LoadGameData()
+    {
+        DataPersistenceManager.instance.LoadGame();
     }
 
     public void HideMessage()
     {
         Message.SetActive(false);
+    }
+
+    public void GoToSleep()
+    {
+        StartCoroutine(WaitSleepAnimation());
+    }
+
+    IEnumerator WaitSleepAnimation()
+    {
+        transition.SetTrigger("Sleep");
+
+        yield return new WaitForSeconds(5);
+
+        // DataPersistenceManager.instance.LoadGame();
+        transition.Play("Base Layer.PlayerFaintEnd",0 ,0);
+
+       // SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
+       // DataPersistenceManager.instance.LoadGame();
     }
 }

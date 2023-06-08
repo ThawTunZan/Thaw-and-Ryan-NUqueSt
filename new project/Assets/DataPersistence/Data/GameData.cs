@@ -19,6 +19,7 @@ public class GameData
     public string story;
     public string storyState;
     public List<int> weaponsmithNPC;           // quest progress for WeaponSmith NPC
+    public float hours;
 
     public float day;
 
@@ -33,6 +34,7 @@ public class GameData
         toolbar = new Inventory(7);
         storyState = "";
         weaponsmithNPC = new List<int>() { 0, 0, 0};
+        hours = 8;
 
         day = 0;
     }
