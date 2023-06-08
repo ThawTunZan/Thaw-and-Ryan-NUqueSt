@@ -14,13 +14,23 @@ public class Slot_UI : MonoBehaviour
 
     [SerializeField] private GameObject highlight;
 
+    /*
+     * SetItem updates the sprite and quantity text in the UI by matching it to the corresponding slot in the player's inventory
+     */
     public void SetItem(Inventory.Slot slot)
     {
         if(slot != null)
         {
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
-            quantityText.text = slot.count.ToString();
+            if (slot.maxAllowed == 1)
+            {
+                quantityText.text = "";
+            }
+            else
+            {
+                quantityText.text = slot.count.ToString();
+            }
         }
     }
 

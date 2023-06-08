@@ -6,5 +6,6 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public string itemName = "Item Name";
+    public int maxAllowed;
     public Sprite icon;
 }

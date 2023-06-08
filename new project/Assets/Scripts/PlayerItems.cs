@@ -21,6 +21,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             //startingPosition.transittedScene = false;
         }
     }
+
     private void Update()
     {
         GameManager.instance.inventory = inventory;

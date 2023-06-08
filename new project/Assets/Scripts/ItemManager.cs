@@ -7,7 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     /*
      * This script is used to check which prefab is associated with which item type.
-     * Without this script, when dropping items, the item disappears from the world.
+     * Without this script, the item cannot be dropped.
      */
 
     public Item[] items;

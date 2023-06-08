@@ -28,24 +28,28 @@ public class Inventory_UI : MonoBehaviour
     private Slot_UI draggedSlot;
     private Image draggedIcon;
 
-    private Inventory_UI inventoryInCanvas;
-    private Inventory_UI toolbarInCanvas;
-
     private GameObject player;
     private PlayerItems playerItems;
     private PlayerMovement movement;
     float original_speed;
 
+    private Inventory_UI inventoryInCanvas;
+    private Inventory_UI toolbarInCanvas;
+
     private void Start()
     {
         canvas = FindObjectOfType<Canvas>();
+
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
-        movement = player.GetComponent<PlayerMovement>();
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
+
+        movement = player.GetComponent<PlayerMovement>();
+
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
+
         SetupSlots();
         Refresh();
     }
@@ -122,7 +126,6 @@ public class Inventory_UI : MonoBehaviour
         Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         if (itemToDrop != null)
         {
-
             dropPanel.SetActive(true);
         }
     }

@@ -34,7 +34,7 @@ public class Inventory
             count = 0;
             maxAllowed = 32;
             icon = null;
-            iconName = null;    
+            iconName = null;
         }
 
         public bool CanAddItem(string itemName)
@@ -49,8 +49,8 @@ public class Inventory
         public void AddItem(Item item)
         {
             this.itemName = item.data.itemName;
+            this.maxAllowed = item.data.maxAllowed;
             this.icon = item.data.icon;
-            maxAllowed = 32;
             count++;
         }
 

@@ -53,9 +53,24 @@ public class Toolbar_UI : MonoBehaviour
 
     private void CheckLeftClick()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             UseItemFromToolbar(selectedSlot.slotID);
+        }
+    }
+
+    void Refresh()
+    {
+        for (int i = 0; i < gameObject.GetComponent<Inventory_UI>().slots.Count; i++)
+        {
+            if (playerItems.toolbar.slots[i].itemName != "")
+            {
+                gameObject.GetComponent<Inventory_UI>().slots[i].SetItem(playerItems.toolbar.slots[i]);
+            }
+            else
+            {
+                gameObject.GetComponent<Inventory_UI>().slots[i].SetEmpty();
+            }
         }
     }
 
@@ -65,22 +80,32 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            Debug.Log(slot.itemName);
-            //if (slot.itemName == "Tomato")
-            //{
-            //    // Perform the eat action here
-            //    EatTomato();
-
-            //    // Decrease the quantity of the item in the slot
-            //    playerItems.toolbar.Remove(index, 1);
-            //    selectedSlot.SetItem(slot);
-            //}
-            playerMovement.AnimateSwordAttack();
+            if (slot.itemName == "Tomato")
+            {
+                EatTomato();
+                playerItems.toolbar.Remove(index, 1);
+                //selectedSlot.SetItem(slot);
+            }
+            if (slot.itemName == "Tomato Seeds")
+            {
+                PlantTomato();
+                //selectedSlot.SetItem(slot);
+            }
+            else if (slot.itemName == "Rusty Sword")
+            {
+                playerMovement.AnimateSwordAttack();
+            }
+            Refresh();
         }
     }
 
     private void EatTomato()
     {
         // Add the logic for eating a tomato here
+    }
+
+    private void PlantTomato()
+    {
+        // Add the logic for planting a tomato here
     }
 }
