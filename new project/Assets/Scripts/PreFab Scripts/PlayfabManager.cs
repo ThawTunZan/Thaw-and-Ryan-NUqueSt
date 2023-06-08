@@ -126,10 +126,11 @@ public class PlayfabManager : MonoBehaviour
             warningLoginText.text = "The email you have entered is not registered!";
         }
         */
+        else
         {
             warningLoginText.text = error.ErrorMessage;
-            print("error");
-            print(error.GenerateErrorReport());
+            //print("error");
+            //print(error.GenerateErrorReport());
         }
         return;
     }
