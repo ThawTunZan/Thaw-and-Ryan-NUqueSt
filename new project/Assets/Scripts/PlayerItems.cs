@@ -7,16 +7,16 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public Inventory inventory;
     public Inventory toolbar;
     public PlayerPositionSO startingPosition;
-    public SpriteRenderer player;
+    public SpriteRenderer playerRenderer;
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene)
         {
-            inventory = new Inventory(21);
+            inventory = new Inventory("Inventory", 21);
             inventory = GameManager.instance.inventory;
-            toolbar = new Inventory(7);
+            toolbar = new Inventory("Toolbar", 7);
             toolbar = GameManager.instance.toolbar;
             //startingPosition.transittedScene = false;
         }
@@ -30,7 +30,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public void DropItem(Item item)
     {
         Vector2 spawnLocation = transform.position;
-        if (player.flipX)
+        if (playerRenderer.flipX)
         {
             Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
         }
@@ -50,8 +50,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        inventory = new Inventory(21);
-        toolbar = new Inventory(7);
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
         inventory = data.inventory;
         toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)

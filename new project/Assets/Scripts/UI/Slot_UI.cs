@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class Slot_UI : MonoBehaviour
 {
+    public string inventoryName;
     public int slotID;
     public Image itemIcon;
     public TextMeshProUGUI quantityText;

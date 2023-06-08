@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
     public int level;
     public float exp;
     public Inventory inventory;
+    public Inventory toolbar;
 
     // for day and night system
     public float hours;
     public float minutes;
     public float seconds;
     public float day;
-    public Inventory toolbar;
 
     void Awake()
     { 
@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        instance.inventory = new Inventory(21);
-        instance.toolbar = new Inventory(7);
+        instance.inventory = new Inventory("Inventory", 21);
+        instance.toolbar = new Inventory("Toolbar", 7);
         DontDestroyOnLoad(gameObject);  //else
     }
 }

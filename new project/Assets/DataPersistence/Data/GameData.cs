@@ -30,8 +30,8 @@ public class GameData
         playerPosition = Vector3.zero;
         gameScene = 3;
         maxHealth = 100;
-        inventory = new Inventory(21);
-        toolbar = new Inventory(7);
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
         storyState = "";
         weaponsmithNPC = new List<int>() { 0, 0, 0};
         hours = 8;
