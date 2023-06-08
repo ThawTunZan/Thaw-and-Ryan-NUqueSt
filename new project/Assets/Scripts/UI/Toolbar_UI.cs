@@ -11,11 +11,13 @@ public class Toolbar_UI : MonoBehaviour
 
     private GameObject player;
     private PlayerItems playerItems;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         SelectSlot(0);
     }
 
@@ -63,23 +65,22 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            // Perform the action based on the item in the slot
-            // For example, if it's a tomato, you can eat it
-            if (slot.itemName == "Tomato")
-            {
-                // Perform the eat action here
-                EatTomato();
+            Debug.Log(slot.itemName);
+            //if (slot.itemName == "Tomato")
+            //{
+            //    // Perform the eat action here
+            //    EatTomato();
 
-                // Decrease the quantity of the item in the slot
-                playerItems.toolbar.Remove(index, 1);
-                selectedSlot.SetItem(slot);
-            }
+            //    // Decrease the quantity of the item in the slot
+            //    playerItems.toolbar.Remove(index, 1);
+            //    selectedSlot.SetItem(slot);
+            //}
+            playerMovement.AnimateSwordAttack();
         }
     }
 
     private void EatTomato()
     {
         // Add the logic for eating a tomato here
-        // For example, increasing player health or applying any relevant effects
     }
 }

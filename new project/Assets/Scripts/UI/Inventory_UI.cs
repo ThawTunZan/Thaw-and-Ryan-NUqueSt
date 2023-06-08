@@ -16,14 +16,14 @@ public class Inventory_UI : MonoBehaviour
 
     public List<Slot_UI> slots = new List<Slot_UI>();
 
-    [SerializeField] private Canvas canvas;
-
     [Header("Drop Panel Components")]
     public GameObject dropPanel;
     public Button dropButton;
     public TMP_InputField dropText;
 
     public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
+
+    private Canvas canvas;
 
     private Slot_UI draggedSlot;
     private Image draggedIcon;
@@ -122,6 +122,7 @@ public class Inventory_UI : MonoBehaviour
         Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         if (itemToDrop != null)
         {
+
             dropPanel.SetActive(true);
         }
     }
