@@ -40,7 +40,7 @@ public class PlayfabManager : MonoBehaviour
             Email = emailLoginField.text,
             Password = passwordLoginField.text
         };
-        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginError);
     }
     //Function for the register button
     public void RegisterButton()
@@ -53,7 +53,7 @@ public class PlayfabManager : MonoBehaviour
                 Password = passwordRegisterField.text,
                 RequireBothUsernameAndEmail = false
             };
-            PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+            PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnRegisterError);
         }
         else 
         {
@@ -76,17 +76,15 @@ public class PlayfabManager : MonoBehaviour
         LoginScreen();
     }
 
-    void OnError(PlayFabError error)
+    void OnRegisterError(PlayFabError error)
     {
-        warningLoginText.text = error.ErrorMessage;
         warningRegisterText.text = error.ErrorMessage;
-        //print(error.ErrorMessage);
-        if (passwordLoginField.text.Length < 6)
+        if (passwordRegisterField.text.Length < 6)
         {
             warningRegisterText.text = "Password is too short! Please enter a Password of length at least 6 characters!";
             return;
         }
-        else if (emailLoginField.text.Length == 0)
+        else if (emailRegisterField.text.Length == 0)
         {
             warningRegisterText.text = "Email Register Field is empty! Please enter your email";
             return;
@@ -98,7 +96,38 @@ public class PlayfabManager : MonoBehaviour
         }
         else
         {
-            warningLoginText.text = error.GenerateErrorReport();
+            warningRegisterText.text = error.GenerateErrorReport();
+            print(error.GenerateErrorReport());
+        }
+        return;
+    }
+    void OnLoginError(PlayFabError error)
+    {
+        warningLoginText.text = error.ErrorMessage;
+        if (passwordLoginField.text.Length < 6)
+        {
+            warningLoginText.text = "Password is too short! Please enter a Password of length at least 6 characters!";
+
+            return;
+        }
+        else if (emailLoginField.text.Length == 0)
+        {
+            warningLoginText.text = "Email Register Field is empty! Please enter your email";
+            return;
+        }
+        else if (passwordLoginField.text.Length == 0)
+        {
+            warningLoginText.text = "Password Register Field is empty! Please enter a password!";
+            return;
+        }
+        /*
+        else if (error.GenerateErrorReport() == "/Client/LoginWithEmailAddress: User not found")
+        {
+            warningLoginText.text = "The email you have entered is not registered!";
+        }
+        */
+        {
+            warningLoginText.text = error.ErrorMessage;
             print("error");
             print(error.GenerateErrorReport());
         }

@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = startingPosition.InitialValue;
             startingPosition.transittedScene = false;
             DataPersistenceManager.instance.sceneTransitted = false;
+           // playerAnimation.Play("Base Layer.player_death", 0, 0);
         }
     }
 

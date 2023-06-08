@@ -24,17 +24,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
-        /*
-        if (instance != null)
-        {
-            Debug.LogError("Found more than one ClockManager in the scene. Destroying the newest one.-Thaw");
-            Destroy(this.gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        */
-
     }
     void Start()
     {
@@ -48,7 +37,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         {
             hours = 8;
             minutes = 0;
-            days = 0;
         }
 
 
@@ -97,8 +85,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         if (hours > 23)
         {
-            hours = 8;
-            days += 1;
+            //hours = 8;
+            //days += 1;
         }
         ControlPPV();
     }
@@ -107,10 +95,10 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         if (hours >= 18 && hours <= 21)
         {
-            print((((hours - 18) * 60 + minutes) / 240));
-            ppv.weight = ((hours - 18) *60 + minutes) / 240;
+            //print((((hours - 18) * 60 + minutes) / 240));
+            ppv.weight = (((hours - 18) * 60) + minutes) / 240;
         }
-        else
+        else if (hours >= 8 && hours < 18)
         {
             ppv.weight = 0;
         }
@@ -118,6 +106,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         days = data.day;
+        hours = data.hours;
     }
     public void SaveData(GameData data)
     {
