@@ -9,11 +9,13 @@ public class Toolbar_UI : MonoBehaviour
 
     private Slot_UI selectedSlot;
 
-    public PlayerItems playerItems;
+    private GameObject player;
+    private PlayerItems playerItems;
 
     private void Start()
     {
-        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        player = GameObject.Find("Player");
+        playerItems = player.GetComponent<PlayerItems>();
         SelectSlot(0);
     }
 

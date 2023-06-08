@@ -14,8 +14,6 @@ public class Inventory_UI : MonoBehaviour
 
     public string inventoryName;
 
-    public PlayerItems playerItems;
-
     public List<Slot_UI> slots = new List<Slot_UI>();
 
     [SerializeField] private Canvas canvas;
@@ -33,13 +31,17 @@ public class Inventory_UI : MonoBehaviour
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
 
+    private GameObject player;
+    private PlayerItems playerItems;
     private PlayerMovement movement;
     float original_speed;
 
     private void Start()
     {
         canvas = FindObjectOfType<Canvas>();
-        movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        player = GameObject.Find("Player");
+        playerItems = player.GetComponent<PlayerItems>();
+        movement = player.GetComponent<PlayerMovement>();
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
