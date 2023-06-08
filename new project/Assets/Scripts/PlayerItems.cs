@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour, IDataPersistence
 {
+    public bool inDropProcess;
     public Inventory inventory;
     public Inventory toolbar;
     public PlayerPositionSO startingPosition;

@@ -68,16 +68,17 @@ public class Inventory_UI : MonoBehaviour
         {
             if (!inventoryPanel.activeSelf)
             {
-                inventoryPanel.SetActive(true);
                 original_speed = movement.movespeed;
                 movement.movespeed = 0;
+                inventoryPanel.SetActive(true);
                 Refresh();
             }
             else
             {
+                movement.movespeed = original_speed;
+                playerItems.inDropProcess = false;
                 dropPanel.SetActive(false);
                 inventoryPanel.SetActive(false);
-                movement.movespeed = original_speed;
             }
         }
     }
@@ -126,7 +127,17 @@ public class Inventory_UI : MonoBehaviour
         Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         if (itemToDrop != null)
         {
-            dropPanel.SetActive(true);
+            if (fromInventory.slots[draggedSlot.slotID].maxAllowed == 1)
+            {
+                playerItems.DropItem(itemToDrop);
+                fromInventory.Remove(draggedSlot.slotID);
+                Refresh();
+            }
+            else
+            {
+                playerItems.inDropProcess = true;
+                dropPanel.SetActive(true);
+            }
         }
     }
 
@@ -149,6 +160,7 @@ public class Inventory_UI : MonoBehaviour
         {
             Debug.Log("FAILED TO DROP!!!");
         }
+        playerItems.inDropProcess = false;
         dropPanel.SetActive(false);
         draggedSlot = null;
     }

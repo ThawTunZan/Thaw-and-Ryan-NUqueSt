@@ -23,8 +23,11 @@ public class Toolbar_UI : MonoBehaviour
 
     private void Update()
     {
-        CheckAlphaNumericKeys();
-        CheckLeftClick();
+        if (!playerItems.inDropProcess)
+        {
+            CheckAlphaNumericKeys();
+            CheckLeftClick();
+        }
     }
 
     public void SelectSlot(int index)
@@ -76,7 +79,6 @@ public class Toolbar_UI : MonoBehaviour
 
     private void UseItemFromToolbar(int index)
     {
-        Slot_UI selectedSlot = toolbarSlots[index];
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
@@ -84,12 +86,10 @@ public class Toolbar_UI : MonoBehaviour
             {
                 EatTomato();
                 playerItems.toolbar.Remove(index, 1);
-                //selectedSlot.SetItem(slot);
             }
             if (slot.itemName == "Tomato Seeds")
             {
                 PlantTomato();
-                //selectedSlot.SetItem(slot);
             }
             else if (slot.itemName == "Rusty Sword")
             {
