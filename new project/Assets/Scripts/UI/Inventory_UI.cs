@@ -73,9 +73,9 @@ public class Inventory_UI : MonoBehaviour
             }
             else
             {
-                playerItems.inDropProcess = false;
                 dropPanel.SetActive(false);
                 inventoryPanel.SetActive(false);
+                playerItems.inDropProcess = false;
                 freezePlayerMovement.ToggleMovement();
             }
         }

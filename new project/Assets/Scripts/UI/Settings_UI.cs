@@ -11,10 +11,12 @@ public class Settings_UI : MonoBehaviour
     public GameObject creditsPanel;
 
     private FreezePlayerMovement freezePlayerMovement;
+    private PlayerItems playerItems;
 
     private void Start()
     {
         freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
 
     void Update()
@@ -34,11 +36,13 @@ public class Settings_UI : MonoBehaviour
             if (!settingsPanel.activeSelf)
             {
                 settingsPanel.SetActive(true);
+                playerItems.inDropProcess = true;
                 freezePlayerMovement.ToggleMovement();
             }
             else
             {
                 settingsPanel.SetActive(false);
+                playerItems.inDropProcess = false;
                 freezePlayerMovement.ToggleMovement();
             }
         }
@@ -81,10 +85,12 @@ public class Settings_UI : MonoBehaviour
             if (optionsPanel.activeSelf)
             {
                 ToggleOptions();
+                playerItems.inDropProcess = false;
                 freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
+                playerItems.inDropProcess = true;
                 freezePlayerMovement.ToggleMovement();
             }
         }
@@ -112,10 +118,12 @@ public class Settings_UI : MonoBehaviour
             if (creditsPanel.activeSelf)
             {
                 ToggleCredits();
+                playerItems.inDropProcess = false;
                 freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
+                playerItems.inDropProcess = true;
                 freezePlayerMovement.ToggleMovement();
             }
         }

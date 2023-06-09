@@ -8,7 +8,8 @@ public class Quest_UI : MonoBehaviour
 {
     public GameObject questPanel;
 
-    public PlayerQuests playerQuests;
+    private PlayerQuests playerQuests;
+    private PlayerItems playerItems;
 
     public List<QuestSlot_UI> questSlots = new List<QuestSlot_UI>();
 
@@ -16,6 +17,8 @@ public class Quest_UI : MonoBehaviour
 
     private void Start()
     {
+        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
     }
 
@@ -32,12 +35,14 @@ public class Quest_UI : MonoBehaviour
         if (!questPanel.activeSelf)
         {
             questPanel.SetActive(true);
+            playerItems.inDropProcess = true;
             freezePlayerMovement.ToggleMovement();
             Setup();
         }
         else
         {
             questPanel.SetActive(false);
+            playerItems.inDropProcess = false;
             freezePlayerMovement.ToggleMovement();
         }
     }
