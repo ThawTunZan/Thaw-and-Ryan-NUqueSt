@@ -9,7 +9,7 @@ public class FreezePlayerMovement : MonoBehaviour
 
     private GameObject player;
     private PlayerMovement playerMovement;
-    public float originalSpeed;
+    float originalSpeed;
 
     private void Start()
     {
@@ -17,6 +17,12 @@ public class FreezePlayerMovement : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
     }
 
+    /*
+     * Checks if any of the lists in listOfPanels is active. If active, then bool hasActivePanel becomes true. If it's true, then
+     * player's movespeed is set to 0. If no lists inside the listOfPanels are active, then bool hasActivePanel is false, and if 
+     * originalSpeed of the player is not zero, then the player's movespeed is set to the originalSpeed. originalSpeed is also set
+     * to 0.
+     */
     public void CheckForUI()
     {
         bool hasActivePanel = listOfPanels.Any(panel => panel.activeSelf);
@@ -30,5 +36,14 @@ public class FreezePlayerMovement : MonoBehaviour
             playerMovement.movespeed = originalSpeed;
             originalSpeed = 0;
         }
+    }
+
+    public void ToggleMovement()
+    {
+        if (playerMovement.movespeed != 0)
+        {
+            originalSpeed = playerMovement.movespeed;
+        }
+        CheckForUI();
     }
 }

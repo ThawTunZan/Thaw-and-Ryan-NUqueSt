@@ -8,17 +8,15 @@ public class Quest_UI : MonoBehaviour
 {
     public GameObject questPanel;
 
-    public PlayerQuests player;
+    public PlayerQuests playerQuests;
 
     public List<QuestSlot_UI> questSlots = new List<QuestSlot_UI>();
 
-    public PlayerMovement movement;
-
-    float original_speed;
+    private FreezePlayerMovement freezePlayerMovement;
 
     private void Start()
     {
-        movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
     }
 
     void Update()
@@ -34,26 +32,25 @@ public class Quest_UI : MonoBehaviour
         if (!questPanel.activeSelf)
         {
             questPanel.SetActive(true);
-            original_speed = movement.movespeed;
-            movement.movespeed = 0;
+            freezePlayerMovement.ToggleMovement();
             Setup();
         }
         else
         {
             questPanel.SetActive(false);
-            movement.movespeed = original_speed;
+            freezePlayerMovement.ToggleMovement();
         }
     }
 
     void Setup()
     {
-        if (questSlots.Count == player.questList.questSlots.Count)
+        if (questSlots.Count == playerQuests.questList.questSlots.Count)
         {
             for (int i = 0; i < questSlots.Count; i++)
             {
-                if (player.questList.questSlots[i].count == 1)
+                if (playerQuests.questList.questSlots[i].count == 1)
                 {
-                    questSlots[i].SetItem(player.questList.questSlots[i]);
+                    questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
                 }
                 else
                 {

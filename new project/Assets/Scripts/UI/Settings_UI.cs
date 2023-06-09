@@ -10,16 +10,11 @@ public class Settings_UI : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject creditsPanel;
 
-    private GameObject player;
-    private PlayerMovement playerMovement;
-    float originalSpeed;
-
-    private FreezePlayerMovement freezeMovement;
+    private FreezePlayerMovement freezePlayerMovement;
 
     private void Start()
     {
-        player = GameObject.Find("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
+        freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
     }
 
     void Update()
@@ -38,17 +33,13 @@ public class Settings_UI : MonoBehaviour
         {
             if (!settingsPanel.activeSelf)
             {
-                if (playerMovement.movespeed != 0) 
-                {
-                    originalSpeed = playerMovement.movespeed;
-                }
-                ToggleMovementOff();
                 settingsPanel.SetActive(true);
+                freezePlayerMovement.ToggleMovement();
             }
             else
             {
-                ToggleMovementOn();
                 settingsPanel.SetActive(false);
+                freezePlayerMovement.ToggleMovement();
             }
         }
     }
@@ -89,12 +80,12 @@ public class Settings_UI : MonoBehaviour
         {
             if (optionsPanel.activeSelf)
             {
-                ToggleMovementOn();
                 ToggleOptions();
+                freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
-                ToggleMovementOff();
+                freezePlayerMovement.ToggleMovement();
             }
         }
     }
@@ -120,24 +111,14 @@ public class Settings_UI : MonoBehaviour
         {
             if (creditsPanel.activeSelf)
             {
-                ToggleMovementOn();
                 ToggleCredits();
+                freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
-                ToggleMovementOff();
+                freezePlayerMovement.ToggleMovement();
             }
         }
-    }
-
-    public void ToggleMovementOn()
-    {
-        playerMovement.movespeed = originalSpeed;
-    }
-
-    public void ToggleMovementOff()
-    {
-        playerMovement.movespeed = 0;
     }
 
     public void ReturnToGame()
@@ -145,7 +126,7 @@ public class Settings_UI : MonoBehaviour
         ToggleSettingsOff();
         ToggleOptionsOff();
         ToggleCreditsOff();
-        ToggleMovementOn();
+        freezePlayerMovement.ToggleMovement();
     }
 
     public void Options()
