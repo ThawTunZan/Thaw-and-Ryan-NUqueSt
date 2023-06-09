@@ -30,8 +30,9 @@ public class Inventory_UI : MonoBehaviour
 
     private GameObject player;
     private PlayerItems playerItems;
-    private PlayerMovement movement;
-    float original_speed;
+    private PlayerMovement playerMovement;
+    private FreezePlayerMovement freezePlayerMovement;
+    //float originalSpeed;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
@@ -45,7 +46,8 @@ public class Inventory_UI : MonoBehaviour
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
 
-        movement = player.GetComponent<PlayerMovement>();
+        freezePlayerMovement = canvas.GetComponent<FreezePlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
@@ -68,17 +70,20 @@ public class Inventory_UI : MonoBehaviour
         {
             if (!inventoryPanel.activeSelf)
             {
-                original_speed = movement.movespeed;
-                movement.movespeed = 0;
+                if (playerMovement.movespeed != 0)
+                {
+                    freezePlayerMovement.originalSpeed = playerMovement.movespeed;
+                }
                 inventoryPanel.SetActive(true);
+                freezePlayerMovement.CheckForUI();
                 Refresh();
             }
             else
             {
-                movement.movespeed = original_speed;
                 playerItems.inDropProcess = false;
                 dropPanel.SetActive(false);
                 inventoryPanel.SetActive(false);
+                freezePlayerMovement.CheckForUI();
             }
         }
     }
