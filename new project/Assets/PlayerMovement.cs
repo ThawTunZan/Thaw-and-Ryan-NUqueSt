@@ -174,7 +174,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             animator.SetTrigger("swordAttackSide");
         }
-
     }
 
     /*

@@ -87,7 +87,7 @@ public class Toolbar_UI : MonoBehaviour
                 EatTomato();
                 playerItems.toolbar.Remove(index, 1);
             }
-            if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Tomato Seeds")
             {
                 PlantTomato();
             }
