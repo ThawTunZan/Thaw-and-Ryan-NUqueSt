@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody2D enemy;
     public float movespeed = 0.1f;
 
-    SpriteRenderer enemySpriteRenderer;
+    protected SpriteRenderer enemySpriteRenderer;
     Animator animator;
 
     public double[] interestMap = new double[8];
@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     public Vector3 lastKnown;
 
     public LayerMask layersToAvoid;
+
+    public int skeletonCount;
 
     public double FindRadius(double x,double y)
     {
@@ -75,27 +77,27 @@ public class EnemyAI : MonoBehaviour
     public void populateAvoidMap()
     {
         layersToAvoid = LayerMask.GetMask("Obstacles", "enemy");
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position,Vector3.up, 0.5f, layersToAvoid);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, 0.5f, layersToAvoid);
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector3.down, 0.5f, layersToAvoid);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector3.left, 0.5f, layersToAvoid);
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position,Vector3.up, 1f, layersToAvoid);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, 1f, layersToAvoid);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector3.down, 1f, layersToAvoid);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector3.left, 1f, layersToAvoid);
         
         Vector3 dirNE = new Vector3(1f, 1f, 0f).normalized;
         Vector3 dirSE = new Vector3(1f,-1f, 0f).normalized;
         Vector3 dirSW = new Vector3(-1f, -1f, 0f).normalized;
         Vector3 dirNW = new Vector3(-1f, 1f, 0f).normalized;
 
-        RaycastHit2D hitNE = Physics2D.Raycast(transform.position, dirNE, 0.5f, layersToAvoid);
-        RaycastHit2D hitSE = Physics2D.Raycast(transform.position, dirSE, 0.5f, layersToAvoid);
-        RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 0.5f, layersToAvoid);
-        RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 0.5f, layersToAvoid);
+        RaycastHit2D hitNE = Physics2D.Raycast(transform.position, dirNE, 1f, layersToAvoid);
+        RaycastHit2D hitSE = Physics2D.Raycast(transform.position, dirSE, 1f, layersToAvoid);
+        RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 1f, layersToAvoid);
+        RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 1f, layersToAvoid);
 
-        Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<CircleCollider2D>(), true);
+        //Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<CircleCollider2D>(), true);
 
         if (hitUp.collider)
         {
-            avoidanceMap[0] = 1 - ((hitUp.distance - 0.075) / 0.5);
-          //  Debug.Log(hitUp);
+            avoidanceMap[0] = 5;//1 - ((hitUp.distance - 0.075) / 0.5);
+            //  Debug.Log(hitUp);
         }
         else
         {
@@ -103,7 +105,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitRight.collider)
         {
-            avoidanceMap[2] = 1 - ((hitRight.distance - 0.075) / 0.5);
+            avoidanceMap[2] = 5;//1 - ((hitRight.distance - 0.075) / 0.5);
         }
         else
         {
@@ -111,7 +113,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitDown.collider)
         {
-            avoidanceMap[4] = 1 - ((hitDown.distance - 0.075) / 0.5);
+            avoidanceMap[4] = 5;// 1 - ((hitDown.distance - 0.075) / 0.5);
         }
         else
         {
@@ -119,7 +121,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitLeft.collider)
         {
-            avoidanceMap[6] = 1 - ((hitLeft.distance - 0.075) / 0.5);
+            avoidanceMap[6] = 5;//1 - ((hitLeft.distance - 0.075) / 0.5);
         }
         else
         {
@@ -127,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitNE.collider)
         {
-            avoidanceMap[1] = 1 - ((hitNE.distance - 0.075) / 0.5);
+            avoidanceMap[1] = 5;//1 - ((hitNE.distance - 0.075) / 0.5);
         }
         else
         {
@@ -135,7 +137,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitSE.collider)
         {
-            avoidanceMap[3] = 1 - ((hitSE.distance - 0.075) / 0.5);
+            avoidanceMap[3] = 5;//1 - ((hitSE.distance - 0.075) / 0.5);
         }
         else
         {
@@ -143,7 +145,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitSW.collider)
         {
-            avoidanceMap[5] = 1 - ((hitSW.distance - 0.075) / 0.5);
+            avoidanceMap[5] = 5;//1 - ((hitSW.distance - 0.075) / 0.5);
         }
         else
         {
@@ -151,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitNW.collider)
         {
-            avoidanceMap[7] = 1 - ((hitNW.distance - 0.075) / 0.5);
+            avoidanceMap[7] = 5;//1 - ((hitNW.distance - 0.075) / 0.5);
         }
         else
         {
@@ -182,7 +184,6 @@ public class EnemyAI : MonoBehaviour
             }
             return resultantVector;
         }
-
         return Vector3.zero;
     }
     public void Start()
@@ -206,6 +207,8 @@ public class EnemyAI : MonoBehaviour
         obstructed = false;
 
         lastKnown = new Vector3();
+
+        skeletonCount = 0;
     }
 
     public void Update()
@@ -223,7 +226,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    public void followPlayer()
+    public virtual void followPlayer()
     {
         double x_diff = player.transform.position.x - enemy.transform.position.x;
         double y_diff = player.transform.position.y - enemy.transform.position.y;
@@ -233,7 +236,7 @@ public class EnemyAI : MonoBehaviour
 
         bool isObstructed = Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles"));
 
-        if (r <= 5 && !Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
+        if (r <= 4 && !Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
             updatePlayerPos(player.transform.position.x, player.transform.position.y);
             if (gameObject.transform.position.x > player.transform.position.x)
@@ -252,6 +255,10 @@ public class EnemyAI : MonoBehaviour
         }
         else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
+            if (lastKnown.x == enemy.transform.position.x && lastKnown.y == enemy.transform.position.y)
+            {
+                return;
+            }
             if ((lastKnown.x  - enemy.transform.position.x)< 0)
             {
                 enemySpriteRenderer.flipX = true;
