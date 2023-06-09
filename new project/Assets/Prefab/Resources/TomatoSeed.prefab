@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1550881601533907075}
   - component: {fileID: 1550881601533907072}
   - component: {fileID: 1550881601533907073}
-  - component: {fileID: 1550881601533907074}
   - component: {fileID: 6193487580906635157}
+  - component: {fileID: 1550881601533907074}
   - component: {fileID: 6490797398714549649}
   m_Layer: 0
-  m_Name: Collectable
+  m_Name: TomatoSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,18 +114,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.121451914, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &1550881601533907074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550881601533907078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e9b436865a03c409b11db83c5f9442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &6193487580906635157
 Rigidbody2D:
   serializedVersion: 4
@@ -147,6 +135,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1550881601533907074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550881601533907078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e9b436865a03c409b11db83c5f9442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6490797398714549649
 MonoBehaviour:
   m_ObjectHideFlags: 0
