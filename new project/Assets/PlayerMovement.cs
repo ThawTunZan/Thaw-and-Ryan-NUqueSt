@@ -159,7 +159,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         movementInput = movementValue.Get<Vector2>();
     }
-    void OnFire()
+
+    public void AnimateSwordAttack()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
         {
@@ -173,7 +174,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             animator.SetTrigger("swordAttackSide");
         }
-
     }
 
     /*

@@ -11,18 +11,23 @@ public class Toolbar_UI : MonoBehaviour
 
     private GameObject player;
     private PlayerItems playerItems;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         SelectSlot(0);
     }
 
     private void Update()
     {
-        CheckAlphaNumericKeys();
-        CheckLeftClick();
+        if (!playerItems.inDropProcess)
+        {
+            CheckAlphaNumericKeys();
+            CheckLeftClick();
+        }
     }
 
     public void SelectSlot(int index)
@@ -51,35 +56,56 @@ public class Toolbar_UI : MonoBehaviour
 
     private void CheckLeftClick()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             UseItemFromToolbar(selectedSlot.slotID);
         }
     }
 
+    void Refresh()
+    {
+        for (int i = 0; i < gameObject.GetComponent<Inventory_UI>().slots.Count; i++)
+        {
+            if (playerItems.toolbar.slots[i].itemName != "")
+            {
+                gameObject.GetComponent<Inventory_UI>().slots[i].SetItem(playerItems.toolbar.slots[i]);
+            }
+            else
+            {
+                gameObject.GetComponent<Inventory_UI>().slots[i].SetEmpty();
+            }
+        }
+    }
+
     private void UseItemFromToolbar(int index)
     {
-        Slot_UI selectedSlot = toolbarSlots[index];
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            // Perform the action based on the item in the slot
-            // For example, if it's a tomato, you can eat it
             if (slot.itemName == "Tomato")
             {
-                // Perform the eat action here
                 EatTomato();
-
-                // Decrease the quantity of the item in the slot
                 playerItems.toolbar.Remove(index, 1);
-                selectedSlot.SetItem(slot);
             }
+            else if (slot.itemName == "Tomato Seeds")
+            {
+                PlantTomato();
+            }
+            else if (slot.itemName == "Rusty Sword")
+            {
+                playerMovement.AnimateSwordAttack();
+            }
+            Refresh();
         }
     }
 
     private void EatTomato()
     {
         // Add the logic for eating a tomato here
-        // For example, increasing player health or applying any relevant effects
+    }
+
+    private void PlantTomato()
+    {
+        // Add the logic for planting a tomato here
     }
 }
