@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerFainted : MonoBehaviour
 {
@@ -10,17 +11,23 @@ public class PlayerFainted : MonoBehaviour
     private ClockManager clockManager;
     public Animator transition;
     public Animator playerAnimation;
+    GameObject originalGameObject;
+    private float volumeHealthSlider;
     
     // Start is called before the first frame update
     void Start()
     {
         clockManager = globalVolume.GetComponent<ClockManager>();
+        originalGameObject = GameObject.Find("HealthBar");
+        volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (clockManager.hours > 23)
+        volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
+        if (clockManager.hours > 23 || volumeHealthSlider <= 0)
         {
             GoBackHome();
         }
