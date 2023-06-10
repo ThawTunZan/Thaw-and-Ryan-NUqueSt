@@ -98,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2997064449886215069}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -123,10 +123,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25909f122731fe441aa3eb511c8681c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
   player: {fileID: 0}
   enemy: {fileID: -6581515254183478792}
   movespeed: 1
+  interestMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  avoidanceMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  weightedMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  dirArray: []
+  enemy_path: {x: 0, y: 0, z: 0}
   obstructed: 0
+  lastKnown: {x: 0, y: 0, z: 0}
+  layersToAvoid:
+    serializedVersion: 2
+    m_Bits: 0
+  skeletonCount: 0
 --- !u!95 &2870300855378308371
 Animator:
   serializedVersion: 5
