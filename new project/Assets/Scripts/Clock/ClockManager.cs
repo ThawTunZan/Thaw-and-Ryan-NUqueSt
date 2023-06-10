@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class ClockManager : MonoBehaviour, IDataPersistence
 {
@@ -31,15 +32,12 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             hours = GameManager.instance.hours;
             minutes = GameManager.instance.minutes;
             days = GameManager.instance.day;
-            // ppv = gameObject.GetComponent<Volume>();
         }
         else
         {
             hours = 8;
             minutes = 0;
         }
-
-
     }
 
     // Update is called once per frame
@@ -85,20 +83,20 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         if (hours > 23)
         {
-            //hours = 8;
-            //days += 1;
         }
         ControlPPV();
     }
 
     public void ControlPPV()
     {
-        if (hours >= 18 && hours <= 21)
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        bool isOutside = !(sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop" || sceneName == "Cave_1");
+        if (hours >= 18 && hours <= 21 && isOutside)
         {
-            //print((((hours - 18) * 60 + minutes) / 240));
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
         }
-        else if (hours >= 8 && hours < 18)
+        else if ((hours >= 8 && hours < 18) || !isOutside)
         {
             ppv.weight = 0;
         }
