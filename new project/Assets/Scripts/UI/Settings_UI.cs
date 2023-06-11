@@ -36,13 +36,13 @@ public class Settings_UI : MonoBehaviour
             if (!settingsPanel.activeSelf)
             {
                 settingsPanel.SetActive(true);
-                playerItems.inDropProcess = true;
+                playerItems.disableToolbar = true;
                 freezePlayerMovement.ToggleMovement();
             }
             else
             {
                 settingsPanel.SetActive(false);
-                playerItems.inDropProcess = false;
+                playerItems.disableToolbar = false;
                 freezePlayerMovement.ToggleMovement();
             }
         }
@@ -85,12 +85,12 @@ public class Settings_UI : MonoBehaviour
             if (optionsPanel.activeSelf)
             {
                 ToggleOptions();
-                playerItems.inDropProcess = false;
+                playerItems.disableToolbar = false;
                 freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
-                playerItems.inDropProcess = true;
+                playerItems.disableToolbar = true;
                 freezePlayerMovement.ToggleMovement();
             }
         }
@@ -118,12 +118,12 @@ public class Settings_UI : MonoBehaviour
             if (creditsPanel.activeSelf)
             {
                 ToggleCredits();
-                playerItems.inDropProcess = false;
+                playerItems.disableToolbar = false;
                 freezePlayerMovement.ToggleMovement();
             }
             if (settingsPanel.activeSelf)
             {
-                playerItems.inDropProcess = true;
+                playerItems.disableToolbar = true;
                 freezePlayerMovement.ToggleMovement();
             }
         }
