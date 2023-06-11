@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour
     public Transform playerTransform;
     public Rigidbody2D player;
     public Rigidbody2D enemy;
+
+    public GameObject enemyObject;
     public float movespeed = 0.1f;
 
     protected SpriteRenderer enemySpriteRenderer;
@@ -189,7 +191,7 @@ public class EnemyAI : MonoBehaviour
     public void Start()
     {
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
-        animator = enemy.GetComponent<Animator>();
+        animator = enemyObject.GetComponent<Animator>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -217,9 +219,13 @@ public class EnemyAI : MonoBehaviour
         {
             followPlayer();
         }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 
-    public void updatePlayerPos(double x, double y)
+        public void updatePlayerPos(double x, double y)
     {
         lastKnown.x = (float)x;
         lastKnown.y = (float)y;
@@ -251,6 +257,14 @@ public class EnemyAI : MonoBehaviour
             populateAvoidMap();
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
+            if (enemy_path.x != 0 && enemy_path.y != 0)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
         }
         else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
@@ -272,6 +286,14 @@ public class EnemyAI : MonoBehaviour
             populateAvoidMap();
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);
+            if (enemy_path.x == 0 && enemy_path.y == 0)
+            {
+                animator.SetBool("isMoving", false);
+            }
+            else
+            {
+                animator.SetBool("isMoving", true);
+            }
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
         }
     }
