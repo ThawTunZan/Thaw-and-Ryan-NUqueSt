@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class Settings_UI : MonoBehaviour
 {
@@ -151,6 +152,6 @@ public class Settings_UI : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
 }

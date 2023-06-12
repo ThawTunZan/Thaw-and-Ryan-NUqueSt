@@ -217,6 +217,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (animator.GetBool("alive") == true)
         {
+          //  print("test");
             followPlayer();
         }
         else

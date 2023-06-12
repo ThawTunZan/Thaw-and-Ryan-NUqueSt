@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3045464743074517674}
   - component: {fileID: 3045464743074517653}
   - component: {fileID: 3045464743074517652}
+  - component: {fileID: 7237662395447600919}
   m_Layer: 9
   m_Name: goblin
   m_TagString: Enemy
@@ -235,3 +236,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &7237662395447600919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045464743074517675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73a55eaa3c2c946ac05d995c852399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rock: {fileID: 8458789943560896957, guid: 42bd45ef2a8fb694da84d3d2fe7901f3, type: 3}
+  rockPos: {fileID: 0}
+  force: 0

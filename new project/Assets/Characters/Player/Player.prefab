@@ -63,7 +63,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b1eb34013b375459d1e7099029af92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inDropProcess: 0
   inventory:
     slots: []
     inventoryName: 
@@ -257,7 +258,7 @@ MonoBehaviour:
     slots: []
     inventoryName: 
   startingPosition: {fileID: 0}
-  player: {fileID: 0}
+  playerRenderer: {fileID: 0}
 --- !u!114 &1138004660227280667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,15 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f4b5717df996641b25b59b1d82b25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1127771672293020546}
-  inventory:
-    slots: []
-    inventoryName: Inventory
-  inventorySlotCount: 21
-  toolbar:
-    slots: []
-    inventoryName: Toolbar
-  toolbarSlotCount: 7
 --- !u!1 &3747749977762609161
 GameObject:
   m_ObjectHideFlags: 0
