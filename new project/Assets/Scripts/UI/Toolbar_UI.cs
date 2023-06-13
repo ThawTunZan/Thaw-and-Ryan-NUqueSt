@@ -23,7 +23,7 @@ public class Toolbar_UI : MonoBehaviour
 
     private void Update()
     {
-        if (!playerItems.inDropProcess)
+        if (!playerItems.disableToolbar)
         {
             CheckAlphaNumericKeys();
             CheckLeftClick();

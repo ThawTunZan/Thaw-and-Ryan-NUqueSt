@@ -35,14 +35,14 @@ public class Quest_UI : MonoBehaviour
         if (!questPanel.activeSelf)
         {
             questPanel.SetActive(true);
-            playerItems.inDropProcess = true;
+            playerItems.disableToolbar = true;
             freezePlayerMovement.ToggleMovement();
             Setup();
         }
         else
         {
             questPanel.SetActive(false);
-            playerItems.inDropProcess = false;
+            playerItems.disableToolbar = false;
             freezePlayerMovement.ToggleMovement();
         }
     }
