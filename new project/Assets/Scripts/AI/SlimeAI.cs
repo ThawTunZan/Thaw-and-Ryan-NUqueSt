@@ -53,7 +53,7 @@ public class SlimeAI : EnemyAI
                 {
                     resultantVector += (dirArray[x] * (float)weightedMap[x]).normalized * (float)0.20;
                 }
-            }
+            }       
             return resultantVector;
         }
 

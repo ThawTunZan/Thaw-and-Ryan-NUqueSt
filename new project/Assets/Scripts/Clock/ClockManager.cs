@@ -23,6 +23,10 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     private float tick;
 
+    //public Animator torch;
+    private List<Animator> animatorTorchList;
+    GameObject[] taggedObjects;
+
     private void Awake()
     {
     }
@@ -37,6 +41,23 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         {
             hours = 8;
             minutes = 0;
+        }
+
+        animatorTorchList = new List<Animator>();
+        FindAndAddAnimators();
+    }
+
+    private void FindAndAddAnimators()
+    {
+        taggedObjects = GameObject.FindGameObjectsWithTag("torch");
+
+        foreach (GameObject obj in taggedObjects)
+        {
+            Animator animator = obj.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animatorTorchList.Add(animator);
+            }
         }
     }
 
@@ -95,8 +116,30 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         if (hours >= 18 && hours <= 21 && isOutside)
         {
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
+            foreach (Animator animator in animatorTorchList)
+            {
+                animator.SetBool("isNoon", true);
+            }
+            foreach (GameObject obj in taggedObjects)
+            {
+                Light2D lightComponent = obj.GetComponent<Light2D>();
+                lightComponent.intensity = ppv.weight;
+            }
         }
-        else if ((hours >= 8 && hours < 18) || !isOutside)
+        else if (hours >= 8 && hours < 18)
+        {
+            ppv.weight = 0;
+            foreach (Animator animator in animatorTorchList)
+            {
+                animator.SetBool("isNoon", false);
+            }
+            foreach (GameObject obj in taggedObjects)
+            {
+                Light2D lightComponent = obj.GetComponent<Light2D>();
+                lightComponent.intensity = 0;
+            }
+        }
+        else if (!isOutside)
         {
             ppv.weight = 0;
         }
