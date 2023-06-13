@@ -21,16 +21,19 @@ public class rockTrajectory : MonoBehaviour
         Vector3 direction = player.transform.position - transform.position;
         rb.velocity = new Vector2 (direction.x, direction.y).normalized * force;
 
-       // rot = Mathf.Atan2(-direction.y , -direction.x) * Mathf.Rad2Deg;
+        rot = Mathf.Atan2(-direction.y , -direction.x) * Mathf.Rad2Deg;
     }
 
     // Update is called once per frame
     void Update()
     {
-       // rot += 0.1f;
-       // transform.rotation = Quaternion.Euler(0, 0, rot);
+        if (gameObject != null)
+        {
+            rot += 0.4f;
+            transform.rotation = Quaternion.Euler(0, 0, rot);
+        }
         timer += Time.deltaTime;
-        if (timer > 10)
+        if (timer > 6)
         {
             Destroy(gameObject);
         }
@@ -38,7 +41,7 @@ public class rockTrajectory : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Obstacles"))
         {
             Destroy(gameObject);
         }

@@ -9,14 +9,25 @@ public class Health : MonoBehaviour, IDataPersistence
     public float health;
     public HealthBar healthBar;
     bool hasCollided;
+    public PlayerPositionSO startingPosition;
 
     private void Start()
     {
-        //DontDestroyOnLoad(gameObject);
-        health = GameManager.instance.health;
-        hasCollided = false;                        //used to ensure that u take damage exactly once when you are in aggro range
-        healthBar.SetHealth(health);
-        healthBar.SetMaxHealth(maxHealth);
+        if (startingPosition.transittedScene)
+        {
+            health = GameManager.instance.health;
+            hasCollided = false;                        //used to ensure that u take damage exactly once when you are in aggro range
+            healthBar.SetHealth(health);
+            healthBar.SetMaxHealth(maxHealth);
+        }
+        else
+        {
+            maxHealth = 100;
+            GameManager.instance.health = DataPersistenceManager.instance.gameData.maxHealth;
+            hasCollided = false;
+            healthBar.SetHealth(health);
+            healthBar.SetMaxHealth(maxHealth);
+        }
     }
     private void Update()
     {
@@ -26,6 +37,7 @@ public class Health : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        data.maxHealth = 100;
         health = data.maxHealth;
         healthBar.SetMaxHealth(health);
         healthBar.SetHealth(health);
@@ -45,6 +57,11 @@ public class Health : MonoBehaviour, IDataPersistence
             healthBar.SetHealth(health);
             hasCollided=true;
             //print(health);
+        }
+        else if (collision.gameObject.CompareTag("rock"))
+        {
+            health -= 10;
+            healthBar.SetHealth(health);
         }
     }
 

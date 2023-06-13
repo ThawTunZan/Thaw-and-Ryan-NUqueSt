@@ -33,7 +33,12 @@ public class BedSleep : MonoBehaviour
     {
         clockManager.days += 1;
         DataPersistenceManager.instance.SaveGame();
-       // LoadGameData();
+        GameManager.instance.health = 100;
+        GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
+        GameManager.instance.toolbar = DataPersistenceManager.instance.gameData.toolbar;
+        GameManager.instance.day = DataPersistenceManager.instance.gameData.day;
+
+
         GoToSleep();
     }
     
