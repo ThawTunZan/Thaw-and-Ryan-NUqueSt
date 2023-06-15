@@ -38,7 +38,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public List<int> weaponSmithNPC;
     private bool questCompleted;
     private bool questStarted;
-    GameData gameData;
 
 
     private void Awake()
@@ -49,8 +48,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
         instance = this;
-        GameObject playerObj = GameObject.Find("Player");
-        gameData = DataPersistenceManager.instance.gameData;
+        //gameData = DataPersistenceManager.instance.gameData;
         weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
@@ -115,7 +113,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         movement.movespeed = original_speed;
-        GameManager.instance.story = dialogueVariables.saveVariables();
+        DataPersistenceManager.instance.gameData.placeHolderStory = dialogueVariables.saveVariables();
     }
 
     private void ContinueStory()

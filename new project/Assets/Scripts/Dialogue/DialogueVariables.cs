@@ -15,13 +15,13 @@ public class DialogueVariables
         // create the story
         globalVariablesStory = new Story(loadGlobalsJSON.text);
 
-        if (!string.IsNullOrEmpty(data.story))
+        if (!string.IsNullOrEmpty(data.placeHolderStory))
         {
-            Debug.Log("Loading JSON data: " + data.story);
+            Debug.Log("Loading JSON data: " + data.placeHolderStory);
             try
             {
                 
-                globalVariablesStory.state.LoadJson(data.story);
+                globalVariablesStory.state.LoadJson(data.placeHolderStory);
             }
             catch (System.Exception e)
             {

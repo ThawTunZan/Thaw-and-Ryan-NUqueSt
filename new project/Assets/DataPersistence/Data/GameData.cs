@@ -12,13 +12,13 @@ public class GameData
 
     public Vector3 playerPosition;
     public string name;
-   // public int gameScene;
     public float maxHealth;
 
     public Inventory inventory;
     public Inventory toolbar;
 
-    public string story;                        // quest progress for WeaponSmith NPC         
+    public string story;                        // quest progress for WeaponSmith NPC
+    public string placeHolderStory;                                     
     public float hours;
 
     public float day;

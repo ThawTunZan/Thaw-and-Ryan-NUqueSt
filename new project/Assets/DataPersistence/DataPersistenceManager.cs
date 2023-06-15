@@ -69,6 +69,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         DatabaseManager.instance.LoadGameData();
+        gameData.placeHolderStory = gameData.story;
         //if no saved data found
         if (gameData == null)
         {       
@@ -92,6 +93,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(gameData);
         }
+        gameData.story = gameData.placeHolderStory;
         DatabaseManager.instance.CreateUser(gameData);
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
