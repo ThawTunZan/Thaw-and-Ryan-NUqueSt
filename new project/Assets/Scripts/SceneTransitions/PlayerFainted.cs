@@ -48,11 +48,11 @@ public class PlayerFainted : MonoBehaviour
     {
        // yield return new WaitForSeconds(2);
 
-        transition.SetTrigger("Fainted");
+        playerAnimation.SetTrigger("Fainted");
 
         yield return new WaitForSeconds(2);
 
-        playerAnimation.Play("Base Layer.player_death", 0, 0);
+        transition.SetTrigger("Fainted");
 
         yield return new WaitForSeconds(2);
         GameManager.instance.day += 1;
@@ -62,8 +62,7 @@ public class PlayerFainted : MonoBehaviour
         DataPersistenceManager.instance.SaveGame();
         playerPositionSO.playerDead = true;
         playerPositionSO.InitialValue = new Vector2((float)-0.072, (float)-0.264);
-        //DataPersistenceManager.instance.LoadGame();
-        //DataPersistenceManager.instance.LoadGame();
+
 
         SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
     }

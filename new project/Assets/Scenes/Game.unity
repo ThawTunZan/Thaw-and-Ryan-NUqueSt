@@ -8503,6 +8503,16 @@ MonoBehaviour:
   itemIcon: {fileID: 2103632413}
   quantityText: {fileID: 371794517}
   highlight: {fileID: 0}
+--- !u!1 &692084546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+  m_PrefabInstance: {fileID: 2024641897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &692084552 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 9082491253928029060, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+  m_PrefabInstance: {fileID: 2024641897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &695974445
 GameObject:
   m_ObjectHideFlags: 0
@@ -40428,6 +40438,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518134364}
   m_CullTransparentMesh: 1
+--- !u!50 &1536749129 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 9082491253928029060, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+  m_PrefabInstance: {fileID: 9082491255212297457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1550169318
 GameObject:
   m_ObjectHideFlags: 0
@@ -45263,10 +45278,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6941267387238482531, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1536749129}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1411049289}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: enemyObject
+      value: 
+      objectReference: {fileID: 692084546}
     - target: {fileID: 6968999398148434631, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: player
       value: 
@@ -45347,9 +45370,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 6941267387238482531, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
 --- !u!1 &2050998368
 GameObject:
@@ -46446,10 +46467,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4317114393337754672}
-    - target: {fileID: 6941267387238482531, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 692084552}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1411049289}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: enemyObject
+      value: 
+      objectReference: {fileID: 692084546}
     - target: {fileID: 6968999398148434631, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: player
       value: 
@@ -46531,5 +46560,5 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6941267387238482531, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
