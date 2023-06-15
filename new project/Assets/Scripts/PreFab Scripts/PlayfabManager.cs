@@ -120,17 +120,9 @@ public class PlayfabManager : MonoBehaviour
             warningLoginText.text = "Password Register Field is empty! Please enter a password!";
             return;
         }
-        /*
-        else if (error.GenerateErrorReport() == "/Client/LoginWithEmailAddress: User not found")
-        {
-            warningLoginText.text = "The email you have entered is not registered!";
-        }
-        */
         else
         {
             warningLoginText.text = error.ErrorMessage;
-            //print("error");
-            //print(error.GenerateErrorReport());
         }
         return;
     }

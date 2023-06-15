@@ -38,7 +38,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             transform.position = startingPosition.InitialValue;
             startingPosition.transittedScene = false;
             DataPersistenceManager.instance.sceneTransitted = false;
-           // playerAnimation.Play("Base Layer.player_death", 0, 0);
+        }
+        else if (startingPosition.playerDead == true)
+        {
+            transform.position = startingPosition.InitialValue;
+            startingPosition.playerDead = false;
         }
     }
 
@@ -49,7 +53,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.playerPosition = this.transform.position;
+        data.playerPosition = new Vector2 ((float)0.561, (float)0.476);
     }
 
     private void FixedUpdate()

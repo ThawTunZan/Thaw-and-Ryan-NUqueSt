@@ -40,13 +40,16 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private bool questStarted;
     GameData gameData;
 
+
     private void Awake()
     {
         if (instance != null)
         {
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
+            return;
         }
         instance = this;
+        GameObject playerObj = GameObject.Find("Player");
         gameData = DataPersistenceManager.instance.gameData;
         weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
@@ -59,6 +62,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        
         movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         if (movement.movespeed != 0)
         {
@@ -111,6 +115,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
         movement.movespeed = original_speed;
+        GameManager.instance.story = dialogueVariables.saveVariables();
     }
 
     private void ContinueStory()
@@ -176,7 +181,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(GameData data)
     {
-        data.story = dialogueVariables.saveVariables();
+       // data.story = dialogueVariables.saveVariables();
     }
 
     public void LoadData(GameData data)

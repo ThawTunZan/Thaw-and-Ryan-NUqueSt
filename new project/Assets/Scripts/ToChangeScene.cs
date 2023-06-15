@@ -9,15 +9,6 @@ public class ToChangeScene : MonoBehaviour
     public int indexOfScene;
     public Vector3 playerPosition;
     public PlayerPositionSO storePlayerPosition;
-    public GameObject playerObjectToIgnore;
-
-    private void Start()
-    {
-        /*
-        CapsuleCollider2D playerHitBox = playerObjectToIgnore.GetComponentInChildren<CapsuleCollider2D>();
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), playerHitBox);
-        */
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

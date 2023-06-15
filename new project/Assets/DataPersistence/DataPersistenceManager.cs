@@ -68,12 +68,11 @@ public class DataPersistenceManager : MonoBehaviour
     */
     public void LoadGame()
     {
-        gameData = DatabaseManager.instance.LoadGameData();
+        DatabaseManager.instance.LoadGameData();
         //if no saved data found
         if (gameData == null)
         {       
             Debug.Log("No saved data was found. New game needs to be started. Please click NewGame Button -Thaw");
-
             return;
         }
 
@@ -104,7 +103,7 @@ public class DataPersistenceManager : MonoBehaviour
     
     public bool HasGameData()
     {
-        if (DatabaseManager.instance.LoadGameData() != null)
+        if (gameData != null)
         {
             return true;
         }

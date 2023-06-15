@@ -5937,7 +5937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402543516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.428, y: 0.218, z: -10}
+  m_LocalPosition: {x: 3.002, y: 0.304, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9845,11 +9845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.428
+      value: 3.002
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.218
+      value: 0.304
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9902,11 +9902,6 @@ Transform:
 --- !u!95 &867893660 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4504541104588032044, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-  m_PrefabInstance: {fileID: 867893658}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &867893661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_PrefabInstance: {fileID: 867893658}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &869247692
@@ -9983,7 +9978,6 @@ MonoBehaviour:
   indexOfScene: 3
   playerPosition: {x: 0.07501221, y: -0.4100122, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
-  playerObjectToIgnore: {fileID: 867893661}
 --- !u!1 &885354821
 GameObject:
   m_ObjectHideFlags: 0
@@ -47410,6 +47404,7 @@ MonoBehaviour:
   globalVolume: {fileID: 2093145674}
   transition: {fileID: 1329811986}
   playerAnimation: {fileID: 867893660}
+  playerPositionSO: {fileID: 0}
 --- !u!114 &1329811988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105980,6 +105975,7 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   day: 0
+  story: 
 --- !u!4 &1731819267
 Transform:
   m_ObjectHideFlags: 0
@@ -106043,7 +106039,6 @@ MonoBehaviour:
   indexOfScene: 5
   playerPosition: {x: -2.31, y: -8.07, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
-  playerObjectToIgnore: {fileID: 867893661}
 --- !u!61 &1738898884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108430,7 +108425,6 @@ MonoBehaviour:
   indexOfScene: 1
   playerPosition: {x: -3.3, y: 1.61, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 1c3cf5554e17a894cb7ab6864eb3acb8, type: 2}
-  playerObjectToIgnore: {fileID: 867893661}
 --- !u!1 &1932111971
 GameObject:
   m_ObjectHideFlags: 0
@@ -109531,7 +109525,7 @@ MonoBehaviour:
   dayText: {fileID: 982717031}
   timeText: {fileID: 387884954}
   ppv: {fileID: 2093145676}
-  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+  startingPosition: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
 --- !u!114 &2093145676
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using Unity.VisualScripting.FullSerializer;
-//using Story = Ink.Runtime.Story;
-//using Choice = Ink.Runtime.Choice;
-
 
 public class DialogueVariables
 {

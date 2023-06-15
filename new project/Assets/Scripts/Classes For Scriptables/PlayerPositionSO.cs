@@ -7,4 +7,5 @@ public class PlayerPositionSO : ScriptableObject
 {
     public Vector3 InitialValue;
     public bool transittedScene = false;
+    public bool playerDead = false;
 }

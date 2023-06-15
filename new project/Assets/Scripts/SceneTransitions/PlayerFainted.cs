@@ -16,6 +16,7 @@ public class PlayerFainted : MonoBehaviour
 
     private GameObject playerHitBox;
     private Health healthScript;
+    public PlayerPositionSO playerPositionSO;
     
     // Start is called before the first frame update
     void Start()
@@ -45,15 +46,25 @@ public class PlayerFainted : MonoBehaviour
 
     IEnumerator WaitAnimation()
     {
+       // yield return new WaitForSeconds(2);
+
         transition.SetTrigger("Fainted");
 
         yield return new WaitForSeconds(2);
 
         playerAnimation.Play("Base Layer.player_death", 0, 0);
 
-        //yield return new WaitForSeconds(2);
-        DataPersistenceManager.instance.LoadGame();
+        yield return new WaitForSeconds(2);
+        GameManager.instance.day += 1;
+        clockManager.days += 1;
+        healthScript.health = 50;
+        GameManager.instance.health = 50;
+        DataPersistenceManager.instance.SaveGame();
+        playerPositionSO.playerDead = true;
+        playerPositionSO.InitialValue = new Vector2((float)-0.072, (float)-0.264);
+        //DataPersistenceManager.instance.LoadGame();
+        //DataPersistenceManager.instance.LoadGame();
 
-        SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
+        SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
     }
 }
