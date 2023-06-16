@@ -28,7 +28,6 @@ public class Inventory_UI : MonoBehaviour
     private Slot_UI draggedSlot;
     private Image draggedIcon;
 
-    private GameObject player;
     private PlayerItems playerItems;
     private FreezePlayerMovement freezePlayerMovement;
 
@@ -39,8 +38,7 @@ public class Inventory_UI : MonoBehaviour
     {
         canvas = FindObjectOfType<Canvas>();
 
-        player = GameObject.Find("Player");
-        playerItems = player.GetComponent<PlayerItems>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
 

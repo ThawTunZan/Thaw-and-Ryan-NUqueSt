@@ -26,7 +26,8 @@ public class GameButtons : MonoBehaviour
         DisableMenuButtons();
         //create new game instance
         DataPersistenceManager.instance.NewGame();
-        SceneManager.LoadSceneAsync("PlayerHouse");
+        //SceneManager.LoadSceneAsync("PlayerHouse");
+        SceneManager.LoadSceneAsync("Cave_1");
     }
 
     public void ContinueGame()

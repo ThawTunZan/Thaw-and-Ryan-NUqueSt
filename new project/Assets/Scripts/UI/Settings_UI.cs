@@ -152,6 +152,6 @@ public class Settings_UI : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
