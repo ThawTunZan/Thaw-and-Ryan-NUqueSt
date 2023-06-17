@@ -54,8 +54,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void NewGame()
     {
-        gameData = new GameData();
         DatabaseManager.instance.databaseGameData = new GameData();
+        gameData = new GameData();
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);

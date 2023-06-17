@@ -58,7 +58,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)
         {
-            print(slot.itemName);
+            //print(slot.itemName);
             if (slot.itemName == "Tomato")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato");
@@ -69,7 +69,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             }
             else if (slot.itemName == "Potato Seeds")
             {
-                print("POTATOATOATOO Seeeeeeeeeeeed");
+               // print("POTATOATOATOO Seeeeeeeeeeeed");
                 slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
             }
             else if (slot.itemName == "Tomato Seeds")
@@ -83,7 +83,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         }
         foreach (Inventory.Slot slot in toolbar.slots)
         {
-            print(slot.itemName);
+           // print(slot.itemName);
             if (slot.itemName == "Tomato")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato");

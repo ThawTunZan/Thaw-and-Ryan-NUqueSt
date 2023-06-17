@@ -48,7 +48,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
         instance = this;
-        //gameData = DataPersistenceManager.instance.gameData;
         weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
@@ -76,6 +75,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
 
     private void Update()
@@ -92,8 +92,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
-
-        // print(questStarted);
         currentStory = new Story(inkJSON.text);
 
         dialogueIsPlaying = true;
@@ -129,7 +127,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 string questDescription = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questDesc")).value;
 
                 // add quest to Quest List under Player Quests component in Player via QuestList script
-                player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
             }
             DisplayChoices();
@@ -179,7 +176,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(GameData data)
     {
-       // data.story = dialogueVariables.saveVariables();
     }
 
     public void LoadData(GameData data)

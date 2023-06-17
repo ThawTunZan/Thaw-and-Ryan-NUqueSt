@@ -17,7 +17,7 @@ public class DialogueVariables
 
         if (!string.IsNullOrEmpty(data.placeHolderStory))
         {
-            Debug.Log("Loading JSON data: " + data.placeHolderStory);
+           // Debug.Log("Loading JSON data: " + data.placeHolderStory);
             try
             {
                 
@@ -85,5 +85,11 @@ public class DialogueVariables
             return globalVariablesStory.state.ToJson();
         }
         else { return null; }
+    }
+
+    public void InkSetVariables(Story story, string variable, object value) 
+    {
+        story.variablesState[variable] = value;
+        Debug.Log("Successfully changed variable state!");
     }
 }
