@@ -7,7 +7,7 @@ using Ink.Runtime;
 using Story = Ink.Runtime.Story;
 using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
-using Ink.UnityIntegration;
+//using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
 {
