@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b1eb34013b375459d1e7099029af92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inDropProcess: 0
+  disableToolbar: 0
   inventory:
     slots: []
     inventoryName: 
@@ -294,7 +294,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3568565333973212876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 8683415014747663927}
   - component: {fileID: 4710834851946558930}
   - component: {fileID: 735163605954807766}
+  - component: {fileID: 6627696375712983440}
   m_Layer: 8
   m_Name: PlayerHitBox
   m_TagString: PlayerHitBox
@@ -461,10 +462,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5999380768521677774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.00046730042, y: 0.021529444}
@@ -480,6 +481,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11488247, y: 0.20147489}
   m_EdgeRadius: 0
+--- !u!70 &6627696375712983440
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999380768521677774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0012637377, y: 0.015165627}
+  m_Size: {x: 0.09810996, y: 0.22149599}
+  m_Direction: 0
 --- !u!1 &7446964951454154378
 GameObject:
   m_ObjectHideFlags: 0

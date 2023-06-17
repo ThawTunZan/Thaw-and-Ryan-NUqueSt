@@ -10359,7 +10359,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -11980,6 +11980,7 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   day: 0
+  story: 
 --- !u!4 &849561114
 Transform:
   m_ObjectHideFlags: 0
@@ -16122,6 +16123,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1834412713}
   transition: {fileID: 1176966706}
   playerAnimation: {fileID: 1675395091}
+  playerPositionSO: {fileID: 0}
 --- !u!114 &1176966708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25136,11 +25138,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8890131048757355296, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_PrefabInstance: {fileID: 1675395089}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1675395093 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-  m_PrefabInstance: {fileID: 1675395089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685051380
 GameObject:
   m_ObjectHideFlags: 0
@@ -25459,7 +25456,6 @@ MonoBehaviour:
   indexOfScene: 11
   playerPosition: {x: 2.001, y: -2.097, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 31bb11fad5906434a9da7897328ea246, type: 2}
-  playerObjectToIgnore: {fileID: 1675395093}
 --- !u!61 &1695510398
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11772,7 +11772,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -13763,6 +13763,7 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   day: 0
+  story: 
 --- !u!4 &849561114
 Transform:
   m_ObjectHideFlags: 0
@@ -14343,7 +14344,6 @@ MonoBehaviour:
   indexOfScene: 11
   playerPosition: {x: 0, y: 0, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: cb164519f54a7f345b95db05f3e1b85b, type: 2}
-  playerObjectToIgnore: {fileID: 1675395092}
 --- !u!61 &910065358
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18045,6 +18045,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1834412713}
   transition: {fileID: 1176966706}
   playerAnimation: {fileID: 1675395091}
+  playerPositionSO: {fileID: 0}
 --- !u!114 &1176966708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31208,11 +31209,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4504541104588032044, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_PrefabInstance: {fileID: 1675395089}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1675395092 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-  m_PrefabInstance: {fileID: 1675395089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &1675395093 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8890131048757355296, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
@@ -32226,7 +32222,6 @@ MonoBehaviour:
   indexOfScene: 9
   playerPosition: {x: -2.972, y: -0.921, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: bfc97a9fb952e094b9327ddf7a16865a, type: 2}
-  playerObjectToIgnore: {fileID: 1675395092}
 --- !u!61 &1735446630
 BoxCollider2D:
   m_ObjectHideFlags: 0
