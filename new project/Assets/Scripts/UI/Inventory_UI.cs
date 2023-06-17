@@ -34,6 +34,8 @@ public class Inventory_UI : MonoBehaviour
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
 
+    private Settings_UI settingsUI;
+
     private void Start()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -47,13 +49,15 @@ public class Inventory_UI : MonoBehaviour
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
 
+        settingsUI = GameObject.Find("Settings").GetComponent<Settings_UI>();
+
         SetupSlots();
         Refresh();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (inventoryPanel != null)
         {
             ToggleInventory();
         }
@@ -61,22 +65,20 @@ public class Inventory_UI : MonoBehaviour
 
     public void ToggleInventory()
     {
-        if (inventoryPanel != null)
+        if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Tab))
         {
-            if (!inventoryPanel.activeSelf)
-            {
-                inventoryPanel.SetActive(true);
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-                Refresh();
-            }
-            else
-            {
-                dropPanel.SetActive(false);
-                inventoryPanel.SetActive(false);
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
+            inventoryPanel.SetActive(true);
+            playerItems.disableToolbar = true;
+            freezePlayerMovement.ToggleMovement();
+            Refresh();
+        }
+        else if (playerItems.disableToolbar && !settingsUI.settingsActive
+            && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            dropPanel.SetActive(false);
+            inventoryPanel.SetActive(false);
+            playerItems.disableToolbar = false;
+            freezePlayerMovement.ToggleMovement();
         }
     }
 

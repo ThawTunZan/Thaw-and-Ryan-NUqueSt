@@ -18,10 +18,12 @@ public class Settings_UI : MonoBehaviour
     private FreezePlayerMovement freezePlayerMovement;
     private PlayerItems playerItems;
 
+    public bool settingsActive;
+
     private void Start()
     {
         optionsText = optionsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
-        optionsText.text = "W A S D - Movement\nESC - Options Panel\nTAB - Inventory Panel\nQ - Quest Panel\nE - Interact" +
+        optionsText.text = "W A S D - Movement\nESC - Options Panel/Close Active UI\nTAB - Inventory Panel\nQ - Quest Panel\nE - Interact" +
             "\nSpace Bar - Proceed Dialogue\nLeft Click - Use Item in Toolbar\n";
 
         creditsText = creditsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
@@ -34,111 +36,61 @@ public class Settings_UI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Escape)) 
         {
-            ToggleSettings();
-            ToggleOptionsOff();
-            ToggleCreditsOff();
+            ToggleSettingsOn();
+        }
+        else if (playerItems.disableToolbar && settingsActive && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ReturnToGame();
         }
     }
 
-    public void ToggleSettings()
+    public void ToggleSettingsOn()
     {
-        if (settingsPanel != null)
-        {
-            if (!settingsPanel.activeSelf)
-            {
-                settingsPanel.SetActive(true);
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-            }
-            else
-            {
-                settingsPanel.SetActive(false);
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
-        }
+        settingsPanel.SetActive(true);
+        playerItems.disableToolbar = true;
+        settingsActive = true;
+        freezePlayerMovement.ToggleMovement();
     }
 
     public void ToggleSettingsOff()
     {
-        if (settingsPanel != null)
+        if (settingsPanel.activeSelf)
         {
-            if (!settingsPanel.activeSelf)
-            {
-                settingsPanel.SetActive(true);
-            }
-            else
-            {
-                settingsPanel.SetActive(false);
-            }
+            settingsPanel.SetActive(false);
         }
     }
 
-    public void ToggleOptions()
+    public void ToggleOptionsOn()
     {
-        if (optionsPanel != null)
+        if (!optionsPanel.activeSelf)
         {
-            if (!optionsPanel.activeSelf)
-            {
-                optionsPanel.SetActive(true);
-            }
-            else
-            {
-                optionsPanel.SetActive(false);
-            }
+            optionsPanel.SetActive(true);
         }
     }
 
     public void ToggleOptionsOff()
     {
-        if (optionsPanel != null)
+        if (optionsPanel.activeSelf)
         {
-            if (optionsPanel.activeSelf)
-            {
-                ToggleOptions();
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
-            if (settingsPanel.activeSelf)
-            {
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-            }
+            optionsPanel.SetActive(false);
         }
     }
 
-    public void ToggleCredits()
+    public void ToggleCreditsOn()
     {
-        if (creditsPanel != null)
+        if (!creditsPanel.activeSelf)
         {
-            if (!creditsPanel.activeSelf)
-            {
-                creditsPanel.SetActive(true);
-            }
-            else
-            {
-                creditsPanel.SetActive(false);
-            }
+            creditsPanel.SetActive(true);
         }
     }
 
     public void ToggleCreditsOff()
     {
-        if (creditsPanel != null)
+        if (creditsPanel.activeSelf)
         {
-            if (creditsPanel.activeSelf)
-            {
-                ToggleCredits();
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
-            if (settingsPanel.activeSelf)
-            {
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-            }
+            creditsPanel.SetActive(false);
         }
     }
 
@@ -147,18 +99,20 @@ public class Settings_UI : MonoBehaviour
         ToggleSettingsOff();
         ToggleOptionsOff();
         ToggleCreditsOff();
+        playerItems.disableToolbar = false;
+        settingsActive = false;
         freezePlayerMovement.ToggleMovement();
     }
 
     public void Options()
     {
-        ToggleOptions();
+        ToggleOptionsOn();
         ToggleSettingsOff();
     }
 
     public void Credits()
     {
-        ToggleCredits();
+        ToggleCreditsOn();
         ToggleSettingsOff();
     }
 

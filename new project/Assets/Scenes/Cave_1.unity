@@ -2836,7 +2836,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 440541791}
         m_TargetAssemblyTypeName: Settings_UI, Assembly-CSharp
-        m_MethodName: ToggleOptionsOff
+        m_MethodName: ReturnToGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6855,6 +6855,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 673372598}
   optionsPanel: {fileID: 871307135}
   creditsPanel: {fileID: 606641504}
+  settingsActive: 0
 --- !u!1 &444261226
 GameObject:
   m_ObjectHideFlags: 0
@@ -26526,7 +26527,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 440541791}
         m_TargetAssemblyTypeName: Settings_UI, Assembly-CSharp
-        m_MethodName: ToggleCreditsOff
+        m_MethodName: ReturnToGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
