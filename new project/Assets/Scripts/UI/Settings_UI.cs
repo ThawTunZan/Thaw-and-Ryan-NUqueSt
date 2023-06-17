@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,11 +12,22 @@ public class Settings_UI : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject creditsPanel;
 
+    private TextMeshProUGUI optionsText;
+    private TextMeshProUGUI creditsText;
+
     private FreezePlayerMovement freezePlayerMovement;
     private PlayerItems playerItems;
 
     private void Start()
     {
+        optionsText = optionsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
+        optionsText.text = "W A S D - Movement\nESC - Options Panel\nTAB - Inventory Panel\nQ - Quest Panel\nE - Interact" +
+            "\nSpace Bar - Proceed Dialogue\nLeft Click - Use Item in Toolbar\n";
+
+        creditsText = creditsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
+        creditsText.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +
+            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei";
+
         freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
