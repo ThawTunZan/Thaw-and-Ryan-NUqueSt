@@ -3483,7 +3483,6 @@ MonoBehaviour:
   indexOfScene: 6
   playerPosition: {x: 0.05871572, y: -1.1, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 05bdb6af9153e774bad49685d1d06b5c, type: 2}
-  playerObjectToIgnore: {fileID: 1991703472}
 --- !u!61 &292933332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3497,7 +3496,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.004219, y: -4.7057295}
+  m_Offset: {x: -6.004219, y: -4.7281775}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3508,7 +3507,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3903389, y: 0.13170767}
+  m_Size: {x: 0.3903389, y: 0.17660427}
   m_EdgeRadius: 0
 --- !u!1001 &295033971
 PrefabInstance:
@@ -5412,6 +5411,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1352741367}
   transition: {fileID: 361181004}
   playerAnimation: {fileID: 1991703471}
+  playerPositionSO: {fileID: 0}
 --- !u!114 &361181006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19491,7 +19491,6 @@ MonoBehaviour:
   indexOfScene: 2
   playerPosition: {x: 3.05, y: 1.47, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
-  playerObjectToIgnore: {fileID: 1991703472}
 --- !u!61 &585541502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46347,6 +46346,7 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   day: 0
+  story: 
 --- !u!4 &1743535945
 Transform:
   m_ObjectHideFlags: 0
@@ -50685,6 +50685,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1936267349}
+    - target: {fileID: 4710834851946558930, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
     m_RemovedComponents:
     - {fileID: 4828177125383994956, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
@@ -50696,11 +50700,6 @@ Transform:
 --- !u!95 &1991703471 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4504541104588032044, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-  m_PrefabInstance: {fileID: 1991703469}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1991703472 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_PrefabInstance: {fileID: 1991703469}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2002030147

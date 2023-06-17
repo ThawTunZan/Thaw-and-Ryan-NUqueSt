@@ -58,13 +58,52 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)
         {
-            //slot.AfterDeserialization(slot.iconName);
-            slot.icon = Resources.Load<Sprite>("Collectable");
+            print(slot.itemName);
+            if (slot.itemName == "Tomato")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Tomato");
+            }
+            else if (slot.itemName == "Potato")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Potato");
+            }
+            else if (slot.itemName == "Potato Seeds")
+            {
+                print("POTATOATOATOO Seeeeeeeeeeeed");
+                slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
+            }
+            else if (slot.itemName == "Tomato Seeds")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
+            }
+            else if (slot.itemName == "Rusty Sword")
+            {
+                slot.icon = Resources.Load<Sprite>("Weapon/Rusty_Sword");
+            }
         }
         foreach (Inventory.Slot slot in toolbar.slots)
         {
-            //slot.AfterDeserialization(slot.iconName);
-            slot.icon = Resources.Load<Sprite>("Collectable");
+            print(slot.itemName);
+            if (slot.itemName == "Tomato")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Tomato");
+            }
+            else if (slot.itemName == "Potato")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Potato");
+            }
+            else if (slot.itemName == "Potato Seeds")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
+            }
+            else if (slot.itemName == "Tomato Seeds")
+            {
+                slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
+            }
+            else if (slot.itemName == "Rusty Sword")
+            {
+                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
+            }
         }
     }
 

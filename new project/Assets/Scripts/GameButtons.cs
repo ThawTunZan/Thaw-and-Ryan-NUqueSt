@@ -12,14 +12,17 @@ public class GameButtons : MonoBehaviour
 
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
-    private void Start()
+
+    private void Update()
     {
-
-       // if (!DataPersistenceManager.instance.HasGameData())
-       // {
-       //     continueGameButton.interactable = false;
-      //  }
-
+        if (DatabaseManager.instance.hasGameData)
+        {
+            continueGameButton.interactable = true;
+        }
+        else
+        {
+            continueGameButton.interactable = false;
+        }
     }
     public void NewGame()
     {
@@ -32,9 +35,7 @@ public class GameButtons : MonoBehaviour
     public void ContinueGame()
     {
         DisableMenuButtons();
-        //DataPersistenceManager.instance.LoadGame();
         SceneManager.LoadSceneAsync("PlayerHouse");
-        //DataPersistenceManager.instance.LoadGame();
     }
 
     //disable so that player cant click continue button if there is no saved data

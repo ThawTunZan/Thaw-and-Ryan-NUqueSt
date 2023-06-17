@@ -11,6 +11,8 @@ public class DatabaseManager : MonoBehaviour
     public static DatabaseManager instance { get; private set; }
     public GameData databaseGameData;
 
+    public bool hasGameData;
+
     void Awake()
     {
         if (instance != null)
@@ -36,10 +38,9 @@ public class DatabaseManager : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
     }
     
-    public GameData LoadGameData()
+    public void LoadGameData()
     {
-        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnLoadGameDataError);
-        return databaseGameData;
+       PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnLoadGameDataError);    
     }
 
     public void OnDataSend(UpdateUserDataResult result)
@@ -53,11 +54,14 @@ public class DatabaseManager : MonoBehaviour
         {
            // print(result.Data[userID].Value);
             databaseGameData = JsonUtility.FromJson<GameData>(result.Data[userID].Value);
+            DataPersistenceManager.instance.gameData = databaseGameData;
+            hasGameData = true;
 
         }
         else
         {
             Debug.LogWarning("User data not found - at DatabaseManager.cs");
+            hasGameData = false;
         }
     }
     void OnError(PlayFabError error)
