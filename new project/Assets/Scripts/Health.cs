@@ -20,6 +20,13 @@ public class Health : MonoBehaviour, IDataPersistence
             healthBar.SetHealth(health);
             healthBar.SetMaxHealth(maxHealth);
         }
+        else if (startingPosition.playerDead)
+        {
+            health = GameManager.instance.health;
+            hasCollided = false;
+            healthBar.SetHealth(health);
+            healthBar.SetMaxHealth(100);
+        }
         else
         {
             maxHealth = 100;

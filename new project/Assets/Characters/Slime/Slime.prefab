@@ -15,8 +15,7 @@ GameObject:
   - component: {fileID: 2856748835509246710}
   - component: {fileID: 5938833953888796748}
   - component: {fileID: 7376480692812283855}
-  - component: {fileID: 6968999398148434631}
-  - component: {fileID: 6941267387238482531}
+  - component: {fileID: 5720208136575357073}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Slime
@@ -201,7 +200,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &6968999398148434631
+--- !u!114 &5720208136575357073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,60 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   player: {fileID: 0}
-  enemy: {fileID: 9082491253928029060}
-  enemyObject: {fileID: 9082491253928029058}
-  movespeed: 1
-  interestMap:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  avoidanceMap:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  weightedMap:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  dirArray: []
-  enemy_path: {x: 0, y: 0, z: 0}
-  obstructed: 0
-  lastKnown: {x: 0, y: 0, z: 0}
-  layersToAvoid:
-    serializedVersion: 2
-    m_Bits: 0
-  skeletonCount: 0
---- !u!114 &6941267387238482531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082491253928029058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a370b98f16165a445926e9f8fd3c8314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  player: {fileID: 0}
-  enemy: {fileID: 9082491253928029060}
-  enemyObject: {fileID: 9082491253928029058}
+  enemy: {fileID: 0}
+  enemyObject: {fileID: 0}
   movespeed: 1
   interestMap:
   - 0

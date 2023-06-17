@@ -2667,6 +2667,7 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   day: 0
+  story: 
 --- !u!4 &504121921
 Transform:
   m_ObjectHideFlags: 0
@@ -4008,11 +4009,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.091
+      value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.321
+      value: -0.103
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4100,11 +4101,6 @@ PrefabInstance:
 --- !u!4 &759442950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
-  m_PrefabInstance: {fileID: 759442949}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &759442951 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
   m_PrefabInstance: {fileID: 759442949}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &759442952 stripped
@@ -4438,6 +4434,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1423826338}
   transition: {fileID: 935784164}
   playerAnimation: {fileID: 759442952}
+  playerPositionSO: {fileID: 0}
 --- !u!225 &935784166
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5045,7 +5042,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047575406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.091, y: -0.321, z: -10}
+  m_LocalPosition: {x: 0.045, y: -0.103, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8045,7 +8042,6 @@ MonoBehaviour:
   indexOfScene: 2
   playerPosition: {x: -0.083, y: -0.071, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
-  playerObjectToIgnore: {fileID: 759442951}
 --- !u!61 &1718901468
 BoxCollider2D:
   m_ObjectHideFlags: 0

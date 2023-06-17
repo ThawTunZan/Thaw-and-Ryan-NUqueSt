@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float seconds;
     public float day;
 
+    public string story;
+
     void Awake()
     { 
         if (instance != null)
