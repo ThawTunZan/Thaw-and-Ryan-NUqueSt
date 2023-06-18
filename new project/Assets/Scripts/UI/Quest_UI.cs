@@ -15,14 +15,11 @@ public class Quest_UI : MonoBehaviour
 
     private FreezePlayerMovement freezePlayerMovement;
 
-    private Settings_UI settingsUI;
-
     private void Start()
     {
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
-        settingsUI = GameObject.Find("Settings").GetComponent<Settings_UI>();
     }
 
     void Update()
@@ -34,8 +31,7 @@ public class Quest_UI : MonoBehaviour
             freezePlayerMovement.ToggleMovement();
             Setup();
         }
-        else if (playerItems.disableToolbar && !settingsUI.settingsActive 
-            && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
+        else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
             questPanel.SetActive(false);
             playerItems.disableToolbar = false;

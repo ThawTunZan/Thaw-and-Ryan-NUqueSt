@@ -18,7 +18,7 @@ public class Settings_UI : MonoBehaviour
     private FreezePlayerMovement freezePlayerMovement;
     private PlayerItems playerItems;
 
-    public bool settingsActive;
+    private bool settingsActive;
 
     private void Start()
     {

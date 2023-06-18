@@ -34,8 +34,6 @@ public class Inventory_UI : MonoBehaviour
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
 
-    private Settings_UI settingsUI;
-
     private void Start()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -48,8 +46,6 @@ public class Inventory_UI : MonoBehaviour
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
-
-        settingsUI = GameObject.Find("Settings").GetComponent<Settings_UI>();
 
         SetupSlots();
         Refresh();
@@ -72,7 +68,7 @@ public class Inventory_UI : MonoBehaviour
             freezePlayerMovement.ToggleMovement();
             Refresh();
         }
-        else if (playerItems.disableToolbar && !settingsUI.settingsActive
+        else if (playerItems.disableToolbar && (inventoryPanel.activeSelf || dropPanel.activeSelf)
             && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
         {
             dropPanel.SetActive(false);
