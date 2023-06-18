@@ -81,7 +81,7 @@ public class DialogueVariables
         if (globalVariablesStory != null)
         {
             VariablesToStory(globalVariablesStory);
-            Debug.Log(JsonUtility.ToJson(globalVariablesStory));
+            //Debug.Log(JsonUtility.ToJson(globalVariablesStory));
             return globalVariablesStory.state.ToJson();
         }
         else { return null; }

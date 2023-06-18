@@ -67,7 +67,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -75,7 +74,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
-        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
 
     private void Update()
@@ -93,12 +91,20 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
-
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         movement.movespeed = 0;
 
         dialogueVariables.StartListening(currentStory);
+        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        for (int i = 0; i < 5; i++)
+        {
+            if (player.questList.questSlots[i].questName == ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questName")).value
+                && player.questList.questSlots[i].questName != "")
+            {
+                dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
+            }
+        }
 
         ContinueStory();
     }
@@ -127,6 +133,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 string questDescription = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questDesc")).value;
 
                 // add quest to Quest List under Player Quests component in Player via QuestList script
+                player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
             }
             DisplayChoices();
