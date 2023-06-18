@@ -103,6 +103,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 && player.questList.questSlots[i].questName != "")
             {
                 dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
+                //print ()
+                dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
+                dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
+                print("quest" + player.questList.questSlots[i].questName + "Done");
+               // print(((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questMA1511Done")).value);
+                
             }
         }
 
@@ -126,7 +132,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             string currentLine = currentStory.Continue();
             dialogueText.text = currentLine;
-            if (currentLine.StartsWith("Quest Started"))
+            if (currentLine.StartsWith("Great!"))
             {
                 // referencing dictionary in DialogueVariables script which references variables from globals.ink file
                 string questName = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questName")).value;
