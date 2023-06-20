@@ -88,7 +88,7 @@ public class Inventory_UI : MonoBehaviour
      * This function is called whenever a player enters a new scene, or when the player opens the inventory by pressing TAB.
      * This Refresh needs to happen as there are two different inventories. One inventory is the inventory UI, and the other 
      * inventory is the player's actual inventory (in script). The Refresh will get the items from the player inventory and 
-     * make it visible on the inventory UI. Same goes for toolbar.
+     * make it visible on the inventory UI. Same goes for toolbar. The third if statement is for refreshing chest UI.
      */
     public void Refresh()
     {
@@ -113,6 +113,11 @@ public class Inventory_UI : MonoBehaviour
             {
                 toolbarInCanvas.slots[i].SetEmpty();
             }
+        }
+        if (chestPanel != null && chestPanel.activeSelf)
+        {
+            ChestItems chestItems = GameObject.Find(chestInCanvas.inventoryName).GetComponent<ChestItems>();
+            chestItems.ChestRefresh();
         }
     }
 

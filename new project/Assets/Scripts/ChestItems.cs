@@ -12,10 +12,13 @@ public class ChestItems : MonoBehaviour, IDataPersistence
     public PlayerPositionSO startingPosition;
     public SpriteRenderer playerRenderer;
 
+    private Inventory_UI chestInCanvas;
+
     private void Start()
     {
         gameObject.name = chestName;
         playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
         if (startingPosition.transittedScene)
         {
             chestInventory = new Inventory(chestName, 21);
@@ -31,6 +34,22 @@ public class ChestItems : MonoBehaviour, IDataPersistence
         if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
         {
             GameManager.instance.chestList[lastDigit] = chestInventory;
+        }
+    }
+
+    public void ChestRefresh()
+    {
+        for (int i = 0; i < chestInCanvas.slots.Count; i++)
+        {
+            chestInCanvas.slots[i].inventoryName = chestName;
+            if (chestInventory.slots[i].itemName != "")
+            {
+                chestInCanvas.slots[i].SetItem(chestInventory.slots[i]);
+            }
+            else
+            {
+                chestInCanvas.slots[i].SetEmpty();
+            }
         }
     }
 
