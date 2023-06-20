@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChestTrigger : MonoBehaviour
@@ -24,34 +25,25 @@ public class ChestTrigger : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            ToggleChest();
+            chestPanel.SetActive(true);
+            inventoryPanel.SetActive(true);
+            playerItems.disableToolbar = true;
+            freezePlayerMovement.ToggleMovement();
         }
-    }
-
-    private void ToggleChest()
-    {
-        if (chestPanel != null)
+        else if (playerInRange && playerItems.disableToolbar && chestPanel.activeSelf
+            && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            if (!chestPanel.activeSelf)
-            {
-                chestPanel.SetActive(true);
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-                //Refresh();
-            }
-            else
-            {
-                dropPanel.SetActive(false);
-                chestPanel.SetActive(false);
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
+            dropPanel.SetActive(false);
+            inventoryPanel.SetActive(false);
+            chestPanel.SetActive(false);
+            playerItems.disableToolbar = false;
+            freezePlayerMovement.ToggleMovement();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.tag == "Player")
         {
             playerInRange = true;
         }
@@ -59,7 +51,7 @@ public class ChestTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (collider.gameObject.tag == "Player")
         {
             playerInRange = false;
         }

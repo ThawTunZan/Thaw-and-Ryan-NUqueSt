@@ -38,7 +38,10 @@ public class Settings_UI : MonoBehaviour
     {
         if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Escape)) 
         {
-            ToggleSettingsOn();
+            settingsPanel.SetActive(true);
+            playerItems.disableToolbar = true;
+            settingsActive = true;
+            freezePlayerMovement.ToggleMovement();
         }
         else if (playerItems.disableToolbar && settingsActive && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -46,59 +49,11 @@ public class Settings_UI : MonoBehaviour
         }
     }
 
-    public void ToggleSettingsOn()
-    {
-        settingsPanel.SetActive(true);
-        playerItems.disableToolbar = true;
-        settingsActive = true;
-        freezePlayerMovement.ToggleMovement();
-    }
-
-    public void ToggleSettingsOff()
-    {
-        if (settingsPanel.activeSelf)
-        {
-            settingsPanel.SetActive(false);
-        }
-    }
-
-    public void ToggleOptionsOn()
-    {
-        if (!optionsPanel.activeSelf)
-        {
-            optionsPanel.SetActive(true);
-        }
-    }
-
-    public void ToggleOptionsOff()
-    {
-        if (optionsPanel.activeSelf)
-        {
-            optionsPanel.SetActive(false);
-        }
-    }
-
-    public void ToggleCreditsOn()
-    {
-        if (!creditsPanel.activeSelf)
-        {
-            creditsPanel.SetActive(true);
-        }
-    }
-
-    public void ToggleCreditsOff()
-    {
-        if (creditsPanel.activeSelf)
-        {
-            creditsPanel.SetActive(false);
-        }
-    }
-
     public void ReturnToGame()
     {
-        ToggleSettingsOff();
-        ToggleOptionsOff();
-        ToggleCreditsOff();
+        settingsPanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
         playerItems.disableToolbar = false;
         settingsActive = false;
         freezePlayerMovement.ToggleMovement();
@@ -106,14 +61,22 @@ public class Settings_UI : MonoBehaviour
 
     public void Options()
     {
-        ToggleOptionsOn();
-        ToggleSettingsOff();
+        optionsPanel.SetActive(true);
     }
 
+    public void ToggleOptionsOff()
+    {
+        optionsPanel.SetActive(false);
+    }
+   
     public void Credits()
     {
-        ToggleCreditsOn();
-        ToggleSettingsOff();
+        creditsPanel.SetActive(true);
+    }
+
+    public void ToggleCreditsOff()
+    {
+        creditsPanel.SetActive(false);
     }
 
     public void ExitToMainMenu()

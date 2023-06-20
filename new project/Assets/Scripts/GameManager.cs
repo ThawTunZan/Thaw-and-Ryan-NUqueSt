@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float exp;
     public Inventory inventory;
     public Inventory toolbar;
+    public Inventory chestInventory;
 
     // for day and night system
     public float hours;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         instance.inventory = new Inventory("Inventory", 21);
         instance.toolbar = new Inventory("Toolbar", 7);
+        instance.chestInventory = new Inventory("chestInventory", 21);
         DontDestroyOnLoad(gameObject);  //else
     }
 }
