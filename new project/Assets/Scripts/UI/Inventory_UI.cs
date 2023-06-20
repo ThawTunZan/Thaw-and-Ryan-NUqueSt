@@ -14,6 +14,8 @@ public class Inventory_UI : MonoBehaviour
 
     public string inventoryName;
 
+    public GameObject chestPanel;
+
     public List<Slot_UI> slots = new List<Slot_UI>();
 
     [Header("Drop Panel Components")]
@@ -33,6 +35,7 @@ public class Inventory_UI : MonoBehaviour
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
+    private Inventory_UI chestInCanvas;
 
     private void Start()
     {
@@ -46,6 +49,7 @@ public class Inventory_UI : MonoBehaviour
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
+        chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
 
         SetupSlots();
         Refresh();
@@ -61,14 +65,14 @@ public class Inventory_UI : MonoBehaviour
 
     public void ToggleInventory()
     {
-        if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Tab))
+        if (!playerItems.disableToolbar && !chestPanel.activeSelf && Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryPanel.SetActive(true);
             playerItems.disableToolbar = true;
             freezePlayerMovement.ToggleMovement();
             Refresh();
         }
-        else if (playerItems.disableToolbar && (inventoryPanel.activeSelf || dropPanel.activeSelf)
+        else if (playerItems.disableToolbar && !chestPanel.activeSelf && (inventoryPanel.activeSelf || dropPanel.activeSelf)
             && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
         {
             dropPanel.SetActive(false);
@@ -86,7 +90,7 @@ public class Inventory_UI : MonoBehaviour
      * inventory is the player's actual inventory (in script). The Refresh will get the items from the player inventory and 
      * make it visible on the inventory UI. Same goes for toolbar.
      */
-    void Refresh()
+    public void Refresh()
     {
         for (int i = 0; i < inventoryInCanvas.slots.Count; i++)
         {
@@ -172,7 +176,7 @@ public class Inventory_UI : MonoBehaviour
 
     public void SetToMin()
     {
-        dropText.text = "1";
+        dropText.text = "0";
     }
 
     /*
@@ -205,6 +209,7 @@ public class Inventory_UI : MonoBehaviour
 
     public void SlotDrop(Slot_UI slot)
     {
+        Debug.Log(inventoryByName);
         Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
         Inventory toInventory = inventoryByName[slot.inventoryName];
         MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);

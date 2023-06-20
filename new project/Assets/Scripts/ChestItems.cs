@@ -4,24 +4,57 @@ using UnityEngine;
 
 public class ChestItems : MonoBehaviour, IDataPersistence
 {
+    public string chestName;
     public Inventory chestInventory;
+    public Dictionary<string, Inventory> stringToChestManager;
+    public Dictionary<string, Inventory> stringToChestData;
+
     public PlayerPositionSO startingPosition;
     public SpriteRenderer playerRenderer;
 
     private void Start()
     {
+        //stringToChestManager.Add("Chest0", GameManager.instance.chest0);
+        //stringToChestManager.Add("Chest1", GameManager.instance.chest1);
         playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene)
         {
-            chestInventory = new Inventory("ChestInventory", 21);
-            chestInventory = GameManager.instance.chestInventory;
+            //chestInventory = new Inventory(chestName, 21);
+            //chestInventory = stringToChestManager[chestName];
+            //chestInventory = GameManager.instance.chest0;
             //startingPosition.transittedScene = false;
+            chestInventory = new Inventory(chestName, 21);
+            if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
+            {
+                chestInventory = GameManager.instance.chestList[lastDigit];
+            }
+            //if (chestName == "Chest0") 
+            //{
+            //    chestInventory = GameManager.instance.chest0;
+            //}
+            //else if (chestName == "Chest1")
+            //{
+            //    chestInventory = GameManager.instance.chest1;
+            //}
         }
     }
 
     private void Update()
     {
-        GameManager.instance.chestInventory = chestInventory;
+        if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
+        {
+            GameManager.instance.chestList[lastDigit] = chestInventory;
+        }
+        //if (chestName == "Chest0")
+        //{
+        //    GameManager.instance.chest0 = chestInventory;
+        //}
+        //else if (chestName == "Chest1")
+        //{
+        //    GameManager.instance.chest1 = chestInventory;
+        //}
+        //stringToChestManager[chestName] = chestInventory;
+        //GameManager.instance.chest0 = chestInventory;
     }
 
     public void DropItem(Item item)
@@ -47,8 +80,14 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        chestInventory = new Inventory("ChestInventory", 21);
-        chestInventory = data.chestInventory;
+        //stringToChestData.Add("Chest0", data.chest0);
+        //stringToChestData.Add("Chest1", data.chest1);
+        chestInventory = new Inventory(chestName, 21);
+        //chestInventory = stringToChestData[chestName];
+        if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
+        {
+            chestInventory = data.chestList[lastDigit];
+        }
         foreach (Inventory.Slot slot in chestInventory.slots)
         {
             //print(slot.itemName);
@@ -78,6 +117,12 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.chestInventory = chestInventory;
+        //stringToChestData.Add("Chest0", data.chest0);
+        //stringToChestData.Add("Chest1", data.chest1);
+        //stringToChestData[chestName] = chestInventory;
+        if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
+        {
+            data.chestList[lastDigit] = chestInventory;
+        }
     }
 }
