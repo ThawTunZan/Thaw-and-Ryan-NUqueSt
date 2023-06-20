@@ -122,14 +122,6 @@ public class Inventory_UI : MonoBehaviour
      */
     public void RemoveAmountUI()
     {
-        //if (chestPanel.activeSelf)
-        //{
-        //    ChestItems chestItems = GameObject.Find(chestInCanvas.GetComponent<Inventory_UI>().inventoryName).GetComponent<ChestItems>();
-        //    if (!inventoryByName.ContainsKey(chestItems.chestName))
-        //    {
-        //        inventoryByName.Add(chestItems.chestName, chestItems.chestInventory);
-        //    }
-        //}
         Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
         Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         if (itemToDrop != null)
@@ -154,14 +146,6 @@ public class Inventory_UI : MonoBehaviour
      */
     public void Remove()
     {
-        //if (chestPanel.activeSelf)
-        //{
-        //    ChestItems chestItems = GameObject.Find(chestInCanvas.GetComponent<Inventory_UI>().inventoryName).GetComponent<ChestItems>();
-        //    if (!inventoryByName.ContainsKey(chestItems.chestName))
-        //    {
-        //        inventoryByName.Add(chestItems.chestName, chestItems.chestInventory);
-        //    }
-        //}
         Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
         Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
         string text = dropText.text;
@@ -186,14 +170,6 @@ public class Inventory_UI : MonoBehaviour
      */ 
     public void SetToMax()
     {
-        //if (chestPanel.activeSelf)
-        //{
-        //    ChestItems chestItems = GameObject.Find(chestInCanvas.GetComponent<Inventory_UI>().inventoryName).GetComponent<ChestItems>();
-        //    if (!inventoryByName.ContainsKey(chestItems.chestName))
-        //    {
-        //        inventoryByName.Add(chestItems.chestName, chestItems.chestInventory);
-        //    }
-        //}
         Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
         dropText.text = fromInventory.slots[draggedSlot.slotID].count.ToString();
     }
@@ -233,14 +209,6 @@ public class Inventory_UI : MonoBehaviour
 
     public void SlotDrop(Slot_UI slot)
     {
-        if (chestPanel.activeSelf)
-        {
-            ChestItems chestItems = GameObject.Find(chestInCanvas.GetComponent<Inventory_UI>().inventoryName).GetComponent<ChestItems>();
-            if (!inventoryByName.ContainsKey(chestItems.chestName))
-            {
-                inventoryByName.Add(chestItems.chestName, chestItems.chestInventory);
-            }
-        }
         Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
         Inventory toInventory = inventoryByName[slot.inventoryName];
         MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);
