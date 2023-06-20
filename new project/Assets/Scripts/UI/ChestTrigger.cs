@@ -48,6 +48,7 @@ public class ChestTrigger : MonoBehaviour
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
+            inventoryInCanvas.inventoryByName.Remove(chestItems.chestName);
             chestInCanvas.inventoryName = null;
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
@@ -61,9 +62,10 @@ public class ChestTrigger : MonoBehaviour
     {
         for (int i = 0; i < chestInCanvas.slots.Count; i++)
         {
+            chestInCanvas.slots[i].inventoryName = chestItems.chestName;
             if (chestItems.chestInventory.slots[i].itemName != "")
             {
-                chestInCanvas.slots[i].SetItem(playerItems.inventory.slots[i]);
+                chestInCanvas.slots[i].SetItem(chestItems.chestInventory.slots[i]);
             }
             else
             {

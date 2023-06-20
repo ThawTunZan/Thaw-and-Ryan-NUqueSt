@@ -14,6 +14,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        gameObject.name = chestName;
         //stringToChestManager.Add("Chest0", GameManager.instance.chest0);
         //stringToChestManager.Add("Chest1", GameManager.instance.chest1);
         playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
