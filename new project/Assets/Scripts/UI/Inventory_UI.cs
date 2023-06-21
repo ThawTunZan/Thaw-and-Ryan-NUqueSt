@@ -254,7 +254,8 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * This handles the slotID of the inventory and toolbar slots. slotID is used in dragging items.
+     * This handles the slotID of the inventory and toolbar slots. slotID is used in dragging items. If there is an error in dragging
+     * items, then something might be wrong in assigning the inventoryName of each slots. It may be null.
      */
     void SetupSlots()
     {

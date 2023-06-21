@@ -86,7 +86,7 @@ public class Inventory
 
     public List<Slot> slots = new List<Slot>();
 
-    public string inventoryName;
+    //public string inventoryName;
 
     public Inventory(string inventoryName, int numSlots)
     {
