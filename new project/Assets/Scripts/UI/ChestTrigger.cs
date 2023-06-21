@@ -32,7 +32,15 @@ public class ChestTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && !playerItems.disableToolbar && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange)
+        {
+            ToggleChestInventory();
+        }
+    }
+
+    private void ToggleChestInventory()
+    {
+        if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.E))
         {
             inventoryPanel.transform.position = inventoryNewPosition.transform.position;
             inventoryInCanvas.inventoryByName.Add(chestItems.chestName, chestItems.chestInventory);
@@ -44,7 +52,7 @@ public class ChestTrigger : MonoBehaviour
             chestItems.ChestRefresh();
             freezePlayerMovement.ToggleMovement();
         }
-        else if (playerInRange && playerItems.disableToolbar && chestPanel.activeSelf
+        else if (playerItems.disableToolbar && chestPanel.activeSelf
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
@@ -57,22 +65,6 @@ public class ChestTrigger : MonoBehaviour
             freezePlayerMovement.ToggleMovement();
         }
     }
-
-    //private void ChestRefresh()
-    //{
-    //    for (int i = 0; i < chestInCanvas.slots.Count; i++)
-    //    {
-    //        chestInCanvas.slots[i].inventoryName = chestItems.chestName;
-    //        if (chestItems.chestInventory.slots[i].itemName != "")
-    //        {
-    //            chestInCanvas.slots[i].SetItem(chestItems.chestInventory.slots[i]);
-    //        }
-    //        else
-    //        {
-    //            chestInCanvas.slots[i].SetEmpty();
-    //        }
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
