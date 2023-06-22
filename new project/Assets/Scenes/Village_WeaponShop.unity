@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexOfScene: 5
-  playerPosition: {x: -6.007, y: -4.8, z: 0}
+  playerPosition: {x: -6.007, y: -5, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
 --- !u!61 &187868060
 BoxCollider2D:
@@ -23573,6 +23573,14 @@ PrefabInstance:
     - target: {fileID: 8137180546540116826, guid: 25f552b300f53084fa17df900888add6, type: 3}
       propertyPath: m_Name
       value: WeaponShop_NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137180546540116826, guid: 25f552b300f53084fa17df900888add6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8137180546540116826, guid: 25f552b300f53084fa17df900888add6, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f552b300f53084fa17df900888add6, type: 3}

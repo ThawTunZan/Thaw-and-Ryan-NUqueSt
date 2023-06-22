@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 9082491253928029062}
   - component: {fileID: 9082491253928029060}
   - component: {fileID: 4654921664858011237}
-  - component: {fileID: 2856748835509246710}
   - component: {fileID: 5938833953888796748}
   - component: {fileID: 7376480692812283855}
   - component: {fileID: 5720208136575357073}
+  - component: {fileID: 2069907962986592150}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Slime
@@ -132,20 +132,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2856748835509246710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082491253928029058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d622c00a1d7c6b4ab17280fc0e13c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _health: 3
 --- !u!58 &5938833953888796748
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -252,3 +238,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   skeletonCount: 0
+--- !u!114 &2069907962986592150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082491253928029058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9c5848023d69343828dac2ff8111e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  player: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  _health: 3

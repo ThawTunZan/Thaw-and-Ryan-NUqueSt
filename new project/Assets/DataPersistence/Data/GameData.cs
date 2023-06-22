@@ -18,7 +18,8 @@ public class GameData
     public Inventory toolbar;
 
     public string story;                        // quest progress for WeaponSmith NPC
-    public string placeHolderStory;                                     
+    public string placeHolderStory; 
+    
     public float hours;
 
     public float day;
@@ -33,6 +34,9 @@ public class GameData
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);
         hours = 8;
+
+        story = "";
+        placeHolderStory = "";
 
         day = 0;
     }

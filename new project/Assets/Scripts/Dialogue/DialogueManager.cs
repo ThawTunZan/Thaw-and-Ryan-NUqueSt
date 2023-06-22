@@ -48,7 +48,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
         instance = this;
-        //gameData = DataPersistenceManager.instance.gameData;
         weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
@@ -68,7 +67,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
         foreach (GameObject choice in choices)
@@ -92,15 +90,27 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
-
-        // print(questStarted);
         currentStory = new Story(inkJSON.text);
-
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         movement.movespeed = 0;
 
         dialogueVariables.StartListening(currentStory);
+        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        for (int i = 0; i < 5; i++)
+        {
+            if (player.questList.questSlots[i].questName == ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questName")).value
+                && player.questList.questSlots[i].questName != "")
+            {
+                dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
+                //print ()
+                dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
+                dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
+                print("quest" + player.questList.questSlots[i].questName + "Done");
+               // print(((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questMA1511Done")).value);
+                
+            }
+        }
 
         ContinueStory();
     }
@@ -122,7 +132,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             string currentLine = currentStory.Continue();
             dialogueText.text = currentLine;
-            if (currentLine.StartsWith("Quest Started"))
+            if (currentLine.StartsWith("Great!"))
             {
                 // referencing dictionary in DialogueVariables script which references variables from globals.ink file
                 string questName = ((Ink.Runtime.StringValue) dialogueVariables.GetVariableState("questName")).value;
@@ -179,7 +189,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(GameData data)
     {
-       // data.story = dialogueVariables.saveVariables();
     }
 
     public void LoadData(GameData data)

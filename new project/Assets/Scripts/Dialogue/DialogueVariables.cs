@@ -17,7 +17,7 @@ public class DialogueVariables
 
         if (!string.IsNullOrEmpty(data.placeHolderStory))
         {
-            Debug.Log("Loading JSON data: " + data.placeHolderStory);
+           // Debug.Log("Loading JSON data: " + data.placeHolderStory);
             try
             {
                 
@@ -34,7 +34,7 @@ public class DialogueVariables
         {
             Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
             variables.Add(name, value);
-            Debug.Log("Initialised global dialogue variable: " + name + " = " + value);
+            //Debug.Log("Initialised global dialogue variable: " + name + " = " + value);
         }
     }
 
@@ -81,9 +81,15 @@ public class DialogueVariables
         if (globalVariablesStory != null)
         {
             VariablesToStory(globalVariablesStory);
-            Debug.Log(JsonUtility.ToJson(globalVariablesStory));
+            //Debug.Log(JsonUtility.ToJson(globalVariablesStory));
             return globalVariablesStory.state.ToJson();
         }
         else { return null; }
+    }
+
+    public void InkSetVariables(Story story, string variable, object value) 
+    {
+        story.variablesState[variable] = value;
+        Debug.Log("Successfully changed variable state!");
     }
 }

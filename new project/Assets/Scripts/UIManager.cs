@@ -8,23 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance { get; private set; }
     public GameObject loginUI;
     public GameObject registerUI;
+    public GameObject PWResetMenu;
     
-    private void Awake()
-    {
-        /*
-        if (instance != null)
-        {
-            Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroying the newest one.-Thaw");
-            Destroy(this.gameObject);
-            return;
-        }
-        
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        */
-    }
-    
-
     public void LoginScreen()
     {
         loginUI.SetActive(true);
@@ -35,4 +20,20 @@ public class UIManager : MonoBehaviour
         loginUI.SetActive(false);
         registerUI.SetActive(true);
     }
+    public void OpenResetPWMenu()
+    {
+        if (!PWResetMenu.activeSelf)
+        {
+            PWResetMenu.SetActive(true);
+            loginUI.SetActive(false);
+            registerUI.SetActive(false);
+        }
+        else
+        {
+            PWResetMenu.SetActive(false);
+            loginUI.SetActive(true);
+            registerUI.SetActive(false);
+        }
+    }
+    
 }
