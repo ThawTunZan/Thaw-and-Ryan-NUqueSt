@@ -33,7 +33,7 @@ public class Tutorial_UI : MonoBehaviour
     private bool attackSwordDone;
     public GameObject attackSwordFirst;
 
-    private bool killSlimeDone;
+    public bool killSlimeDone;
 
     public bool runToPortal;
 
@@ -150,7 +150,7 @@ public class Tutorial_UI : MonoBehaviour
 
     void AttackSwordCheck()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (attackSwordFirst == null)
         {
             removeItemPanel.SetActive(true);
             playerMovement.movespeed = originalSpeed;

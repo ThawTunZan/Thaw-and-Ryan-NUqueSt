@@ -20304,8 +20304,6 @@ MonoBehaviour:
     slots: []
   chest1:
     slots: []
-  chest2:
-    slots: []
   chestList: []
   hours: 0
   minutes: 0
@@ -28607,7 +28605,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026648886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 664377dfa3bc5ff4abfef5e73fe3fcb7, type: 3}
+  m_Script: {fileID: 11500000, guid: ce447b08541528145b3752d27e2761b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 2064654524}
@@ -28621,6 +28619,8 @@ MonoBehaviour:
   playerMovement: {fileID: 1773370768}
   removeItemPanel: {fileID: 1904402317}
   slimeMovement: {fileID: 477188956}
+  attackSwordFirst: {fileID: 1664717010}
+  killSlimeDone: 0
   runToPortal: 0
 --- !u!1 &1030034372
 GameObject:
@@ -38106,7 +38106,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06113124, y: -0.005055018}
+  m_Offset: {x: -0.05826211, y: -0.0021859854}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -38117,7 +38117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.07424784, y: 0.21600763}
+  m_Size: {x: 0.079986095, y: 0.30207872}
   m_EdgeRadius: 0
 --- !u!4 &1322385197
 Transform:
@@ -38550,7 +38550,7 @@ GameObject:
   - component: {fileID: 1341461303}
   - component: {fileID: 1341461305}
   m_Layer: 0
-  m_Name: Trigger2
+  m_Name: WalkToPortal Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38606,7 +38606,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341461302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33627f1089399541843ff0f58614962, type: 3}
+  m_Script: {fileID: 11500000, guid: b63f3ca88ebb4a246959ba3b85f4ff33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialUI: {fileID: 0}
@@ -43308,6 +43308,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650784455}
   m_CullTransparentMesh: 1
+--- !u!1 &1664717010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664717013}
+  - component: {fileID: 1664717012}
+  - component: {fileID: 1664717014}
+  m_Layer: 0
+  m_Name: AttackSwordFirst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1664717012
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664717010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.21315306, y: -0.375741}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.6251948}
+  m_EdgeRadius: 0
+--- !u!4 &1664717013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664717010}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.101, y: 0.375, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664717014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664717010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66263f680e9076346a6ee949d17a1655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1667278869
 GameObject:
   m_ObjectHideFlags: 0
@@ -45549,7 +45620,7 @@ GameObject:
   - component: {fileID: 1796612903}
   - component: {fileID: 1796612904}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: WalkToSword Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45605,7 +45676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1796612901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee512ff93a9ad5419880ce099a23cfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 33af707de71eba246b817502f4c21139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialUI: {fileID: 0}

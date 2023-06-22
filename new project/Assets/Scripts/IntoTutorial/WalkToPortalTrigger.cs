@@ -17,6 +17,7 @@ public class WalkToPortalTrigger : MonoBehaviour
     {
         if (playerInRange)
         {
+            tutorialUI.killSlimeDone = true;
             tutorialUI.runToPortal = true;
             Destroy(this.gameObject);
         }
