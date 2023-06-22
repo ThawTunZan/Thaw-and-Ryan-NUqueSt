@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int level;
     public float exp;
+
+    public QuestList questList;
+
     public Inventory inventory;
     public Inventory toolbar;
 
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
+        instance.questList = new QuestList(5);
+
         instance.inventory = new Inventory("Inventory", 21);
         instance.toolbar = new Inventory("Toolbar", 7);
 

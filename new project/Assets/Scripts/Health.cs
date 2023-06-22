@@ -13,6 +13,7 @@ public class Health : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         if (startingPosition.transittedScene)
         {
             health = GameManager.instance.health;

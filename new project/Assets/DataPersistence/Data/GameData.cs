@@ -14,6 +14,8 @@ public class GameData
     public string name;
     public float maxHealth;
 
+    public QuestList questList;
+
     public Inventory inventory;
     public Inventory toolbar;
 
@@ -34,6 +36,9 @@ public class GameData
         playerPosition = Vector3.zero;
        // gameScene = 3;
         maxHealth = 100;
+
+        questList = new QuestList(5);
+
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);
 

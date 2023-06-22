@@ -32,6 +32,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     }
     void Start()
     {
+        dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
+        timeText = GameObject.Find("Time").GetComponent<TextMeshProUGUI>();
         if (startingPosition.transittedScene) {
             hours = GameManager.instance.hours;
             minutes = GameManager.instance.minutes;

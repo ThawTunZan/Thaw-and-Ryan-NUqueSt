@@ -21,10 +21,11 @@ public class PlayerFainted : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        globalVolume = GameObject.Find("Global Volume");
         clockManager = globalVolume.GetComponent<ClockManager>();
         originalGameObject = GameObject.Find("HealthBar");
         volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
-
+        playerAnimation = GameObject.Find("Player").GetComponent<Animator>();
         playerHitBox = GameObject.Find("PlayerHitBox");
         healthScript = playerHitBox.GetComponent<Health>();
     }
