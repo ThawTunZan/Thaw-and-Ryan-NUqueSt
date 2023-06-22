@@ -17,6 +17,9 @@ public class GameData
     public Inventory inventory;
     public Inventory toolbar;
 
+    public Inventory chest0;
+    public List<Inventory> chestList = new List<Inventory>();
+
     public string story;                        // quest progress for WeaponSmith NPC
     public string placeHolderStory; 
     
@@ -33,6 +36,12 @@ public class GameData
         maxHealth = 100;
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);
+
+        // chest0 is in PlayerHouse
+        chest0 = new Inventory("Chest0", 21) { };
+
+        chestList.Add(chest0);
+
         hours = 8;
 
         story = "";

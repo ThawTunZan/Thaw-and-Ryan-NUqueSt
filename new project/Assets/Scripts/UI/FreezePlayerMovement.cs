@@ -9,7 +9,7 @@ public class FreezePlayerMovement : MonoBehaviour
 
     private GameObject player;
     private PlayerMovement playerMovement;
-    float originalSpeed;
+    public float originalSpeed;
 
     private void Start()
     {

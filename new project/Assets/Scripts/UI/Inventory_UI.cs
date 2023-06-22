@@ -14,6 +14,8 @@ public class Inventory_UI : MonoBehaviour
 
     public string inventoryName;
 
+    public GameObject chestPanel;
+
     public List<Slot_UI> slots = new List<Slot_UI>();
 
     [Header("Drop Panel Components")]
@@ -33,6 +35,7 @@ public class Inventory_UI : MonoBehaviour
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
+    private Inventory_UI chestInCanvas;
 
     private void Start()
     {
@@ -46,6 +49,7 @@ public class Inventory_UI : MonoBehaviour
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
+        chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
 
         SetupSlots();
         Refresh();
@@ -53,7 +57,7 @@ public class Inventory_UI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (inventoryPanel != null)
         {
             ToggleInventory();
         }
@@ -61,22 +65,20 @@ public class Inventory_UI : MonoBehaviour
 
     public void ToggleInventory()
     {
-        if (inventoryPanel != null)
+        if (!playerItems.disableToolbar && !chestPanel.activeSelf && Input.GetKeyDown(KeyCode.Tab))
         {
-            if (!inventoryPanel.activeSelf)
-            {
-                inventoryPanel.SetActive(true);
-                playerItems.disableToolbar = true;
-                freezePlayerMovement.ToggleMovement();
-                Refresh();
-            }
-            else
-            {
-                dropPanel.SetActive(false);
-                inventoryPanel.SetActive(false);
-                playerItems.disableToolbar = false;
-                freezePlayerMovement.ToggleMovement();
-            }
+            inventoryPanel.SetActive(true);
+            playerItems.disableToolbar = true;
+            freezePlayerMovement.ToggleMovement();
+            Refresh();
+        }
+        else if (playerItems.disableToolbar && !chestPanel.activeSelf && (inventoryPanel.activeSelf || dropPanel.activeSelf)
+            && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            dropPanel.SetActive(false);
+            inventoryPanel.SetActive(false);
+            playerItems.disableToolbar = false;
+            freezePlayerMovement.ToggleMovement();
         }
     }
 
@@ -86,9 +88,9 @@ public class Inventory_UI : MonoBehaviour
      * This function is called whenever a player enters a new scene, or when the player opens the inventory by pressing TAB.
      * This Refresh needs to happen as there are two different inventories. One inventory is the inventory UI, and the other 
      * inventory is the player's actual inventory (in script). The Refresh will get the items from the player inventory and 
-     * make it visible on the inventory UI. Same goes for toolbar.
+     * make it visible on the inventory UI. Same goes for toolbar. The third if statement is for refreshing chest UI.
      */
-    void Refresh()
+    public void Refresh()
     {
         for (int i = 0; i < inventoryInCanvas.slots.Count; i++)
         {
@@ -111,6 +113,11 @@ public class Inventory_UI : MonoBehaviour
             {
                 toolbarInCanvas.slots[i].SetEmpty();
             }
+        }
+        if (chestPanel != null && chestPanel.activeSelf)
+        {
+            ChestItems chestItems = GameObject.Find(chestInCanvas.inventoryName).GetComponent<ChestItems>();
+            chestItems.ChestRefresh();
         }
     }
 
@@ -174,7 +181,7 @@ public class Inventory_UI : MonoBehaviour
 
     public void SetToMin()
     {
-        dropText.text = "1";
+        dropText.text = "0";
     }
 
     /*
@@ -247,7 +254,8 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * This handles the slotID of the inventory and toolbar slots. slotID is used in dragging items.
+     * This handles the slotID of the inventory and toolbar slots. slotID is used in dragging items. If there is an error in dragging
+     * items, then something might be wrong in assigning the inventoryName of each slots. It may be null.
      */
     void SetupSlots()
     {
