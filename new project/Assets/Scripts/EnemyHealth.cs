@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using static QuestList;
 
-public class Slime : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
 
     public PlayerQuests player;
+    public DialogueManager dialogueManager;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("alive", true);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+
+        dialogueManager = GameObject.Find("DialogueManager").GetComponent <DialogueManager>();
     }
     public float Health { 
         set
@@ -28,13 +31,16 @@ public class Slime : MonoBehaviour
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
+                /*
                 for (int i = 0; i < 5; i++)
                 {
+                    //if there is an active quest in the slot
                     if (player.questList.questSlots[i].count == 1)
                     {
                         player.questList.questSlots[i].slimesRequired--;
                     }
                 }
+                */
                 Invoke(nameof(SlimeDeath), 1f);
             }
         }
@@ -47,23 +53,21 @@ public class Slime : MonoBehaviour
 
     public void OnHit(float damage)
     {
-        Debug.Log("Slime hit for " + damage + " damage");
         Health -= damage;
         animator.SetTrigger("Hit");
-
     }
-    private void OnTriggerEnter2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("SwordAttack"))
         {
-            Debug.Log("collision detected witht he slime");
             SwordAttack swordAttack = col.gameObject.GetComponentInParent<SwordAttack>();
             OnHit(swordAttack.swordDamage);
         }
     }
 
-    private void SlimeDeath()
+    public virtual void SlimeDeath()
     {
+
         Destroy(this.gameObject);
     }
 }

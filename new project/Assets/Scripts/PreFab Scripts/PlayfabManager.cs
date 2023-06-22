@@ -26,6 +26,9 @@ public class PlayfabManager : MonoBehaviour
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
 
+    public TMP_InputField emailResetField;
+
+
     public GameObject uiManager;
     public UIManager uiManagerScript;
 
@@ -61,6 +64,20 @@ public class PlayfabManager : MonoBehaviour
         }
     }
 
+    public void ResetPasswordButton()
+    {
+        var request = new SendAccountRecoveryEmailRequest
+        {
+            Email = emailResetField.text,
+            TitleId = "EABA5"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnRecoveryError);
+    }
+
+    void OnPasswordReset(SendAccountRecoveryEmailResult result)
+    {
+        warningLoginText.text = "passwordLoginField reset mail sent!";
+    }
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         uiManagerScript.LoginScreen();
@@ -125,6 +142,11 @@ public class PlayfabManager : MonoBehaviour
             warningLoginText.text = error.ErrorMessage;
         }
         return;
+    }
+
+    void OnRecoveryError(PlayFabError error)
+    {
+        Debug.Log(error.ToString());
     }
     public void LoginScreen()
     {

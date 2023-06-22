@@ -10,6 +10,7 @@ public class MainMenuScript : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject mmPanel;
     public AudioMixer volumeMixer;
+    public GameObject PWResetMenu;
 
   
     public void OpenSettings()
@@ -28,13 +29,22 @@ public class MainMenuScript : MonoBehaviour
     {
         mmPanel.SetActive(true);
     }
+    public void OpenResetPWMenu()
+    {
+        if (!PWResetMenu.activeSelf)
+        {
+            PWResetMenu.SetActive(true);
+        }
+        else
+        {
+            PWResetMenu.SetActive(false);
+        }
+    }
     public void setVolume(float MasterVolume)
     {
         volumeMixer.SetFloat("MasterVolume", MasterVolume);
     }
 
-
-  
     public void ExitGame()
     {
         Debug.Log("Quitting");

@@ -17,6 +17,8 @@ public class QuestList
 
         // add more requirements here for different quests
         public int slimesRequired;
+        public int tomato;
+        public int rock;
 
         public void AddItem(string quest_name, string quest_description)
         {

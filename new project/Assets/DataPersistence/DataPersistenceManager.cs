@@ -47,6 +47,7 @@ public class DataPersistenceManager : MonoBehaviour
         
         if (!sceneTransitted)
         {
+            print("game is being LOADED on scene loaded");
             LoadGame();
         }
     }
@@ -56,6 +57,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         gameData = new GameData();
         DatabaseManager.instance.databaseGameData = new GameData();
+        //gameData = new GameData();
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);

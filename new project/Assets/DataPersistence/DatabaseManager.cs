@@ -43,20 +43,36 @@ public class DatabaseManager : MonoBehaviour
        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnCharactersDataRecieved, OnLoadGameDataError);    
     }
 
+    public void DeleteUserData()
+    {
+
+        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
+        {
+            Data = new Dictionary<string, string>()
+            {
+                {userID, ""}
+            }
+        }, response =>
+        {
+            Debug.Log("Successfully deleted user data");
+        }, OnDeleteError);
+    }
+    public void OnDeleteError(PlayFabError error)
+    {
+        Debug.Log("Error deleting user data");
+        print(error.ErrorMessage);
+    }
+
     public void OnDataSend(UpdateUserDataResult result)
     {
-      //  Debug.Log("Successfully saved!");
     }
     public void OnCharactersDataRecieved(GetUserDataResult result)
     {
-      //  Debug.Log("Recieved character data!");
         if (result.Data != null && result.Data.ContainsKey(userID))
         {
-           // print(result.Data[userID].Value);
             databaseGameData = JsonUtility.FromJson<GameData>(result.Data[userID].Value);
             DataPersistenceManager.instance.gameData = databaseGameData;
             hasGameData = true;
-
         }
         else
         {

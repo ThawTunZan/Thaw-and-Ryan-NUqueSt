@@ -13,13 +13,12 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     private void Start()
     {
         playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
-        if (startingPosition.transittedScene)
+        if (startingPosition.transittedScene || startingPosition.playerDead)
         {
             inventory = new Inventory("Inventory", 21);
             inventory = GameManager.instance.inventory;
             toolbar = new Inventory("Toolbar", 7);
             toolbar = GameManager.instance.toolbar;
-            //startingPosition.transittedScene = false;
         }
     }
 
@@ -69,7 +68,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             }
             else if (slot.itemName == "Potato Seeds")
             {
-                print("POTATOATOATOO Seeeeeeeeeeeed");
+               // print("POTATOATOATOO Seeeeeeeeeeeed");
                 slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
             }
             else if (slot.itemName == "Tomato Seeds")
@@ -83,7 +82,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         }
         foreach (Inventory.Slot slot in toolbar.slots)
         {
-            //print(slot.itemName);
+           // print(slot.itemName);
             if (slot.itemName == "Tomato")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato");
