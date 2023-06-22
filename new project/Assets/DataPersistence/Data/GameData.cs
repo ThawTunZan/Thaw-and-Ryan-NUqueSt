@@ -19,7 +19,9 @@ public class GameData
     public Inventory inventory;
     public Inventory toolbar;
 
+    // chest0: PlayerHouse, chest1: Cave_1c
     public Inventory chest0;
+    public Inventory chest1;
     public List<Inventory> chestList = new List<Inventory>();
 
     public string story;                        // quest progress for WeaponSmith NPC
@@ -42,10 +44,10 @@ public class GameData
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);
 
-        // chest0 is in PlayerHouse
         chest0 = new Inventory("Chest0", 21) { };
-
+        chest1 = new Inventory("Chest1", 21) { };
         chestList.Add(chest0);
+        chestList.Add(chest1);
 
         hours = 8;
 

@@ -31,6 +31,7 @@ public class Tutorial_UI : MonoBehaviour
     public SlimeAI slimeMovement;
 
     private bool attackSwordDone;
+    public GameObject attackSwordFirst;
 
     private bool killSlimeDone;
 

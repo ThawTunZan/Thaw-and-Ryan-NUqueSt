@@ -3874,6 +3874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginUI: {fileID: 592957960}
   registerUI: {fileID: 8426718}
+  PWResetMenu: {fileID: 0}
 --- !u!1 &822035676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4238,6 +4239,7 @@ MonoBehaviour:
   passwordRegisterField: {fileID: 1789597918}
   passwordRegisterVerifyField: {fileID: 1229929699}
   warningRegisterText: {fileID: 1969875345}
+  emailResetField: {fileID: 0}
   uiManager: {fileID: 1732713913}
   uiManagerScript: {fileID: 0}
 --- !u!4 &943678926
@@ -4664,6 +4666,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 1928063305}
   mmPanel: {fileID: 787959887}
   volumeMixer: {fileID: 24100000, guid: 4b8bf45d5c8b4b74981d8647120cf88f, type: 2}
+  PWResetMenu: {fileID: 0}
 --- !u!1 &1003458052
 GameObject:
   m_ObjectHideFlags: 0
@@ -5156,6 +5159,43 @@ MonoBehaviour:
     playerPosition: {x: 0, y: 0, z: 0}
     name: 
     maxHealth: 100
+    questList:
+      questSlots:
+      - count: 0
+        questName: 
+        questDescription: 
+        done: 0
+        slimesRequired: 0
+        tomato: 0
+        rock: 0
+      - count: 0
+        questName: 
+        questDescription: 
+        done: 0
+        slimesRequired: 0
+        tomato: 0
+        rock: 0
+      - count: 0
+        questName: 
+        questDescription: 
+        done: 0
+        slimesRequired: 0
+        tomato: 0
+        rock: 0
+      - count: 0
+        questName: 
+        questDescription: 
+        done: 0
+        slimesRequired: 0
+        tomato: 0
+        rock: 0
+      - count: 0
+        questName: 
+        questDescription: 
+        done: 0
+        slimesRequired: 0
+        tomato: 0
+        rock: 0
     inventory:
       slots:
       - itemName: 
@@ -5284,7 +5324,6 @@ MonoBehaviour:
         icon: {fileID: 0}
         iconName: 
         inventoryName: Inventory
-      inventoryName: 
     toolbar:
       slots:
       - itemName: 
@@ -5329,7 +5368,262 @@ MonoBehaviour:
         icon: {fileID: 0}
         iconName: 
         inventoryName: Toolbar
-      inventoryName: 
+    chest0:
+      slots:
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+    chestList:
+    - slots:
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
+      - itemName: 
+        count: 0
+        maxAllowed: 32
+        icon: {fileID: 0}
+        iconName: 
+        inventoryName: Chest0
     story: 
     placeHolderStory: 
     hours: 8
@@ -7677,6 +7971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginUI: {fileID: 592957960}
   registerUI: {fileID: 8426718}
+  PWResetMenu: {fileID: 0}
 --- !u!4 &1732713915
 Transform:
   m_ObjectHideFlags: 0
@@ -8997,12 +9292,19 @@ MonoBehaviour:
   health: 100
   level: 0
   exp: 0
+  questList:
+    questSlots: []
   inventory:
     slots: []
-    inventoryName: 
   toolbar:
     slots: []
-    inventoryName: 
+  chest0:
+    slots: []
+  chest1:
+    slots: []
+  chest2:
+    slots: []
+  chestList: []
   hours: 0
   minutes: 0
   seconds: 0
