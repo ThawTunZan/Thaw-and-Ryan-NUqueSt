@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public Animator animator;
 
     public PlayerQuests player;
-    public DialogueManager dialogueManager;
+    //public DialogueManager dialogueManager;
 
     public void Start()
     {
@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("alive", true);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
 
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent <DialogueManager>();
+        //dialogueManager = GameObject.Find("DialogueManager").GetComponent <DialogueManager>();
     }
     public float Health { 
         set
