@@ -77,7 +77,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             }
             else if (slot.itemName == "Rusty Sword")
             {
-                slot.icon = Resources.Load<Sprite>("Weapon/Rusty_Sword");
+                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
             }
         }
         foreach (Inventory.Slot slot in toolbar.slots)
@@ -111,5 +111,4 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         data.inventory = inventory;
         data.toolbar = toolbar;
     }
-
 }
