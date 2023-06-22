@@ -38,6 +38,15 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             hours = GameManager.instance.hours;
             minutes = GameManager.instance.minutes;
             days = GameManager.instance.day;
+            seconds = GameManager.instance.seconds;
+
+        }
+        else if (startingPosition.playerDead)
+        {
+            hours = 8;
+            minutes = 0;
+            seconds = 0;
+            days = GameManager.instance.day;
         }
         else
         {
@@ -68,6 +77,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         GameManager.instance.hours = hours;
         GameManager.instance.minutes = minutes;
+        GameManager.instance.seconds = seconds;
         GameManager.instance.day = days;
         string bufferMinutes = "";
         string bufferHours = "";
@@ -114,8 +124,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        bool isOutside = !(sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop" || sceneName == "Cave_1");
-        if (hours >= 18 && hours <= 21 && isOutside)
+        bool isInside = (sceneName == "FarmHouse" || sceneName == "Game" || sceneName == "Village");
+        if (hours >= 18 && hours <= 21 && !isInside)
         {
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
             foreach (Animator animator in animatorTorchList)
@@ -141,7 +151,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
                 lightComponent.intensity = 0;
             }
         }
-        else if (!isOutside)
+        else if (isInside)
         {
             ppv.weight = 0;
         }

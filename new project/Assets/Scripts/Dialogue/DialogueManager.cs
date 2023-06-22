@@ -34,10 +34,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private DialogueVariables dialogueVariables;
     private PlayerQuests player;
 
-    //quest progress
-    public List<int> weaponSmithNPC;
-    private bool questCompleted;
-    private bool questStarted;
 
 
     private void Awake()
@@ -48,7 +44,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             return;
         }
         instance = this;
-        weaponSmithNPC = new List<int>(3);
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
     }
 
@@ -107,7 +102,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
                 dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
                 print("quest" + player.questList.questSlots[i].questName + "Done");
-               // print(((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questMA1511Done")).value);
                 
             }
         }
@@ -171,16 +165,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             choices[i].gameObject.SetActive(false);
         }
-        // the code below in green is not needed (i think lol)
-        //StartCoroutine(SelectFirstChoice());
     }
-
-    //private IEnumerator SelectFirstChoice()
-    //{
-    //    EventSystem.current.SetSelectedGameObject(null);
-    //    yield return new WaitForEndOfFrame();
-    //    EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
-    //}
 
     public void MakeChoice(int choiceIndex)
     {

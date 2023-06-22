@@ -47,7 +47,7 @@ public class DataPersistenceManager : MonoBehaviour
         
         if (!sceneTransitted)
         {
-            print("game is being LOADED on scene loaded");
+            //print("game is being LOADED on scene loaded");
             LoadGame();
         }
     }

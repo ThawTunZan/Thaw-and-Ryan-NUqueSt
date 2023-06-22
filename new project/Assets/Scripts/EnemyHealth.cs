@@ -8,15 +8,12 @@ public class EnemyHealth : MonoBehaviour
     public Animator animator;
 
     public PlayerQuests player;
-    public DialogueManager dialogueManager;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("alive", true);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-
-        dialogueManager = GameObject.Find("DialogueManager").GetComponent <DialogueManager>();
     }
     public float Health { 
         set
@@ -31,16 +28,6 @@ public class EnemyHealth : MonoBehaviour
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
-                /*
-                for (int i = 0; i < 5; i++)
-                {
-                    //if there is an active quest in the slot
-                    if (player.questList.questSlots[i].count == 1)
-                    {
-                        player.questList.questSlots[i].slimesRequired--;
-                    }
-                }
-                */
                 Invoke(nameof(SlimeDeath), 1f);
             }
         }
