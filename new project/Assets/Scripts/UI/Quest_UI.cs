@@ -10,16 +10,18 @@ public class Quest_UI : MonoBehaviour
 
     private PlayerQuests playerQuests;
     private PlayerItems playerItems;
+    private PlayerMovement playerMovement;
 
     public List<QuestSlot_UI> questSlots = new List<QuestSlot_UI>();
 
-    private FreezePlayerMovement freezePlayerMovement;
+    //private FreezePlayerMovement freezePlayerMovement;
 
     private void Start()
     {
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
-        freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        //freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
     }
 
     void Update()
@@ -28,14 +30,16 @@ public class Quest_UI : MonoBehaviour
         {
             questPanel.SetActive(true);
             playerItems.disableToolbar = true;
-            freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = false;
+            //freezePlayerMovement.ToggleMovement();
             Setup();
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
             questPanel.SetActive(false);
             playerItems.disableToolbar = false;
-            freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = true;
+            //freezePlayerMovement.ToggleMovement();
         }
     }
 

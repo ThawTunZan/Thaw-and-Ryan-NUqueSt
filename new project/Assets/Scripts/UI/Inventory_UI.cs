@@ -31,7 +31,8 @@ public class Inventory_UI : MonoBehaviour
     private Image draggedIcon;
 
     private PlayerItems playerItems;
-    private FreezePlayerMovement freezePlayerMovement;
+    //private FreezePlayerMovement freezePlayerMovement;
+    private PlayerMovement playerMovement;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
@@ -45,7 +46,8 @@ public class Inventory_UI : MonoBehaviour
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
 
-        freezePlayerMovement = canvas.GetComponent<FreezePlayerMovement>();
+        //freezePlayerMovement = canvas.GetComponent<FreezePlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
@@ -69,7 +71,8 @@ public class Inventory_UI : MonoBehaviour
         {
             inventoryPanel.SetActive(true);
             playerItems.disableToolbar = true;
-            freezePlayerMovement.ToggleMovement();
+            //freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = false;
             Refresh();
         }
         else if (playerItems.disableToolbar && !chestPanel.activeSelf && (inventoryPanel.activeSelf || dropPanel.activeSelf)
@@ -78,7 +81,8 @@ public class Inventory_UI : MonoBehaviour
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             playerItems.disableToolbar = false;
-            freezePlayerMovement.ToggleMovement();
+            //freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = true;
         }
     }
 
@@ -141,7 +145,8 @@ public class Inventory_UI : MonoBehaviour
             {
                 playerItems.disableToolbar = true;
                 dropPanel.SetActive(true);
-                freezePlayerMovement.ToggleMovement();
+                //freezePlayerMovement.ToggleMovement();
+                playerMovement.enabled = false;
             }
         }
     }
@@ -161,12 +166,13 @@ public class Inventory_UI : MonoBehaviour
             fromInventory.Remove(draggedSlot.slotID, amountToDrop);
             Refresh();
         }
+        dropPanel.SetActive(false);
         if (!inventoryPanel.activeSelf)
         {
             playerItems.disableToolbar = false;
+            playerMovement.enabled = true;
         }
-        dropPanel.SetActive(false);
-        freezePlayerMovement.ToggleMovement();
+        //freezePlayerMovement.ToggleMovement();
         draggedSlot = null;
     }
 

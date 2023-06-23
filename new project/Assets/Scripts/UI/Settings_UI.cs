@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class Settings_UI : MonoBehaviour
     private TextMeshProUGUI optionsText;
     private TextMeshProUGUI creditsText;
 
-    private FreezePlayerMovement freezePlayerMovement;
+    //private FreezePlayerMovement freezePlayerMovement;
+    private PlayerMovement playerMovement;
     private PlayerItems playerItems;
 
     private bool settingsActive;
@@ -30,7 +32,8 @@ public class Settings_UI : MonoBehaviour
         creditsText.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +
             "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei";
 
-        freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
+        //freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
 
@@ -41,7 +44,8 @@ public class Settings_UI : MonoBehaviour
             settingsPanel.SetActive(true);
             playerItems.disableToolbar = true;
             settingsActive = true;
-            freezePlayerMovement.ToggleMovement();
+            //freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = false;
         }
         else if (playerItems.disableToolbar && settingsActive && Input.GetKeyDown(KeyCode.Escape))
         {
@@ -56,7 +60,8 @@ public class Settings_UI : MonoBehaviour
         creditsPanel.SetActive(false);
         playerItems.disableToolbar = false;
         settingsActive = false;
-        freezePlayerMovement.ToggleMovement();
+        //freezePlayerMovement.ToggleMovement();
+        playerMovement.enabled = true;
     }
 
     public void Options()

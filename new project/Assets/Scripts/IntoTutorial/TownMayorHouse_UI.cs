@@ -12,8 +12,12 @@ public class TownMayorHouse_UI : MonoBehaviour
     public GameObject dialoguePanel;
 
     private bool progressTMDialogueDone;
+    public GameObject openTMDialogueFirst;
 
     private bool openSecDialogueDone;
+
+    private bool progressSecDialogueDone;
+    public GameObject openSecDialogueFirst;
 
     private void Update()
     {
@@ -28,6 +32,10 @@ public class TownMayorHouse_UI : MonoBehaviour
         else if (!openSecDialogueDone)
         {
             OpenSecDialogueCheck();
+        }
+        else if (!progressSecDialogueDone)
+        {
+            ProgressSecDialogueCheck();
         }
     }
 
@@ -45,6 +53,7 @@ public class TownMayorHouse_UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             progressTMDialogueDone = true;
+            Destroy(openTMDialogueFirst);
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
         }
@@ -54,12 +63,18 @@ public class TownMayorHouse_UI : MonoBehaviour
     {
         if (!dialoguePanel.activeSelf)
         {
+            openSecDialogueDone = true;
             tutorialText.text = "Meet the secretary in the living room";
             tutorialPanel.SetActive(true);
         }
-        else if (dialoguePanel.activeSelf)
+    }
+
+    private void ProgressSecDialogueCheck()
+    {
+        if (dialoguePanel.activeSelf)
         {
-            openSecDialogueDone = true;
+            progressSecDialogueDone = true;
+            Destroy(openSecDialogueFirst);
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
         }

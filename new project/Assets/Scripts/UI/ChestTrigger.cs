@@ -13,7 +13,7 @@ public class ChestTrigger : MonoBehaviour
     private Inventory_UI chestInCanvas;
     private ChestItems chestItems;
     private PlayerItems playerItems;
-    private FreezePlayerMovement freezePlayerMovement;
+    private PlayerMovement playerMovement;
     private GameObject inventoryNewPosition;
     private GameObject inventoryOriginPosition;
 
@@ -25,7 +25,7 @@ public class ChestTrigger : MonoBehaviour
         chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
         chestItems = gameObject.transform.parent.gameObject.GetComponent<ChestItems>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
-        freezePlayerMovement = GameObject.Find("Canvas").GetComponent<FreezePlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         inventoryNewPosition = GameObject.Find("InventoryNewPosition");
         inventoryOriginPosition = GameObject.Find("InventoryOriginPosition");
     }
@@ -50,7 +50,7 @@ public class ChestTrigger : MonoBehaviour
             playerItems.disableToolbar = true;
             inventoryInCanvas.Refresh();
             chestItems.ChestRefresh();
-            freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = false;
         }
         else if (playerItems.disableToolbar && chestPanel.activeSelf
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
@@ -62,7 +62,7 @@ public class ChestTrigger : MonoBehaviour
             inventoryPanel.SetActive(false);
             chestPanel.SetActive(false);
             playerItems.disableToolbar = false;
-            freezePlayerMovement.ToggleMovement();
+            playerMovement.enabled = true;
         }
     }
 
