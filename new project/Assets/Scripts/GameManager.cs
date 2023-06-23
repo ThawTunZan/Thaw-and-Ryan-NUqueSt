@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public Inventory chest1;
     public List<Inventory> chestList = new List<Inventory>();
 
+    public bool tutorialTMHDone;
+
     // for day and night system
     public float hours;
     public float minutes;

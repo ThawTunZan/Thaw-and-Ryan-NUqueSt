@@ -25,7 +25,9 @@ public class GameData
     public List<Inventory> chestList = new List<Inventory>();
 
     public string story;                        // quest progress for WeaponSmith NPC
-    public string placeHolderStory; 
+    public string placeHolderStory;
+
+    public bool tutorialTMHDone;
     
     public float hours;
 
@@ -53,6 +55,8 @@ public class GameData
 
         story = "";
         placeHolderStory = "";
+
+        tutorialTMHDone = false;
 
         day = 0;
     }

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 
-public class TownMayorHouse_UI : MonoBehaviour
+public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
 {
+    public bool tutorialTMHDone;
+    public PlayerPositionSO startingPosition;
+
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
@@ -19,7 +23,32 @@ public class TownMayorHouse_UI : MonoBehaviour
     private bool progressSecDialogueDone;
     public GameObject openSecDialogueFirst;
 
+    private bool exitHouseDone;
+
+    private void Start()
+    {
+        if (startingPosition.transittedScene || startingPosition.playerDead)
+        {
+            tutorialTMHDone = GameManager.instance.tutorialTMHDone;
+        }
+    }
+
     private void Update()
+    {
+        GameManager.instance.tutorialTMHDone = tutorialTMHDone;
+        if (GameManager.instance.tutorialTMHDone)
+        {
+            Destroy(openTMDialogueFirst);
+            Destroy(openSecDialogueFirst);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            StartTutorial();
+        }
+    }
+
+    private void StartTutorial()
     {
         if (!openTMDialogueDone)
         {
@@ -36,6 +65,10 @@ public class TownMayorHouse_UI : MonoBehaviour
         else if (!progressSecDialogueDone)
         {
             ProgressSecDialogueCheck();
+        }
+        else if (!exitHouseDone)
+        {
+            ExitHouseCheck();
         }
     }
 
@@ -78,5 +111,30 @@ public class TownMayorHouse_UI : MonoBehaviour
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
         }
+    }
+
+    private void ExitHouseCheck()
+    {
+        if (!dialoguePanel.activeSelf)
+        {
+            tutorialText.text = "Visit your house south of the village!";
+            tutorialPanel.SetActive(true);
+            Invoke(nameof(ChangeTutorialTMHDone), 1.5f);
+        }
+    }
+
+    private void ChangeTutorialTMHDone()
+    {
+        tutorialTMHDone = true;
+    }
+
+    public void LoadData(GameData data)
+    {
+        tutorialTMHDone = data.tutorialTMHDone;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.tutorialTMHDone = tutorialTMHDone;
     }
 }
