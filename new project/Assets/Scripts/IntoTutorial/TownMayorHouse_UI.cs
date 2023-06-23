@@ -57,7 +57,7 @@ public class TownMayorHouse_UI : MonoBehaviour
             tutorialText.text = "Meet the secretary in the living room";
             tutorialPanel.SetActive(true);
         }
-        else
+        else if (dialoguePanel.activeSelf)
         {
             openSecDialogueDone = true;
             tutorialText.text = "";
