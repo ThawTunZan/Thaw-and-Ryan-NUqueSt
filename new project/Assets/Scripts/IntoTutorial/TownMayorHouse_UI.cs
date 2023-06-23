@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
 {
-    public bool tutorialTMHDone;
+    public int tutorialProgress;
     public PlayerPositionSO startingPosition;
 
     public GameObject tutorialPanel;
@@ -29,22 +29,22 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
         {
-            tutorialTMHDone = GameManager.instance.tutorialTMHDone;
+            tutorialProgress = GameManager.instance.tutorialProgress;
         }
     }
 
     private void Update()
     {
-        GameManager.instance.tutorialTMHDone = tutorialTMHDone;
-        if (GameManager.instance.tutorialTMHDone)
+        GameManager.instance.tutorialProgress = tutorialProgress;
+        if (GameManager.instance.tutorialProgress == 0)
+        {
+            StartTutorial();
+        }
+        else
         {
             Destroy(openTMDialogueFirst);
             Destroy(openSecDialogueFirst);
             Destroy(this.gameObject);
-        }
-        else
-        {
-            StartTutorial();
         }
     }
 
@@ -117,24 +117,24 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     {
         if (!dialoguePanel.activeSelf)
         {
-            tutorialText.text = "Visit your house south of the village!";
+            tutorialText.text = "Visit your house south of the village";
             tutorialPanel.SetActive(true);
-            Invoke(nameof(ChangeTutorialTMHDone), 1.5f);
+            Invoke(nameof(ChangeTutorialProgress), 2f);
         }
     }
 
-    private void ChangeTutorialTMHDone()
+    private void ChangeTutorialProgress()
     {
-        tutorialTMHDone = true;
+        tutorialProgress = 1;
     }
 
     public void LoadData(GameData data)
     {
-        tutorialTMHDone = data.tutorialTMHDone;
+        tutorialProgress = data.tutorialProgress;
     }
 
     public void SaveData(GameData data)
     {
-        data.tutorialTMHDone = tutorialTMHDone;
+        data.tutorialProgress = tutorialProgress;
     }
 }
