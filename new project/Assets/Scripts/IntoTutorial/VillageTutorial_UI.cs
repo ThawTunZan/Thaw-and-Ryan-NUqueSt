@@ -11,6 +11,8 @@ public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
+    public GameObject talkToBlacksmithFirst;
+
     public bool reachedBlacksmith;
 
     private void Start()
@@ -30,10 +32,12 @@ public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
         }
         else if (GameManager.instance.tutorialProgress == 2)
         {
+            Destroy(talkToBlacksmithFirst);
             tutorialText.text = "Head south of the village to see your house";
         }
         else
         {
+            Destroy(talkToBlacksmithFirst);
             Destroy(this.gameObject);
         }
     }
