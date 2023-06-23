@@ -2,6 +2,7 @@ VAR questStarted = false
 VAR questDone = false
 VAR questName = ""
 VAR questDesc = ""
+VAR currDay = -1
 
 VAR questMA1512Done = false
 VAR questMA1508EDone = false

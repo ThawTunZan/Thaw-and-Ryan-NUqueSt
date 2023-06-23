@@ -24,12 +24,13 @@ public class Quest_UI : MonoBehaviour
 
     void Update()
     {
+        Setup();
         if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Q))
         {
             questPanel.SetActive(true);
             playerItems.disableToolbar = true;
             freezePlayerMovement.ToggleMovement();
-            Setup();
+            //Setup();
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
