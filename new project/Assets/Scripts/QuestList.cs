@@ -17,8 +17,7 @@ public class QuestList
 
         // add more requirements here for different quests
         public int slimesRequired;
-        public int tomato;
-        public int rock;
+        [SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
 
         public void AddItem(string quest_name, string quest_description)
         {
@@ -34,6 +33,11 @@ public class QuestList
             if (quest_name == "MA1511")
             {
                 slimesRequired = 2;
+            }
+            if (quest_name == "MA1512")
+            {
+                //requireItems = new List<Dictionary<string, int>>();
+                requireItems.Add(new Dictionary<string, int> { { "Tomato", 2 } });
             }
         }
     }

@@ -7,6 +7,7 @@ using Ink.Runtime;
 using Story = Ink.Runtime.Story;
 using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
+using UnityEditor;
 //using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
@@ -33,6 +34,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private DialogueVariables dialogueVariables;
     private PlayerQuests player;
+
+    public Inventory inventory;
+    public Inventory toolbar;
 
 
 
@@ -69,6 +73,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+        inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
+        toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
+
     }
 
     private void Update()
@@ -82,7 +89,23 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
     }
-
+    public void CheckDate()
+    {
+        float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
+        string questIsDone = currentStory.variablesState["questDone"].ToString();
+       
+        if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
+        {
+            print("not valid time");
+            dialogueVariables.InkSetVariables(currentStory, "validTime", false);
+        }
+        else
+        {
+            print("is valid time");
+            dialogueVariables.InkSetVariables(currentStory, "validTime", true);
+            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
+        }
+    }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
@@ -92,17 +115,25 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        CheckDate();
+
         for (int i = 0; i < 5; i++)
         {
             if (player.questList.questSlots[i].questName == ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questName")).value
                 && player.questList.questSlots[i].questName != "")
             {
-                dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
-                //print ()
-                dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
-                dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
-                print("quest" + player.questList.questSlots[i].questName + "Done");
-                
+                if (QuestIsDone(i))
+                {
+                    dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
+                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
+                    dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
+                }
+                else
+                {
+                    dialogueVariables.InkSetVariables(currentStory, "questDone", false);
+                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", false);
+                    dialogueVariables.InkSetVariables(currentStory, "questStarted", true);
+                }
             }
         }
 
@@ -118,6 +149,17 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialogueText.text = "";
         movement.movespeed = original_speed;
         DataPersistenceManager.instance.gameData.placeHolderStory = dialogueVariables.saveVariables();
+    }
+
+    private bool QuestIsDone(int x)
+    {
+        player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        // if there are no require items needed to pass to NPC return true
+        if (player.questList.questSlots[x].requireItems.Count > 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     private void ContinueStory()
