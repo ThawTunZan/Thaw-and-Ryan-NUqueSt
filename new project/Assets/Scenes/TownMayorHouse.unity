@@ -3426,6 +3426,10 @@ MonoBehaviour:
   - {fileID: 1683902442}
   - {fileID: 60488092}
   movement: {fileID: 0}
+  inventory:
+    slots: []
+  toolbar:
+    slots: []
 --- !u!4 &277905735
 Transform:
   m_ObjectHideFlags: 0
@@ -11285,7 +11289,7 @@ RectTransform:
   m_Children:
   - {fileID: 2093032494}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12902,7 +12906,7 @@ RectTransform:
   - {fileID: 1076869046}
   - {fileID: 1380875069}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12955,7 +12959,7 @@ RectTransform:
   m_Children:
   - {fileID: 64591787}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13091,7 +13095,7 @@ RectTransform:
   - {fileID: 1382767125}
   - {fileID: 34458560}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13692,7 +13696,7 @@ RectTransform:
   - {fileID: 1419995888}
   - {fileID: 1758968375}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -23358,7 +23362,7 @@ RectTransform:
   - {fileID: 1714687394}
   - {fileID: 2003129015}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -25253,7 +25257,7 @@ MonoBehaviour:
   chest1:
     slots: []
   chestList: []
-  tutorialTMHDone: 0
+  tutorialProgress: 0
   hours: 0
   minutes: 0
   seconds: 0
@@ -28961,7 +28965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1783810834
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28978,11 +28982,11 @@ RectTransform:
   - {fileID: 738883255}
   - {fileID: 985489173}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 812}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -186}
   m_SizeDelta: {x: 1200, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1783810835
@@ -31149,7 +31153,7 @@ RectTransform:
   m_Children:
   - {fileID: 846488937}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -32991,6 +32995,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 420697852}
+  - {fileID: 2109371216}
   - {fileID: 777450646}
   - {fileID: 1953185667}
   - {fileID: 610691101}
@@ -32999,7 +33004,6 @@ RectTransform:
   - {fileID: 1408067668}
   - {fileID: 711376190}
   - {fileID: 1783810834}
-  - {fileID: 2109371216}
   - {fileID: 1112525050}
   - {fileID: 495263010}
   - {fileID: 1875890683}
@@ -41309,7 +41313,7 @@ RectTransform:
   m_Children:
   - {fileID: 2035919653}
   m_Father: {fileID: 2064266601}
-  m_RootOrder: 9
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41328,7 +41332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785224b0b98515f4aa2e579f99fd3f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialTMHDone: 0
+  tutorialProgress: 0
   startingPosition: {fileID: 11400000, guid: 05bdb6af9153e774bad49685d1d06b5c, type: 2}
   tutorialPanel: {fileID: 2035919652}
   tutorialText: {fileID: 1735093598}

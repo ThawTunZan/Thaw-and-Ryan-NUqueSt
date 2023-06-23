@@ -36,9 +36,15 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     private void Update()
     {
         GameManager.instance.tutorialProgress = tutorialProgress;
-        if (GameManager.instance.tutorialProgress == 0)
+        if (tutorialProgress == 0)
         {
             StartTutorial();
+        }
+        else if (tutorialProgress == 1)
+        {
+            Destroy(openTMDialogueFirst);
+            Destroy(openSecDialogueFirst);
+            CloseSecDialogueCheck();
         }
         else
         {
@@ -65,10 +71,6 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
         else if (!progressSecDialogueDone)
         {
             ProgressSecDialogueCheck();
-        }
-        else if (!exitHouseDone)
-        {
-            ExitHouseCheck();
         }
     }
 
@@ -110,22 +112,17 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
             Destroy(openSecDialogueFirst);
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
+            tutorialProgress = 1;
         }
     }
 
-    private void ExitHouseCheck()
+    private void CloseSecDialogueCheck()
     {
         if (!dialoguePanel.activeSelf)
         {
-            tutorialText.text = "Visit your house south of the village";
+            tutorialText.text = "Head west of the village to meet the blacksmith";
             tutorialPanel.SetActive(true);
-            Invoke(nameof(ChangeTutorialProgress), 2f);
         }
-    }
-
-    private void ChangeTutorialProgress()
-    {
-        tutorialProgress = 1;
     }
 
     public void LoadData(GameData data)

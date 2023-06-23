@@ -31,7 +31,6 @@ public class Inventory_UI : MonoBehaviour
     private Image draggedIcon;
 
     private PlayerItems playerItems;
-    //private FreezePlayerMovement freezePlayerMovement;
     private PlayerMovement playerMovement;
 
     private Inventory_UI inventoryInCanvas;
@@ -46,7 +45,6 @@ public class Inventory_UI : MonoBehaviour
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
 
-        //freezePlayerMovement = canvas.GetComponent<FreezePlayerMovement>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
@@ -71,7 +69,6 @@ public class Inventory_UI : MonoBehaviour
         {
             inventoryPanel.SetActive(true);
             playerItems.disableToolbar = true;
-            //freezePlayerMovement.ToggleMovement();
             playerMovement.enabled = false;
             Refresh();
         }
@@ -81,7 +78,6 @@ public class Inventory_UI : MonoBehaviour
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             playerItems.disableToolbar = false;
-            //freezePlayerMovement.ToggleMovement();
             playerMovement.enabled = true;
         }
     }
@@ -145,7 +141,6 @@ public class Inventory_UI : MonoBehaviour
             {
                 playerItems.disableToolbar = true;
                 dropPanel.SetActive(true);
-                //freezePlayerMovement.ToggleMovement();
                 playerMovement.enabled = false;
             }
         }
@@ -172,7 +167,6 @@ public class Inventory_UI : MonoBehaviour
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
         }
-        //freezePlayerMovement.ToggleMovement();
         draggedSlot = null;
     }
 
@@ -202,20 +196,17 @@ public class Inventory_UI : MonoBehaviour
         draggedIcon.raycastTarget = false;
         draggedIcon.rectTransform.sizeDelta = new Vector2(50, 50);
         MoveToMousePosition(draggedIcon.gameObject);
-        //Debug.Log("Starting Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrag()
     {
         MoveToMousePosition(draggedIcon.gameObject);
-        //Debug.Log("In Drag " + draggedSlot.slotID);
     }
 
     public void SlotEndDrag()
     {
         Destroy(draggedIcon.gameObject);
         draggedIcon = null;
-        //Debug.Log("Ending Drag " + draggedSlot.slotID);
     }
 
     public void SlotDrop(Slot_UI slot)
@@ -224,7 +215,6 @@ public class Inventory_UI : MonoBehaviour
         Inventory toInventory = inventoryByName[slot.inventoryName];
         MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);
         Refresh();
-        //Debug.Log("Dropping " + draggedSlot.slotID + " on " + slot.slotID);
     }
 
     public void MoveSlot(int fromIndex, Inventory fromInventory, int toIndex, Inventory toInventory)

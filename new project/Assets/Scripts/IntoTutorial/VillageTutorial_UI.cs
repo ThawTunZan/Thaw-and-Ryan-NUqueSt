@@ -11,7 +11,7 @@ public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
-    public bool reachedFarmHouse;
+    public bool reachedBlacksmith;
 
     private void Start()
     {
@@ -26,7 +26,11 @@ public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
         GameManager.instance.tutorialProgress = tutorialProgress;
         if (GameManager.instance.tutorialProgress == 1)
         {
-            StartTutorialPart1();
+            tutorialText.text = "Head west of the village to meet the blacksmith";
+        }
+        else if (GameManager.instance.tutorialProgress == 2)
+        {
+            tutorialText.text = "Head south of the village to see your house";
         }
         else
         {
@@ -34,15 +38,7 @@ public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void StartTutorialPart1()
-    {
-        if (reachedFarmHouse)
-        {
-            tutorialProgress = 2;
-        }
-    }
-
-public void LoadData(GameData data)
+    public void LoadData(GameData data)
     {
         tutorialProgress = data.tutorialProgress;
     }
