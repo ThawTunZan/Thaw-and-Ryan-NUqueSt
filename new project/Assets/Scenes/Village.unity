@@ -7290,7 +7290,6 @@ GameObject:
   - component: {fileID: 399894564}
   - component: {fileID: 399894563}
   - component: {fileID: 399894562}
-  - component: {fileID: 399894561}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7298,18 +7297,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &399894561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399894560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de2ce48fe771f6441b7250a812a74495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!225 &399894562
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -45715,6 +45702,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1529845754}
   - component: {fileID: 1529845755}
+  - component: {fileID: 1529845757}
+  - component: {fileID: 1529845756}
   m_Layer: 0
   m_Name: TalkToBlacksmithFirst
   m_TagString: Untagged
@@ -45750,7 +45739,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.63040316, y: -3.8632956}
+  m_Offset: {x: 0.638538, y: -3.8621335}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -45761,7 +45750,46 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5322621, y: 0.24806404}
+  m_Size: {x: 0.92505527, y: 0.25038815}
+  m_EdgeRadius: 0
+--- !u!114 &1529845756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529845753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c2ed25e8d8e8448a1db6b85b9f0cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: {fileID: 1213240462}
+--- !u!61 &1529845757
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529845753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.65435266, y: -3.787805}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2097201, y: 0.38955212}
   m_EdgeRadius: 0
 --- !u!1 &1532091610
 GameObject:
