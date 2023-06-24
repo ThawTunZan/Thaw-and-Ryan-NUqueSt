@@ -42,7 +42,7 @@ public class BedSleep : MonoBehaviour
 
     public void SaveData()
     {
-        tutorialUI.hasSlept = true;
+        HideMessage();
         clockManager.days += 1;
         if (tutorialUI.tutorialProgress == 2)
         {
@@ -81,7 +81,6 @@ public class BedSleep : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         // DataPersistenceManager.instance.LoadGame();
-        tutorialUI.hasSlept = false;
         transition.Play("Base Layer.PlayerFaintEnd", 0, 0);
 
        // SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);

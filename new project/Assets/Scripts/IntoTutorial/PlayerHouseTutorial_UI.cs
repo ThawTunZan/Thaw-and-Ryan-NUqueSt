@@ -17,11 +17,12 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
     private bool openedChest;
     public GameObject chestPanel;
 
-    public bool hasSlept;
-
     private bool readNote;
     public GameObject note;
     public GameObject notePanel;
+
+    private bool nearBed;
+    public GameObject bedSleepPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +60,9 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         {
             OpenedChestCheck();
         }
-        else if (hasSlept)
+        else if (!nearBed)
         {
-            HasSlept();
+            NearBedCheck();
         }
     }
 
@@ -75,10 +76,12 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         }
     }
 
-    void HasSlept()
+    void NearBedCheck()
     {
-        tutorialPanel.SetActive(false);
-        tutorialText.text = "Press E to read the note on the table";
+        if (bedSleepPanel.activeSelf)
+        {
+            nearBed = true;
+        }
     }
 
     void TutorialPart2()
@@ -96,7 +99,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
     void ReadNoteCheck()
     {
         note.SetActive(true);
-        tutorialPanel.SetActive(true);
+        tutorialText.text = "Press E to read the note on the table";
         if (notePanel.activeSelf)
         {
             readNote = true;

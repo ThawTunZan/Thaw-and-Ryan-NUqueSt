@@ -29,8 +29,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private static DialogueManager instance;
 
-    public PlayerMovement movement;
-    float original_speed;
+    public PlayerMovement playerMovement;
+    private PlayerItems playerItems;
 
     private DialogueVariables dialogueVariables;
     private PlayerQuests player;
@@ -58,12 +58,13 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        
-        movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        if (movement.movespeed != 0)
-        {
-            original_speed = movement.movespeed;
-        }
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        //movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        //if (movement.movespeed != 0)
+        //{
+        //    original_speed = movement.movespeed;
+        //}
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -111,8 +112,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        movement.movespeed = 0;
-
+        playerMovement.enabled = false;
+        playerItems.disableToolbar = true;
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         CheckDate();
@@ -149,7 +150,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-        movement.movespeed = original_speed;
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
         DataPersistenceManager.instance.gameData.placeHolderStory = dialogueVariables.saveVariables();
     }
 
