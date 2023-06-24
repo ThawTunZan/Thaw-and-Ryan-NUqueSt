@@ -21,12 +21,18 @@ public class BedSleep : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Message.SetActive(true);
+        if (collision.gameObject.tag == "Player")
+        {
+            Message.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Message.SetActive(false);
+        if (collision.gameObject.tag == "Player")
+        {
+            Message.SetActive(false);
+        }
     }
 
     public void SaveData()

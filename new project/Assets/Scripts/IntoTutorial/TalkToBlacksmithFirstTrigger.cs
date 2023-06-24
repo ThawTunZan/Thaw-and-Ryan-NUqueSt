@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class TalkToBlacksmithFirstTrigger : MonoBehaviour
 {
-    public TextMeshProUGUI tutorialText;
+    public string tutorialText;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            tutorialText.text = "Please visit the blacksmith at west of the village first.";
+            tutorialText = "Please visit the blacksmith at west of the village first.";
         }
     }
 }

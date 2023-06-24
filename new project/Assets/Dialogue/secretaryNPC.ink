@@ -22,8 +22,10 @@ Ava: Anything you would like to ask?
     * [What is this place?]
         Ava: This is the mayor's house.
         -> DONE
-    * [How do I go back to Atlas?]
-        Ava: I do not know what that place is.
+    * [What do I do now?]
+        Ava: You can talk to the blacksmith.
+        Ava: His shop is at the furthest west of the village.
+        Ava: He may require assistance.
         -> DONE
     * [Leave]
         Ava: Bye!
