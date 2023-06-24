@@ -17,10 +17,13 @@ public class BedSleep : MonoBehaviour
 
     public PlayerHouseTutorial_UI tutorialUI;
     public PlayerItems playerItems;
+    public PlayerMovement playerMovement;
 
     private void Start()
     {
         clockManager = globalVolume.GetComponent<ClockManager>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,6 +46,7 @@ public class BedSleep : MonoBehaviour
     public void SaveData()
     {
         HideMessage();
+        playerMovement.enabled = false;
         clockManager.days += 1;
         if (tutorialUI.tutorialProgress == 2)
         {
@@ -79,7 +83,7 @@ public class BedSleep : MonoBehaviour
         transition.SetTrigger("Sleep");
 
         yield return new WaitForSeconds(5);
-
+        playerMovement.enabled = true;
         // DataPersistenceManager.instance.LoadGame();
         transition.Play("Base Layer.PlayerFaintEnd", 0, 0);
 

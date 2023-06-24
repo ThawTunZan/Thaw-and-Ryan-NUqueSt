@@ -50,6 +50,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         {
             Destroy(saveFirst1);
             Destroy(saveFirst2);
+            Destroy(note);
             Destroy(this.gameObject);
         }
     }
