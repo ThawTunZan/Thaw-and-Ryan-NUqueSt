@@ -119,11 +119,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
         for (int i = 0; i < 5; i++)
         {
-            if (player.questList.questSlots[i].questName == ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questName")).value
+            if (player.questList.questSlots[i].questName == currentStory.variablesState["questName"].ToString()
                 && player.questList.questSlots[i].questName != "")
             {
                 string questSTARTEDLOLOL = currentStory.variablesState["questStarted"].ToString();
-                if (QuestIsDone(i) && questSTARTEDLOLOL != "false")
+                if (QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
                     print(i);
                     dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
@@ -157,7 +157,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         // if there are no require items needed to pass to NPC return true
-        if (player.questList.questSlots[x].requireItems.Count > 0)
+        if (player.questList.questSlots[x].requireItems.Count > 0 || player.questList.questSlots[x].slimesRequired > 0)
         {
             return false;
         }
