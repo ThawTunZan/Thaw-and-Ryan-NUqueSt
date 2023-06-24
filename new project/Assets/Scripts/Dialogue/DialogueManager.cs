@@ -122,8 +122,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             if (player.questList.questSlots[i].questName == ((Ink.Runtime.StringValue)dialogueVariables.GetVariableState("questName")).value
                 && player.questList.questSlots[i].questName != "")
             {
-                if (QuestIsDone(i))
+                string questSTARTEDLOLOL = currentStory.variablesState["questStarted"].ToString();
+                if (QuestIsDone(i) && questSTARTEDLOLOL != "false")
                 {
+                    print(i);
                     dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
                     dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
