@@ -10,11 +10,7 @@ public class FarmHouseTutorial_UI : MonoBehaviour, IDataPersistence
 
     public TextMeshProUGUI tutorialText;
 
-    public GameObject saveFirst1;
-    public GameObject saveFirst2;
-
-    private bool openedChest;
-    public GameObject chestPanel;
+    public GameObject enterPlayerHouseFirst;
 
     // Start is called before the first frame update
     void Start()
@@ -31,31 +27,12 @@ public class FarmHouseTutorial_UI : MonoBehaviour, IDataPersistence
         GameManager.instance.tutorialProgress = tutorialProgress;
         if (tutorialProgress == 2)
         {
-            TutorialPart1();
+            tutorialText.text = "Enter your house west of the path";
         }
         else
         {
-            Destroy(saveFirst1);
-            Destroy(saveFirst2);
+            Destroy(enterPlayerHouseFirst);
             Destroy(this.gameObject);
-        }
-    }
-
-    void TutorialPart1()
-    {
-        if (!openedChest)
-        {
-            OpenedChestCheck();
-        }
-    }
-
-    void OpenedChestCheck()
-    {
-        if (chestPanel.activeSelf)
-        {
-            openedChest = true;
-            saveFirst2.SetActive(true);
-            tutorialText.text = "Sleeping saves the game";
         }
     }
 

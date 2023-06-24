@@ -15,6 +15,9 @@ public class BedSleep : MonoBehaviour
     private ClockManager clockManager;
     public Animator transition;
 
+    public PlayerHouseTutorial_UI tutorialUI;
+    public PlayerItems playerItems;
+
     private void Start()
     {
         clockManager = globalVolume.GetComponent<ClockManager>();
@@ -23,6 +26,7 @@ public class BedSleep : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            playerItems.disableToolbar = true;
             Message.SetActive(true);
         }
     }
@@ -31,13 +35,19 @@ public class BedSleep : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            playerItems.disableToolbar = false;
             Message.SetActive(false);
         }
     }
 
     public void SaveData()
     {
+        tutorialUI.hasSlept = true;
         clockManager.days += 1;
+        if (tutorialUI.tutorialProgress == 2)
+        {
+            tutorialUI.tutorialProgress = 3;
+        }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;
         GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
@@ -55,6 +65,7 @@ public class BedSleep : MonoBehaviour
 
     public void HideMessage()
     {
+        playerItems.disableToolbar = false;
         Message.SetActive(false);
     }
 
@@ -70,7 +81,8 @@ public class BedSleep : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         // DataPersistenceManager.instance.LoadGame();
-        transition.Play("Base Layer.PlayerFaintEnd",0 ,0);
+        tutorialUI.hasSlept = false;
+        transition.Play("Base Layer.PlayerFaintEnd", 0, 0);
 
        // SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
        // DataPersistenceManager.instance.LoadGame();
