@@ -6463,7 +6463,6 @@ GameObject:
   - component: {fileID: 331975931}
   - component: {fileID: 331975930}
   - component: {fileID: 331975929}
-  - component: {fileID: 331975928}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6471,26 +6470,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &331975928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331975927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de2ce48fe771f6441b7250a812a74495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listOfPanels:
-  - {fileID: 1791473298}
-  - {fileID: 1383622546}
-  - {fileID: 1239748885}
-  - {fileID: 1345265531}
-  - {fileID: 219382400}
-  - {fileID: 354082347}
-  originalSpeed: 0
 --- !u!225 &331975929
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15589,6 +15568,7 @@ MonoBehaviour:
   chest1:
     slots: []
   chestList: []
+  tutorialProgress: 0
   hours: 0
   minutes: 0
   seconds: 0

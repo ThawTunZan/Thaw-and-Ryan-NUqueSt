@@ -15,23 +15,43 @@ public class BedSleep : MonoBehaviour
     private ClockManager clockManager;
     public Animator transition;
 
+    public PlayerHouseTutorial_UI tutorialUI;
+    public PlayerItems playerItems;
+    public PlayerMovement playerMovement;
+
     private void Start()
     {
         clockManager = globalVolume.GetComponent<ClockManager>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Message.SetActive(true);
+        if (collision.gameObject.tag == "Player")
+        {
+            playerItems.disableToolbar = true;
+            Message.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Message.SetActive(false);
+        if (collision.gameObject.tag == "Player")
+        {
+            playerItems.disableToolbar = false;
+            Message.SetActive(false);
+        }
     }
 
     public void SaveData()
     {
+        HideMessage();
+        playerMovement.enabled = false;
         clockManager.days += 1;
+        if (tutorialUI.tutorialProgress == 2)
+        {
+            tutorialUI.tutorialProgress = 3;
+        }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;
         GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
@@ -49,6 +69,7 @@ public class BedSleep : MonoBehaviour
 
     public void HideMessage()
     {
+        playerItems.disableToolbar = false;
         Message.SetActive(false);
     }
 
@@ -62,9 +83,9 @@ public class BedSleep : MonoBehaviour
         transition.SetTrigger("Sleep");
 
         yield return new WaitForSeconds(5);
-
+        playerMovement.enabled = true;
         // DataPersistenceManager.instance.LoadGame();
-        transition.Play("Base Layer.PlayerFaintEnd",0 ,0);
+        transition.Play("Base Layer.PlayerFaintEnd", 0, 0);
 
        // SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
        // DataPersistenceManager.instance.LoadGame();

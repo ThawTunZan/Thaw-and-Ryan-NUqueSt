@@ -13,10 +13,13 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
 
+    private PlayerItems playerItems;
+
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
     
     private void Update()
@@ -24,7 +27,7 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange)
         {
             visualCue.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.E))
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }

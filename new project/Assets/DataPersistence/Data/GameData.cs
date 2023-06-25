@@ -25,7 +25,10 @@ public class GameData
     public List<Inventory> chestList = new List<Inventory>();
 
     public string story;                        // quest progress for WeaponSmith NPC
-    public string placeHolderStory; 
+    public string placeHolderStory;
+
+    // to indicate that a tutorial in a scene is done. Destroys tutorial UI and some colliders if bool is true.
+    public int tutorialProgress;
     
     public float hours;
 
@@ -53,6 +56,8 @@ public class GameData
 
         story = "";
         placeHolderStory = "";
+
+        tutorialProgress = 0;
 
         day = 0;
     }
