@@ -50,7 +50,6 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         {
             Destroy(saveFirst1);
             Destroy(saveFirst2);
-            Destroy(note);
             Destroy(this.gameObject);
         }
     }
@@ -93,7 +92,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         }
         else
         {
-            tutorialProgress = 4;
+            CloseNoteCheck();
         }
     }
 
@@ -104,6 +103,14 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         if (notePanel.activeSelf)
         {
             readNote = true;
+        }
+    }
+
+    void CloseNoteCheck()
+    {
+        if (!notePanel.activeSelf)
+        {
+            tutorialProgress = 4;
         }
     }
 
