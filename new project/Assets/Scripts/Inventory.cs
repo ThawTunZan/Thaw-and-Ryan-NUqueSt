@@ -54,14 +54,6 @@ public class Inventory
             count++;
         }
 
-        public void AddItem(string itemName, Sprite icon, int maxAllowed)
-        {
-            this.itemName = itemName;
-            this.icon = icon;
-            count++;
-            this.maxAllowed = maxAllowed;
-        }
-
         public void RemoveItem()
         {
             if (count>0)

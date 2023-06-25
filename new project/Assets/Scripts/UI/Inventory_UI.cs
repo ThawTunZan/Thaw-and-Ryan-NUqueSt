@@ -222,12 +222,12 @@ public class Inventory_UI : MonoBehaviour
         Slot fromSlot = fromInventory.slots[fromIndex];
         Slot toSlot = toInventory.slots[toIndex];
         int itemCount = fromSlot.count;
-
+        Item fromSlotItem = ItemManager.instance.GetItemByName(fromSlot.itemName);
         if (toSlot.IsEmpty || toSlot.CanAddItem(fromSlot.itemName))
         {
             for (int i = 0; i < itemCount; i++)
             {
-                toSlot.AddItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+                toSlot.AddItem(fromSlotItem);
                 fromSlot.RemoveItem();
             }
         }
