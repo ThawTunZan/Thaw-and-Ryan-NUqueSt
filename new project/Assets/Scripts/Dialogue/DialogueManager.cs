@@ -60,11 +60,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        //movement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        //if (movement.movespeed != 0)
-        //{
-        //    original_speed = movement.movespeed;
-        //}
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -124,12 +119,14 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 && player.questList.questSlots[i].questName != "")
             {
                 string questSTARTEDLOLOL = currentStory.variablesState["questStarted"].ToString();
+                //to make questStarted false and questDone true when quest is completed
                 if (QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
-                    print(i);
                     dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
                     dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
+                    dialogueVariables.InkSetVariables(currentStory, "validTime", false);
+                    // remove the quest from quest slot
                 }
                 else
                 {
@@ -158,7 +155,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private bool QuestIsDone(int x)
     {
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        // if there are no require items needed to pass to NPC return true
+        // if there are no required items needed to pass to NPC return true
         if (player.questList.questSlots[x].requireItems.Count > 0 || player.questList.questSlots[x].slimesRequired > 0)
         {
             return false;

@@ -101,5 +101,13 @@ public class QuestSlot_UI : MonoBehaviour
                 }
             }
         }
+        if (questSlot.questName == "HSA1000")
+        {
+            if (questSlot.placesToVisit.Count == 0)
+            {
+                questSlot.done = true;
+                questStatus.SetActive(true);
+            }
+        }
     }
 }
