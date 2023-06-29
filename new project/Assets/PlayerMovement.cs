@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             animator.SetTrigger("swordAttackSide");
         }
     }
-
+   
     public void AnimatePickaxeAttack()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
