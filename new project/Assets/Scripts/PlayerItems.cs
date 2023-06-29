@@ -20,6 +20,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             toolbar = new Inventory("Toolbar", 7);
             toolbar = GameManager.instance.toolbar;
         }
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
     }
 
     private void Update()

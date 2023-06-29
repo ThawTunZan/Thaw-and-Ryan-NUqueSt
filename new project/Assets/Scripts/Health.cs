@@ -47,6 +47,7 @@ public class Health : MonoBehaviour, IDataPersistence
     {
         data.maxHealth = 100;
         health = data.maxHealth;
+        Debug.Log(healthBar);
         healthBar.SetMaxHealth(health);
         healthBar.SetHealth(health);
         maxHealth = data.maxHealth;
