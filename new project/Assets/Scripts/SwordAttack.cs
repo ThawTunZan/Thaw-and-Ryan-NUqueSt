@@ -45,6 +45,7 @@ public class SwordAttack : MonoBehaviour
 
     public void AttackDown()
     {
+        Debug.Log(swordUpDownCollider);
         swordUpDownCollider.enabled = true;
         swordUpDownCollider.transform.localPosition = new Vector3(upAttackOffset.x, (float)(upAttackOffset.y - 0.226));
     }   

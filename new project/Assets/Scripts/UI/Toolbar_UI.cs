@@ -129,6 +129,6 @@ public class Toolbar_UI : MonoBehaviour
         swordAttack.swordSideAttackObject.tag = "PickaxeAttack";
         swordAttack.swordUpDownAttackObject.tag = "PickaxeAttack";
         swordAttack.pickaxeDamage = 1f;
-        playerMovement.AnimateSwordAttack();
+        playerMovement.AnimatePickaxeAttack();
     }
 }
