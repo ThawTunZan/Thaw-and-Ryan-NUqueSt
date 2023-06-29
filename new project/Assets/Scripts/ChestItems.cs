@@ -14,6 +14,8 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     private Inventory_UI chestInCanvas;
 
+    public bool hasAddedToChest;
+
     private void Start()
     {
         gameObject.name = chestName;
@@ -21,6 +23,17 @@ public class ChestItems : MonoBehaviour, IDataPersistence
         chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
         if (startingPosition.transittedScene)
         {
+            hasAddedToChest = GameManager.instance.hasAddedToChest;
+            // chest0: PlayerHouse
+            // chest1: Cave_1c
+            // chest2: Cave_1
+            if (!hasAddedToChest)
+            {
+                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seeds"), 10);
+                GameManager.instance.chest1.Add(ItemManager.instance.GetItemByName("Diamond Ore"), 2);
+                GameManager.instance.chest2.Add(ItemManager.instance.GetItemByName("Rusty Pickaxe"));
+                hasAddedToChest = true;
+            }
             chestInventory = new Inventory(chestName, 21);
             if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
             {
@@ -31,6 +44,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        GameManager.instance.hasAddedToChest = hasAddedToChest;
         if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
         {
             GameManager.instance.chestList[lastDigit] = chestInventory;
@@ -76,6 +90,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        hasAddedToChest = data.hasAddedToChest;
         chestInventory = new Inventory(chestName, 21);
         if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
         {
@@ -107,11 +122,40 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             {
                 slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
             }
+            else if (slot.itemName == "Stone Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Stone_Ore");
+            }
+            else if (slot.itemName == "Coal Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Coal_Ore");
+            }
+            else if (slot.itemName == "Copper Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Copper_Ore");
+            }
+            else if (slot.itemName == "Iron Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Iron_Ore");
+            }
+            else if (slot.itemName == "Gold Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Gold_Ore");
+            }
+            else if (slot.itemName == "Emerald Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Emerald_Ore");
+            }
+            else if (slot.itemName == "Diamond Ore")
+            {
+                slot.icon = Resources.Load<Sprite>("Ores/Diamond_Ore");
+            }
         }
     }
 
     public void SaveData(GameData data)
     {
+        data.hasAddedToChest = hasAddedToChest;
         if (int.TryParse(chestName.Substring(chestName.Length - 1), out int lastDigit))
         {
             data.chestList[lastDigit] = chestInventory;

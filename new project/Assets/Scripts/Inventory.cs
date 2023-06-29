@@ -111,6 +111,14 @@ public class Inventory
         }
     }
 
+    public void Add(Item item, int numToAdd)
+    {
+        for (int i = 0; i < numToAdd; i++)
+        {
+            Add(item);
+        }
+    }
+
     public void Remove(int index)
     {
         slots[index].RemoveItem();

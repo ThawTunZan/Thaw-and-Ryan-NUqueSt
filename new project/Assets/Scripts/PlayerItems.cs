@@ -94,6 +94,34 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         {
             slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
         }
+        else if (slot.itemName == "Stone Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Stone_Ore");
+        }
+        else if (slot.itemName == "Coal Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Coal_Ore");
+        }
+        else if (slot.itemName == "Copper Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Copper_Ore");
+        }
+        else if (slot.itemName == "Iron Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Iron_Ore");
+        }
+        else if (slot.itemName == "Gold Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Gold_Ore");
+        }
+        else if (slot.itemName == "Emerald Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Emerald_Ore");
+        }
+        else if (slot.itemName == "Diamond Ore")
+        {
+            slot.icon = Resources.Load<Sprite>("Ores/Diamond_Ore");
+        }
     }
 
     public void SaveData(GameData data)

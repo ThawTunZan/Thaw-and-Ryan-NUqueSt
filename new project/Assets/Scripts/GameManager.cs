@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
     public Inventory toolbar;
 
-    // chest0: PlayerHouse, chest1: Cave_1c
+    // chest0: PlayerHouse, chest1: Cave_1c, chest2: Cave_1
     public Inventory chest0;
     public Inventory chest1;
+    public Inventory chest2;
     public List<Inventory> chestList = new List<Inventory>();
+    public bool hasAddedToChest;
 
     public int tutorialProgress;
 
@@ -45,8 +47,10 @@ public class GameManager : MonoBehaviour
 
         instance.chest0 = new Inventory("Chest0", 21);
         instance.chest1 = new Inventory("Chest1", 21);
+        instance.chest2 = new Inventory("Chest2", 21);
         chestList.Add(instance.chest0);
         chestList.Add(instance.chest1);
+        chestList.Add(instance.chest2);
 
         DontDestroyOnLoad(gameObject);  //else
     }
