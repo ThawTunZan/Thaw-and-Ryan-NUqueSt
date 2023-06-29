@@ -14,7 +14,8 @@ public class SwordAttack : MonoBehaviour
     Vector2 rightAttackOffset;
     Vector2 upAttackOffset;
 
-    public float swordDamage = 1f;
+    public float swordDamage;
+    public float pickaxeDamage;
 
     private void Start()
     {

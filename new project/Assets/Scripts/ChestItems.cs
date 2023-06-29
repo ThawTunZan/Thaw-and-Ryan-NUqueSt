@@ -10,7 +10,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
     public Dictionary<string, Inventory> stringToChestData;
 
     public PlayerPositionSO startingPosition;
-    public SpriteRenderer playerRenderer;
+    private SpriteRenderer playerRenderer;
 
     private Inventory_UI chestInCanvas;
 
@@ -83,7 +83,6 @@ public class ChestItems : MonoBehaviour, IDataPersistence
         }
         foreach (Inventory.Slot slot in chestInventory.slots)
         {
-            //print(slot.itemName);
             if (slot.itemName == "Tomato")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato");
@@ -94,7 +93,6 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             }
             else if (slot.itemName == "Potato Seeds")
             {
-                print("POTATOATOATOO Seeeeeeeeeeeed");
                 slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
             }
             else if (slot.itemName == "Tomato Seeds")
@@ -103,7 +101,11 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             }
             else if (slot.itemName == "Rusty Sword")
             {
-                slot.icon = Resources.Load<Sprite>("Weapon/Rusty_Sword");
+                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
+            }
+            else if (slot.itemName == "Rusty Pickaxe")
+            {
+                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
             }
         }
     }

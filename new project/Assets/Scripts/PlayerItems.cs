@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Inventory;
 
 public class PlayerItems : MonoBehaviour, IDataPersistence
 {
@@ -59,52 +60,39 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         toolbar = data.toolbar;
         foreach (Inventory.Slot slot in inventory.slots)
         {
-            //print(slot.itemName);
-            if (slot.itemName == "Tomato")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Tomato");
-            }
-            else if (slot.itemName == "Potato")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Potato");
-            }
-            else if (slot.itemName == "Potato Seeds")
-            {
-               // print("POTATOATOATOO Seeeeeeeeeeeed");
-                slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
-            }
-            else if (slot.itemName == "Tomato Seeds")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
-            }
-            else if (slot.itemName == "Rusty Sword")
-            {
-                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
-            }
+            LoadItemSprite(slot);
         }
         foreach (Inventory.Slot slot in toolbar.slots)
         {
-           // print(slot.itemName);
-            if (slot.itemName == "Tomato")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Tomato");
-            }
-            else if (slot.itemName == "Potato")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Potato");
-            }
-            else if (slot.itemName == "Potato Seeds")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
-            }
-            else if (slot.itemName == "Tomato Seeds")
-            {
-                slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
-            }
-            else if (slot.itemName == "Rusty Sword")
-            {
-                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
-            }
+            LoadItemSprite(slot);
+        }
+    }
+
+    public void LoadItemSprite(Inventory.Slot slot)
+    {
+        if (slot.itemName == "Tomato")
+        {
+            slot.icon = Resources.Load<Sprite>("Farming/Tomato");
+        }
+        else if (slot.itemName == "Potato")
+        {
+            slot.icon = Resources.Load<Sprite>("Farming/Potato");
+        }
+        else if (slot.itemName == "Potato Seeds")
+        {
+            slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
+        }
+        else if (slot.itemName == "Tomato Seeds")
+        {
+            slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
+        }
+        else if (slot.itemName == "Rusty Sword")
+        {
+            slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
+        }
+        else if (slot.itemName == "Rusty Pickaxe")
+        {
+            slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
         }
     }
 
