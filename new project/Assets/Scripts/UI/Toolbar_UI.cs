@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Toolbar_UI : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class Toolbar_UI : MonoBehaviour
     private GameObject player;
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
+    private SwordAttack swordAttack;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        swordAttack = player.GetComponent<SwordAttack>();
         SelectSlot(0);
     }
 
@@ -93,7 +96,11 @@ public class Toolbar_UI : MonoBehaviour
             }
             else if (slot.itemName == "Rusty Sword")
             {
-                playerMovement.AnimateSwordAttack();
+                SwingSword();
+            }
+            else if (slot.itemName == "Rusty Pickaxe")
+            {
+                SwingPickaxe();
             }
             Refresh();
         }
@@ -107,5 +114,21 @@ public class Toolbar_UI : MonoBehaviour
     private void PlantTomato()
     {
         // Add the logic for planting a tomato here
+    }
+
+    private void SwingSword()
+    {
+        swordAttack.swordSideAttackObject.tag = "SwordAttack";
+        swordAttack.swordUpDownAttackObject.tag = "SwordAttack";
+        swordAttack.swordDamage = 1f;
+        playerMovement.AnimateSwordAttack();
+    }
+
+    private void SwingPickaxe()
+    {
+        swordAttack.swordSideAttackObject.tag = "PickaxeAttack";
+        swordAttack.swordUpDownAttackObject.tag = "PickaxeAttack";
+        swordAttack.pickaxeDamage = 1f;
+        playerMovement.AnimatePickaxeAttack();
     }
 }

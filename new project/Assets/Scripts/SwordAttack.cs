@@ -14,7 +14,8 @@ public class SwordAttack : MonoBehaviour
     Vector2 rightAttackOffset;
     Vector2 upAttackOffset;
 
-    public float swordDamage = 1f;
+    public float swordDamage;
+    public float pickaxeDamage;
 
     private void Start()
     {
@@ -28,21 +29,20 @@ public class SwordAttack : MonoBehaviour
     {
         swordCollider.enabled = true;
         swordCollider.transform.localPosition = rightAttackOffset;
-
     }
+
     public void AttackLeft()
     {
-
         swordCollider.enabled = true;
         swordCollider.transform.localPosition = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
     
     public void AttackUp()
     {
-
         swordUpDownCollider.enabled = true;
         swordUpDownCollider.transform.localPosition = upAttackOffset;
     }
+
     public void AttackDown()
     {
         swordUpDownCollider.enabled = true;
