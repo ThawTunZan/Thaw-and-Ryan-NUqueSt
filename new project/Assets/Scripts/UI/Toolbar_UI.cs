@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public class Toolbar_UI : MonoBehaviour
@@ -17,6 +18,8 @@ public class Toolbar_UI : MonoBehaviour
     private PlayerMovement playerMovement;
     private Health playerHealth;
     private SwordAttack swordAttack;
+
+    private Vector3 mousePosition;
 
     private void Start()
     {
@@ -33,7 +36,8 @@ public class Toolbar_UI : MonoBehaviour
         if (!playerItems.disableToolbar)
         {
             CheckAlphaNumericKeys();
-            CheckLeftClick();
+            HoldItemFromToolbar(selectedSlot.slotID);
+            CheckItemUse();
         }
     }
 
@@ -61,11 +65,15 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void CheckLeftClick()
+    private void CheckItemUse()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            UseItemFromToolbar(selectedSlot.slotID);
+            LeftClickItemFromToolbar(selectedSlot.slotID);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            RightClickItemFromToolbar(selectedSlot.slotID);
         }
     }
 
@@ -84,7 +92,40 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void UseItemFromToolbar(int index)
+    private void HoldItemFromToolbar(int index)
+    {
+        Inventory.Slot slot = playerItems.toolbar.slots[index];
+        if (!slot.IsEmpty)
+        {
+            if (slot.itemName == "Stone Hoe")
+            {
+                HoldHoe(1);
+            }
+        }
+        else
+        {
+            UnholdHoe();
+        }
+    }
+
+    private void HoldHoe(int maxReach)
+    {
+        if (TileHighlighter.instance != null)
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            TileHighlighter.instance.HighlightTilemap(mousePosition, maxReach);
+        }
+    }
+
+    private void UnholdHoe()
+    {
+        if (TileHighlighter.instance != null)
+        {
+            TileHighlighter.instance.RemoveHighlight(mousePosition);
+        }
+    }
+
+    private void LeftClickItemFromToolbar(int index)
     {
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
@@ -116,6 +157,7 @@ public class Toolbar_UI : MonoBehaviour
             else if (slot.itemName == "Stone Hoe")
             {
                 SwingTool(0f, 0f, "Hoe");
+                UseHoeAddDirt();
             }
             Refresh();
         }
@@ -140,17 +182,35 @@ public class Toolbar_UI : MonoBehaviour
         swordAttack.swordDamage = swordDamage;
         swordAttack.pickaxeDamage = pickaxeDamage;
         playerMovement.AnimateToolAttack(itemName);
-        if (itemName == "Hoe")
+    }
+
+    private void UseHoeAddDirt()
+    {
+        if (TileHighlighter.instance != null)
         {
-            Vector3Int position = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, 0);
-            if (TileManager.instance != null)
+            TileHighlighter.instance.UseHoeAddDirt(mousePosition);
+        }
+    }
+
+    private void RightClickItemFromToolbar(int index)
+    {
+        Inventory.Slot slot = playerItems.toolbar.slots[index];
+        if (!slot.IsEmpty)
+        {
+            if (slot.itemName == "Stone Hoe")
             {
-                if (TileManager.instance.IsInteractable(position))
-                {
-                    Debug.Log(position);
-                    Debug.Log("Tile is interactable");
-                }
+                SwingTool(0f, 0f, "Hoe");
+                UseHoeRemoveDirt();
             }
+            Refresh();
+        }
+    }
+
+    private void UseHoeRemoveDirt()
+    {
+        if (TileHighlighter.instance != null)
+        {
+            TileHighlighter.instance.UseHoeRemoveDirt(mousePosition);
         }
     }
 }
