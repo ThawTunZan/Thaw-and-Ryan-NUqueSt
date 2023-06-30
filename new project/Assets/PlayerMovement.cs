@@ -164,78 +164,84 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         movementInput = movementValue.Get<Vector2>();
     }
 
-    public void AnimateSwordAttack()
+    public void AnimateToolAttack(string toolType)
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
         {
-            animator.SetTrigger("swordAttackDown");
+            if (toolType == "Sword")
+            {
+                animator.SetTrigger("swordAttackDown");
+            }
+            else if (toolType == "Pickaxe")
+            {
+                animator.SetTrigger("pickaxeAttackDown");
+            }
+            else if (toolType == "Hoe")
+            {
+                animator.SetTrigger("hoeAttackDown");
+            }
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_up") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_up"))
         {
-            animator.SetTrigger("swordAttackUp");
+            if (toolType == "Sword")
+            {
+                animator.SetTrigger("swordAttackUp");
+            }
+            else if (toolType == "Pickaxe")
+            {
+                animator.SetTrigger("pickaxeAttackUp");
+            }
+            else if (toolType == "Hoe")
+            {
+                animator.SetTrigger("hoeAttackUp");
+            }
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_side") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_side"))
         {
-            animator.SetTrigger("swordAttackSide");
-        }
-    }
-   
-    public void AnimatePickaxeAttack()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
-        {
-            animator.SetTrigger("pickaxeAttackDown");
-        }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_up") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_up"))
-        {
-            animator.SetTrigger("pickaxeAttackUp");
-        }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_side") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_side"))
-        {
-            animator.SetTrigger("pickaxeAttackSide");
+            if (toolType == "Sword")
+            {
+                animator.SetTrigger("swordAttackSide");
+            }
+            else if (toolType == "Pickaxe")
+            {
+                animator.SetTrigger("pickaxeAttackSide");
+            }
+            else if (toolType == "Hoe")
+            {
+                animator.SetTrigger("hoeAttackSide");
+            }
         }
     }
 
     /*
      * execute the corresponding function in the script swordAttack bsaed on the state of current animation and the x direction the player is facing
      */
-    public void PerformSwordAttack()
+    public void PerformToolAttack()
     {
         LockMovement();
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") && spriteRenderer.flipX == true)
+        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
+            && spriteRenderer.flipX == true)
         {
             swordAttack.AttackLeft();
         }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") && spriteRenderer.flipX == false)
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
+            && spriteRenderer.flipX == false)
         {
             swordAttack.AttackRight();
         }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up"))
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_up") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_up")))
         {
             swordAttack.AttackUp();
         }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_down"))
-        {
-            swordAttack.AttackDown();
-        }
-    }
-
-    public void PerformPickaxeAttack()
-    {
-        LockMovement();
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") && spriteRenderer.flipX == true)
-        {
-            swordAttack.AttackLeft();
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") && spriteRenderer.flipX == false)
-        {
-            swordAttack.AttackRight();
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_up"))
-        {
-            swordAttack.AttackUp();
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_down"))
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_down") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_down") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_down")))
         {
             swordAttack.AttackDown();
         }

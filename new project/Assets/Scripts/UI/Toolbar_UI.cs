@@ -102,6 +102,10 @@ public class Toolbar_UI : MonoBehaviour
             {
                 SwingPickaxe();
             }
+            else if (slot.itemName == "Stone Hoe")
+            {
+                SwingHoe();
+            }
             Refresh();
         }
     }
@@ -121,7 +125,7 @@ public class Toolbar_UI : MonoBehaviour
         swordAttack.swordSideAttackObject.tag = "SwordAttack";
         swordAttack.swordUpDownAttackObject.tag = "SwordAttack";
         swordAttack.swordDamage = 1f;
-        playerMovement.AnimateSwordAttack();
+        playerMovement.AnimateToolAttack("Sword");
     }
 
     private void SwingPickaxe()
@@ -129,6 +133,11 @@ public class Toolbar_UI : MonoBehaviour
         swordAttack.swordSideAttackObject.tag = "PickaxeAttack";
         swordAttack.swordUpDownAttackObject.tag = "PickaxeAttack";
         swordAttack.pickaxeDamage = 1f;
-        playerMovement.AnimatePickaxeAttack();
+        playerMovement.AnimateToolAttack("Pickaxe");
+    }
+
+    private void SwingHoe()
+    {
+        playerMovement.AnimateToolAttack("Hoe");
     }
 }
