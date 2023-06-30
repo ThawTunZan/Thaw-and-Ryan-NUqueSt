@@ -254,10 +254,8 @@ MonoBehaviour:
   disableToolbar: 0
   inventory:
     slots: []
-    inventoryName: 
   toolbar:
     slots: []
-    inventoryName: 
   startingPosition: {fileID: 0}
   playerRenderer: {fileID: 0}
 --- !u!114 &1138004660227280667
@@ -274,6 +272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questList:
     questSlots: []
+  startingPosition: {fileID: 0}
+  playerRenderer: {fileID: 0}
 --- !u!70 &4828177125383994956
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1986041023617247516}
   m_Layer: 0
   m_Name: Sword UpDown Hit Box
-  m_TagString: SwordAttacks
+  m_TagString: SwordAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

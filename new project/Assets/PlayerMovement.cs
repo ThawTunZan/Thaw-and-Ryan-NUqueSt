@@ -179,6 +179,22 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             animator.SetTrigger("swordAttackSide");
         }
     }
+   
+    public void AnimatePickaxeAttack()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
+        {
+            animator.SetTrigger("pickaxeAttackDown");
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_up") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_up"))
+        {
+            animator.SetTrigger("pickaxeAttackUp");
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_side") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_side"))
+        {
+            animator.SetTrigger("pickaxeAttackSide");
+        }
+    }
 
     /*
      * execute the corresponding function in the script swordAttack bsaed on the state of current animation and the x direction the player is facing
@@ -194,7 +210,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             swordAttack.AttackRight();
         }
-        
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up"))
         {
             swordAttack.AttackUp();
@@ -203,7 +218,27 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             swordAttack.AttackDown();
         }
-        
+    }
+
+    public void PerformPickaxeAttack()
+    {
+        LockMovement();
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") && spriteRenderer.flipX == true)
+        {
+            swordAttack.AttackLeft();
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") && spriteRenderer.flipX == false)
+        {
+            swordAttack.AttackRight();
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_up"))
+        {
+            swordAttack.AttackUp();
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_down"))
+        {
+            swordAttack.AttackDown();
+        }
     }
 
     //To lock movement when attacking;

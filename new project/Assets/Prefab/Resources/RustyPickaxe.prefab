@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6154831188857250743}
   - component: {fileID: 3901551028062536647}
+  - component: {fileID: 6546269651182101123}
   - component: {fileID: -1620684700210561044}
   - component: {fileID: -3733131670545356212}
   - component: {fileID: 2039581920320818288}
-  - component: {fileID: 6546269651182101123}
   m_Layer: 0
   m_Name: RustyPickaxe
   m_TagString: Untagged
@@ -88,6 +88,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &6546269651182101123
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977091210154458466}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.08, y: -0.08100406}
+  - {x: -0.050073996, y: -0.080493}
+  - {x: 0.0394741, y: 0.010099657}
+  - {x: 0.03921874, y: -0.050172314}
+  - {x: 0.048829395, y: -0.050172057}
+  - {x: 0.048754334, y: -0.06148716}
+  - {x: 0.06962069, y: -0.061103843}
+  - {x: 0.069655575, y: -0.049453806}
+  - {x: 0.07941466, y: -0.049813733}
+  - {x: 0.07926537, y: 0.07919147}
+  - {x: -0.048568632, y: 0.07912494}
+  - {x: -0.049106736, y: 0.07137468}
+  - {x: -0.059303187, y: 0.07141728}
+  - {x: -0.05951272, y: 0.04932669}
+  - {x: -0.050222106, y: 0.049062066}
+  - {x: -0.050195407, y: 0.0397613}
+  - {x: 0.009717092, y: 0.039311416}
+  - {x: -0.079927, y: -0.051507715}
+  - {x: -0.07959012, y: -0.080399536}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!50 &-1620684700210561044
 Rigidbody2D:
   serializedVersion: 4
@@ -135,42 +174,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 780c408d08b0d244db1c99103c749d13, type: 2}
   rb2d: {fileID: 0}
---- !u!68 &6546269651182101123
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977091210154458466}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.08, y: -0.08100406}
-  - {x: -0.050073996, y: -0.080493}
-  - {x: 0.0394741, y: 0.010099657}
-  - {x: 0.03921874, y: -0.050172314}
-  - {x: 0.048829395, y: -0.050172057}
-  - {x: 0.048754334, y: -0.06148716}
-  - {x: 0.06962069, y: -0.061103843}
-  - {x: 0.069655575, y: -0.049453806}
-  - {x: 0.07941466, y: -0.049813733}
-  - {x: 0.07926537, y: 0.07919147}
-  - {x: -0.048568632, y: 0.07912494}
-  - {x: -0.049106736, y: 0.07137468}
-  - {x: -0.059303187, y: 0.07141728}
-  - {x: -0.05951272, y: 0.04932669}
-  - {x: -0.050222106, y: 0.049062066}
-  - {x: -0.050195407, y: 0.0397613}
-  - {x: 0.009717092, y: 0.039311416}
-  - {x: -0.079927, y: -0.051507715}
-  - {x: -0.07959012, y: -0.080399536}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0

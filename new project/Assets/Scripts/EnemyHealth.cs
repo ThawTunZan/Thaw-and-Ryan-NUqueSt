@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("alive", true);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
+
     public float Health { 
         set
         {
@@ -43,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
         Health -= damage;
         animator.SetTrigger("Hit");
     }
+
     public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("SwordAttack"))
@@ -54,7 +56,6 @@ public class EnemyHealth : MonoBehaviour
 
     public virtual void SlimeDeath()
     {
-
         Destroy(this.gameObject);
     }
 }
