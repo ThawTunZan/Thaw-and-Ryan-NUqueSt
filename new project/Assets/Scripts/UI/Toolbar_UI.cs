@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class Toolbar_UI : MonoBehaviour
 {
@@ -139,5 +140,17 @@ public class Toolbar_UI : MonoBehaviour
         swordAttack.swordDamage = swordDamage;
         swordAttack.pickaxeDamage = pickaxeDamage;
         playerMovement.AnimateToolAttack(itemName);
+        if (itemName == "Hoe")
+        {
+            Vector3Int position = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, 0);
+            if (TileManager.instance != null)
+            {
+                if (TileManager.instance.IsInteractable(position))
+                {
+                    Debug.Log(position);
+                    Debug.Log("Tile is interactable");
+                }
+            }
+        }
     }
 }
