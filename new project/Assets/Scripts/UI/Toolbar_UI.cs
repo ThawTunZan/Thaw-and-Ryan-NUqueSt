@@ -85,14 +85,13 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            if (slot.itemName == "Tomato")
+            if (slot.itemName == "Tomato" || slot.itemName == "Potato")
             {
-                EatTomato();
-                playerItems.toolbar.Remove(index, 1);
+                EatFood(index);
             }
-            else if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Tomato Seeds" || slot.itemName == "Potato Seeds")
             {
-                PlantTomato();
+                PlantSeed(index);
             }
             else if (slot.itemName == "Stone Sword")
             {
@@ -110,34 +109,34 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void EatTomato()
+    private void EatFood(int index)
     {
-        // Add the logic for eating a tomato here
+        playerItems.toolbar.Remove(index, 1);
     }
 
-    private void PlantTomato()
+    private void PlantSeed(int index)
     {
-        // Add the logic for planting a tomato here
+        playerItems.toolbar.Remove(index, 1);
     }
 
     private void SwingSword()
     {
-        swordAttack.swordSideAttackObject.tag = "SwordAttack";
-        swordAttack.swordUpDownAttackObject.tag = "SwordAttack";
         swordAttack.swordDamage = 1f;
+        swordAttack.pickaxeDamage = 0f;
         playerMovement.AnimateToolAttack("Sword");
     }
 
     private void SwingPickaxe()
     {
-        swordAttack.swordSideAttackObject.tag = "PickaxeAttack";
-        swordAttack.swordUpDownAttackObject.tag = "PickaxeAttack";
+        swordAttack.swordDamage = 1f;
         swordAttack.pickaxeDamage = 1f;
         playerMovement.AnimateToolAttack("Pickaxe");
     }
 
     private void SwingHoe()
     {
+        swordAttack.swordDamage = 1f;
+        swordAttack.pickaxeDamage = 0f;
         playerMovement.AnimateToolAttack("Hoe");
     }
 }
