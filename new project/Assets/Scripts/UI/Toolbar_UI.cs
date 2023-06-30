@@ -14,6 +14,7 @@ public class Toolbar_UI : MonoBehaviour
     private GameObject player;
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
+    private Health playerHealth;
     private SwordAttack swordAttack;
 
     private void Start()
@@ -21,6 +22,7 @@ public class Toolbar_UI : MonoBehaviour
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        playerHealth = GameObject.Find("PlayerHitBox").GetComponent<Health>();
         swordAttack = player.GetComponent<SwordAttack>();
         SelectSlot(0);
     }
@@ -88,70 +90,54 @@ public class Toolbar_UI : MonoBehaviour
         {
             if (slot.itemName == "Tomato")
             {
-                playerItems.toolbar.Remove(index, 1);
+                EatFood(index, 5);
             }
             else if (slot.itemName == "Potato")
             {
-                playerItems.toolbar.Remove(index, 1);
+                EatFood(index, 5);
             }
             else if (slot.itemName == "Tomato Seeds")
             {
-                playerItems.toolbar.Remove(index, 1);
+                PlantSeed(index, "Tomato Seeds");
             }
             else if (slot.itemName == "Potato Seeds")
             {
-                playerItems.toolbar.Remove(index, 1);
+                PlantSeed(index, "Potato Seeds");
             }
             else if (slot.itemName == "Stone Sword")
             {
-                swordAttack.swordDamage = 2f;
-                swordAttack.pickaxeDamage = 0f;
-                playerMovement.AnimateToolAttack("Sword");
+                SwingTool(2f, 0f, "Sword");
             }
             else if (slot.itemName == "Stone Pickaxe")
             {
-                swordAttack.swordDamage = 1f;
-                swordAttack.pickaxeDamage = 1f;
-                playerMovement.AnimateToolAttack("Pickaxe");
+                SwingTool(1f, 1f, "Pickaxe");
             }
             else if (slot.itemName == "Stone Hoe")
             {
-                swordAttack.swordDamage = 1f;
-                swordAttack.pickaxeDamage = 0f;
-                playerMovement.AnimateToolAttack("Hoe");
+                SwingTool(0f, 0f, "Hoe");
             }
             Refresh();
         }
     }
 
-    //private void EatFood(int index, string itemName)
-    //{
-    //    playerItems.toolbar.Remove(index, 1);
-    //}
+    private void EatFood(int index, int amountToHeal)
+    {
+        if (playerHealth.health != playerHealth.maxHealth)
+        {
+            playerHealth.health = Math.Min(playerHealth.health + amountToHeal, playerHealth.maxHealth);
+            playerItems.toolbar.Remove(index, 1);
+        }
+    }
 
-    //private void PlantSeed(int index, string itemName)
-    //{
-    //    playerItems.toolbar.Remove(index, 1);
-    //}
+    private void PlantSeed(int index, string itemName)
+    {
+        playerItems.toolbar.Remove(index, 1);
+    }
 
-    //private void SwingSword(string itemName)
-    //{
-    //    swordAttack.swordDamage = 1f;
-    //    swordAttack.pickaxeDamage = 0f;
-    //    playerMovement.AnimateToolAttack("Sword");
-    //}
-
-    //private void SwingPickaxe(string itemName)
-    //{
-    //    swordAttack.swordDamage = 1f;
-    //    swordAttack.pickaxeDamage = 1f;
-    //    playerMovement.AnimateToolAttack("Pickaxe");
-    //}
-
-    //private void SwingHoe(string itemName)
-    //{
-    //    swordAttack.swordDamage = 1f;
-    //    swordAttack.pickaxeDamage = 0f;
-    //    playerMovement.AnimateToolAttack("Hoe");
-    //}
+    private void SwingTool(float swordDamage, float pickaxeDamage, string itemName)
+    {
+        swordAttack.swordDamage = swordDamage;
+        swordAttack.pickaxeDamage = pickaxeDamage;
+        playerMovement.AnimateToolAttack(itemName);
+    }
 }
