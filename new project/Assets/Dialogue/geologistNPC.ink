@@ -23,7 +23,7 @@ It seems like it is the only unique looking rock in that level!
 I really need to do some analysis on this rock cuz I have to do some hypothesis testing on it...
 What do you think? Are you down for it?
     *[Yes]
-        ->start_quest("GEA1000", "Help me go take a look at the unique rock on the first floor of cave and get a sample of it!")
+        ->start_quest("GEA1000", "Help me go take a look at the unique rock on the first floor of cave and get a sample of it! Give me an copper ore!")
         -> END
     *[Nahhh]
         :(

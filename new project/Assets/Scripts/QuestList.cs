@@ -44,6 +44,10 @@ public class QuestList
             {
                 placesToVisit.Add(new Dictionary<string, bool> { { "Cave_1", false } });
             }
+            if (quest_name == "GEA1000")
+            {
+                requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
+            }
         }
     }
 
