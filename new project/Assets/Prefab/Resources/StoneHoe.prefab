@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6154831188857250743}
   - component: {fileID: 3901551028062536647}
-  - component: {fileID: 524439750453437155}
+  - component: {fileID: 6546269651182101123}
   - component: {fileID: -1620684700210561044}
   - component: {fileID: -3733131670545356212}
   - component: {fileID: 2039581920320818288}
   m_Layer: 0
-  m_Name: RustySword
+  m_Name: StoneHoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0f120feea0d93574c970683cc375c410, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80d48abf98cc23a408284194bc361025, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,8 +88,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &524439750453437155
-PolygonCollider2D:
+--- !u!68 &6546269651182101123
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,27 +102,31 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.48, y: 0.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_EdgeRadius: 0
   m_Points:
-    m_Paths:
-    - - {x: 0.08, y: 0.08}
-      - {x: 0.051212765, y: 0.07993237}
-      - {x: -0.069789246, y: -0.000069729984}
-      - {x: -0.08049123, y: -0.050350197}
-      - {x: -0.08, y: -0.08}
-      - {x: -0.049438268, y: -0.08}
-      - {x: -0.00006586872, y: -0.0699706}
-      - {x: -0.00020799041, y: -0.06990814}
-      - {x: -0.000010115793, y: -0.06962626}
-      - {x: 0.08, y: 0.05112268}
+  - {x: -0.08, y: -0.08100406}
+  - {x: -0.050073996, y: -0.080493}
+  - {x: 0.0394741, y: 0.010099657}
+  - {x: 0.03921874, y: -0.050172314}
+  - {x: 0.048829395, y: -0.050172057}
+  - {x: 0.048754334, y: -0.06148716}
+  - {x: 0.06962069, y: -0.061103843}
+  - {x: 0.069655575, y: -0.049453806}
+  - {x: 0.07941466, y: -0.049813733}
+  - {x: 0.07926537, y: 0.07919147}
+  - {x: -0.048568632, y: 0.07912494}
+  - {x: -0.049106736, y: 0.07137468}
+  - {x: -0.059303187, y: 0.07141728}
+  - {x: -0.05951272, y: 0.04932669}
+  - {x: -0.050222106, y: 0.049062066}
+  - {x: -0.050195407, y: 0.0397613}
+  - {x: 0.009717092, y: 0.039311416}
+  - {x: -0.079927, y: -0.051507715}
+  - {x: -0.07959012, y: -0.080399536}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!50 &-1620684700210561044
 Rigidbody2D:
   serializedVersion: 4
@@ -168,5 +172,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77006eb9bc0a1e4d898ce098e208254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: c4eec03ec83e63446b36f7dac2b2fda7, type: 2}
+  data: {fileID: 11400000, guid: f83645b6ed270174986ea9914025bab7, type: 2}
   rb2d: {fileID: 0}

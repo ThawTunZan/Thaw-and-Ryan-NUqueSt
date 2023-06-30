@@ -86,13 +86,17 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         {
             slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
         }
-        else if (slot.itemName == "Rusty Sword")
+        else if (slot.itemName == "Stone Sword")
         {
-            slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
+            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Sword");
         }
-        else if (slot.itemName == "Rusty Pickaxe")
+        else if (slot.itemName == "Stone Pickaxe")
         {
-            slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
+            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Pickaxe");
+        }
+        else if (slot.itemName == "Stone Hoe")
+        {
+            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Hoe");
         }
         else if (slot.itemName == "Stone Ore")
         {

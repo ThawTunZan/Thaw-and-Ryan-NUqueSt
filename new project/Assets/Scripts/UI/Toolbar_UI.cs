@@ -94,11 +94,11 @@ public class Toolbar_UI : MonoBehaviour
             {
                 PlantTomato();
             }
-            else if (slot.itemName == "Rusty Sword")
+            else if (slot.itemName == "Stone Sword")
             {
                 SwingSword();
             }
-            else if (slot.itemName == "Rusty Pickaxe")
+            else if (slot.itemName == "Stone Pickaxe")
             {
                 SwingPickaxe();
             }
