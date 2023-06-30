@@ -9,11 +9,35 @@ How can I help you?
         We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:I do not require assistance for now.|{(!validTime): Maybe come another time. |{questStarted:I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo}}}}
+        {allQuestDone:I do not require assistance for now.|{(!validTime): Maybe come another time. |{questStarted:I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo |{(!questGESS1001Done): -> GESS1001Convo |{(!questGEA1000Done): ->GEA1000}}}}}}
     * [Leave]
         Goodbye.
         -> DONE
 
+-> END
+
+===GEA1000===
+Hey! Looks like you are getting the hang of it!
+Do you think you can help me get a sample of a rock that on the first level of the cave?
+It seems like it is the only unique looking rock in that level!
+I really need to do some analysis on this rock cuz I have to do some hypothesis testing on it...
+What do you think? Are you down for it?
+    *[Yes]
+        ->start_quest("GEA1000", "Help me go take a look at the unique rock on the first floor of cave and get a sample of it!")
+        -> END
+    *[Nahhh]
+        :(
+        -> END
+
+->DONE
+===GESS1001Convo===
+Hey! Thanks for the help with the previous quest! 
+I wondered who made that tomestone... My guess is on this WHOLESOME community called RAG
+Anyway, do you think you can help me with exploring the second level of the cave? 
+The place is a little bit too dangerous for me but I heard there is a corpse of a weird animal there! 
+It must have died from the S/U Monster
+Do you think you can help me find out what it is?
+-> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave")
 -> END
 
 ===HSA1000Convo===
@@ -29,7 +53,7 @@ Do you think you can help me with something?
     Anyway, help me explore around the first level of the cave. 
     If you stumbled upon a tomestone, let me know!
     So what do you think? Are you up for the task?
-    -> start_quest("HSA1000C", "Help me find a tomestone in the first level of the cave!")
+    -> start_quest("HSA1000", "Help me find a tomestone in the first level of the cave!")
 *[Nahh]
     Awww ok...
     -> DONE
