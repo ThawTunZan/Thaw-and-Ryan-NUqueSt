@@ -20,7 +20,10 @@ public class TileManager : MonoBehaviour
 
     public List<TileBase> seedTiles = new List<TileBase>();
     private Dictionary<string, TileBase> seedTileToTileBaseDict = new Dictionary<string, TileBase>();
-    public Dictionary<Vector3Int, List<string>> seedPositionToName = new();
+
+    public List<Vector3Int> seedPositions = new List<Vector3Int>();
+    public List<string> seedNames = new List<string>();
+    public List<float> seedNextGrowths = new List<float>();
 
     private BoxCollider2D tilemapBoundary;
 
@@ -36,11 +39,25 @@ public class TileManager : MonoBehaviour
         dirtTilemap = GameObject.Find("DirtMap").GetComponent<Tilemap>();
         seedTilemap = GameObject.Find("SeedMap").GetComponent<Tilemap>();
         player = GameObject.Find("Player");
-        seedPositionToName = GameManager.instance.seedPositionToName;
+
+        seedPositions = GameManager.instance.seedPositions;
+        seedNames = GameManager.instance.seedNames;
+        seedNextGrowths = GameManager.instance.seedNextGrowths;
 
         foreach (TileBase tileBase in seedTiles)
         {
             AddTileBase(tileBase);
+        }
+
+        LoadSeedTile();
+    }
+
+    private void LoadSeedTile()
+    {
+        for (int i = 0; i < seedPositions.Count; i++)
+        {
+            dirtTilemap.SetTile(seedPositions[i], dirtTile);
+            seedTilemap.SetTile(seedPositions[i], seedTileToTileBaseDict[seedNames[i]]);
         }
     }
 
@@ -137,9 +154,11 @@ public class TileManager : MonoBehaviour
         {
             string seedTileName = seedName.Replace(" ", "") + "0";
             TileBase seedTile = seedTileToTileBaseDict[seedTileName];
-            int nextGrowthHour = (int)(GameManager.instance.hours + growHours);
-            seedPositionToName.Add(tilePosition, new List<string> { seedName, nextGrowthHour.ToString()});
-            Debug.Log(seedPositionToName.Count);
+            float nextGrowthHour = GameManager.instance.hours + growHours;
+            seedPositions.Add(tilePosition);
+            seedNames.Add(seedTileName);
+            seedNextGrowths.Add(nextGrowthHour);
+            seedNextGrowths.Add(GameManager.instance.minutes);
             seedTilemap.SetTile(tilePosition, seedTile);
             return true;
         }
