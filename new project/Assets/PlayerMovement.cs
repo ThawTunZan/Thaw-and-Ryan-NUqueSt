@@ -219,29 +219,29 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public void PerformToolAttack()
     {
         LockMovement();
-        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
+        if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
             && spriteRenderer.flipX == true)
         {
             swordAttack.AttackLeft();
         }
-        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_side") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_side") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_side"))
             && spriteRenderer.flipX == false)
         {
             swordAttack.AttackRight();
         }
-        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_up") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_up")))
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_up") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_up") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_up")))
         {
             swordAttack.AttackUp();
         }
-        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_down") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_down") ||
-            animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_down")))
+        else if ((animator.GetCurrentAnimatorStateInfo(0).IsName("player_attack_down") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_pickaxe_down") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_hoe_down")))
         {
             swordAttack.AttackDown();
         }

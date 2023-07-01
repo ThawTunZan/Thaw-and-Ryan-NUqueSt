@@ -29,7 +29,9 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             // chest2: Cave_1
             if (!hasAddedToChest)
             {
+                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Stone Hoe"));
                 GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
+                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Potato Seed"), 10);
                 GameManager.instance.chest1.Add(ItemManager.instance.GetItemByName("Diamond Ore"), 2);
                 GameManager.instance.chest2.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
                 hasAddedToChest = true;

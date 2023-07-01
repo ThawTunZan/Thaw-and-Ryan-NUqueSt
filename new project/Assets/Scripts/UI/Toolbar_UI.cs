@@ -129,7 +129,7 @@ public class Toolbar_UI : MonoBehaviour
     {
         if (TileManager.instance != null)
         {
-            TileManager.instance.RemoveHighlightTilemap(mousePosition);
+            TileManager.instance.RemoveHighlightTilemap();
         }
     }
 
@@ -180,11 +180,11 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void PlantSeed(int index, int hoursToGrow, string seedName)
+    private void PlantSeed(int index, float hoursToGrow, string seedName)
     {
         if (TileManager.instance != null)
         {
-            if (TileManager.instance.PlantSeed(mousePosition, hoursToGrow, seedName))
+            if (TileManager.instance.PlantSeed(mousePosition, GameManager.instance.day, hoursToGrow, seedName))
             {
                 playerItems.toolbar.Remove(index, 1);
             }
