@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
 
     public string story;
 
+    public List<Vector3Int> seedPositions = new List<Vector3Int>();
+    public List<string> seedNames = new List<string>();
+    public List<float> seedNextGrowths = new List<float>();
+
     void Awake()
     { 
         if (instance != null)
