@@ -4,6 +4,7 @@ INCLUDE globals.ink
 -> main
 
 === main ===
+Hi! I'm George, Leo's older brother!
 How can I help you?
     * [I want to buy something.]
         We are currently out of stock.
