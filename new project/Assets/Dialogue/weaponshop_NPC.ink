@@ -33,6 +33,7 @@ How can I help you?
     ~ questName = Name
     ~ questDesc = Desc
     ~ questStarted = true
+    ~ questDone = false
     -> DONE
 * [No]
     Sleep with one eye open :)

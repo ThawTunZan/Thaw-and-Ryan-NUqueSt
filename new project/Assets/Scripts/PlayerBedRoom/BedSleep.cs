@@ -81,13 +81,14 @@ public class BedSleep : MonoBehaviour
     IEnumerator WaitSleepAnimation()
     {
         transition.SetTrigger("Sleep");
-
         yield return new WaitForSeconds(5);
         playerMovement.enabled = true;
-        // DataPersistenceManager.instance.LoadGame();
         transition.Play("Base Layer.PlayerFaintEnd", 0, 0);
-
-       // SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
-       // DataPersistenceManager.instance.LoadGame();
+        clockManager.hours = 8;
+        clockManager.minutes = 0;
+        clockManager.seconds = 0;
+        GameManager.instance.hours = 8;
+        GameManager.instance.minutes = 0;
+        GameManager.instance.seconds = 0;
     }
 }

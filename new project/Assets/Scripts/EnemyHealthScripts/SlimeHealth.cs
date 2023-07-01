@@ -11,7 +11,6 @@ public class SlimeHealth : EnemyHealth
             //if there is an active quest in the slot
             if (player.questList.questSlots[i].count == 1)
             {
-                print("slime getting destroyed");
                 player.questList.questSlots[i].slimesRequired--;
             }
         }

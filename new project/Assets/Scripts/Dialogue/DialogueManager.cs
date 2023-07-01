@@ -8,6 +8,7 @@ using Story = Ink.Runtime.Story;
 using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using JetBrains.Annotations;
 //using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
@@ -120,22 +121,31 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 string questSTARTEDLOLOL = currentStory.variablesState["questStarted"].ToString();
                 //to make questStarted false and questDone true when quest is completed
-                if (QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
+                if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
-                    dialogueVariables.InkSetVariables(currentStory, "questDone", player.questList.questSlots[i].done);
-                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", player.questList.questSlots[i].done);
+                    dialogueVariables.InkSetVariables(currentStory, "questDone", true);
+                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", true);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
                     dialogueVariables.InkSetVariables(currentStory, "validTime", false);
                     // remove the quest from quest slot
+                    player.questList.questSlots[i].questName = "";
+                    player.questList.questSlots[i].questDescription = "";
+                    player.questList.questSlots[i].done = false;
+                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                    quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
+                    
+
                 }
                 else
                 {
                     dialogueVariables.InkSetVariables(currentStory, "questDone", false);
                     dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", false);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", true);
+                    dialogueVariables.InkSetVariables(currentStory, "validTime", true);
                 }
             }
         }
+        //CheckDate();
 
         ContinueStory();
     }
@@ -156,11 +166,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         // if there are no required items needed to pass to NPC return true
-        if (player.questList.questSlots[x].requireItems.Count > 0 || player.questList.questSlots[x].slimesRequired > 0)
+        if (player.questList.questSlots[x].done && player.questList.questSlots[x].questName != "")
         {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void ContinueStory()

@@ -3815,7 +3815,7 @@ MonoBehaviour:
   dayText: {fileID: 0}
   timeText: {fileID: 0}
   ppv: {fileID: 378977111}
-  startingPosition: {fileID: 11400000, guid: 05bdb6af9153e774bad49685d1d06b5c, type: 2}
+  startingPosition: {fileID: 11400000, guid: 8141dacd4de1a2747ac182b6eb3b4854, type: 2}
 --- !u!114 &378977111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9964,7 +9964,10 @@ MonoBehaviour:
     slots: []
   chest1:
     slots: []
+  chest2:
+    slots: []
   chestList: []
+  hasAddedToChest: 0
   tutorialProgress: 0
   hours: 0
   minutes: 0
@@ -17995,7 +17998,7 @@ MonoBehaviour:
   - {fileID: 1036350257}
   - {fileID: 1720748178}
   - {fileID: 1031369434}
-  movement: {fileID: 614560566}
+  playerMovement: {fileID: 0}
   inventory:
     slots: []
   toolbar:
