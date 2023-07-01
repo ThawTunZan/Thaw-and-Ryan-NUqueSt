@@ -15193,13 +15193,19 @@ MonoBehaviour:
     slots: []
   chest1:
     slots: []
+  chest2:
+    slots: []
   chestList: []
+  hasAddedToChest: 0
   tutorialProgress: 0
   hours: 0
   minutes: 0
   seconds: 0
   day: 0
   story: 
+  seedPositions: []
+  seedNames: []
+  seedNextGrowths: []
 --- !u!4 &849561114
 Transform:
   m_ObjectHideFlags: 0
@@ -29980,6 +29986,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1850050151}
     - target: {fileID: 4710834851946558930, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: bfc97a9fb952e094b9327ddf7a16865a, type: 2}
+    - target: {fileID: 5988033192254954714, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: bfc97a9fb952e094b9327ddf7a16865a, type: 2}
