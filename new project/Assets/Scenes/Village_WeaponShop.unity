@@ -7064,6 +7064,10 @@ PrefabInstance:
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: 8141dacd4de1a2747ac182b6eb3b4854, type: 2}
+    - target: {fileID: 5988033192254954714, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 8141dacd4de1a2747ac182b6eb3b4854, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
 --- !u!4 &614560565 stripped
@@ -9964,13 +9968,19 @@ MonoBehaviour:
     slots: []
   chest1:
     slots: []
+  chest2:
+    slots: []
   chestList: []
+  hasAddedToChest: 0
   tutorialProgress: 0
   hours: 0
   minutes: 0
   seconds: 0
   day: 0
   story: 
+  seedPositions: []
+  seedNames: []
+  seedNextGrowths: []
 --- !u!4 &828373309
 Transform:
   m_ObjectHideFlags: 0
@@ -17995,7 +18005,7 @@ MonoBehaviour:
   - {fileID: 1036350257}
   - {fileID: 1720748178}
   - {fileID: 1031369434}
-  movement: {fileID: 614560566}
+  playerMovement: {fileID: 0}
   inventory:
     slots: []
   toolbar:

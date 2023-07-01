@@ -148,11 +148,11 @@ public class Toolbar_UI : MonoBehaviour
             }
             else if (slot.itemName == "Tomato Seed")
             {
-                PlantSeed(index, "Tomato Seed", 1);
+                PlantSeed(index, 1, "Tomato Seed");
             }
             else if (slot.itemName == "Potato Seed")
             {
-                PlantSeed(index, "Potato Seed", 1);
+                PlantSeed(index, 1, "Potato Seed");
             }
             else if (slot.itemName == "Stone Sword")
             {
@@ -180,11 +180,11 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void PlantSeed(int index, string itemName, int growHours)
+    private void PlantSeed(int index, int hoursToGrow, string seedName)
     {
         if (TileManager.instance != null)
         {
-            if (TileManager.instance.PlantSeed(mousePosition, itemName, growHours))
+            if (TileManager.instance.PlantSeed(mousePosition, hoursToGrow, seedName))
             {
                 playerItems.toolbar.Remove(index, 1);
             }

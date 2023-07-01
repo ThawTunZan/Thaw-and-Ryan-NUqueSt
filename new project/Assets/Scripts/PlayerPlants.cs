@@ -10,6 +10,8 @@ public class PlayerPlants : MonoBehaviour, IDataPersistence
     public List<float> seedNextGrowths = new List<float>();
     public PlayerPositionSO startingPosition;
 
+    private bool isNewDay;
+
     void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -30,9 +32,28 @@ public class PlayerPlants : MonoBehaviour, IDataPersistence
 
     private void CheckPlantGrowth()
     {
-        for (int i = 0;  i < seedPositions.Count; i++)
+        for (int i = 0; i < seedPositions.Count; i++)
         {
-            if (GameManager.instance.hours == seedNextGrowths[0] && GameManager.instance.minutes == seedNextGrowths[1])
+            if (GameManager.instance.hours == 8f && GameManager.instance.minutes == 0f)
+            {
+                float tempHours = 32f;
+                if (tempHours >= seedNextGrowths[2 * i])
+                {
+                    char seedStage = seedNames[i][seedNames[i].Length - 1];
+                    if (seedStage != '5')
+                    {
+                        int seedStageInt = (int)seedStage + 1;
+                        char newSeedStage = (char)seedStageInt;
+                        seedNames[i] = seedNames[i].Substring(0, seedNames[i].Length - 1) + newSeedStage;
+                    }
+                    seedNextGrowths[2 * i] += seedNextGrowths[2 * i + 1];
+                }
+            }
+            else if (GameManager.instance.hours == 8f && GameManager.instance.minutes == 15f && seedNextGrowths[2 * i] > 24f)
+            {
+                seedNextGrowths[2 * i] -= 24f;
+            }
+            else if (GameManager.instance.hours >= seedNextGrowths[2 * i])
             {
                 char seedStage = seedNames[i][seedNames[i].Length - 1];
                 if (seedStage != '5')
@@ -41,6 +62,7 @@ public class PlayerPlants : MonoBehaviour, IDataPersistence
                     char newSeedStage = (char)seedStageInt;
                     seedNames[i] = seedNames[i].Substring(0, seedNames[i].Length - 1) + newSeedStage;
                 }
+                seedNextGrowths[2 * i] += seedNextGrowths[2 * i + 1];
             }
         }
     }

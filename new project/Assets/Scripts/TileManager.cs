@@ -48,7 +48,10 @@ public class TileManager : MonoBehaviour
         {
             AddTileBase(tileBase);
         }
+    }
 
+    private void Update()
+    {
         LoadSeedTile();
     }
 
@@ -92,11 +95,22 @@ public class TileManager : MonoBehaviour
             highlightTilemap.SetTile(previousTilePosition, null);
             if (highlightType == "Hoe")
             {
-                highlightTilemap.SetTile(tilePosition, highlightTile);
+                if (seedTilemap.GetTile(tilePosition))
+                {
+                    string seedTileName = seedTilemap.GetTile(tilePosition).name;
+                    if (seedTileName[seedTileName.Length - 1] == '5')
+                    {
+                        highlightTilemap.SetTile(tilePosition, seedHighlightTile);
+                    }
+                }
+                else
+                {
+                    highlightTilemap.SetTile(tilePosition, highlightTile);
+                }
             }
             else if (highlightType == "Seed" && dirtTilemap.GetTile(tilePosition))
             {
-                highlightTilemap.SetTile(tilePosition, seedHighlightTile);
+                highlightTilemap.SetTile(tilePosition, highlightTile);
             }
             previousTilePosition = tilePosition;
         }
@@ -128,13 +142,34 @@ public class TileManager : MonoBehaviour
         {
             if (seedTilemap.GetTile(tilePosition))
             {
+                int removeIndex = seedPositions.IndexOf(tilePosition);
+                seedPositions.RemoveAt(removeIndex);
+                seedNames.RemoveAt(removeIndex);
+                for (int i = 0; i < 3; i++)
+                {
+                    seedNextGrowths.RemoveAt(3 * removeIndex);
+                }
+                GameManager.instance.seedPositions = seedPositions;
+                GameManager.instance.seedNames = seedNames;
+                GameManager.instance.seedNextGrowths = seedNextGrowths;
+
                 string seedTileName = seedTilemap.GetTile(tilePosition).name;
                 string seedNameWithStage = Regex.Replace(seedTileName, @"(\p{Lu})", " $1").Trim();
                 string seedName = seedNameWithStage.Substring(0, seedNameWithStage.Length - 1);
-                Item seedItem = ItemManager.instance.GetItemByName(seedName);
                 Vector3 spawnPosition = mousePosition;
                 spawnPosition.z = 0;
+                char seedStage = seedNameWithStage[seedNameWithStage.Length - 1];
+                Item seedItem;
+                if (seedStage == '5')
+                {
+                    seedItem = ItemManager.instance.GetItemByName(seedName.Split(' ')[0]);
+                }
+                else
+                {
+                    seedItem = ItemManager.instance.GetItemByName(seedName);
+                }
                 Instantiate(seedItem, spawnPosition, Quaternion.identity);
+
                 seedTilemap.SetTile(tilePosition, null);
             }
             dirtTilemap.SetTile(tilePosition, null);
@@ -147,18 +182,24 @@ public class TileManager : MonoBehaviour
         highlightTilemap.SetTile(tilePosition, null);
     }
 
-    public bool PlantSeed(Vector3 mousePosition, string seedName, int growHours)
+    public bool PlantSeed(Vector3 mousePosition, int hoursToGrow, string seedName)
     {
         tilePosition = seedTilemap.WorldToCell(mousePosition);
-        if (highlightTilemap.GetTile(tilePosition) && dirtTilemap.GetTile(tilePosition))
+        if (highlightTilemap.GetTile(tilePosition) && dirtTilemap.GetTile(tilePosition) && !seedTilemap.GetTile(tilePosition))
         {
             string seedTileName = seedName.Replace(" ", "") + "0";
             TileBase seedTile = seedTileToTileBaseDict[seedTileName];
-            float nextGrowthHour = GameManager.instance.hours + growHours;
+            //float nextGrowthDay = GameManager.instance.day + daysToGrow;
+            float nextGrowthHour = hoursToGrow + GameManager.instance.hours + GameManager.instance.minutes/60;
             seedPositions.Add(tilePosition);
             seedNames.Add(seedTileName);
+            //seedNextGrowths.Add(nextGrowthDay);
             seedNextGrowths.Add(nextGrowthHour);
-            seedNextGrowths.Add(GameManager.instance.minutes);
+            seedNextGrowths.Add(hoursToGrow);
+            //seedNextGrowths.Add(daysToGrow);
+            GameManager.instance.seedPositions = seedPositions;
+            GameManager.instance.seedNames = seedNames;
+            GameManager.instance.seedNextGrowths = seedNextGrowths;
             seedTilemap.SetTile(tilePosition, seedTile);
             return true;
         }
