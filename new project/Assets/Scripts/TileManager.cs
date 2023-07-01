@@ -1,34 +1,147 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using UnityEngine.Windows;
+using static UnityEditor.Progress;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap interactableMap;
-    [SerializeField] private Tile hiddenInteractableTile;
+    public Tilemap highlightTilemap;
+    public Tilemap dirtTilemap;
+    public Tilemap seedTilemap;
+    public TileBase highlightTile;
+    public TileBase seedHighlightTile;
+    public TileBase dirtTile;
 
     public static TileManager instance;
+
+    public List<TileBase> seedTiles = new List<TileBase>();
+    private Dictionary<string, TileBase> seedTileToTileBaseDict = new Dictionary<string, TileBase>();
+    public Dictionary<Vector3Int, List<string>> seedPositionToName = new();
+
+    private BoxCollider2D tilemapBoundary;
+
+    private Vector3Int tilePosition;
+    private Vector3Int previousTilePosition;
+
+    private GameObject player;
 
     private void Start()
     {
         instance = this;
-        foreach (var position in interactableMap.cellBounds.allPositionsWithin)
+        tilemapBoundary = highlightTilemap.GetComponent<BoxCollider2D>();
+        dirtTilemap = GameObject.Find("DirtMap").GetComponent<Tilemap>();
+        seedTilemap = GameObject.Find("SeedMap").GetComponent<Tilemap>();
+        player = GameObject.Find("Player");
+        seedPositionToName = GameManager.instance.seedPositionToName;
+
+        foreach (TileBase tileBase in seedTiles)
         {
-            interactableMap.SetTile(position, hiddenInteractableTile);
+            AddTileBase(tileBase);
         }
     }
 
-    public bool IsInteractable(Vector3Int position)
+    private void AddTileBase(TileBase tileBase)
     {
-        TileBase tile = interactableMap.GetTile(position);
-        if (tile != null)
+        if (!seedTileToTileBaseDict.ContainsKey(tileBase.name))
         {
-            Debug.Log(tile.name);
-            if (tile.name == "Interactable_InGame")
+            seedTileToTileBaseDict.Add(tileBase.name, tileBase);
+        }
+    }
+
+    public TileBase GetTileBaseByName(string key)
+    {
+        if (seedTileToTileBaseDict.ContainsKey(key))
+        {
+            return seedTileToTileBaseDict[key];
+        }
+        return null;
+    }
+
+    public void HighlightTilemap(Vector3 mousePosition, int maxReach, string highlightType)
+    {
+        tilePosition = dirtTilemap.WorldToCell(mousePosition);
+        Vector3 playerPosition = player.transform.position;
+        Vector3Int playerTilePosition = dirtTilemap.WorldToCell(playerPosition);
+        if (tilePosition != previousTilePosition
+            && highlightTilemap.GetTile(tilePosition) == null
+            && tilemapBoundary.OverlapPoint(mousePosition)
+            && Mathf.Abs(playerTilePosition.x - tilePosition.x) <= maxReach
+            && Mathf.Abs(playerTilePosition.y - tilePosition.y) <= maxReach)
+        {
+            highlightTilemap.SetTile(previousTilePosition, null);
+            if (highlightType == "Hoe")
             {
-                return true;
+                highlightTilemap.SetTile(tilePosition, highlightTile);
             }
+            else if (highlightType == "Seed" && dirtTilemap.GetTile(tilePosition))
+            {
+                highlightTilemap.SetTile(tilePosition, seedHighlightTile);
+            }
+            previousTilePosition = tilePosition;
+        }
+        //else if (highlightTilemap.GetTile(tilePosition).name == "highlightedTile"
+        //    && (Mathf.Abs(playerTilePosition.x - tilePosition.x) > maxReach
+        //    || Mathf.Abs(playerTilePosition.y - tilePosition.y) > maxReach))
+        //{
+        //    highlightTilemap.SetTile(tilePosition, null);
+        //}
+    }
+
+    public void UseHoeAddDirt(Vector3 mousePosition)
+    {
+        tilePosition = dirtTilemap.WorldToCell(mousePosition);
+        if (highlightTilemap.GetTile(tilePosition))
+        {
+            dirtTilemap.SetTile(tilePosition, dirtTile);
+        }
+    }
+
+    public void UseHoeRemoveDirt(Vector3 mousePosition, int maxReach)
+    {
+        tilePosition = dirtTilemap.WorldToCell(mousePosition);
+        Vector3 playerPosition = player.transform.position;
+        Vector3Int playerTilePosition = dirtTilemap.WorldToCell(playerPosition);
+        if (highlightTilemap.GetTile(tilePosition) 
+            && Mathf.Abs(playerTilePosition.x - tilePosition.x) <= maxReach
+            && Mathf.Abs(playerTilePosition.y - tilePosition.y) <= maxReach)
+        {
+            if (seedTilemap.GetTile(tilePosition))
+            {
+                string seedTileName = seedTilemap.GetTile(tilePosition).name;
+                string seedNameWithStage = Regex.Replace(seedTileName, @"(\p{Lu})", " $1").Trim();
+                string seedName = seedNameWithStage.Substring(0, seedNameWithStage.Length - 1);
+                Item seedItem = ItemManager.instance.GetItemByName(seedName);
+                Vector3 spawnPosition = mousePosition;
+                spawnPosition.z = 0;
+                Instantiate(seedItem, spawnPosition, Quaternion.identity);
+                seedTilemap.SetTile(tilePosition, null);
+            }
+            dirtTilemap.SetTile(tilePosition, null);
+        }
+    }
+
+    public void RemoveHighlightTilemap(Vector3 mousePosition)
+    {
+        tilePosition = dirtTilemap.WorldToCell(mousePosition);
+        highlightTilemap.SetTile(tilePosition, null);
+    }
+
+    public bool PlantSeed(Vector3 mousePosition, string seedName, int growHours)
+    {
+        tilePosition = seedTilemap.WorldToCell(mousePosition);
+        if (highlightTilemap.GetTile(tilePosition) && dirtTilemap.GetTile(tilePosition))
+        {
+            string seedTileName = seedName.Replace(" ", "") + "0";
+            TileBase seedTile = seedTileToTileBaseDict[seedTileName];
+            int nextGrowthHour = (int)(GameManager.instance.hours + growHours);
+            seedPositionToName.Add(tilePosition, new List<string> { seedName, nextGrowthHour.ToString()});
+            Debug.Log(seedPositionToName.Count);
+            seedTilemap.SetTile(tilePosition, seedTile);
+            return true;
         }
         return false;
     }

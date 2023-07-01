@@ -29,7 +29,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             // chest2: Cave_1
             if (!hasAddedToChest)
             {
-                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seeds"), 10);
+                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
                 GameManager.instance.chest1.Add(ItemManager.instance.GetItemByName("Diamond Ore"), 2);
                 GameManager.instance.chest2.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
                 hasAddedToChest = true;
@@ -106,11 +106,11 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Potato");
             }
-            else if (slot.itemName == "Potato Seeds")
+            else if (slot.itemName == "Potato Seed")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
             }
-            else if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Tomato Seed")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
             }

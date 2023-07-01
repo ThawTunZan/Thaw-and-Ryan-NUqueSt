@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4343043575726336896}
   - component: {fileID: 2776711247500443465}
   - component: {fileID: 548739915530322310}
+  - component: {fileID: 4828177125383994956}
   - component: {fileID: 8890131048757355296}
   - component: {fileID: 6056221152129462650}
   - component: {fileID: 4504541104588032044}
@@ -18,7 +19,7 @@ GameObject:
   - component: {fileID: 200457947472958697}
   - component: {fileID: 1127771672293020546}
   - component: {fileID: 1138004660227280667}
-  - component: {fileID: 4828177125383994956}
+  - component: {fileID: 5988033192254954714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -122,6 +123,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08227396, y: 0.018018976}
   m_EdgeRadius: 0
+--- !u!70 &4828177125383994956
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568565333973212876}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0011126995, y: 0.018443197}
+  m_Size: {x: 0.08104038, y: 0.1599667}
+  m_Direction: 0
 --- !u!50 &8890131048757355296
 Rigidbody2D:
   serializedVersion: 4
@@ -239,6 +256,7 @@ MonoBehaviour:
   swordSideAttackObject: {fileID: 3747749977762609161}
   swordUpDownAttackObject: {fileID: 7446964951454154378}
   swordDamage: 1
+  pickaxeDamage: 0
 --- !u!114 &1127771672293020546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,22 +292,22 @@ MonoBehaviour:
     questSlots: []
   startingPosition: {fileID: 0}
   playerRenderer: {fileID: 0}
---- !u!70 &4828177125383994956
-CapsuleCollider2D:
+--- !u!114 &5988033192254954714
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3568565333973212876}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0011126995, y: 0.018443197}
-  m_Size: {x: 0.08104038, y: 0.1599667}
-  m_Direction: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c58a9f57754d934b9b32c61ab2458e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedPosition: []
+  seedName: []
+  seedNextGrowth: 
+  startingPosition: {fileID: 0}
 --- !u!1 &3747749977762609161
 GameObject:
   m_ObjectHideFlags: 0

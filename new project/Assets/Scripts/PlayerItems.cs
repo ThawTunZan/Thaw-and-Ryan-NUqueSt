@@ -21,8 +21,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             toolbar = new Inventory("Toolbar", 7);
             toolbar = GameManager.instance.toolbar;
         }
-        inventory = new Inventory("Inventory", 21);
-        toolbar = new Inventory("Toolbar", 7);
+        //inventory = new Inventory("Inventory", 21);
+        //toolbar = new Inventory("Toolbar", 7);
     }
 
     private void Update()
@@ -78,11 +78,11 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         {
             slot.icon = Resources.Load<Sprite>("Farming/Potato");
         }
-        else if (slot.itemName == "Potato Seeds")
+        else if (slot.itemName == "Potato Seed")
         {
             slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
         }
-        else if (slot.itemName == "Tomato Seeds")
+        else if (slot.itemName == "Tomato Seed")
         {
             slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
         }

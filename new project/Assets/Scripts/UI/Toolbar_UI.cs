@@ -99,29 +99,37 @@ public class Toolbar_UI : MonoBehaviour
         {
             if (slot.itemName == "Stone Hoe")
             {
-                HoldHoe(1);
+                HightlightTilemap(1, "Hoe");
+            }
+            else if (slot.itemName == "Tomato Seed")
+            {
+                HightlightTilemap(1, "Seed");
+            }
+            else if (slot.itemName == "Potato Seed")
+            {
+                HightlightTilemap(1, "Seed");
             }
         }
         else
         {
-            UnholdHoe();
+            RemoveHighlightTilemap();
         }
     }
 
-    private void HoldHoe(int maxReach)
+    private void HightlightTilemap(int maxReach, string highlightType)
     {
-        if (TileHighlighter.instance != null)
+        if (TileManager.instance != null)
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            TileHighlighter.instance.HighlightTilemap(mousePosition, maxReach);
+            TileManager.instance.HighlightTilemap(mousePosition, maxReach, highlightType);
         }
     }
 
-    private void UnholdHoe()
+    private void RemoveHighlightTilemap()
     {
-        if (TileHighlighter.instance != null)
+        if (TileManager.instance != null)
         {
-            TileHighlighter.instance.RemoveHighlight(mousePosition);
+            TileManager.instance.RemoveHighlightTilemap(mousePosition);
         }
     }
 
@@ -138,13 +146,13 @@ public class Toolbar_UI : MonoBehaviour
             {
                 EatFood(index, 5);
             }
-            else if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Tomato Seed")
             {
-                PlantSeed(index, "Tomato Seeds");
+                PlantSeed(index, "Tomato Seed", 1);
             }
-            else if (slot.itemName == "Potato Seeds")
+            else if (slot.itemName == "Potato Seed")
             {
-                PlantSeed(index, "Potato Seeds");
+                PlantSeed(index, "Potato Seed", 1);
             }
             else if (slot.itemName == "Stone Sword")
             {
@@ -172,9 +180,15 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void PlantSeed(int index, string itemName)
+    private void PlantSeed(int index, string itemName, int growHours)
     {
-        playerItems.toolbar.Remove(index, 1);
+        if (TileManager.instance != null)
+        {
+            if (TileManager.instance.PlantSeed(mousePosition, itemName, growHours))
+            {
+                playerItems.toolbar.Remove(index, 1);
+            }
+        }
     }
 
     private void SwingTool(float swordDamage, float pickaxeDamage, string itemName)
@@ -186,9 +200,9 @@ public class Toolbar_UI : MonoBehaviour
 
     private void UseHoeAddDirt()
     {
-        if (TileHighlighter.instance != null)
+        if (TileManager.instance != null)
         {
-            TileHighlighter.instance.UseHoeAddDirt(mousePosition);
+            TileManager.instance.UseHoeAddDirt(mousePosition);
         }
     }
 
@@ -200,17 +214,17 @@ public class Toolbar_UI : MonoBehaviour
             if (slot.itemName == "Stone Hoe")
             {
                 SwingTool(0f, 0f, "Hoe");
-                UseHoeRemoveDirt();
+                UseHoeRemoveDirt(1);
             }
             Refresh();
         }
     }
 
-    private void UseHoeRemoveDirt()
+    private void UseHoeRemoveDirt(int maxReach)
     {
-        if (TileHighlighter.instance != null)
+        if (TileManager.instance != null)
         {
-            TileHighlighter.instance.UseHoeRemoveDirt(mousePosition);
+            TileManager.instance.UseHoeRemoveDirt(mousePosition, maxReach);
         }
     }
 }
