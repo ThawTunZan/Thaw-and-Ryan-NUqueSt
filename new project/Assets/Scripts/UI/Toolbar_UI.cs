@@ -1,8 +1,11 @@
+using PlayFab.EconomyModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class Toolbar_UI : MonoBehaviour
 {
@@ -13,13 +16,17 @@ public class Toolbar_UI : MonoBehaviour
     private GameObject player;
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
+    private Health playerHealth;
     private SwordAttack swordAttack;
+
+    private Vector3 mousePosition;
 
     private void Start()
     {
         player = GameObject.Find("Player");
         playerItems = player.GetComponent<PlayerItems>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        playerHealth = GameObject.Find("PlayerHitBox").GetComponent<Health>();
         swordAttack = player.GetComponent<SwordAttack>();
         SelectSlot(0);
     }
@@ -29,7 +36,8 @@ public class Toolbar_UI : MonoBehaviour
         if (!playerItems.disableToolbar)
         {
             CheckAlphaNumericKeys();
-            CheckLeftClick();
+            HoldItemFromToolbar(selectedSlot.slotID);
+            CheckItemUse();
         }
     }
 
@@ -57,11 +65,15 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void CheckLeftClick()
+    private void CheckItemUse()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            UseItemFromToolbar(selectedSlot.slotID);
+            LeftClickItemFromToolbar(selectedSlot.slotID);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            RightClickItemFromToolbar(selectedSlot.slotID);
         }
     }
 
@@ -80,55 +92,139 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void UseItemFromToolbar(int index)
+    private void HoldItemFromToolbar(int index)
+    {
+        Inventory.Slot slot = playerItems.toolbar.slots[index];
+        if (!slot.IsEmpty)
+        {
+            if (slot.itemName == "Stone Hoe")
+            {
+                HightlightTilemap(1, "Hoe");
+            }
+            else if (slot.itemName == "Tomato Seed")
+            {
+                HightlightTilemap(1, "Seed");
+            }
+            else if (slot.itemName == "Potato Seed")
+            {
+                HightlightTilemap(1, "Seed");
+            }
+        }
+        else
+        {
+            RemoveHighlightTilemap();
+        }
+    }
+
+    private void HightlightTilemap(int maxReach, string highlightType)
+    {
+        if (TileManager.instance != null)
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            TileManager.instance.HighlightTilemap(mousePosition, maxReach, highlightType);
+        }
+    }
+
+    private void RemoveHighlightTilemap()
+    {
+        if (TileManager.instance != null)
+        {
+            TileManager.instance.RemoveHighlightTilemap(mousePosition);
+        }
+    }
+
+    private void LeftClickItemFromToolbar(int index)
     {
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
             if (slot.itemName == "Tomato")
             {
-                EatTomato();
-                playerItems.toolbar.Remove(index, 1);
+                EatFood(index, 5);
             }
-            else if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Potato")
             {
-                PlantTomato();
+                EatFood(index, 5);
             }
-            else if (slot.itemName == "Rusty Sword")
+            else if (slot.itemName == "Tomato Seed")
             {
-                SwingSword();
+                PlantSeed(index, 1, "Tomato Seed");
             }
-            else if (slot.itemName == "Rusty Pickaxe")
+            else if (slot.itemName == "Potato Seed")
             {
-                SwingPickaxe();
+                PlantSeed(index, 1, "Potato Seed");
+            }
+            else if (slot.itemName == "Stone Sword")
+            {
+                SwingTool(2f, 0f, "Sword");
+            }
+            else if (slot.itemName == "Stone Pickaxe")
+            {
+                SwingTool(1f, 1f, "Pickaxe");
+            }
+            else if (slot.itemName == "Stone Hoe")
+            {
+                SwingTool(0f, 0f, "Hoe");
+                UseHoeAddDirt();
             }
             Refresh();
         }
     }
 
-    private void EatTomato()
+    private void EatFood(int index, int amountToHeal)
     {
-        // Add the logic for eating a tomato here
+        if (playerHealth.health != playerHealth.maxHealth)
+        {
+            playerHealth.health = Math.Min(playerHealth.health + amountToHeal, playerHealth.maxHealth);
+            playerItems.toolbar.Remove(index, 1);
+        }
     }
 
-    private void PlantTomato()
+    private void PlantSeed(int index, int hoursToGrow, string seedName)
     {
-        // Add the logic for planting a tomato here
+        if (TileManager.instance != null)
+        {
+            if (TileManager.instance.PlantSeed(mousePosition, hoursToGrow, seedName))
+            {
+                playerItems.toolbar.Remove(index, 1);
+            }
+        }
     }
 
-    private void SwingSword()
+    private void SwingTool(float swordDamage, float pickaxeDamage, string itemName)
     {
-        swordAttack.swordSideAttackObject.tag = "SwordAttack";
-        swordAttack.swordUpDownAttackObject.tag = "SwordAttack";
-        swordAttack.swordDamage = 1f;
-        playerMovement.AnimateSwordAttack();
+        swordAttack.swordDamage = swordDamage;
+        swordAttack.pickaxeDamage = pickaxeDamage;
+        playerMovement.AnimateToolAttack(itemName);
     }
 
-    private void SwingPickaxe()
+    private void UseHoeAddDirt()
     {
-        swordAttack.swordSideAttackObject.tag = "PickaxeAttack";
-        swordAttack.swordUpDownAttackObject.tag = "PickaxeAttack";
-        swordAttack.pickaxeDamage = 1f;
-        playerMovement.AnimatePickaxeAttack();
+        if (TileManager.instance != null)
+        {
+            TileManager.instance.UseHoeAddDirt(mousePosition);
+        }
+    }
+
+    private void RightClickItemFromToolbar(int index)
+    {
+        Inventory.Slot slot = playerItems.toolbar.slots[index];
+        if (!slot.IsEmpty)
+        {
+            if (slot.itemName == "Stone Hoe")
+            {
+                SwingTool(0f, 0f, "Hoe");
+                UseHoeRemoveDirt(1);
+            }
+            Refresh();
+        }
+    }
+
+    private void UseHoeRemoveDirt(int maxReach)
+    {
+        if (TileManager.instance != null)
+        {
+            TileManager.instance.UseHoeRemoveDirt(mousePosition, maxReach);
+        }
     }
 }

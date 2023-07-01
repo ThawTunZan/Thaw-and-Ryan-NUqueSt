@@ -29,9 +29,9 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             // chest2: Cave_1
             if (!hasAddedToChest)
             {
-                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seeds"), 10);
+                GameManager.instance.chest0.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
                 GameManager.instance.chest1.Add(ItemManager.instance.GetItemByName("Diamond Ore"), 2);
-                GameManager.instance.chest2.Add(ItemManager.instance.GetItemByName("Rusty Pickaxe"));
+                GameManager.instance.chest2.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
                 hasAddedToChest = true;
             }
             chestInventory = new Inventory(chestName, 21);
@@ -106,21 +106,25 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Potato");
             }
-            else if (slot.itemName == "Potato Seeds")
+            else if (slot.itemName == "Potato Seed")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
             }
-            else if (slot.itemName == "Tomato Seeds")
+            else if (slot.itemName == "Tomato Seed")
             {
                 slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
             }
-            else if (slot.itemName == "Rusty Sword")
+            else if (slot.itemName == "Stone Sword")
             {
-                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Sword");
+                slot.icon = Resources.Load<Sprite>("Weapons/Stone_Sword");
             }
-            else if (slot.itemName == "Rusty Pickaxe")
+            else if (slot.itemName == "Stone Pickaxe")
             {
-                slot.icon = Resources.Load<Sprite>("Weapons/Rusty_Pickaxe");
+                slot.icon = Resources.Load<Sprite>("Weapons/Stone_Pickaxe");
+            }
+            else if (slot.itemName == "Stone Hoe")
+            {
+                slot.icon = Resources.Load<Sprite>("Weapons/Stone_Hoe");
             }
             else if (slot.itemName == "Stone Ore")
             {

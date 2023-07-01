@@ -36,7 +36,10 @@ public class GameData
 
     public float day;
 
-    
+    public List<Vector3Int> seedPositions = new List<Vector3Int>();
+    public List<string> seedNames = new List<string>();
+    public List<float> seedNextGrowths = new List<float>();
+
     //default value;
     public GameData()
     {

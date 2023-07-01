@@ -55,10 +55,10 @@ public class RockHealth : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("PickaxeAttack"))
+        if (col.gameObject.CompareTag("SwordAttack"))
         {
-            SwordAttack pickaxeAttack = col.gameObject.GetComponentInParent<SwordAttack>();
-            OnHit(pickaxeAttack.pickaxeDamage);
+            SwordAttack swordAttack = col.gameObject.GetComponentInParent<SwordAttack>();
+            OnHit(swordAttack.pickaxeDamage);
         }
     }
 }
