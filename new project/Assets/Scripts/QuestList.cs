@@ -18,7 +18,7 @@ public class QuestList
         // add more requirements here for different quests
         public int slimesRequired;
         [SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
-        public List<Dictionary<string, bool>> placesToVisit = new List<Dictionary<string, bool>>();
+        public List<string> placesToVisit = new List<string>();
 
         public void AddItem(string quest_name, string quest_description)
         {
@@ -42,7 +42,7 @@ public class QuestList
             }
             if (quest_name == "HSA1000")
             {
-                placesToVisit.Add(new Dictionary<string, bool> { { "Cave_1", false } });
+                placesToVisit.Add("Cave_1_Tomestone");
             }
             if (quest_name == "GEA1000")
             {
