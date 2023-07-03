@@ -36,7 +36,7 @@ public class GameButtons : MonoBehaviour
     public void ContinueGame()
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("PlayerHouse");
+        SceneManager.LoadSceneAsync("ScientistHouse");
     }
 
     //disable so that player cant click continue button if there is no saved data
