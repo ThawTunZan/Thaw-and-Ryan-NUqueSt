@@ -1,3 +1,3 @@
 INCLUDE globals.ink
 
-Chemist
+Physicist
