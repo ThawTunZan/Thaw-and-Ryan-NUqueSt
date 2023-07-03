@@ -42,7 +42,11 @@ public class QuestList
             }
             if (quest_name == "HSA1000")
             {
-                placesToVisit.Add("Cave_1_Tomestone");
+                placesToVisit.Add("Cave_1");
+            }
+            if (quest_name == "GESS1001")
+            {
+                placesToVisit.Add("Cave_1b");
             }
             if (quest_name == "GEA1000")
             {

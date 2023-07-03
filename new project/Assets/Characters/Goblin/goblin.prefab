@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3045464743074517672}
   - component: {fileID: 3045464743074517673}
   - component: {fileID: 3045464743074517674}
-  - component: {fileID: 3045464743074517653}
   - component: {fileID: 3045464743074517652}
   - component: {fileID: 7237662395447600919}
+  - component: {fileID: 1661974025940782263}
   m_Layer: 9
   m_Name: goblin
   m_TagString: Enemy
@@ -184,20 +184,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   skeletonCount: 0
---- !u!114 &3045464743074517653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045464743074517675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d622c00a1d7c6b4ab17280fc0e13c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _health: 5
 --- !u!1839735485 &3045464743074517652
 Tilemap:
   m_ObjectHideFlags: 0
@@ -250,4 +236,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rock: {fileID: 8458789943560896957, guid: 42bd45ef2a8fb694da84d3d2fe7901f3, type: 3}
   rockPos: {fileID: 0}
+  moving: 0
   force: 0
+--- !u!114 &1661974025940782263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045464743074517675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c8e9a9a3b31a04d8bac47043867975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  player: {fileID: 0}
+  _health: 2

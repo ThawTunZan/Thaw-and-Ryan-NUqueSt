@@ -42,7 +42,7 @@ public class QuestSlot_UI : MonoBehaviour
                 questStatus.SetActive(true);
             }
         }
-        if (questSlot.questName == "MA1512")
+        if (questSlot.questName == "MA1512" || questSlot.questName == "GEA1000")
         {
             foreach (Dictionary<string, int> questDict in questSlot.requireItems)
             {

@@ -90,7 +90,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
         string questIsDone = currentStory.variablesState["questDone"].ToString();
-       
+        if (GameManager.instance.day != currDay)
+        {
+            dialogueVariables.InkSetVariables(currentStory, "questDone", false);
+        }
+
         if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
         {
             print("not valid time");
@@ -133,8 +137,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                     player.questList.questSlots[i].done = false;
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
-                    
-
+                    player.questList.questSlots[i].count = 0;
                 }
                 else
                 {
@@ -145,8 +148,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 }
             }
         }
-        //CheckDate();
-
         ContinueStory();
     }
 
