@@ -28,3 +28,7 @@ VAR DTK1000 = false
 VAR questHSA1000Done = false
 VAR questGESS1001Done = false
 
+VAR questPC1101Done = false
+VAR questPC1201Done = false
+
+

@@ -19,6 +19,7 @@ How can I help you?
 -> END
 
 === GEA1000 ===
+{(!questDone):
 Hey! Looks like you are getting the hang of it!
 Do you think you can help me get a sample of a rock that on the first level of the cave?
 It seems like it is the only unique looking rock in that level!
@@ -31,8 +32,15 @@ What do you think? Are you down for it?
         :(
         -> DONE
 -> END
+}
+WOW! Thanks for the help! I can't believe it! This Rock looks amazing!.
+I can't imagine what I would do without you! I would have died in the cave...
+     ~questGEA1000Done = true
+     ~validTime = false
+->END
 
 === GESS1001Convo ===
+{(!questDone):
 Hey! Thanks for the help with the previous quest! 
 I wondered who made that tomestone... My guess is on this WHOLESOME community called RAG
 Anyway, do you think you can help me with exploring the second level of the cave? 
@@ -41,9 +49,17 @@ It must have died from the S/U Monster
 Do you think you can help me find out what it is?
 -> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave")
 -> END
+}
+Brhhh... The details you showed me made me shiver... The possibility of the S/U monster existing seems high...
+I have a feeling the S/U Monster comes at the end of the week...
+Anyway, thx for the help! See you next time
+     ~questGESS1001Done = true
+     ~validTime = false
+->END
 
 
 === HSA1000Convo ===
+{(!questDone):
 You must be the new person in town!
 My name is Tin!
 Do you think you can help me with something?
@@ -54,13 +70,18 @@ Do you think you can help me with something?
     The person seemed to have died after contracting a disease called ZEROGPA...
     He was wondering aimlessly in the cave due to the disease affecting his brain, trapping him in the cave.
     Anyway, help me explore around the first level of the cave. 
-    If you stumbled upon a tomestone, let me know!
+    If you stumbled upon a tombstone, let me know!
     So what do you think? Are you up for the task?
-    -> start_quest("HSA1000", "Help me find a tomestone in the first level of the cave!")
+    -> start_quest("HSA1000", "Help me find a tombstone in the first level of the cave!")
 *[Nahh]
     Awww ok...
-    -> DONE
 -> END
+}
+WOW! For a first timer you are pretty good! Your assistance helped me in confirming that ZEROGPA is a deadly disease. It is also the cause of the death of our lovely dead companion.
+Anyway, since you are such a reliable neighbour I will contact you when I need help again! You can do the same as well!
+     ~questHSA1000Done = true
+     ~validTime = false
+     ->END
     
 === in_quest ===
 * [What am I supposed to do again?]
