@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WeaponShopTutorial_UI : MonoBehaviour, IDataPersistence
+public class WeaponShopTutorial_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
+    private int tutorialProgress;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -25,22 +24,15 @@ public class WeaponShopTutorial_UI : MonoBehaviour, IDataPersistence
 
     public PlayerMovement playerMovement;
 
-    void Start()
-    {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
-    }
 
     void Update()
     {
         GameManager.instance.tutorialProgress = tutorialProgress;
-        if (tutorialProgress == 1)
+        if (GameManager.instance.tutorialProgress == 1)
         {
             TutorialPart1();
         }
-        else if (tutorialProgress == 2)
+        else if (GameManager.instance.tutorialProgress == 2)
         {
             Destroy(finishedWeaponShop);
             TutorialPart2();
@@ -103,15 +95,5 @@ public class WeaponShopTutorial_UI : MonoBehaviour, IDataPersistence
             openedQuestList = true;
             tutorialText.text = "Head south of the village to see your house";
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }

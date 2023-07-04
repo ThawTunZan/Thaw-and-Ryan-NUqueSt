@@ -14012,6 +14012,10 @@ PrefabInstance:
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
+    - target: {fileID: 1186009404830605522, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
     - target: {fileID: 1954402474346666204, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
@@ -16753,8 +16757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a02bbd0aa42904e9dc8c07e9ec4f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: 0
-  startingPosition: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
   tutorialText: {fileID: 1283894498}
   enterPlayerHouseFirst: {fileID: 1249097971}
 --- !u!1 &978624193
@@ -97924,6 +97926,7 @@ MonoBehaviour:
   chestList: []
   hasAddedToChest: 0
   tutorialProgress: 0
+  cs1010Progress: 0
   hours: 0
   minutes: 0
   seconds: 0

@@ -19,12 +19,20 @@ public class BedSleep : MonoBehaviour
     public PlayerItems playerItems;
     public PlayerMovement playerMovement;
 
+    private int tutorialProgress;
+
     private void Start()
     {
         clockManager = globalVolume.GetComponent<ClockManager>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
     }
+
+    private void Update()
+    {
+        GameManager.instance.tutorialProgress = tutorialProgress;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -48,9 +56,9 @@ public class BedSleep : MonoBehaviour
         HideMessage();
         playerMovement.enabled = false;
         clockManager.days += 1;
-        if (tutorialUI.tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 2)
         {
-            tutorialUI.tutorialProgress = 3;
+            tutorialProgress = 3;
         }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;

@@ -9,7 +9,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public Inventory inventory;
     public Inventory toolbar;
     public PlayerPositionSO startingPosition;
-    public SpriteRenderer playerRenderer;
+    private SpriteRenderer playerRenderer;
 
     private void Start()
     {

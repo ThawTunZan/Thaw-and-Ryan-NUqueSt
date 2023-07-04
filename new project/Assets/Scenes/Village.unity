@@ -40516,8 +40516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea86aada5959d1479b760e4581f4eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: 0
-  startingPosition: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
   tutorialPanel: {fileID: 783521155}
   tutorialText: {fileID: 1213240462}
   talkToBlacksmithFirst: {fileID: 1529845753}
@@ -62489,6 +62487,7 @@ MonoBehaviour:
   chestList: []
   hasAddedToChest: 0
   tutorialProgress: 0
+  cs1010Progress: 0
   hours: 0
   minutes: 0
   seconds: 0
@@ -68141,6 +68140,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
     - target: {fileID: 1138004660227280667, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}
+    - target: {fileID: 1186009404830605522, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: e5b5c0f91a4ead94cbe4944eaf2aedd0, type: 2}

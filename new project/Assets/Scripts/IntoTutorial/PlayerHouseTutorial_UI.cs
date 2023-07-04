@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
+public class PlayerHouseTutorial_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
+    private int tutorialProgress;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -24,24 +23,14 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
     private bool nearBed;
     public GameObject bedSleepPanel;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         GameManager.instance.tutorialProgress = tutorialProgress;
-        if (tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 2)
         {
             TutorialPart1();
         }
-        else if (tutorialProgress == 3)
+        else if (GameManager.instance.tutorialProgress == 3)
         {
             Destroy(saveFirst2);
             TutorialPart2();
@@ -112,15 +101,5 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         {
             tutorialProgress = 4;
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }

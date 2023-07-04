@@ -5629,6 +5629,7 @@ MonoBehaviour:
   chestList: []
   hasAddedToChest: 0
   tutorialProgress: 0
+  cs1010Progress: 0
   hours: 0
   minutes: 0
   seconds: 0
@@ -8384,6 +8385,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
     - target: {fileID: 1138004660227280667, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+    - target: {fileID: 1186009404830605522, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
@@ -26105,8 +26110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c8d71bc7ea22e478b3c1eaff1c9309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: 0
-  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
   tutorialPanel: {fileID: 1363777606}
   tutorialText: {fileID: 816386988}
   saveFirst1: {fileID: 1160803605}

@@ -15,11 +15,12 @@ GameObject:
   - component: {fileID: 8890131048757355296}
   - component: {fileID: 6056221152129462650}
   - component: {fileID: 4504541104588032044}
-  - component: {fileID: 1954402474346666204}
   - component: {fileID: 200457947472958697}
+  - component: {fileID: 1954402474346666204}
   - component: {fileID: 1127771672293020546}
   - component: {fileID: 1138004660227280667}
   - component: {fileID: 5988033192254954714}
+  - component: {fileID: 1186009404830605522}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,6 +212,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &200457947472958697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568565333973212876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdff4635b7cf554bab0705901ecdd6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSideAttackObject: {fileID: 3747749977762609161}
+  swordUpDownAttackObject: {fileID: 7446964951454154378}
+  swordDamage: 1
+  pickaxeDamage: 0
 --- !u!114 &1954402474346666204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,22 +258,6 @@ MonoBehaviour:
   movespeed: 1
   collisionOffset: 0.05
   startingPosition: {fileID: 0}
---- !u!114 &200457947472958697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3568565333973212876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdff4635b7cf554bab0705901ecdd6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordSideAttackObject: {fileID: 3747749977762609161}
-  swordUpDownAttackObject: {fileID: 7446964951454154378}
-  swordDamage: 1
-  pickaxeDamage: 0
 --- !u!114 &1127771672293020546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +276,6 @@ MonoBehaviour:
   toolbar:
     slots: []
   startingPosition: {fileID: 0}
-  playerRenderer: {fileID: 0}
 --- !u!114 &1138004660227280667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,6 @@ MonoBehaviour:
   questList:
     questSlots: []
   startingPosition: {fileID: 0}
-  playerRenderer: {fileID: 0}
 --- !u!114 &5988033192254954714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,10 +303,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c58a9f57754d934b9b32c61ab2458e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedPosition: []
-  seedName: []
-  seedNextGrowth: 
+  seedPositions: []
+  seedNames: []
+  seedNextGrowths: []
   startingPosition: {fileID: 0}
+--- !u!114 &1186009404830605522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568565333973212876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ded9a8242cf8944b4f2282afedf3e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3747749977762609161
 GameObject:
   m_ObjectHideFlags: 0

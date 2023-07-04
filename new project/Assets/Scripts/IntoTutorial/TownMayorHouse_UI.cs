@@ -4,10 +4,9 @@ using TMPro;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
+public class TownMayorHouse_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
+    private int tutorialProgress;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -23,24 +22,14 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     private bool progressSecDialogueDone;
     public GameObject openSecDialogueFirst;
 
-    private bool exitHouseDone;
-
-    private void Start()
-    {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
-    }
-
     private void Update()
     {
         GameManager.instance.tutorialProgress = tutorialProgress;
-        if (tutorialProgress == 0)
+        if (GameManager.instance.tutorialProgress == 0)
         {
             StartTutorial();
         }
-        else if (tutorialProgress == 1)
+        else if (GameManager.instance.tutorialProgress == 1)
         {
             Destroy(openTMDialogueFirst);
             Destroy(openSecDialogueFirst);
@@ -123,15 +112,5 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
             tutorialText.text = "Head west of the village to meet the blacksmith";
             tutorialPanel.SetActive(true);
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }
