@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class BedSleep : MonoBehaviour
 {
+    public PlayerTutorial playerTutorial;
+
     public GameObject Message;
     public Button yesButton;
     public Button noButton;
@@ -19,18 +21,12 @@ public class BedSleep : MonoBehaviour
     public PlayerItems playerItems;
     public PlayerMovement playerMovement;
 
-    private int tutorialProgress;
-
     private void Start()
     {
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
         clockManager = globalVolume.GetComponent<ClockManager>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
-    }
-
-    private void Update()
-    {
-        GameManager.instance.tutorialProgress = tutorialProgress;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,7 +54,7 @@ public class BedSleep : MonoBehaviour
         clockManager.days += 1;
         if (GameManager.instance.tutorialProgress == 2)
         {
-            tutorialProgress = 3;
+            playerTutorial.tutorialProgress = 3;
         }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;

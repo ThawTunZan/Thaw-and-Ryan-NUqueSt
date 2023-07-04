@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class TownMayorHouse_UI : MonoBehaviour
 {
-    private int tutorialProgress;
+    public PlayerTutorial playerTutorial;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -21,9 +22,13 @@ public class TownMayorHouse_UI : MonoBehaviour
     private bool progressSecDialogueDone;
     public GameObject openSecDialogueFirst;
 
+    private void Start()
+    {
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
+    }
+
     private void Update()
     {
-        GameManager.instance.tutorialProgress = tutorialProgress;
         if (GameManager.instance.tutorialProgress == 0)
         {
             StartTutorial();
@@ -100,7 +105,7 @@ public class TownMayorHouse_UI : MonoBehaviour
             Destroy(openSecDialogueFirst);
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
-            tutorialProgress = 1;
+            playerTutorial.tutorialProgress = 1;
         }
     }
 

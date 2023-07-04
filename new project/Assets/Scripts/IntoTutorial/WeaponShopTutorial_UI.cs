@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WeaponShopTutorial_UI : MonoBehaviour
 {
+    public PlayerTutorial playerTutorial;
+
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
@@ -22,6 +24,10 @@ public class WeaponShopTutorial_UI : MonoBehaviour
 
     public PlayerMovement playerMovement;
 
+    private void Start()
+    {
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
+    }
 
     void Update()
     {
@@ -72,7 +78,7 @@ public class WeaponShopTutorial_UI : MonoBehaviour
             tutorialText.text = "Press Q to open up your quest list";
             tutorialPanel.SetActive(true);
             playerMovement.enabled = false;
-            GameManager.instance.tutorialProgress = 2;
+            playerTutorial.tutorialProgress = 2;
             Destroy(finishedWeaponShop);
         }
     }

@@ -6,7 +6,7 @@ public class PlayerTutorial : MonoBehaviour, IDataPersistence
 {
     public PlayerPositionSO startingPosition;
 
-    private int tutorialProgress;
+    public int tutorialProgress;
 
     void Start()
     {

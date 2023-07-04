@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerHouseTutorial_UI : MonoBehaviour
 {
-    private int tutorialProgress;
+    public PlayerTutorial playerTutorial;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -23,9 +23,13 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
     private bool nearBed;
     public GameObject bedSleepPanel;
 
+    private void Start()
+    {
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
+    }
+
     void Update()
     {
-        GameManager.instance.tutorialProgress = tutorialProgress;
         if (GameManager.instance.tutorialProgress == 2)
         {
             TutorialPart1();
@@ -99,7 +103,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
     {
         if (!notePanel.activeSelf)
         {
-            tutorialProgress = 4;
+            playerTutorial.tutorialProgress = 4;
         }
     }
 }
