@@ -10,6 +10,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
+    public GameObject seeChestFirst;
     public GameObject saveFirst1;
     public GameObject saveFirst2;
 
@@ -30,17 +31,19 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 1)
         {
             TutorialPart1();
         }
-        else if (GameManager.instance.tutorialProgress == 3)
+        else if (GameManager.instance.tutorialProgress == 2)
         {
+            Destroy(seeChestFirst);
             Destroy(saveFirst2);
             TutorialPart2();
         }
         else
         {
+            Destroy(seeChestFirst);
             Destroy(saveFirst1);
             Destroy(saveFirst2);
             Destroy(this.gameObject);
@@ -65,6 +68,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
         {
             openedChest = true;
             saveFirst2.SetActive(true);
+            Destroy(seeChestFirst);
             tutorialText.text = "Sleeping saves the game";
         }
     }
@@ -103,7 +107,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
     {
         if (!notePanel.activeSelf)
         {
-            playerTutorial.tutorialProgress = 4;
+            playerTutorial.tutorialProgress = 3;
         }
     }
 }

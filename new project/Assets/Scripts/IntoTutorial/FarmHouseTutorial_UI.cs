@@ -11,7 +11,7 @@ public class FarmHouseTutorial_UI : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 1)
         {
             tutorialText.text = "Enter your house west of the path";
         }

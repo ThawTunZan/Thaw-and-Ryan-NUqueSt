@@ -113,7 +113,7 @@ public class TownMayorHouse_UI : MonoBehaviour
     {
         if (!dialoguePanel.activeSelf)
         {
-            tutorialText.text = "Head west of the village to meet the blacksmith";
+            tutorialText.text = "Head south of the village to see your house";
             tutorialPanel.SetActive(true);
         }
     }

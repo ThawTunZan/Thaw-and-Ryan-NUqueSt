@@ -21,12 +21,14 @@ Ava: You may call me Ava.
 Ava: Anything you would like to ask?
     * [What is this place?]
         Ava: This is the mayor's house.
-        -> DONE
+        Ava: Our village was established more than 30 years ago.
+        Ava: We have many friendly villagers who usually require help as they are busy.
+        -> tutorialDone
     * [What do I do now?]
-        Ava: You can talk to the blacksmith.
-        Ava: His shop is at the furthest west of the village.
-        Ava: He may require assistance.
-        -> DONE
+        Ava: There is a vacant house south of this village.
+        Ava: We believe it should be sufficient for you.
+        Ava: Take a rest, and I will fill you in on what you should do.
+        -> tutorialDone
     * [Leave]
         Ava: Bye!
         -> DONE

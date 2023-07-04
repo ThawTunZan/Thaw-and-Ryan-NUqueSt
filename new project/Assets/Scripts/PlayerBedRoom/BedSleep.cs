@@ -52,9 +52,9 @@ public class BedSleep : MonoBehaviour
         HideMessage();
         playerMovement.enabled = false;
         clockManager.days += 1;
-        if (GameManager.instance.tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 1)
         {
-            playerTutorial.tutorialProgress = 3;
+            playerTutorial.tutorialProgress = 2;
         }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;
