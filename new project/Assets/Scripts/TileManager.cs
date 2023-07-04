@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.Windows;
-using static UnityEditor.Progress;
 
 public class TileManager : MonoBehaviour
 {

@@ -90,7 +90,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
         string questIsDone = currentStory.variablesState["questDone"].ToString();
-       
+        if (GameManager.instance.day != currDay)
+        {
+            dialogueVariables.InkSetVariables(currentStory, "questDone", false);
+        }
+
         if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
         {
             print("not valid time");
@@ -124,29 +128,26 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
                     dialogueVariables.InkSetVariables(currentStory, "questDone", true);
-                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", true);
+                   // dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", true);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
-                    dialogueVariables.InkSetVariables(currentStory, "validTime", false);
+                    //dialogueVariables.InkSetVariables(currentStory, "validTime", false);
                     // remove the quest from quest slot
                     player.questList.questSlots[i].questName = "";
                     player.questList.questSlots[i].questDescription = "";
                     player.questList.questSlots[i].done = false;
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
-                    
-
+                    player.questList.questSlots[i].count = 0;
                 }
                 else
                 {
                     dialogueVariables.InkSetVariables(currentStory, "questDone", false);
-                    dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", false);
+                   // dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", false);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", true);
                     dialogueVariables.InkSetVariables(currentStory, "validTime", true);
                 }
             }
         }
-        //CheckDate();
-
         ContinueStory();
     }
 
