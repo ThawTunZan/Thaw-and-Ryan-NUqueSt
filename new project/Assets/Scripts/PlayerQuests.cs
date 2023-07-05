@@ -9,7 +9,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public PlayerPositionSO startingPosition;
 
     private string currScene;
-    private int cs1010Progress;
+    public int cs1010Progress;
 
     private void Start()
     {
@@ -26,11 +26,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     private void CheckCS1010Progress(string currScene, int cs1010Progress)
     {
-        if (currScene == "Cave_1a" && cs1010Progress > 0)
-        {
-            Debug.Log("Here");
-        }
-        else if (currScene == "Cave_2a" && cs1010Progress > 1)
+        if (currScene == "Cave_2a" && cs1010Progress > 1)
         {
 
         }
