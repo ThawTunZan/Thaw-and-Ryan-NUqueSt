@@ -30,8 +30,8 @@ public class GameButtons : MonoBehaviour
         //create new game instance
         DatabaseManager.instance.DeleteUserData();
         DataPersistenceManager.instance.NewGame();
-        //SceneManager.LoadSceneAsync("IntroTutorial");
-        SceneManager.LoadSceneAsync("Cave_1a");
+        SceneManager.LoadSceneAsync("IntroTutorial");
+
     }
 
     public void ContinueGame()
