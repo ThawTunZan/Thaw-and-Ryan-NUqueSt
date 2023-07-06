@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class NoteTrigger : MonoBehaviour
+public class ForLoopPuzzle : MonoBehaviour
 {
-    public string noteType;
-    public GameObject notePanel;
-    public GameObject noteText;
-    public GameObject noteImage;
+    public GameObject puzzlePanel;
+    public GameObject puzzleText;
+    public TMP_InputField puzzleInput;
 
     public GameObject visualCue;
 
@@ -34,14 +34,13 @@ public class NoteTrigger : MonoBehaviour
 
     private void TriggerNote()
     {
-        if (!playerItems.disableToolbar && !notePanel.activeSelf && Input.GetKeyDown(KeyCode.E))
+        if (!playerItems.disableToolbar && !puzzlePanel.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
-            notePanel.SetActive(true);
-            CheckType();
+            puzzlePanel.SetActive(true);
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
         }
-        else if (playerItems.disableToolbar && notePanel.activeSelf 
+        else if (playerItems.disableToolbar && puzzlePanel.activeSelf
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             HideUI();
@@ -68,22 +67,10 @@ public class NoteTrigger : MonoBehaviour
         }
     }
 
-    private void CheckType()
-    {
-        if (noteType == "Text")
-        {
-            noteText.SetActive(true);
-        }
-        else if (noteType == "Image")
-        {
-            noteImage.SetActive(true);
-        }
-    }
-
     private void HideUI()
     {
-        noteText.SetActive(false);
-        noteImage.SetActive(false);
-        notePanel.SetActive(false);
+        puzzlePanel.SetActive(false);
+        puzzleText.SetActive(false);
+        puzzleInput.gameObject.SetActive(false);
     }
 }

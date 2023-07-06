@@ -14,8 +14,11 @@ public class PuzzleDoor : MonoBehaviour
     public GameObject Lever4Down;
     public GameObject Lever5Up;
     public GameObject Lever5Down;
+
     public GameObject Door1;
     public GameObject Door2;
+
+    public GameObject lockedWall;
 
     private PlayerQuests playerQuests;
 
@@ -28,6 +31,7 @@ public class PuzzleDoor : MonoBehaviour
     void Update()
     {
         CheckDoor1();
+        CheckLockedWall();
         CheckDoor2();
     }
 
@@ -77,5 +81,10 @@ public class PuzzleDoor : MonoBehaviour
             playerQuests.cs1010Progress = 1;
             Door2.SetActive(true);
         }
+    }
+
+    private void CheckLockedWall()
+    {
+
     }
 }
