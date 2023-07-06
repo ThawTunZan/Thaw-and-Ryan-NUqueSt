@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
+public class PlayerHouseTutorial_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
+    public PlayerTutorial playerTutorial;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
+    public GameObject seeChestFirst;
     public GameObject saveFirst1;
     public GameObject saveFirst2;
 
@@ -24,30 +24,26 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
     private bool nearBed;
     public GameObject bedSleepPanel;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        GameManager.instance.tutorialProgress = tutorialProgress;
-        if (tutorialProgress == 2)
+        if (GameManager.instance.tutorialProgress == 1)
         {
             TutorialPart1();
         }
-        else if (tutorialProgress == 3)
+        else if (GameManager.instance.tutorialProgress == 2)
         {
+            Destroy(seeChestFirst);
             Destroy(saveFirst2);
             TutorialPart2();
         }
         else
         {
+            Destroy(seeChestFirst);
             Destroy(saveFirst1);
             Destroy(saveFirst2);
             Destroy(this.gameObject);
@@ -72,6 +68,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
         {
             openedChest = true;
             saveFirst2.SetActive(true);
+            Destroy(seeChestFirst);
             tutorialText.text = "Sleeping saves the game";
         }
     }
@@ -110,17 +107,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour, IDataPersistence
     {
         if (!notePanel.activeSelf)
         {
-            tutorialProgress = 4;
+            playerTutorial.tutorialProgress = 3;
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }

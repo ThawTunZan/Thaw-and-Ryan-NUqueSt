@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 
-public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
+public class TownMayorHouse_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
+    public PlayerTutorial playerTutorial;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
@@ -22,24 +22,18 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     private bool progressSecDialogueDone;
     public GameObject openSecDialogueFirst;
 
-    private bool exitHouseDone;
-
     private void Start()
     {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
     }
 
     private void Update()
     {
-        GameManager.instance.tutorialProgress = tutorialProgress;
-        if (tutorialProgress == 0)
+        if (GameManager.instance.tutorialProgress == 0)
         {
             StartTutorial();
         }
-        else if (tutorialProgress == 1)
+        else if (GameManager.instance.tutorialProgress == 1)
         {
             Destroy(openTMDialogueFirst);
             Destroy(openSecDialogueFirst);
@@ -111,7 +105,7 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
             Destroy(openSecDialogueFirst);
             tutorialText.text = "";
             tutorialPanel.SetActive(false);
-            tutorialProgress = 1;
+            playerTutorial.tutorialProgress = 1;
         }
     }
 
@@ -119,18 +113,8 @@ public class TownMayorHouse_UI : MonoBehaviour, IDataPersistence
     {
         if (!dialoguePanel.activeSelf)
         {
-            tutorialText.text = "Head west of the village to meet the blacksmith";
+            tutorialText.text = "Head south of the village to see your house";
             tutorialPanel.SetActive(true);
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }

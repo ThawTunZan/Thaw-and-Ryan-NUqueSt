@@ -8,6 +8,7 @@ public class ChestTrigger : MonoBehaviour
     public GameObject chestPanel;
     public GameObject inventoryPanel;
     public GameObject dropPanel;
+    public GameObject visualCue;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI chestInCanvas;
@@ -71,6 +72,7 @@ public class ChestTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             playerInRange = true;
+            visualCue.SetActive(true);
         }
     }
 
@@ -79,6 +81,7 @@ public class ChestTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             playerInRange = false;
+            visualCue.SetActive(false);
         }
     }
 }

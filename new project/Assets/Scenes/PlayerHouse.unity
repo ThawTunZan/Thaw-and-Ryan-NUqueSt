@@ -5469,6 +5469,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462833550}
   m_CullTransparentMesh: 1
+--- !u!1 &492711488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492711489}
+  - component: {fileID: 492711491}
+  - component: {fileID: 492711490}
+  m_Layer: 5
+  m_Name: NotesImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &492711489
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492711488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 604251742}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 650, y: 650}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &492711490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492711488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &492711491
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492711488}
+  m_CullTransparentMesh: 1
 --- !u!1 &497530858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5629,6 +5705,7 @@ MonoBehaviour:
   chestList: []
   hasAddedToChest: 0
   tutorialProgress: 0
+  cs1010Progress: 0
   hours: 0
   minutes: 0
   seconds: 0
@@ -6986,6 +7063,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1775223547}
+  - {fileID: 492711489}
   m_Father: {fileID: 203052597}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8384,6 +8462,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
     - target: {fileID: 1138004660227280667, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+    - target: {fileID: 1186009404830605522, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
@@ -12221,7 +12303,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048789051
 GameObject:
@@ -13719,7 +13801,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1163458283
 GameObject:
@@ -18253,6 +18335,64 @@ MonoBehaviour:
   itemIcon: {fileID: 1054104306}
   quantityText: {fileID: 86909689}
   highlight: {fileID: 0}
+--- !u!1 &1410949125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410949127}
+  - component: {fileID: 1410949126}
+  m_Layer: 0
+  m_Name: SeeChestFirst
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1410949126
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410949125}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10097954, y: 0.21574841}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2438274, y: 0.35125032}
+  m_EdgeRadius: 0
+--- !u!4 &1410949127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410949125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7373705, y: 0.27281678, z: 0.015179622}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419790833
 GameObject:
   m_ObjectHideFlags: 0
@@ -22831,6 +22971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257710e1dd4740f4cbd4196065f393aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTutorial: {fileID: 0}
   Message: {fileID: 1048789051}
   yesButton: {fileID: 366622280}
   noButton: {fileID: 1541530312}
@@ -23157,7 +23298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1718901467
 MonoBehaviour:
@@ -23923,7 +24064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1775223547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23970,24 +24111,22 @@ MonoBehaviour:
     This is Ava. I hope you had a good sleep.
 
 
-    I believe
-    you have already talked to the blacksmith. He and other people in the village
-    often require external assistance and are happy to reward any helpers. Go talk
-    to the others if you have not.
+    The people
+    in the village often require assistance. Have a chat with them and they will
+    assign you quests.
 
 
-    The general store owner beside the blacksmith
-    has some seeds for sale. If you would like to start growing your own crops, you
-    should visit them.
+    I believe doing these quests will be of use to you as
+    you progress forward and explore different areas.
 
 
-    If you want to level up, you can visit the forest and
-    the caves just south of your house and defeat some enemies.
+    P.S. The town mayor is
+    closely monitoring you. If you do not prove to be of great help to our people,
+    he will kick you out. Good luck!
 
 
-    P.S. The town
-    mayor is closely monitoring you. If you do not prove to be of great help to our
-    people, he will kick you out. Good luck!'
+    Also, you can access the quest list by
+    pressing "Q".'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -26105,10 +26244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c8d71bc7ea22e478b3c1eaff1c9309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialProgress: 0
-  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+  playerTutorial: {fileID: 0}
   tutorialPanel: {fileID: 1363777606}
   tutorialText: {fileID: 816386988}
+  seeChestFirst: {fileID: 1410949125}
   saveFirst1: {fileID: 1160803605}
   saveFirst2: {fileID: 1047579865}
   chestPanel: {fileID: 374788623}
@@ -33090,7 +33229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33148,6 +33287,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.00789088
       objectReference: {fileID: 0}
+    - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
+      propertyPath: noteText
+      value: 
+      objectReference: {fileID: 1775223546}
+    - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
+      propertyPath: noteType
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
+      propertyPath: noteImage
+      value: 
+      objectReference: {fileID: 492711488}
     - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: notePanel
       value: 

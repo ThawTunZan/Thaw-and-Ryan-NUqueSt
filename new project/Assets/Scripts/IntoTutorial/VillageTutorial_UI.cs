@@ -3,52 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class VillageTutorial_UI : MonoBehaviour, IDataPersistence
+public class VillageTutorial_UI : MonoBehaviour
 {
-    public int tutorialProgress;
-    public PlayerPositionSO startingPosition;
-
-    public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
 
-    public GameObject talkToBlacksmithFirst;
-
-    public bool reachedBlacksmith;
-
-    private void Start()
-    {
-        if (startingPosition.transittedScene || startingPosition.playerDead)
-        {
-            tutorialProgress = GameManager.instance.tutorialProgress;
-        }
-    }
+    public GameObject TransitionColliders;
 
     private void Update()
     {
-        GameManager.instance.tutorialProgress = tutorialProgress;
         if (GameManager.instance.tutorialProgress == 1)
         {
-            tutorialText.text = "Head west of the village to meet the blacksmith";
-        }
-        else if (GameManager.instance.tutorialProgress == 2)
-        {
-            Destroy(talkToBlacksmithFirst);
             tutorialText.text = "Head south of the village to see your house";
+            TransitionColliders.SetActive(false);
         }
         else
         {
-            Destroy(talkToBlacksmithFirst);
             Destroy(this.gameObject);
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        tutorialProgress = data.tutorialProgress;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.tutorialProgress = tutorialProgress;
     }
 }

@@ -6,7 +6,7 @@ public class PuzzleLever : MonoBehaviour
 {
     public GameObject leverUp;
     public GameObject leverDown;
-    public GameObject puzzleDoor;
+    public GameObject visualCue;
 
     bool playerInRange;
 
@@ -24,13 +24,11 @@ public class PuzzleLever : MonoBehaviour
         {
             leverUp.SetActive(false);
             leverDown.SetActive(true);
-            puzzleDoor.SetActive(false);
         }
         else
         {
             leverUp.SetActive(true);
             leverDown.SetActive(false);
-            puzzleDoor.SetActive(true);
         }
     }
 
@@ -39,6 +37,7 @@ public class PuzzleLever : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
+            visualCue.SetActive(true);
         }
     }
 
@@ -47,6 +46,7 @@ public class PuzzleLever : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
+            visualCue.SetActive(false);
         }
     }
 }

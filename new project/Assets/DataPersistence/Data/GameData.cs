@@ -31,6 +31,8 @@ public class GameData
 
     // to indicate that a tutorial in a scene is done. Destroys tutorial UI and some colliders if bool is true.
     public int tutorialProgress;
+
+    public int cs1010Progress;
     
     public float hours;
 
@@ -66,6 +68,8 @@ public class GameData
         placeHolderStory = "";
 
         tutorialProgress = 0;
+
+        cs1010Progress = 0;
 
         day = 0;
     }

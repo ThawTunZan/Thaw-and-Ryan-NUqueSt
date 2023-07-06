@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public int tutorialProgress;
 
+    public int cs1010Progress;
+
     // for day and night system
     public float hours;
     public float minutes;

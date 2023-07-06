@@ -194,6 +194,7 @@ public class EnemyAI : MonoBehaviour
         animator = enemyObject.GetComponent<Animator>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 
         dirArray = new Vector3[8];
         dirArray[0] = Vector3.up;
