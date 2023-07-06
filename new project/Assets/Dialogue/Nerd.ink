@@ -77,7 +77,7 @@ Thanks for the help! My brain is a bit too fuzzy for this... @_@
 === CS1010Convo === 
 {(!questDone):
 Hey You must be the new kid in town! Have you explore the cave south of the village?
-There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics... Hmmm
+There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics that works with something to do with AND Gates and For LOOPS... Hmmm
 Do you think you can help me solve it?
 -> start_quest ("CS1010", "Help me solve the puzzle in the first floor of the cave down south")
 ->END
