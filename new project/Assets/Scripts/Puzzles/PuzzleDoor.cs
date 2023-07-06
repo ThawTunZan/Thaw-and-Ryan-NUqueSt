@@ -18,6 +18,8 @@ public class PuzzleDoor : MonoBehaviour
     public GameObject Door1;
     public GameObject Door2;
 
+    public GameObject activateWallPuzzle;
+    public GameObject wallPuzzleCorrect;
     public GameObject lockedWall;
 
     private PlayerQuests playerQuests;
@@ -25,7 +27,6 @@ public class PuzzleDoor : MonoBehaviour
     void Start()
     {
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        CheckDoorsAtStart(playerQuests.cs1010Progress);
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class PuzzleDoor : MonoBehaviour
         CheckDoor2();
     }
 
-    private void CheckDoorsAtStart(int progress)
+    public void CheckDoorsAtStart(int progress)
     {
         if (progress > 0)
         {
@@ -46,6 +47,12 @@ public class PuzzleDoor : MonoBehaviour
             Door1.SetActive(false);
         }
         if (progress > 1)
+        {
+            Destroy(activateWallPuzzle);
+            Destroy(lockedWall);
+            wallPuzzleCorrect.SetActive(true);
+        }
+        if (progress > 2)
         {
             Lever3Up.SetActive(false);
             Lever3Down.SetActive(true);
@@ -59,12 +66,18 @@ public class PuzzleDoor : MonoBehaviour
     {
         if (Lever1Down.activeSelf && Lever2Down.activeSelf)
         {
-            playerQuests.cs1010Progress = 1;
+            if (playerQuests.cs1010Progress == 0)
+            {
+                playerQuests.cs1010Progress = 1;
+            }
             Door1.SetActive(false);
         }
         else
         {
-            playerQuests.cs1010Progress = 0;
+            if (playerQuests.cs1010Progress == 1)
+            {
+                playerQuests.cs1010Progress = 0;
+            }
             Door1.SetActive(true);
         }
     }
@@ -73,18 +86,33 @@ public class PuzzleDoor : MonoBehaviour
     {
         if ((Lever3Down.activeSelf && Lever5Down.activeSelf) ^ (Lever4Down.activeSelf && Lever5Down.activeSelf))
         {
-            playerQuests.cs1010Progress = 2;
+            if (playerQuests.cs1010Progress == 2)
+            {
+                playerQuests.cs1010Progress = 3;
+            }
             Door2.SetActive(false);
         }
         else
         {
-            playerQuests.cs1010Progress = 1;
+            if (playerQuests.cs1010Progress == 3 && wallPuzzleCorrect.activeSelf)
+            {
+                playerQuests.cs1010Progress = 2;
+            }
+            else if (playerQuests.cs1010Progress == 3 && !wallPuzzleCorrect.activeSelf)
+            {
+                playerQuests.cs1010Progress = 1;
+            }
             Door2.SetActive(true);
         }
     }
 
     private void CheckLockedWall()
     {
-
+        if (playerQuests.cs1010Progress > 1)
+        {
+            Destroy(activateWallPuzzle);
+            Destroy(lockedWall);
+            wallPuzzleCorrect.SetActive(true);
+        }
     }
 }

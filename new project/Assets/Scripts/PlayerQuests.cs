@@ -26,9 +26,10 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     private void CheckCS1010Progress(string currScene, int cs1010Progress)
     {
-        if (currScene == "Cave_2a" && cs1010Progress > 1)
+        if (currScene == "Cave_1a")
         {
-
+            PuzzleDoor puzzleDoor = GameObject.Find("PuzzleDoor1").GetComponent<PuzzleDoor>();
+            puzzleDoor.CheckDoorsAtStart(cs1010Progress);
         }
         else if (currScene == "Cave_3a" && cs1010Progress > 2)
         {

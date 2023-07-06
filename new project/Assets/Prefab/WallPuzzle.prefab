@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5136085260962708574}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7951022742387038483
 SpriteRenderer:
@@ -168,7 +168,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3072846881893083769
+--- !u!1 &3141710386203593811
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,37 +176,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3283946686963944450}
-  - component: {fileID: 7097962986783279060}
+  - component: {fileID: 1242751181250836247}
+  - component: {fileID: 3203936279144486457}
   m_Layer: 0
-  m_Name: Incorrect
+  m_Name: Inactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &3283946686963944450
+  m_IsActive: 1
+--- !u!4 &1242751181250836247
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072846881893083769}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 3141710386203593811}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5136085260962708574}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7097962986783279060
+--- !u!212 &3203936279144486457
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072846881893083769}
+  m_GameObject: {fileID: 3141710386203593811}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -240,8 +240,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: 69528ed57e73dfa4aab9f391b8cfc0cb, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 45f8df3974014694f8626ff9cabaa206, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5136085260962708574}
   m_Layer: 0
-  m_Name: WallNote
+  m_Name: WallPuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,9 +280,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1242751181250836247}
   - {fileID: 464780418472112113}
   - {fileID: 5627686070727657343}
-  - {fileID: 3283946686963944450}
   - {fileID: 8627690681829861821}
   - {fileID: 4037718880043567890}
   m_Father: {fileID: 0}
@@ -339,7 +339,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0.03}
+  m_Offset: {x: -0.030000001, y: -0.012614995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -350,7 +350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.3, y: 0.38523}
   m_EdgeRadius: 0
 --- !u!114 &1817470562585416519
 MonoBehaviour:
@@ -365,9 +365,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzlePanel: {fileID: 0}
+  puzzleActivated: {fileID: 7119169538278798905}
   puzzleText: {fileID: 0}
   puzzleInput: {fileID: 0}
   visualCue: {fileID: 2861617424822052387}
+  puzzleAnswer: 0
 --- !u!1 &7119169538278798905
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,12 +381,12 @@ GameObject:
   - component: {fileID: 464780418472112113}
   - component: {fileID: 5782123782276633377}
   m_Layer: 0
-  m_Name: Default
+  m_Name: Active
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &464780418472112113
 Transform:
   m_ObjectHideFlags: 0
@@ -398,7 +400,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5136085260962708574}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5782123782276633377
 SpriteRenderer:
