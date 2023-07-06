@@ -63,10 +63,21 @@ public class Health : MonoBehaviour, IDataPersistence
         {
             health -= 10;
             healthBar.SetHealth(health);
-            hasCollided=true;
+            hasCollided = true;
             //print(health);
         }
         else if (collision.gameObject.CompareTag("rock"))
+        {
+            health -= 5;
+            healthBar.SetHealth(health);
+        }
+        else if (collision.gameObject.CompareTag("SUMonsterMelee") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
+        {
+            health -= 15;
+            healthBar.SetHealth(health);
+            hasCollided = true;
+        }
+        else if (collision.gameObject.CompareTag("SUMonsterRanged"))
         {
             health -= 10;
             healthBar.SetHealth(health);

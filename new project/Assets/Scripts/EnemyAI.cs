@@ -10,6 +10,7 @@ using UnityEngine.UIElements;
 using UnityEngine.AI;
 using System.Linq;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -17,11 +18,10 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody2D player;
     public Rigidbody2D enemy;
 
-    public GameObject enemyObject;
     public float movespeed = 0.1f;
 
     protected SpriteRenderer enemySpriteRenderer;
-    Animator animator;
+    protected Animator animator;
 
     public double[] interestMap = new double[8];
     public double[] avoidanceMap = new double[8];
@@ -63,7 +63,9 @@ public class EnemyAI : MonoBehaviour
         interestMap[5] = ((-componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) /  (5 * normaliseVector(x_toTarget, y_toTarget));    //South-West
         interestMap[6] = ((-5 * x_toTarget) + (0 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //West
         interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-West
-        if (r < 0.58 && !isObstructed)
+        
+
+        if (r < 0.58 && !isObstructed && this.gameObject.CompareTag("Slime"))
         {
             for (int x = 0; x < 8; x += 1)
             {
@@ -190,8 +192,9 @@ public class EnemyAI : MonoBehaviour
     }
     public void Start()
     {
+        enemy = gameObject.GetComponent<Rigidbody2D>();
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
-        animator = enemyObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -213,11 +216,10 @@ public class EnemyAI : MonoBehaviour
         skeletonCount = 0;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (animator.GetBool("alive") == true)
         {
-          //  print("test");
             followPlayer();
         }
         else
@@ -298,6 +300,4 @@ public class EnemyAI : MonoBehaviour
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
         }
     }
-
-
 }
