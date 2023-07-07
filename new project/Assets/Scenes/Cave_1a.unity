@@ -3459,6 +3459,7 @@ MonoBehaviour:
   questName: CS1010
   questProgress: 2
   puzzleType: ForLoop
+  finishBattle: 0
 --- !u!1 &89921388
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,7 +5229,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170251425
 GameObject:
@@ -8310,7 +8311,7 @@ Transform:
   m_Children:
   - {fileID: 1824338131}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307715057
 GameObject:
@@ -11316,7 +11317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11399,6 +11400,7 @@ MonoBehaviour:
   puzzleActivated: {fileID: 535090971}
   puzzleCorrect: {fileID: 535090972}
   visualCue: {fileID: 535090970}
+  puzzleTrigger: {fileID: 83845233}
   cs1010Progress: 2
   puzzleAnswer: 0
 --- !u!1 &542341446
@@ -14899,7 +14901,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &763371053
 MonoBehaviour:
@@ -17691,7 +17693,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850997167
 GameObject:
@@ -18479,7 +18481,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &910065357
 MonoBehaviour:
@@ -28786,7 +28788,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300094926
 GameObject:
@@ -29985,7 +29987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708574, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35305,7 +35307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36214,7 +36216,7 @@ Transform:
   - {fileID: 20913779}
   - {fileID: 1384273257}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1705664972
 PrefabInstance:
@@ -38283,7 +38285,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1850050149
 GameObject:
@@ -38502,7 +38504,7 @@ Transform:
   - {fileID: 2088732177}
   - {fileID: 1810953518}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1862189981
 GameObject:
@@ -39968,7 +39970,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933840969
 GameObject:
@@ -42274,7 +42276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2090194177
 MonoBehaviour:

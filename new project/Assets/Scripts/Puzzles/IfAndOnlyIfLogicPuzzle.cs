@@ -46,7 +46,7 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
 
     protected override int GetPuzzleAnswer()
     {
-        if (randX == 1 || randX == 2)
+        if (randX == 0 || randX == 1)
         {
             puzzleAnswer = 0;
         }
@@ -65,15 +65,14 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
         Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)-0.2857991, (float)-4.12367), Quaternion.identity);
     }
 
-    public override bool CheckInBattle()
+    protected override void CheckInBattle()
     {
         if (GameObject.Find("Slime(Clone)") == null)
         {
             inBattle = false;
             startBattle = false;
-            return false;
+            puzzleTrigger.finishBattle = true;
         }
-        return true;
     }
 
     protected override void ChangeQuestProgress()

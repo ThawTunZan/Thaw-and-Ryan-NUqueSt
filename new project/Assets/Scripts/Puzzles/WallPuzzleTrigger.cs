@@ -12,11 +12,13 @@ public class WallPuzzleTrigger : MonoBehaviour
     public int questProgress;
     public string puzzleType;
 
+    public bool finishBattle;
+
     bool playerInRange;
 
     void Update()
     {
-        if (playerInRange)
+        if (playerInRange || finishBattle)
         {
             WallTrigger();
         }
@@ -24,33 +26,23 @@ public class WallPuzzleTrigger : MonoBehaviour
 
     private void WallTrigger()
     {
-        if (questName == "CS1010" && puzzleType == "ForLoop" && GameManager.instance.cs1010Progress < questProgress)
+        if (questName == "CS1010" && puzzleType == "ForLoop" 
+            && GameManager.instance.cs1010Progress < questProgress)
         {
-            ForLoopPuzzle forLoopPuzzle = wallPuzzleTrigger.GetComponent<ForLoopPuzzle>();
-            if (!forLoopPuzzle.CheckInBattle())
-            {
-                lockedWall.SetActive(true);
-                wallPuzzleActivate.SetActive(true);
-            }
+            ActivatePuzzle();
         }
-        else if (questName == "CS1231" && puzzleType == "ImplicationLogic" && GameManager.instance.cs1231Progress < questProgress)
+        else if (questName == "CS1231" && (puzzleType == "ImplicationLogic" || puzzleType == "IfAndOnlyIfLogic")
+            && GameManager.instance.cs1231Progress < questProgress)
         {
-            ImplicationLogicPuzzle logicStatementsPuzzle = wallPuzzleTrigger.GetComponent<ImplicationLogicPuzzle>();
-            if (!logicStatementsPuzzle.CheckInBattle())
-            {
-                lockedWall.SetActive(true);
-                wallPuzzleActivate.SetActive(true);
-            }
+            ActivatePuzzle();
         }
-        else if (questName == "CS1231" && puzzleType == "IfAndOnlyIfLogic" && GameManager.instance.cs1231Progress < questProgress)
-        {
-            IfAndOnlyIfLogicPuzzle logicStatementsPuzzle = wallPuzzleTrigger.GetComponent<IfAndOnlyIfLogicPuzzle>();
-            if (!logicStatementsPuzzle.CheckInBattle())
-            {
-                lockedWall.SetActive(true);
-                wallPuzzleActivate.SetActive(true);
-            }
-        }
+    }
+
+    private void ActivatePuzzle()
+    {
+        lockedWall.SetActive(true);
+        wallPuzzleActivate.SetActive(true);
+        finishBattle = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

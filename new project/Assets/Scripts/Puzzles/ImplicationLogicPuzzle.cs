@@ -64,15 +64,14 @@ public class ImplicationLogicPuzzle : WallPuzzle
         Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)-0.736, (float)-2.419), Quaternion.identity);
     }
 
-    public override bool CheckInBattle()
+    protected override void CheckInBattle()
     {
         if (GameObject.Find("Slime(Clone)") == null)
         {
             inBattle = false;
             startBattle = false;
-            return false;
+            puzzleTrigger.finishBattle = true;
         }
-        return true;
     }
 
     protected override void ChangeQuestProgress()

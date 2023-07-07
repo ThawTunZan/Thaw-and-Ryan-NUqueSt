@@ -15,6 +15,8 @@ public class WallPuzzle : MonoBehaviour
     public GameObject puzzleCorrect;
     public GameObject visualCue;
 
+    public WallPuzzleTrigger puzzleTrigger;
+
     protected bool startBattle;
     protected bool inBattle;
 
@@ -86,9 +88,9 @@ public class WallPuzzle : MonoBehaviour
 
     }
 
-    public virtual bool CheckInBattle()
+    protected virtual void CheckInBattle()
     {
-        return false;
+        
     }
 
     protected virtual void ChangeQuestProgress()

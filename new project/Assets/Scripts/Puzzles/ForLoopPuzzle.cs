@@ -50,15 +50,14 @@ public class ForLoopPuzzle : WallPuzzle
         Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2(2, (float)-2.2), Quaternion.identity);
     }
 
-    public override bool CheckInBattle()
+    protected override void CheckInBattle()
     {
         if (GameObject.Find("Slime(Clone)") == null)
         {
             inBattle = false;
             startBattle = false;
-            return false;
+            puzzleTrigger.finishBattle = true;
         }
-        return true;
     }
 
     protected override void ChangeQuestProgress()
