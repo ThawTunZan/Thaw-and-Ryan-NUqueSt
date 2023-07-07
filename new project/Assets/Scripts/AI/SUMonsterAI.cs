@@ -47,13 +47,14 @@ public class SUMonsterAI : EnemyAI
     }
 
     
-    private void MeleeAttack()
+    private async void MeleeAttack()
     {
+        animator.SetTrigger("isAttacking");
         // animation for melee attack
         // turn on meleeattack hitbox through animation
 
         // wait for 1 sec
-
+        await Task.Delay(1000);
     }
 
     private async void ThrowRocks()
@@ -87,8 +88,6 @@ public class SUMonsterAI : EnemyAI
         canSmashGround = false;
         //wait for 2 sec
         await Task.Delay(2000);
-
-        // wait for 2 sec
     }
 
     private async void Charge()
@@ -97,8 +96,10 @@ public class SUMonsterAI : EnemyAI
         // charge towards player
         if (canChargeTowardsPlayer)
         {
+            animator.SetTrigger("isCharging");
             movespeed = 0.2f;
             enemy.MovePosition(vectorTowardsPlayer);
+
         }
         else
         {
