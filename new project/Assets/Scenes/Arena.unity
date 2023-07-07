@@ -11657,7 +11657,7 @@ GameObject:
   - component: {fileID: 867456551}
   - component: {fileID: 867456553}
   - component: {fileID: 867456552}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97884,6 +97884,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8214421, y: 3.6183257}
   m_EdgeRadius: 0
+--- !u!114 &1551439712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551439702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8012ba53c39dc419cd50df708952f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  movespeed: 0.1
+  interestMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  avoidanceMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  weightedMap:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  dirArray: []
+  enemy_path: {x: 0, y: 0, z: 0}
+  obstructed: 0
+  lastKnown: {x: 0, y: 0, z: 0}
+  layersToAvoid:
+    serializedVersion: 2
+    m_Bits: 0
+  skeletonCount: 0
+  canChargeTowardsPlayer: 0
+  canSmashGround: 0
+  canThrow: 0
 --- !u!1 &1560050330
 GameObject:
   m_ObjectHideFlags: 0
