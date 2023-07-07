@@ -33,6 +33,7 @@ public class GameData
     public int tutorialProgress;
 
     public int cs1010Progress;
+    public int cs1231Progress;
     
     public float hours;
 

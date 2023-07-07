@@ -4,25 +4,52 @@ using UnityEngine;
 
 public class WallPuzzleTrigger : MonoBehaviour
 {
-    public GameObject wallPuzzle;
+    public GameObject wallPuzzleTrigger;
+    public GameObject wallPuzzleActivate;
     public GameObject lockedWall;
-    public ForLoopPuzzle forLoopPuzzle;
 
-    private PlayerQuests playerQuests;
+    public string questName;
+    public int questProgress;
+    public string puzzleType;
 
     bool playerInRange;
 
-    private void Start()
-    {
-        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-    }
-
     void Update()
     {
-        if (playerInRange && playerQuests.cs1010Progress < 2 && !forLoopPuzzle.inBattle && !forLoopPuzzle.spawnSlime)
+        if (playerInRange)
         {
-            lockedWall.SetActive(true);
-            wallPuzzle.SetActive(true);
+            WallTrigger();
+        }
+    }
+
+    private void WallTrigger()
+    {
+        if (questName == "CS1010" && puzzleType == "ForLoop" && GameManager.instance.cs1010Progress < questProgress)
+        {
+            ForLoopPuzzle forLoopPuzzle = wallPuzzleTrigger.GetComponent<ForLoopPuzzle>();
+            if (!forLoopPuzzle.CheckInBattle())
+            {
+                lockedWall.SetActive(true);
+                wallPuzzleActivate.SetActive(true);
+            }
+        }
+        else if (questName == "CS1231" && puzzleType == "ImplicationLogic" && GameManager.instance.cs1231Progress < questProgress)
+        {
+            ImplicationLogicPuzzle logicStatementsPuzzle = wallPuzzleTrigger.GetComponent<ImplicationLogicPuzzle>();
+            if (!logicStatementsPuzzle.CheckInBattle())
+            {
+                lockedWall.SetActive(true);
+                wallPuzzleActivate.SetActive(true);
+            }
+        }
+        else if (questName == "CS1231" && puzzleType == "IfAndOnlyIfLogic" && GameManager.instance.cs1231Progress < questProgress)
+        {
+            IfAndOnlyIfLogicPuzzle logicStatementsPuzzle = wallPuzzleTrigger.GetComponent<IfAndOnlyIfLogicPuzzle>();
+            if (!logicStatementsPuzzle.CheckInBattle())
+            {
+                lockedWall.SetActive(true);
+                wallPuzzleActivate.SetActive(true);
+            }
         }
     }
 
