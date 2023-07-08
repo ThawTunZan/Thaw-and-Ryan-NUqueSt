@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-West
         
 
-        if (r < 0.58 && !isObstructed && this.gameObject.CompareTag("Slime"))
+        if (r < 0.58 && !isObstructed && gameObject.CompareTag("Slime"))
         {
             for (int x = 0; x < 8; x += 1)
             {
@@ -190,8 +190,9 @@ public class EnemyAI : MonoBehaviour
         }
         return Vector3.zero;
     }
-    public void Start()
+    public virtual void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();    
         enemy = gameObject.GetComponent<Rigidbody2D>();
         enemySpriteRenderer = enemy.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
