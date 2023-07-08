@@ -19,10 +19,9 @@ public class GameData
     public Inventory inventory;
     public Inventory toolbar;
 
-    // chest0: PlayerHouse, chest1: Cave_1c, chest2: Cave_1
-    public Inventory chest0;
-    public Inventory chest1;
-    public Inventory chest2;
+    public Inventory chest0; // chest0: PlayerHouse
+    public Inventory chest1; // chest1: UNUSED
+    public Inventory chest2; // chest2: Cave_1
     public List<Inventory> chestList = new List<Inventory>();
     public bool hasAddedToChest;
 
@@ -34,6 +33,7 @@ public class GameData
 
     public int cs1010Progress;
     public int cs1231Progress;
+    public int cs2030Progress;
     
     public float hours;
 
@@ -69,8 +69,6 @@ public class GameData
         placeHolderStory = "";
 
         tutorialProgress = 0;
-
-        cs1010Progress = 0;
 
         day = 0;
     }

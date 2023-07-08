@@ -9,7 +9,6 @@ public class ImplicationLogicPuzzle : WallPuzzle
     private int randX;
     public int puzzleAnswer;
 
-    [SerializeField] private GameObject puzzleActivator;
     [SerializeField] private GameObject puzzleDoor1;
     [SerializeField] private GameObject puzzleDoor2;
 
@@ -34,7 +33,7 @@ public class ImplicationLogicPuzzle : WallPuzzle
         {
             statement = "can Bing Chilling not have 6 legs and not be an insect at the same time";
         }
-        puzzleText.text = "Solve the implication logic statement or die!" +
+        puzzleText.text = "(1/1) Solve the implication logic statement or die!" +
             "\nEvery wrong answer has consequences..." +
             "\n\nStatement Alpha: A implies B." +
             "\nA := Living thing named Bing Chilling has 6 legs." +
@@ -70,6 +69,7 @@ public class ImplicationLogicPuzzle : WallPuzzle
         {
             inBattle = false;
             startBattle = false;
+            puzzleTrigger.inBattle = false;
             puzzleTrigger.finishBattle = true;
         }
     }
@@ -85,7 +85,7 @@ public class ImplicationLogicPuzzle : WallPuzzle
         if (questProgress >= cs1231Progress)
         {
             puzzleCorrect.SetActive(true);
-            puzzleActivator.SetActive(false);
+            puzzleTrigger.gameObject.SetActive(false);
             puzzleDoor1.SetActive(false);
             puzzleDoor2.SetActive(false);
         }

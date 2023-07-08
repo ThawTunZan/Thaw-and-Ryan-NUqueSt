@@ -22,7 +22,7 @@ public class ForLoopPuzzle : WallPuzzle
 
     protected override void ChangePuzzleText()
     {
-        puzzleText.text = "Solve the for loop to free yourself!" +
+        puzzleText.text = "(1/1) Solve the for loop to free yourself!" +
             "\nEvery wrong answer has consequences..." +
             "\n\nint x = " + randX + ";" +
             "\nfor (int i = 0; i < " + randA + "; i++)" +
@@ -56,6 +56,7 @@ public class ForLoopPuzzle : WallPuzzle
         {
             inBattle = false;
             startBattle = false;
+            puzzleTrigger.inBattle = false;
             puzzleTrigger.finishBattle = true;
         }
     }

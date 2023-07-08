@@ -20,8 +20,6 @@ public class WallPuzzle : MonoBehaviour
     protected bool startBattle;
     protected bool inBattle;
 
-    protected bool isDone;
-
     protected bool playerInRange;
 
     protected PlayerItems playerItems;
@@ -66,6 +64,7 @@ public class WallPuzzle : MonoBehaviour
             playerMovement.enabled = true;
             if (startBattle)
             {
+                puzzleTrigger.inBattle = true;
                 inBattle = true;
                 puzzleActivated.SetActive(false);
                 SpawnEnemy();
@@ -103,7 +102,7 @@ public class WallPuzzle : MonoBehaviour
 
     }
 
-    public void CheckAnswer()
+    public virtual void CheckAnswer()
     {
         bool parseSuccess = int.TryParse(puzzleInput.text.Trim(), out int playerAnswer);
         if (parseSuccess)

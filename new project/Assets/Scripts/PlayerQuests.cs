@@ -10,6 +10,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     public int cs1010Progress;
     public int cs1231Progress;
+    public int cs2030Progress;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
             cs1010Progress = GameManager.instance.cs1010Progress;
             cs1231Progress = GameManager.instance.cs1231Progress;
+            cs2030Progress = GameManager.instance.cs2030Progress;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckQuestProgress(currScene);
@@ -45,11 +47,12 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             puzzle1.CheckQuestProgress(cs1231Progress);
             puzzle2.CheckQuestProgress(cs1231Progress);
         }
-        else if (currScene == "Cave_3a" && cs1010Progress > 7) // For CS2030
+        else if (currScene == "Cave_3a") // For CS2030
         {
-
+            ClassInheritancePuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<ClassInheritancePuzzle>();
+            puzzle1.CheckQuestProgress(cs2030Progress);
         }
-        else if (currScene == "Cave_3a" && cs1010Progress > 10) // For CS2040
+        else if (currScene == "Cave_4a") // For CS2040
         {
 
         }
@@ -61,6 +64,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         GameManager.instance.cs1010Progress = cs1010Progress;
         GameManager.instance.cs1231Progress = cs1231Progress;
+        GameManager.instance.cs2030Progress = cs2030Progress;
     }
 
     public void LoadData(GameData data)
@@ -70,6 +74,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         cs1010Progress = data.cs1010Progress;
         cs1231Progress = data.cs1231Progress;
+        cs2030Progress = data.cs2030Progress;
     }
 
     public void SaveData(GameData data)
@@ -78,5 +83,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         data.cs1010Progress = cs1010Progress;
         data.cs1231Progress = cs1231Progress;
+        data.cs2030Progress = cs2030Progress;
     }
 }

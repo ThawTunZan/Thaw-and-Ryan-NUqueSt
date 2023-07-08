@@ -10,15 +10,15 @@ public class WallPuzzleTrigger : MonoBehaviour
 
     public string questName;
     public int questProgress;
-    public string puzzleType;
 
+    public bool inBattle;
     public bool finishBattle;
 
     bool playerInRange;
 
     void Update()
     {
-        if (playerInRange || finishBattle)
+        if (playerInRange && !inBattle || finishBattle)
         {
             WallTrigger();
         }
@@ -26,13 +26,15 @@ public class WallPuzzleTrigger : MonoBehaviour
 
     private void WallTrigger()
     {
-        if (questName == "CS1010" && puzzleType == "ForLoop" 
-            && GameManager.instance.cs1010Progress < questProgress)
+        if (questName == "CS1010" && GameManager.instance.cs1010Progress < questProgress)
         {
             ActivatePuzzle();
         }
-        else if (questName == "CS1231" && (puzzleType == "ImplicationLogic" || puzzleType == "IfAndOnlyIfLogic")
-            && GameManager.instance.cs1231Progress < questProgress)
+        else if (questName == "CS1231" && GameManager.instance.cs1231Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "CS2030" && GameManager.instance.cs2030Progress < questProgress)
         {
             ActivatePuzzle();
         }
