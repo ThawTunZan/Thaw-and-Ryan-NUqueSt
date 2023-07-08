@@ -67,11 +67,11 @@ public class ClassInheritancePuzzle : WallPuzzle
 
     protected override int GetPuzzleAnswer()
     {
-        if (randX == 0 || randX == 3)
+        if (randX == 0 || randX == 1 |randX == 3)
         {
             puzzleAnswer = 4;
         }
-        else if (randX == 1 || randX == 2)
+        else if (randX == 2)
         {
             puzzleAnswer = 5;
         }
@@ -80,15 +80,15 @@ public class ClassInheritancePuzzle : WallPuzzle
 
     protected override void SpawnEnemy()
     {
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)-0.0009991229, (float)-4.303544), Quaternion.identity);
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)1.413007, (float)-4.29355), Quaternion.identity);
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)1.592881, (float)-4.058716), Quaternion.identity);
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)-0.2857991, (float)-4.12367), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)-0.009534121, (float)-0.7193651), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)0.4735398, (float)-0.8440293), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)0.9670025, (float)-0.7972803), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Skeleton"), new Vector2((float)-0.09783792, (float)-0.173959), Quaternion.identity);
     }
 
     protected override void CheckInBattle()
     {
-        if (GameObject.Find("Slime(Clone)") == null)
+        if (GameObject.Find("Slime(Clone)") == null && GameObject.Find("Skeleton(Clone)") == null)
         {
             inBattle = false;
             startBattle = false;
