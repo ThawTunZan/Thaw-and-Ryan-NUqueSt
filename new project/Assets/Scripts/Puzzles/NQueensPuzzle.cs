@@ -6,9 +6,9 @@ public class NQueensPuzzle : WallPuzzle
 {
     public int cs2040Progress;
 
-    public int puzzleAnswer;
+    private QueenChecker queenChecker;
 
-    private int currQ = 1;
+    public int currQ = 1;
     private int totalQ = 5;
 
     [SerializeField] private GameObject puzzleDoor1;
@@ -16,6 +16,7 @@ public class NQueensPuzzle : WallPuzzle
     protected override void Start()
     {
         base.Start();
+        queenChecker = GameObject.Find("QueenPieces").GetComponent<QueenChecker>();
     }
 
     protected override void ChangePuzzleText()
@@ -24,12 +25,24 @@ public class NQueensPuzzle : WallPuzzle
             "\nEvery wrong answer has consequences..." +
             "\n\nHold a weapon and left click a queen to move it around." +
             "\nYou can only move the queen left and right." +
-            "\nIf you think your board configuration is correct, click OK.";
+            "\n\nIf you think your configuration is correct, click OK." +
+            "\nYou have to solve this " + (totalQ - currQ + 1) + " more times!";
     }
 
     protected override int GetPuzzleAnswer()
     {
-        return puzzleAnswer;
+        if (queenChecker.CheckX())
+        {
+            return 0;
+        }
+        foreach (Vector2Int queenPosition in queenChecker.queenPositions)
+        {
+            if (queenChecker.CheckDiag(queenPosition))
+            {
+                return 0;
+            }
+        }
+        return 1;
     }
 
     protected override void SpawnEnemy()
@@ -70,28 +83,28 @@ public class NQueensPuzzle : WallPuzzle
 
     public override void CheckAnswer()
     {
-        bool parseSuccess = int.TryParse(puzzleInput.text.Trim(), out int playerAnswer);
-        if (parseSuccess)
+        if (GetPuzzleAnswer() == 1)
         {
-            if (playerAnswer == GetPuzzleAnswer())
+            if (queenChecker.HasSeenBefore())
             {
-                if (currQ == totalQ)
-                {
-                    puzzleText.text = "Correct!\n\nYou are now freed from this room.";
-                    ChangeQuestProgress();
-                }
-                else
-                {
-                    currQ++;
-                    GetPuzzleAnswer();
-                    ChangePuzzleText();
-                }
+                puzzleText.text = "You have tried this configuration already.\n\nTry again!";
+            }
+            else if (currQ == totalQ)
+            {
+                puzzleText.text = "Correct!\n\nYou are now freed from this room.";
+                ChangeQuestProgress();
             }
             else
             {
-                puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
-                startBattle = true;
+                currQ++;
+                GetPuzzleAnswer();
+                ChangePuzzleText();
             }
+        }
+        else
+        {
+            puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
+            startBattle = true;
         }
     }
 }

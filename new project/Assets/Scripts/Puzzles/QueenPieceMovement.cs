@@ -15,7 +15,7 @@ public class QueenPieceMovement : MonoBehaviour
         queenChecker = transform.parent.gameObject.GetComponent<QueenChecker>();
         bool parseSuccess = int.TryParse(gameObject.name[gameObject.name.Length - 1].ToString(), out queenNum);
         queenNum--;
-        queenChecker.queenPositions[queenNum] = transform.position;
+        ConvertToIntCoord();
     }
 
     private void MoveLeft()
@@ -24,7 +24,7 @@ public class QueenPieceMovement : MonoBehaviour
         if (distX > 0.23) 
         {
             transform.position = new Vector2(distX, transform.position.y);
-            queenChecker.queenPositions[queenNum] = transform.position;
+            ConvertToIntCoord();
         }
     }
 
@@ -34,8 +34,16 @@ public class QueenPieceMovement : MonoBehaviour
         if (distX < 1.13)
         {
             transform.position = new Vector2(distX, transform.position.y);
-            queenChecker.queenPositions[queenNum] = transform.position;
+            ConvertToIntCoord();
         }
+    }
+
+    private void ConvertToIntCoord()
+    {
+        int tempX = (int)((transform.position.x + 0.01) / 0.16) - 1;
+        int tempY = -((int)((transform.position.y - 0.01) / 0.16) + 4);
+        Vector2Int toSimpleCoord = new Vector2Int(tempX, tempY);
+        queenChecker.queenPositions[queenNum] = toSimpleCoord;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
