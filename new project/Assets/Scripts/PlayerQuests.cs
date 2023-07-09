@@ -11,6 +11,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int cs1010Progress;
     public int cs1231Progress;
     public int cs2030Progress;
+    public int cs2040Progress;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs1010Progress = GameManager.instance.cs1010Progress;
             cs1231Progress = GameManager.instance.cs1231Progress;
             cs2030Progress = GameManager.instance.cs2030Progress;
+            cs2040Progress = GameManager.instance.cs2040Progress;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckQuestProgress(currScene);
@@ -65,6 +67,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs1010Progress = cs1010Progress;
         GameManager.instance.cs1231Progress = cs1231Progress;
         GameManager.instance.cs2030Progress = cs2030Progress;
+        GameManager.instance.cs2040Progress = cs2040Progress;
     }
 
     public void LoadData(GameData data)
@@ -75,6 +78,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs1010Progress = data.cs1010Progress;
         cs1231Progress = data.cs1231Progress;
         cs2030Progress = data.cs2030Progress;
+        cs2040Progress = data.cs2040Progress;
     }
 
     public void SaveData(GameData data)
@@ -84,5 +88,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs1010Progress = cs1010Progress;
         data.cs1231Progress = cs1231Progress;
         data.cs2030Progress = cs2030Progress;
+        data.cs2040Progress = cs2040Progress;
     }
 }

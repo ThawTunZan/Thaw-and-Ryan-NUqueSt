@@ -67,6 +67,17 @@ public class NoteTrigger : MonoBehaviour
         {
             noteImage.SetActive(true);
         }
+        else if (noteType == "Both")
+        {
+            TextMeshPro tmpText = gameObject.GetComponent<TextMeshPro>();
+            if (tmpText != null)
+            {
+                TextMeshProUGUI noteUIText = noteText.GetComponent<TextMeshProUGUI>();
+                noteUIText.text = tmpText.text;
+            }
+            noteText.SetActive(true);
+            noteImage.SetActive(true);
+        }
     }
 
     private void HideUI()

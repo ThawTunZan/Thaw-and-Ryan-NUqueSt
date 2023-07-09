@@ -38,6 +38,10 @@ public class WallPuzzleTrigger : MonoBehaviour
         {
             ActivatePuzzle();
         }
+        else if (questName == "CS2040" && GameManager.instance.cs2040Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
     }
 
     private void ActivatePuzzle()

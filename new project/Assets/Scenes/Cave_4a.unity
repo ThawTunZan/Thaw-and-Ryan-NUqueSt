@@ -970,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 917444237}
     - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: noteType
-      value: Text
+      value: Both
       objectReference: {fileID: 0}
     - target: {fileID: 5136085261200569647, guid: 61e8bdd76e767154386fc9f589a65d04, type: 3}
       propertyPath: noteImage
@@ -1453,7 +1453,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 210}
+  m_SizeDelta: {x: 700, y: 680}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97886749
 MonoBehaviour:
@@ -2785,30 +2785,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5136085261200569643, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
   m_PrefabInstance: {fileID: 171502249}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &171502252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171502251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0513c577741dd6f439b7197d2972417c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzlePanel: {fileID: 848309032}
-  puzzleText: {fileID: 1541566593}
-  puzzleInput: {fileID: 218213274}
-  puzzleButton: {fileID: 837137534}
-  puzzleActivated: {fileID: 171502250}
-  puzzleCorrect: {fileID: 171502254}
-  visualCue: {fileID: 171502253}
-  puzzleTrigger: {fileID: 1399460711}
-  cs2030Progress: 1
-  puzzleAnswer: 0
-  puzzleDoor1: {fileID: 95371379}
-  puzzleDoor2: {fileID: 0}
 --- !u!1 &171502253 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2861617424822052387, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
@@ -4013,7 +3989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &218213273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4042,7 +4018,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218213272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
@@ -4140,7 +4116,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218213272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4182,9 +4158,9 @@ GameObject:
   - component: {fileID: 230533978}
   - component: {fileID: 230533980}
   - component: {fileID: 230533979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5783,7 +5759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &291224476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8398,9 +8374,9 @@ GameObject:
   - component: {fileID: 450333587}
   - component: {fileID: 450333589}
   - component: {fileID: 450333588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8896,9 +8872,9 @@ GameObject:
   - component: {fileID: 460031785}
   - component: {fileID: 460031787}
   - component: {fileID: 460031786}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12889,8 +12865,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The n-Queens problem is a well-known problem in Computer Science and has
-    various techniques in solving it, all of which have varying complexities.
+  m_text: "The n-Queens problem is a well-known problem in Computer Science and has
+    various techniques in solving it, all of which have varying complexities.\n\n\n\n\n\n\n\n\n\nQueens
+    can move in all 8 directions as seen in the first picture. \n\nIn n-Queens where
+    n=4, there are 4 queens on a 4x4 chessboard. The queens must not see each other
+    diagonally, otherwise it is an incorrect solution, as seen in the second picture.\n\nThe
+    third picture shows a correct solution for 4-Queens."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15873,7 +15853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &837137533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15939,8 +15919,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 171502252}
-        m_TargetAssemblyTypeName: WallPuzzle, Assembly-CSharp
+      - m_Target: {fileID: 1636126655}
+        m_TargetAssemblyTypeName: NQueensPuzzle, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
@@ -16137,9 +16117,9 @@ GameObject:
   - component: {fileID: 844384856}
   - component: {fileID: 844384858}
   - component: {fileID: 844384857}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16501,6 +16481,7 @@ MonoBehaviour:
   cs1010Progress: 0
   cs1231Progress: 0
   cs2030Progress: 0
+  cs2040Progress: 0
   hours: 0
   minutes: 0
   seconds: 0
@@ -17524,7 +17505,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 570, y: 180}
+  m_SizeDelta: {x: 650, y: 625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917444239
 MonoBehaviour:
@@ -17546,7 +17527,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19043,9 +19026,9 @@ GameObject:
   - component: {fileID: 1027991513}
   - component: {fileID: 1027991515}
   - component: {fileID: 1027991514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27808,7 +27791,7 @@ MonoBehaviour:
   wallPuzzleTrigger: {fileID: 171502251}
   wallPuzzleActivate: {fileID: 171502250}
   lockedWall: {fileID: 95371379}
-  questName: CS2030
+  questName: CS2040
   questProgress: 1
   inBattle: 0
   finishBattle: 0
@@ -32240,6 +32223,29 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4973542897662279192, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
   m_PrefabInstance: {fileID: 1635307078}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1636126655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171502251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafe2a5ad2db0fb4387caae1dad024c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzlePanel: {fileID: 848309032}
+  puzzleText: {fileID: 1541566593}
+  puzzleInput: {fileID: 218213274}
+  puzzleButton: {fileID: 837137534}
+  puzzleActivated: {fileID: 171502250}
+  puzzleCorrect: {fileID: 171502254}
+  visualCue: {fileID: 171502253}
+  puzzleTrigger: {fileID: 1399460711}
+  cs2040Progress: 1
+  puzzleAnswer: 0
+  puzzleDoor1: {fileID: 95371379}
 --- !u!1 &1654526925
 GameObject:
   m_ObjectHideFlags: 0
@@ -34098,9 +34104,9 @@ GameObject:
   - component: {fileID: 1790830784}
   - component: {fileID: 1790830783}
   - component: {fileID: 1790830785}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cliff
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40237,9 +40243,9 @@ GameObject:
   - component: {fileID: 2119761434}
   - component: {fileID: 2119761435}
   - component: {fileID: 2119761436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomPiece
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40429,8 +40435,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 650, y: 650}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 650, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2122768556
 MonoBehaviour:
@@ -40452,7 +40458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa9b79c7504bba441901ea86189d58db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d9ebde383a04a148b214ccbc339db0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
