@@ -229,7 +229,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-        public void updatePlayerPos(double x, double y)
+    public void updatePlayerPos(double x, double y)
     {
         lastKnown.x = (float)x;
         lastKnown.y = (float)y;

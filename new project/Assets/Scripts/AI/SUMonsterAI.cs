@@ -9,16 +9,17 @@ public class SUMonsterAI : EnemyAI
     private double distToPlayer;
 
 
-    private int meleeAttackCooldown = 2000;
     private int throwRocksCooldown = 4000;
     private int slamGroundCooldown = 6000;
-    private int chargeCooldown = 6000;
+    private int chargeCooldown = 8000;
 
-    private bool isMeleeAttackOnCooldown = false;
-    private bool isThrowRocksOnCooldown = false;
-    private bool isSlamGroundOnCooldown = false;
-    private bool isChargeOnCooldown = false;
-    private Vector3 vectorTowardsPlayer;
+    public bool isThrowRocksOnCooldown = false;
+    public bool isSlamGroundOnCooldown = false;
+    public bool isChargeOnCooldown = false;
+    public Vector3 vectorTowardsPlayer;
+    public bool isCharging;
+
+    private float chargeCD;
 
 
     public override void Update()
@@ -27,9 +28,13 @@ public class SUMonsterAI : EnemyAI
         if (animator.GetBool("alive") == true)
         {
             vectorTowardsPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
-            followPlayer();
             distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
-            if (distToPlayer <= 0.3)
+            if (!isCharging)
+            {
+                followPlayer();
+             }
+            chargeCD += Time.deltaTime;
+            if (distToPlayer <= 0.1)
             {
                 MeleeAttack();
             }
@@ -37,14 +42,11 @@ public class SUMonsterAI : EnemyAI
             {
                // SlamGround();
             }
-            else if (distToPlayer > 0.7 && distToPlayer <= 1.2)
+            else if (distToPlayer > 0.7 && distToPlayer <= 1.3 && !isCharging && !isChargeOnCooldown)
             {
-                Charge();
+                Charge(player.transform.position);
             }
-            else if (distToPlayer > 1.2 && distToPlayer <= 1.6)
-            {
-               // ThrowRocks();
-            }
+
         }
         else
         {
@@ -66,10 +68,12 @@ public class SUMonsterAI : EnemyAI
         if (r <= 4 && !Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
             updatePlayerPos(player.transform.position.x, player.transform.position.y);
+            //to flip sprite
             if (gameObject.transform.position.x > player.transform.position.x)
             {
                 Vector3 scalePlaceHolder = gameObject.transform.localScale;
-                if (scalePlaceHolder.x > 0) { 
+                if (scalePlaceHolder.x > 0)
+                {
                     scalePlaceHolder.x *= -1;
                 }
                 gameObject.transform.localScale = scalePlaceHolder;
@@ -84,15 +88,17 @@ public class SUMonsterAI : EnemyAI
             populateAvoidMap();
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
-            if (enemy_path.x != 0 && enemy_path.y != 0)
+            if (distToPlayer > 0.1 && !isCharging)
             {
                 animator.SetBool("isMoving", true);
             }
             else
             {
                 animator.SetBool("isMoving", false);
+                MeleeAttack();
             }
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
+
         }
         else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
@@ -100,6 +106,7 @@ public class SUMonsterAI : EnemyAI
             {
                 return;
             }
+            // to flip sprite
             if ((lastKnown.x - enemy.transform.position.x) < 0)
             {
                 Vector3 scalePlaceHolder = gameObject.transform.localScale;
@@ -120,94 +127,46 @@ public class SUMonsterAI : EnemyAI
             populateAvoidMap();
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);
-            if (enemy_path.x == 0 && enemy_path.y == 0)
+            if (distToPlayer > 0.1 && !isCharging)
             {
-                animator.SetBool("isMoving", false);
+                animator.SetBool("isMoving", true);
             }
             else
             {
-                animator.SetBool("isMoving", true);
+                animator.SetBool("isMoving", false);
+                MeleeAttack();
             }
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
         }
     }
 
-    private async void MeleeAttack()
+    private void MeleeAttack()
     {
-        // animation for melee attack
-        if (!isMeleeAttackOnCooldown)
-        {
-            animator.SetTrigger("isAttacking");
-            animator.SetBool("isMoving", false);
-            isMeleeAttackOnCooldown = true;
-            await Task.Delay(meleeAttackCooldown);
-            isMeleeAttackOnCooldown = false;
-        }
-        else
-        {
-            animator.SetBool("isMoving", true);
-        }
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("isAttacking");
         // turn on meleeattack hitbox through animation
     }
 
-    private async void ThrowRocks()
+    private void ThrowRocks()
     {
-        if (!isThrowRocksOnCooldown)
-        {
-            // animation for throwing rocks
-            // do the instantiate stuff
-            isThrowRocksOnCooldown = false;
-        }
-        else
-        {
-            // do nothing
-        }
-        // wait for 2 sec
-        await Task.Delay(2000);
     }
 
-    private async void SlamGround()
+    private void SlamGround()
     {
-        // purpose for this is for cooldown
-        if (!isSlamGroundOnCooldown)
-        {
-            // animation for slamming grounds
-            // turn on slamground hitbox through animation
-            /*
-            slamGroundCooldown = true;
-            //wait for 2 sec
-            await Task.Delay(slamGroundCooldown);
-            isSlamGroundOnCooldown = false;
-            */
-        }
-        else
-        {
-            // do nothing
-        }
-
-
-        // wait for 2 sec
     }
 
-    private async void Charge()
+    private async void Charge(Vector3 targetDir)
     {
-        // animation for charge
-        // charge towards player
-        if (isC)
-        {
-            movespeed = 0.3f;
-            enemy.MovePosition(enemy.transform.position + vectorTowardsPlayer * movespeed * Time.fixedDeltaTime);
-            animator.SetBool("isMoving", true);
-            animator.SetTrigger("isCharging");
-
-        }
-        else
-        {
-            animator.SetBool("isMoving", true);
-            movespeed = 0.1f;
-        }
-        canChargeTowardsPlayer = false;
-        //wait for 2 sec
-        await Task.Delay(2000);
+        print("How many time is this getting called?");
+        Vector3 chargeDirPlaceHolder = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
+        isChargeOnCooldown = true;
+        // = true;
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("isCharging");
+        Vector3 chargeDir = chargeDirPlaceHolder.normalized * 0.2f;
+        enemy.MovePosition(enemy.transform.position + chargeDir * movespeed * Time.fixedDeltaTime);
+        //isCharging = false;
+        await Task.Delay(chargeCooldown);
+        isChargeOnCooldown = false;
     }
 }
