@@ -58,7 +58,7 @@ public class Health : MonoBehaviour, IDataPersistence
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    { 
         if (collision.gameObject.CompareTag("Enemy") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
         {
             health -= 10;
@@ -71,17 +71,22 @@ public class Health : MonoBehaviour, IDataPersistence
             health -= 5;
             healthBar.SetHealth(health);
         }
-       // else if (collision.gameObject.CompareTag("SUMonsterMelee") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
-        //{
-       //     health -= 15;
-         //   healthBar.SetHealth(health);
-        //    hasCollided = true;
-       // }
-       // else if (collision.gameObject.CompareTag("SUMonsterRanged"))
-       // {
-       //     health -= 10;
-        //    healthBar.SetHealth(health);
-       // }
+         else if (collision.gameObject.CompareTag("SUMonsterMelee") && !hasCollided)
+        {
+             health -= 15;
+           healthBar.SetHealth(health);
+            hasCollided = true;
+         }
+         else if (collision.gameObject.CompareTag("SUMonsterRock"))
+         {
+             health -= 10;
+            healthBar.SetHealth(health);
+         }
+        else if (collision.gameObject.CompareTag("SUMonsterCharge"))
+        {
+           health -= 15;
+           healthBar.SetHealth(health);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

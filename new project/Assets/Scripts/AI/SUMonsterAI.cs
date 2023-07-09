@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Timers;
 
 [SerializeField]
 public class SUMonsterAI : EnemyAI
@@ -9,19 +10,26 @@ public class SUMonsterAI : EnemyAI
     private double distToPlayer;
 
 
-    private int throwRocksCooldown = 4000;
+    private int throwRocksCooldown = 5000;
     private int slamGroundCooldown = 6000;
     private int chargeCooldown = 8000;
+    private int meleeAttackCooldown = 2000;
 
-    public bool isThrowRocksOnCooldown = false;
+    public bool isThrowOnCooldown = false;
     public bool isSlamGroundOnCooldown = false;
     public bool isChargeOnCooldown = false;
+    public bool isMeleeAttackOnCooldown = false;
     public Vector3 vectorTowardsPlayer;
+
     public bool isCharging;
+    public bool isThrowing;
+    public bool isMeleeAttacking;
 
-    private float chargeCD;
-
-
+    public GameObject SUMonsterRock;
+    public override void Start()
+    {
+        base.Start();
+    }
     public override void Update()
     {
         
@@ -29,20 +37,23 @@ public class SUMonsterAI : EnemyAI
         {
             vectorTowardsPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
-            if (!isCharging)
+            if (!isCharging && !isThrowing)
             {
                 followPlayer();
-             }
-            chargeCD += Time.deltaTime;
-            if (distToPlayer <= 0.1)
+            }
+            if (distToPlayer <= 0.5)
             {
                 MeleeAttack();
             }
-            else if (distToPlayer > 0.3 && distToPlayer <= 0.7)
+            else if (distToPlayer > 0.5 && distToPlayer <= 0.8)
             {
                // SlamGround();
             }
-            else if (distToPlayer > 0.7 && distToPlayer <= 1.3 && !isCharging && !isChargeOnCooldown)
+            else if (distToPlayer > 0.8 && distToPlayer <= 1.6 && !isThrowing && !isThrowOnCooldown && !isCharging)//&& !isThrowOnCooldown && !isCharging && !isThrowing)
+            {
+                ThrowRocks();
+            }
+            else if (distToPlayer > 1.6 && distToPlayer <= 2.3 && !isCharging && !isChargeOnCooldown && !isThrowing)
             {
                 Charge(player.transform.position);
             }
@@ -140,15 +151,34 @@ public class SUMonsterAI : EnemyAI
         }
     }
 
-    private void MeleeAttack()
+    private async void MeleeAttack()
     {
+        isMeleeAttacking = true;
+        isMeleeAttackOnCooldown = true;
         animator.SetBool("isMoving", false);
         animator.SetTrigger("isAttacking");
+        await Task.Delay(meleeAttackCooldown);
+        isMeleeAttackOnCooldown = false;
         // turn on meleeattack hitbox through animation
     }
 
-    private void ThrowRocks()
+    private async void ThrowRocks()
     {
+        isThrowing = true;
+        isThrowOnCooldown = true;
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isThrowing", true);
+        await Task.Delay(throwRocksCooldown);
+        isThrowOnCooldown = false;
+    }
+
+    public void StopThrowing()
+    {
+        animator.SetBool("isThrowing", false);
+    }
+    private void Throw()
+    {
+        Instantiate(SUMonsterRock, enemy.transform.position, Quaternion.identity);
     }
 
     private void SlamGround()
@@ -157,15 +187,29 @@ public class SUMonsterAI : EnemyAI
 
     private async void Charge(Vector3 targetDir)
     {
-        print("How many time is this getting called?");
-        Vector3 chargeDirPlaceHolder = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
         isChargeOnCooldown = true;
-        // = true;
-        animator.SetBool("isMoving", false);
-        animator.SetTrigger("isCharging");
+        Vector3 chargeDirPlaceHolder = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
         Vector3 chargeDir = chargeDirPlaceHolder.normalized * 0.2f;
-        enemy.MovePosition(enemy.transform.position + chargeDir * movespeed * Time.fixedDeltaTime);
-        //isCharging = false;
+        float elapsedTime = 0f;
+        while (Vector3.Distance(enemy.transform.position, targetDir) >= 0.08f)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= 48f)
+            {
+                break;
+            }
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, chargeDir, 0.2f, LayerMask.GetMask("Obstacles"));
+            if (hit.collider != null)
+            {
+                // Obstacle detected, break the loop
+                break;
+            }
+            enemy.MovePosition(transform.position + chargeDir * 8f * Time.fixedDeltaTime);
+            animator.SetBool("isCharging", true);
+            await Task.Yield();
+        }
+        movespeed = 0.5f;
+        animator.SetBool("isCharging", false);
         await Task.Delay(chargeCooldown);
         isChargeOnCooldown = false;
     }
