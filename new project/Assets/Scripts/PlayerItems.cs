@@ -22,8 +22,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             toolbar = GameManager.instance.toolbar;
         }
         //Uncomment below lines if don't want to load from sample scene
-        //inventory = new Inventory("Inventory", 21);
-        //toolbar = new Inventory("Toolbar", 7);
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
     }
 
     private void Update()
