@@ -298,9 +298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8627690681829861821}
   - component: {fileID: 5136085261200569646}
-  - component: {fileID: 1817470562585416519}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: WallPuzzleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,24 +351,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.38523}
   m_EdgeRadius: 0
---- !u!114 &1817470562585416519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5136085261200569643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a467dbaf00a48e140a94a81689172b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzlePanel: {fileID: 0}
-  puzzleActivated: {fileID: 7119169538278798905}
-  puzzleText: {fileID: 0}
-  puzzleInput: {fileID: 0}
-  visualCue: {fileID: 2861617424822052387}
-  puzzleAnswer: 0
 --- !u!1 &7119169538278798905
 GameObject:
   m_ObjectHideFlags: 0

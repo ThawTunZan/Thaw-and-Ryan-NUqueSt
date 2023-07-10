@@ -2,39 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WallPuzzle : MonoBehaviour
 {
     public GameObject puzzlePanel;
+    public TextMeshProUGUI puzzleText;
+    public TMP_InputField puzzleInput;
+    public Button puzzleButton;
+
     public GameObject puzzleActivated;
     public GameObject puzzleCorrect;
-    public GameObject puzzleText;
-    public TMP_InputField puzzleInput;
-
     public GameObject visualCue;
 
-    private PlayerItems playerItems;
-    private PlayerMovement playerMovement;
-    private PlayerQuests playerQuests;
+    public WallPuzzleTrigger puzzleTrigger;
 
-    private bool playerInRange;
-    private int randX;
-    private int randA;
-    private int randB;
-    public int puzzleAnswer;
+    protected bool startBattle;
+    protected bool inBattle;
 
-    public bool spawnSlime;
-    public bool inBattle;
-    public bool isDone;
+    protected bool playerInRange;
 
-    private void Start()
+    protected PlayerItems playerItems;
+    protected PlayerMovement playerMovement;
+    protected PlayerQuests playerQuests;
+
+    protected virtual void Start()
     {
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        randX = Random.Range(6, 15);
-        randA = Random.Range(5, 10);
-        randB = Random.Range(2, 5);
         HideUI();
     }
 
@@ -44,7 +40,7 @@ public class WallPuzzle : MonoBehaviour
         {
             TriggerNote();
         }
-        if (spawnSlime)
+        if (inBattle)
         {
             CheckInBattle();
         }
@@ -52,11 +48,11 @@ public class WallPuzzle : MonoBehaviour
 
     private void TriggerNote()
     {
-        if (!playerItems.disableToolbar && !puzzlePanel.activeSelf && Input.GetKeyDown(KeyCode.E))
+        if (!playerItems.disableToolbar && !puzzlePanel.activeSelf  && !puzzleCorrect.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
+            GetPuzzleAnswer();
             ChangePuzzleText();
             ShowUI();
-            GetPuzzleAnswer();
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
         }
@@ -66,80 +62,77 @@ public class WallPuzzle : MonoBehaviour
             HideUI();
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
-            if (inBattle)
+            if (startBattle)
             {
-                spawnSlime = true;
+                puzzleTrigger.inBattle = true;
+                inBattle = true;
                 puzzleActivated.SetActive(false);
-                Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2((float)0.9, (float)-2.2), Quaternion.identity);
-                Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2(2, (float)-2.2), Quaternion.identity);
+                SpawnEnemy();
             }
         }
     }
 
-    private void ChangePuzzleText()
+    protected virtual void ChangePuzzleText()
     {
-        TextMeshProUGUI randText = puzzleText.GetComponent<TextMeshProUGUI>();
-        randText.text = "Solve the for loop to free yourself!" +
-            "\n\nEvery wrong answer has consequences..." +
-            "\n\nx = " + randX + ";" +
-            "\nfor (int i = 0; i < " + randA + "; i++)" +
-            "\n{" +
-            "\n    x = x * " + randB + " + i;" +
-            "\n}" +
-            "\n\nWhat is the value of x after the for loop?";
+
     }
 
-    private int GetPuzzleAnswer()
+    protected virtual int GetPuzzleAnswer()
     {
-        puzzleAnswer = randX;
-        int a = randA;
-        int b = randB;
-        for (int i = 0; i < a; i++)
-        {
-            puzzleAnswer = puzzleAnswer * b + i;
-        }
-        return puzzleAnswer;
+        return 0;
     }
 
-    public void CheckAnswer()
+    protected virtual void SpawnEnemy()
+    {
+
+    }
+
+    protected virtual void CheckInBattle()
+    {
+        
+    }
+
+    protected virtual void ChangeQuestProgress()
+    {
+
+    }
+
+    public virtual void CheckQuestProgress(int questProgress)
+    {
+
+    }
+
+    public virtual void CheckAnswer()
     {
         bool parseSuccess = int.TryParse(puzzleInput.text.Trim(), out int playerAnswer);
         if (parseSuccess)
         {
-            TextMeshProUGUI text = puzzleText.GetComponent<TextMeshProUGUI>();
             if (playerAnswer == GetPuzzleAnswer())
             {
-                text.text = "Correct!\n\nYou are now freed from this room.";
-                playerQuests.cs1010Progress = 2;
+                puzzleText.text = "Correct!\n\nYou are now freed from this room.";
+                ChangeQuestProgress();
             }
             else
             {
-                text.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
-                inBattle = true;
+                puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
+                startBattle = true;
             }
         }
     }
 
-    private void CheckInBattle()
+    public void ShowUI()
     {
-        if (GameObject.Find("Slime(Clone)") == null)
-        {
-            inBattle = false;
-            spawnSlime = false;
-        }
-    }
-
-    private void ShowUI()
-    {
-        puzzleText.SetActive(true);
+        puzzleButton.gameObject.SetActive(true);
+        puzzleText.gameObject.SetActive(true);
         puzzleInput.gameObject.SetActive(true);
         puzzlePanel.SetActive(true);
     }
 
-    private void HideUI()
+    public void HideUI()
     {
+        puzzleButton.gameObject.SetActive(false);
         puzzlePanel.SetActive(false);
-        puzzleText.SetActive(false);
+        puzzleText.gameObject.SetActive(false);
         puzzleInput.gameObject.SetActive(false);
     }
 

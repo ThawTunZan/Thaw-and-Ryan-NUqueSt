@@ -94,14 +94,14 @@ public class PuzzleDoor : MonoBehaviour
         }
         else
         {
-            if (playerQuests.cs1010Progress == 3 && wallPuzzleCorrect.activeSelf)
-            {
-                playerQuests.cs1010Progress = 2;
-            }
-            else if (playerQuests.cs1010Progress == 3 && !wallPuzzleCorrect.activeSelf)
-            {
-                playerQuests.cs1010Progress = 1;
-            }
+            //if (playerQuests.cs1010Progress == 3 && wallPuzzleCorrect.activeSelf)
+            //{
+            //    playerQuests.cs1010Progress = 2;
+            //}
+            //else if (playerQuests.cs1010Progress == 3 && !wallPuzzleCorrect.activeSelf)
+            //{
+            //    playerQuests.cs1010Progress = 1;
+            //}
             Door2.SetActive(true);
         }
     }
@@ -112,7 +112,6 @@ public class PuzzleDoor : MonoBehaviour
         {
             Destroy(activateWallPuzzle);
             Destroy(lockedWall);
-            wallPuzzleCorrect.SetActive(true);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NoteTrigger : MonoBehaviour
@@ -50,6 +51,42 @@ public class NoteTrigger : MonoBehaviour
         }
     }
 
+    private void CheckType()
+    {
+        if (noteType == "Text")
+        {
+            TextMeshPro tmpText = gameObject.GetComponent<TextMeshPro>();
+            if (tmpText != null)
+            {
+                TextMeshProUGUI noteUIText = noteText.GetComponent<TextMeshProUGUI>();
+                noteUIText.text = tmpText.text;
+            }
+            noteText.SetActive(true);
+        }
+        else if (noteType == "Image")
+        {
+            noteImage.SetActive(true);
+        }
+        else if (noteType == "Both")
+        {
+            TextMeshPro tmpText = gameObject.GetComponent<TextMeshPro>();
+            if (tmpText != null)
+            {
+                TextMeshProUGUI noteUIText = noteText.GetComponent<TextMeshProUGUI>();
+                noteUIText.text = tmpText.text;
+            }
+            noteText.SetActive(true);
+            noteImage.SetActive(true);
+        }
+    }
+
+    private void HideUI()
+    {
+        noteText.SetActive(false);
+        noteImage.SetActive(false);
+        notePanel.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -66,24 +103,5 @@ public class NoteTrigger : MonoBehaviour
             playerInRange = false;
             visualCue.SetActive(false);
         }
-    }
-
-    private void CheckType()
-    {
-        if (noteType == "Text")
-        {
-            noteText.SetActive(true);
-        }
-        else if (noteType == "Image")
-        {
-            noteImage.SetActive(true);
-        }
-    }
-
-    private void HideUI()
-    {
-        noteText.SetActive(false);
-        noteImage.SetActive(false);
-        notePanel.SetActive(false);
     }
 }

@@ -4,26 +4,51 @@ using UnityEngine;
 
 public class WallPuzzleTrigger : MonoBehaviour
 {
-    public GameObject wallPuzzle;
+    public GameObject wallPuzzleTrigger;
+    public GameObject wallPuzzleActivate;
     public GameObject lockedWall;
-    public ForLoopPuzzle forLoopPuzzle;
 
-    private PlayerQuests playerQuests;
+    public string questName;
+    public int questProgress;
+
+    public bool inBattle;
+    public bool finishBattle;
 
     bool playerInRange;
 
-    private void Start()
-    {
-        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-    }
-
     void Update()
     {
-        if (playerInRange && playerQuests.cs1010Progress < 2 && !forLoopPuzzle.inBattle && !forLoopPuzzle.spawnSlime)
+        if (playerInRange && !inBattle || finishBattle)
         {
-            lockedWall.SetActive(true);
-            wallPuzzle.SetActive(true);
+            WallTrigger();
         }
+    }
+
+    private void WallTrigger()
+    {
+        if (questName == "CS1010" && GameManager.instance.cs1010Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "CS1231" && GameManager.instance.cs1231Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "CS2030" && GameManager.instance.cs2030Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "CS2040" && GameManager.instance.cs2040Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+    }
+
+    private void ActivatePuzzle()
+    {
+        lockedWall.SetActive(true);
+        wallPuzzleActivate.SetActive(true);
+        finishBattle = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
