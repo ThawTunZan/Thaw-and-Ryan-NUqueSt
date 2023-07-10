@@ -51,8 +51,6 @@ public class GoblinRock : MonoBehaviour
         {
             enemyAnimator.SetBool("isMoving", false);
             enemyAnimator.SetTrigger("isAttacking");
-            //ChangeMovingStatus();
-           // Throw();
         }
     }
 
@@ -60,16 +58,4 @@ public class GoblinRock : MonoBehaviour
     {
         Instantiate(rock, enemy.transform.position, Quaternion.identity);
     } 
-
-    public void ChangeMovingStatus()
-    {
-        if (moving)
-        {
-            enemyAnimator.SetBool("isMoving", moving);
-        }
-        else
-        {
-            enemyAnimator.SetBool("isMoving", moving);
-        }
-    }
 }

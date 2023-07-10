@@ -58,18 +58,34 @@ public class Health : MonoBehaviour, IDataPersistence
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    { 
         if (collision.gameObject.CompareTag("Enemy") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
         {
             health -= 10;
             healthBar.SetHealth(health);
-            hasCollided=true;
+            hasCollided = true;
             //print(health);
         }
         else if (collision.gameObject.CompareTag("rock"))
         {
-            health -= 10;
+            health -= 5;
             healthBar.SetHealth(health);
+        }
+         else if (collision.gameObject.CompareTag("SUMonsterMelee") && !hasCollided)
+        {
+             health -= 15;
+           healthBar.SetHealth(health);
+            hasCollided = true;
+         }
+         else if (collision.gameObject.CompareTag("SUMonsterRock"))
+         {
+             health -= 10;
+            healthBar.SetHealth(health);
+         }
+        else if (collision.gameObject.CompareTag("SUMonsterCharge"))
+        {
+           health -= 15;
+           healthBar.SetHealth(health);
         }
     }
 
