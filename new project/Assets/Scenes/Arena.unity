@@ -38939,6 +38939,10 @@ MonoBehaviour:
   hasAddedToChest: 0
   tutorialProgress: 0
   cs1010Progress: 0
+  cs1231Progress: 0
+  cs2030Progress: 0
+  cs2040Progress: 0
+  cs2040SeenBefore: []
   hours: 0
   minutes: 0
   seconds: 0
@@ -97934,6 +97938,7 @@ MonoBehaviour:
   isCharging: 0
   isThrowing: 0
   isMeleeAttacking: 0
+  playerTransformLocation: {x: 0, y: 0, z: 0}
   SUMonsterRock: {fileID: 5758627312440634008, guid: e8f70efe021a3204d98e19c859854849, type: 3}
 --- !u!4 &1551439715 stripped
 Transform:
@@ -99881,7 +99886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3051679187011982164, guid: ce9de6eff68268441bd3dbe5c5b088c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
+      value: -64.742
       objectReference: {fileID: 0}
     - target: {fileID: 3103239172213398495, guid: ce9de6eff68268441bd3dbe5c5b088c9, type: 3}
       propertyPath: m_Layer
