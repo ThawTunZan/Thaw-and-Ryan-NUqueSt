@@ -12,6 +12,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int cs1231Progress;
     public int cs2030Progress;
     public int cs2040Progress;
+    public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs1231Progress = GameManager.instance.cs1231Progress;
             cs2030Progress = GameManager.instance.cs2030Progress;
             cs2040Progress = GameManager.instance.cs2040Progress;
+            cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckQuestProgress(currScene);
@@ -56,7 +58,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "Cave_4a") // For CS2040
         {
-
+            NQueensPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<NQueensPuzzle>();
+            puzzle1.CheckQuestProgress(cs2040Progress);
         }
     }
 
@@ -68,6 +71,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs1231Progress = cs1231Progress;
         GameManager.instance.cs2030Progress = cs2030Progress;
         GameManager.instance.cs2040Progress = cs2040Progress;
+        GameManager.instance.cs2040SeenBefore = cs2040SeenBefore;
     }
 
     public void LoadData(GameData data)
@@ -79,6 +83,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs1231Progress = data.cs1231Progress;
         cs2030Progress = data.cs2030Progress;
         cs2040Progress = data.cs2040Progress;
+        cs2040SeenBefore = data.cs2040SeenBefore;
     }
 
     public void SaveData(GameData data)
@@ -89,5 +94,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs1231Progress = cs1231Progress;
         data.cs2030Progress = cs2030Progress;
         data.cs2040Progress = cs2040Progress;
+        data.cs2040SeenBefore = cs2040SeenBefore;
     }
 }

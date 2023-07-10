@@ -8,13 +8,22 @@ public class QueenChecker : MonoBehaviour
 {
     public List<Vector2Int> queenPositions = new List<Vector2Int>();
 
-    public Dictionary<Vector2Int, int> seenBefore = new Dictionary<Vector2Int, int>();
+    [SerializeField] private List<Vector2Int> seenBeforeList = new List<Vector2Int>();
+    private Dictionary<Vector2Int, int> seenBeforeDict = new Dictionary<Vector2Int, int>();
+
+    private PlayerQuests playerQuests;
 
     public static QueenChecker instance;
 
     private void Start()
     {
         instance = this;
+        seenBeforeList = GameManager.instance.cs2040SeenBefore;
+        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        foreach (Vector2Int seenBefore in seenBeforeList)
+        {
+            seenBeforeDict.Add(seenBefore, 1);
+        }
     }
 
     public bool CheckX()
@@ -36,7 +45,6 @@ public class QueenChecker : MonoBehaviour
 
     public bool CheckDiag(Vector2Int queenPosition)
     {
-        // Top left
         int tempY = queenPosition.y + 1;
         for (int x = queenPosition.x - 1; x > -1; x--)
         {
@@ -49,7 +57,6 @@ public class QueenChecker : MonoBehaviour
                 tempY++;
             }
         }
-        // Top right
         tempY = queenPosition.y + 1;
         for (int x = queenPosition.x + 1; x < 6; x++)
         {
@@ -62,7 +69,6 @@ public class QueenChecker : MonoBehaviour
                 tempY++;
             }
         }
-        // Bottom left
         tempY = queenPosition.y - 1;
         for (int x = queenPosition.x - 1; x > -1; x--)
         {
@@ -75,7 +81,6 @@ public class QueenChecker : MonoBehaviour
                 tempY--;
             }
         }
-        // Bottom right
         tempY = queenPosition.y - 1;
         for (int x = queenPosition.x + 1; x < 6; x++)
         {
@@ -97,15 +102,17 @@ public class QueenChecker : MonoBehaviour
         int seenIntY = 0;
         for (int i = 5; i > -1; i--)
         {
-            seenIntX += queenPositions[5 - i].x * (int)Math.Pow(10, i);
-            seenIntY += queenPositions[5 - i].y * (int)Math.Pow(10, i);
+            seenIntX += (queenPositions[5 - i].x + 1) * (int)Math.Pow(10, i);
+            seenIntY += (queenPositions[5 - i].y + 1) * (int)Math.Pow(10, i);
         }
         Vector2Int seenPos = new Vector2Int(seenIntX, seenIntY);
-        if (seenBefore.ContainsKey(seenPos))
+        if (seenBeforeDict.ContainsKey(seenPos))
         {
             return true;
         }
-        seenBefore.Add(new Vector2Int(seenIntX, seenIntY), 1);
+        playerQuests.cs2040SeenBefore.Add(seenPos);
+        seenBeforeList.Add(seenPos);
+        seenBeforeDict.Add(seenPos, 1);
         return false;
     }
 }

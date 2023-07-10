@@ -8,8 +8,8 @@ public class NQueensPuzzle : WallPuzzle
 
     private QueenChecker queenChecker;
 
-    public int currQ = 1;
-    private int totalQ = 5;
+    public int currQ;
+    private int totalQ = 4;
 
     [SerializeField] private GameObject puzzleDoor1;
 
@@ -17,16 +17,17 @@ public class NQueensPuzzle : WallPuzzle
     {
         base.Start();
         queenChecker = GameObject.Find("QueenPieces").GetComponent<QueenChecker>();
+        currQ = GameManager.instance.cs2040Progress + 1;
     }
 
     protected override void ChangePuzzleText()
     {
         puzzleText.text = "(" + currQ + "/" + totalQ + ") Solve the n-Queens puzzle or die!" +
             "\nEvery wrong answer has consequences..." +
-            "\n\nHold a weapon and left click a queen to move it around." +
+            "\n\nHold a weapon and attack a queen to push it." +
             "\nYou can only move the queen left and right." +
             "\n\nIf you think your configuration is correct, click OK." +
-            "\nYou have to solve this " + (totalQ - currQ + 1) + " more times!";
+            "\n\nYou have to solve this " + (totalQ - currQ + 1) + " more times!";
     }
 
     protected override int GetPuzzleAnswer()
@@ -87,7 +88,7 @@ public class NQueensPuzzle : WallPuzzle
         {
             if (queenChecker.HasSeenBefore())
             {
-                puzzleText.text = "You have tried this configuration already.\n\nTry again!";
+                puzzleText.text = "(" + currQ + "/" + totalQ + ") You have tried this configuration already.\n\nTry again!";
             }
             else if (currQ == totalQ)
             {
@@ -96,6 +97,7 @@ public class NQueensPuzzle : WallPuzzle
             }
             else
             {
+                playerQuests.cs2040Progress++;
                 currQ++;
                 GetPuzzleAnswer();
                 ChangePuzzleText();

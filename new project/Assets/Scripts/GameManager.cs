@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public int cs1231Progress;
     public int cs2030Progress;
     public int cs2040Progress;
+    public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
     // for day and night system
     public float hours;

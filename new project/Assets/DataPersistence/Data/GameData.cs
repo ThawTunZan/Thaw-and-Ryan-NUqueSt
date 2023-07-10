@@ -35,7 +35,8 @@ public class GameData
     public int cs1231Progress;
     public int cs2030Progress;
     public int cs2040Progress;
-    
+    public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
+
     public float hours;
 
     public float day;
@@ -68,6 +69,11 @@ public class GameData
 
         story = "";
         placeHolderStory = "";
+
+        cs1010Progress = -1;
+        cs1231Progress = -1;
+        cs2030Progress = -1;
+        cs2040Progress = -1;
 
         tutorialProgress = 0;
 
