@@ -12,6 +12,9 @@ public class Slot_UI : MonoBehaviour
     public Image itemIcon;
     public TextMeshProUGUI quantityText;
 
+    public string itemName;
+    public string itemDesc;
+
     [SerializeField] private GameObject highlight;
 
     /*
@@ -21,6 +24,8 @@ public class Slot_UI : MonoBehaviour
     {
         if(slot != null)
         {
+            itemName = slot.itemName; 
+            itemDesc = slot.itemDesc;
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             if (slot.maxAllowed == 1)
@@ -36,6 +41,8 @@ public class Slot_UI : MonoBehaviour
 
     public void SetEmpty()
     {
+        itemName = null;
+        itemDesc = null;
         itemIcon.sprite = null;
         itemIcon.color = new Color(1, 1, 1, 0);
         quantityText.text = "";
