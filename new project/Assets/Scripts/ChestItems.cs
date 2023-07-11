@@ -6,20 +6,20 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 {
     public string chestName;
     public Inventory chestInventory;
-    public Dictionary<string, Inventory> stringToChestManager;
-    public Dictionary<string, Inventory> stringToChestData;
+    //public Dictionary<string, Inventory> stringToChestManager;
+    //public Dictionary<string, Inventory> stringToChestData;
 
     public PlayerPositionSO startingPosition;
-    private SpriteRenderer playerRenderer;
+    //private SpriteRenderer playerRenderer;
 
     private Inventory_UI chestInCanvas;
 
-    public bool hasAddedToChest;
+    private bool hasAddedToChest;
 
     private void Start()
     {
         gameObject.name = chestName;
-        playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        //playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
         if (startingPosition.transittedScene)
         {
@@ -69,26 +69,26 @@ public class ChestItems : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void DropItem(Item item)
-    {
-        Vector2 spawnLocation = transform.position;
-        if (playerRenderer.flipX)
-        {
-            Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(item, spawnLocation + new Vector2(0.2f, -0.1f), Quaternion.identity);
-        }
-    }
+    //public void DropItem(Item item)
+    //{
+    //    Vector2 spawnLocation = transform.position;
+    //    if (playerRenderer.flipX)
+    //    {
+    //        Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
+    //    }
+    //    else
+    //    {
+    //        Instantiate(item, spawnLocation + new Vector2(0.2f, -0.1f), Quaternion.identity);
+    //    }
+    //}
 
-    public void DropItem(Item item, int numToDrop)
-    {
-        for (int i = 0; i < numToDrop; i++)
-        {
-            DropItem(item);
-        }
-    }
+    //public void DropItem(Item item, int numToDrop)
+    //{
+    //    for (int i = 0; i < numToDrop; i++)
+    //    {
+    //        DropItem(item);
+    //    }
+    //}
 
     public void LoadData(GameData data)
     {

@@ -3347,7 +3347,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4154,7 +4154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 221112700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900855741}
+        m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+        m_MethodName: ClickedBuy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &221112700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4343,7 +4355,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10856,7 +10868,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 522439487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 900855741}
+        m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+        m_MethodName: ClickedSell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &522439487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11837,7 +11861,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -17331,7 +17355,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -18106,7 +18130,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: 
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 0}
   slotBlocker: {fileID: 0}
   slots:
   - {fileID: 395785492}
@@ -18134,6 +18157,7 @@ MonoBehaviour:
   itemDescText: {fileID: 357198307}
   buyButton: {fileID: 221112699}
   sellButton: {fileID: 522439486}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}
@@ -18275,7 +18299,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 128427158}
   inventoryName: Inventory
   chestPanel: {fileID: 1556058491}
-  shopPanel: {fileID: 1684889640}
   slotBlocker: {fileID: 1845666505}
   slots:
   - {fileID: 1645220288}
@@ -18303,6 +18326,7 @@ MonoBehaviour:
   itemDescText: {fileID: 357198307}
   buyButton: {fileID: 221112699}
   sellButton: {fileID: 522439486}
+  shopPanel: {fileID: 1684889640}
   shopAmountPanel: {fileID: 1952892679}
   headerAmountText: {fileID: 1511103899}
   buyAmountButton: {fileID: 648288898}
@@ -19212,7 +19236,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -20385,7 +20409,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -25515,7 +25539,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: 
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 0}
   slotBlocker: {fileID: 0}
   slots:
   - {fileID: 555446729}
@@ -25543,6 +25566,7 @@ MonoBehaviour:
   itemDescText: {fileID: 357198307}
   buyButton: {fileID: 221112699}
   sellButton: {fileID: 522439486}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}
@@ -29140,7 +29164,7 @@ PrefabInstance:
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1619857601}
+      objectReference: {fileID: 900855741}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -31340,7 +31364,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 900855741}
         m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
-        m_MethodName: SetToMin
+        m_MethodName: ShopSetToMin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36312,8 +36336,7 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: Toolbar
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 1684889640}
-  slotBlocker: {fileID: 1845666505}
+  slotBlocker: {fileID: 0}
   slots:
   - {fileID: 981211030}
   - {fileID: 231021669}
@@ -36326,6 +36349,7 @@ MonoBehaviour:
   itemDescText: {fileID: 357198307}
   buyButton: {fileID: 221112699}
   sellButton: {fileID: 522439486}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}

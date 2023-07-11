@@ -30,6 +30,7 @@ public class GameData
     public Inventory shop1; // shop1: generalshop
     public List<Inventory> shopList = new List<Inventory>();
     public bool hasAddedToShop;
+    public float currDay;
 
     public int money;
 

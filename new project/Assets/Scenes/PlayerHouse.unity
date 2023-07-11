@@ -3021,6 +3021,55 @@ MonoBehaviour:
   m_Spacing: {x: 12, y: 12}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &140566765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140566767}
+  - component: {fileID: 140566766}
+  m_Layer: 0
+  m_Name: ForDailyShopRestock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &140566766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140566765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9ebd57b6343764b8d663c3a02fa5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopName: Shop0
+  shopInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+  hasAddedToShop: 0
+--- !u!4 &140566767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140566765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15671398, y: -0.022320516, z: 0.09188503}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &144857288
 GameObject:
   m_ObjectHideFlags: 0
@@ -15054,7 +15103,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: Toolbar
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 0}
   slotBlocker: {fileID: 0}
   slots:
   - {fileID: 148781616}
@@ -15068,6 +15116,7 @@ MonoBehaviour:
   itemDescText: {fileID: 315706055}
   buyButton: {fileID: 1314060307}
   sellButton: {fileID: 916005313}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}
@@ -17918,7 +17967,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1706870706}
   inventoryName: Inventory
   chestPanel: {fileID: 6238527}
-  shopPanel: {fileID: 721937332}
   slotBlocker: {fileID: 1602509338}
   slots:
   - {fileID: 1255508194}
@@ -17946,6 +17994,7 @@ MonoBehaviour:
   itemDescText: {fileID: 315706055}
   buyButton: {fileID: 1314060307}
   sellButton: {fileID: 916005313}
+  shopPanel: {fileID: 721937332}
   shopAmountPanel: {fileID: 75314438}
   headerAmountText: {fileID: 1820246377}
   buyAmountButton: {fileID: 1093230565}
@@ -19980,7 +20029,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: 
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 0}
   slotBlocker: {fileID: 0}
   slots:
   - {fileID: 170131568}
@@ -20008,6 +20056,7 @@ MonoBehaviour:
   itemDescText: {fileID: 315706055}
   buyButton: {fileID: 1314060307}
   sellButton: {fileID: 916005313}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}
@@ -25541,7 +25590,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: 
   chestPanel: {fileID: 0}
-  shopPanel: {fileID: 0}
   slotBlocker: {fileID: 0}
   slots:
   - {fileID: 1568655861}
@@ -25569,6 +25617,7 @@ MonoBehaviour:
   itemDescText: {fileID: 315706055}
   buyButton: {fileID: 1314060307}
   sellButton: {fileID: 916005313}
+  shopPanel: {fileID: 0}
   shopAmountPanel: {fileID: 0}
   headerAmountText: {fileID: 0}
   buyAmountButton: {fileID: 0}

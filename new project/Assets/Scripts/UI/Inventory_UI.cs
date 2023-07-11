@@ -16,8 +16,6 @@ public class Inventory_UI : MonoBehaviour
 
     public GameObject chestPanel;
 
-    public GameObject shopPanel;
-
     public GameObject slotBlocker;
 
     public List<Slot_UI> slots = new List<Slot_UI>();
@@ -29,6 +27,7 @@ public class Inventory_UI : MonoBehaviour
     public Button sellButton;
 
     [Header("Shop Components")]
+    public GameObject shopPanel;
     public GameObject shopAmountPanel;
     public TextMeshProUGUI headerAmountText;
     public Button buyAmountButton;
@@ -37,7 +36,6 @@ public class Inventory_UI : MonoBehaviour
 
     [Header("Drop Panel Components")]
     public GameObject dropPanel;
-    //public Button dropButton;
     public TMP_InputField dropText;
 
     public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
@@ -57,6 +55,7 @@ public class Inventory_UI : MonoBehaviour
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
     private Inventory_UI chestInCanvas;
+    private Inventory_UI shopInCanvas;
 
     private void Start()
     {
@@ -73,6 +72,7 @@ public class Inventory_UI : MonoBehaviour
         inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
         toolbarInCanvas = GameObject.Find("Toolbar").GetComponent<Inventory_UI>();
         chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
+        shopInCanvas = GameObject.Find("Shop").GetComponent<Inventory_UI>();
 
         SetupSlots();
         Refresh();
@@ -142,6 +142,11 @@ public class Inventory_UI : MonoBehaviour
         {
             ChestItems chestItems = GameObject.Find(chestInCanvas.inventoryName).GetComponent<ChestItems>();
             chestItems.ChestRefresh();
+        }
+        if (shopPanel != null && shopPanel.activeSelf)
+        {
+            ShopItems shopItems = GameObject.Find(shopInCanvas.inventoryName).GetComponent<ShopItems>();
+            shopItems.ShopRefresh();
         }
     }
 
@@ -216,7 +221,12 @@ public class Inventory_UI : MonoBehaviour
     public void ShopSetToMax()
     {
         Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
-        dropText.text = fromInventory.slots[clickedSlot.slotID].count.ToString();
+        shopAmountText.text = fromInventory.slots[clickedSlot.slotID].count.ToString();
+    }
+
+    public void ShopSetToMin()
+    {
+        shopAmountText.text = "0";
     }
 
     /*
@@ -272,30 +282,33 @@ public class Inventory_UI : MonoBehaviour
     public void SlotClick(Slot_UI slot)
     {
         clickedSlot = slot;
-        itemNameText.text = clickedSlot.itemName;
-        itemDescText.text = clickedSlot.itemDesc;
-        if (shopPanel.activeSelf)
+        if (clickedSlot.itemName != null)
         {
-            if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
+            itemNameText.text = clickedSlot.itemName;
+            itemDescText.text = clickedSlot.itemDesc;
+            if (shopPanel.activeSelf)
             {
-                if (playerMoney.money >= clickedSlot.itemBuyCost)
+                if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
                 {
-                    buyButton.interactable = true;
+                    if (playerMoney.money >= clickedSlot.itemBuyCost)
+                    {
+                        buyButton.interactable = true;
+                    }
+                    else
+                    {
+                        buyButton.interactable = false;
+                    }
+                    sellButton.interactable = false;
                 }
                 else
                 {
                     buyButton.interactable = false;
+                    sellButton.interactable = true;
                 }
-                sellButton.interactable = false;
             }
-            else
-            {
-                buyButton.interactable = false;
-                sellButton.interactable = true;
-            }
+            itemDescText.text += "\n\nBuy cost: $" + clickedSlot.itemBuyCost;
+            itemDescText.text += "\n\nSell cost: $" + clickedSlot.itemSellCost;
         }
-        itemDescText.text += "\n\nBuy cost: $" + clickedSlot.itemBuyCost;
-        itemDescText.text += "\n\nSell cost: $" + clickedSlot.itemSellCost;
     }
 
     public void ItemDescDisable()
@@ -329,21 +342,25 @@ public class Inventory_UI : MonoBehaviour
 
     public void BuyFromShop()
     {
+        Inventory fromShop = inventoryByName[clickedSlot.inventoryName];
         Item itemToBuy = ItemManager.instance.GetItemByName(clickedSlot.itemName);
         string text = shopAmountText.text;
         bool parseSuccess = int.TryParse(text.Trim(), out int amountToBuy);
-        if (parseSuccess && playerMoney.money >= amountToBuy * itemToBuy.data.itemBuyCost && amountToBuy >= 0)
+        if (parseSuccess && playerMoney.money >= amountToBuy * itemToBuy.data.itemBuyCost && amountToBuy >= 0
+            && amountToBuy <= fromShop.slots[clickedSlot.slotID].count)
         {
             playerItems.inventory.Add(itemToBuy, amountToBuy);
+            fromShop.Remove(clickedSlot.slotID, amountToBuy);
+            playerMoney.money -= amountToBuy * itemToBuy.data.itemBuyCost;
             Refresh();
         }
         shopAmountPanel.SetActive(false);
         slotBlocker.SetActive(false);
+        ItemDescDisable();
     }
 
     public void ClickedSell()
     {
-        playerMoney.money += clickedSlot.itemSellCost;
         Item soldItem = ItemManager.instance.GetItemByName(clickedSlot.itemName);
         if (soldItem.data.maxAllowed == 1)
         {
@@ -364,16 +381,19 @@ public class Inventory_UI : MonoBehaviour
 
     public void SellFromInventory()
     {
+        Item itemToSell = ItemManager.instance.GetItemByName(clickedSlot.itemName);
         Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
         string text = shopAmountText.text;
         bool parseSuccess = int.TryParse(text.Trim(), out int amountToSell);
         if (parseSuccess && playerItems.inventory.slots[clickedSlot.slotID].count >= amountToSell && amountToSell >= 0)
         {
             fromInventory.Remove(clickedSlot.slotID, amountToSell);
+            playerMoney.money += amountToSell * itemToSell.data.itemSellCost;
             Refresh();
         }
         shopAmountPanel.SetActive(false);
         slotBlocker.SetActive(false);
+        ItemDescDisable();
     }
 
     /*
