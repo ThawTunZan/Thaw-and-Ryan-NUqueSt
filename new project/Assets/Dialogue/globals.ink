@@ -10,7 +10,7 @@ VAR allQuestDone = false
 VAR validTime = true
 
 #Weaponsmith
-VAR questMA1511Done= false
+VAR questMA1511Done = false
 VAR questMA1512Done = false
 VAR questMA1513Done = false
 VAR questMA1508EDone = false

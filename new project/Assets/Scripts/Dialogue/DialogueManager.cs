@@ -39,8 +39,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Inventory inventory;
     public Inventory toolbar;
 
-
-
     private void Awake()
     {
         if (instance != null)
@@ -94,7 +92,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             dialogueVariables.InkSetVariables(currentStory, "questDone", false);
         }
-
         if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
         {
             print("not valid time");
@@ -189,8 +186,16 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 // add quest to Quest List under Player Quests component in Player via QuestList script
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
+                DisplayChoices();
             }
-            DisplayChoices();
+            else if (currentLine.StartsWith("Sure. This is what we have in stock."))
+            {
+                ExitDialogueMode();
+            }
+            else
+            {
+                DisplayChoices();
+            }
         }
         else
         {
