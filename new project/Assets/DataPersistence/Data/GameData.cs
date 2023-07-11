@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 
@@ -24,6 +25,11 @@ public class GameData
     public Inventory chest2; // chest2: Cave_1
     public List<Inventory> chestList = new List<Inventory>();
     public bool hasAddedToChest;
+
+    public Inventory shop0; // shop0: blacksmith
+    public Inventory shop1; // shop1: generalshop
+    public List<Inventory> shopList = new List<Inventory>();
+    public bool hasAddedToShop;
 
     public string story;                        // quest progress for WeaponSmith NPC
     public string placeHolderStory;
@@ -64,6 +70,12 @@ public class GameData
         chestList.Add(chest1);
         chestList.Add(chest2);
         hasAddedToChest = false;
+
+        shop0 = new Inventory("Shop0", 21);
+        shop1 = new Inventory("Shop1", 21);
+        shopList.Add(shop0);
+        shopList.Add(shop1);
+        hasAddedToShop = false;
 
         hours = 8;
 

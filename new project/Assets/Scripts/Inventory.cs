@@ -10,6 +10,7 @@ public class Inventory
     public class Slot
     {
         public string itemName;
+        public string itemDesc;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -49,6 +50,7 @@ public class Inventory
         public void AddItem(Item item)
         {
             this.itemName = item.data.itemName;
+            this.itemDesc = item.data.itemDesc;
             this.maxAllowed = item.data.maxAllowed;
             this.icon = item.data.icon;
             count++;

@@ -16,7 +16,16 @@ public class Inventory_UI : MonoBehaviour
 
     public GameObject chestPanel;
 
+    public GameObject shopPanel;
+
     public List<Slot_UI> slots = new List<Slot_UI>();
+
+    [Header("Item Description Components")]
+    public TextMeshProUGUI itemNameText;
+    public TextMeshProUGUI itemDescText;
+    public Button buyButton;
+    public Button sellButton;
+    public Button dropButton2;
 
     [Header("Drop Panel Components")]
     public GameObject dropPanel;
@@ -26,6 +35,8 @@ public class Inventory_UI : MonoBehaviour
     public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
 
     private Canvas canvas;
+
+    private Slot_UI clickedSlot;
 
     private Slot_UI draggedSlot;
     private Image draggedIcon;
@@ -77,6 +88,7 @@ public class Inventory_UI : MonoBehaviour
         {
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
+            ItemDescDisable();
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
         }
@@ -127,21 +139,40 @@ public class Inventory_UI : MonoBehaviour
      */
     public void RemoveAmountUI()
     {
-        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
-        Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
-        if (itemToDrop != null)
+        if (draggedSlot != null)
         {
-            if (fromInventory.slots[draggedSlot.slotID].maxAllowed == 1)
+            Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+            Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
+            if (itemToDrop != null)
             {
-                playerItems.DropItem(itemToDrop);
-                fromInventory.Remove(draggedSlot.slotID);
-                Refresh();
+                if (fromInventory.slots[draggedSlot.slotID].maxAllowed == 1)
+                {
+                    playerItems.DropItem(itemToDrop);
+                    fromInventory.Remove(draggedSlot.slotID);
+                    Refresh();
+                }
+                else
+                {
+                    playerItems.disableToolbar = true;
+                    dropPanel.SetActive(true);
+                    playerMovement.enabled = false;
+                }
             }
-            else
+        }
+    }
+
+    public void RemoveAmountUI2()
+    {
+        if (clickedSlot != null)
+        {
+            Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
+            Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[clickedSlot.slotID].itemName);
+            if (itemToDrop != null)
             {
-                playerItems.disableToolbar = true;
-                dropPanel.SetActive(true);
-                playerMovement.enabled = false;
+                playerItems.DropItem(itemToDrop, fromInventory.slots[clickedSlot.slotID].count);
+                fromInventory.Remove(clickedSlot.slotID, fromInventory.slots[clickedSlot.slotID].count);
+                Refresh();
+                ItemDescDisable();
             }
         }
     }
@@ -231,6 +262,35 @@ public class Inventory_UI : MonoBehaviour
                 fromSlot.RemoveItem();
             }
         }
+    }
+
+    public void SlotClick(Slot_UI slot)
+    {
+        clickedSlot = slot;
+        if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
+        {
+            buyButton.interactable = true;
+            sellButton.interactable = true;
+            dropButton2.interactable = false;
+        }
+        else
+        {
+            buyButton.interactable = false;
+            sellButton.interactable = false;
+            dropButton2.interactable = true;
+        }
+        itemNameText.text = clickedSlot.itemName;
+        itemDescText.text = clickedSlot.itemDesc;
+    }
+
+    public void ItemDescDisable()
+    {
+        clickedSlot = null;
+        buyButton.interactable = false;
+        sellButton.interactable = false;
+        dropButton2.interactable = false;
+        itemNameText.text = null;
+        itemDescText.text = null;
     }
 
     /*

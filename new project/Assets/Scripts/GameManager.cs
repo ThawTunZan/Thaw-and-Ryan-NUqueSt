@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public List<Inventory> chestList = new List<Inventory>();
     public bool hasAddedToChest;
 
+    public Inventory shop0; // shop0: blacksmith
+    public Inventory shop1; // shop1: generalshop
+    public List<Inventory> shopList = new List<Inventory>();
+    public bool hasAddedToShop;
+
     public int tutorialProgress;
 
     public int cs1010Progress;
@@ -60,6 +65,11 @@ public class GameManager : MonoBehaviour
         chestList.Add(instance.chest0);
         chestList.Add(instance.chest1);
         chestList.Add(instance.chest2);
+
+        shop0 = new Inventory("Shop0", 21);
+        shop1 = new Inventory("Shop1", 21);
+        shopList.Add(instance.shop0);
+        shopList.Add(instance.shop1);
 
         DontDestroyOnLoad(gameObject);  //else
     }
