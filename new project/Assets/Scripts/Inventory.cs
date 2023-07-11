@@ -11,6 +11,8 @@ public class Inventory
     {
         public string itemName;
         public string itemDesc;
+        public int itemBuyCost;
+        public int itemSellCost;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -51,6 +53,8 @@ public class Inventory
         {
             this.itemName = item.data.itemName;
             this.itemDesc = item.data.itemDesc;
+            this.itemBuyCost = item.data.itemBuyCost;
+            this.itemSellCost = item.data.itemSellCost;
             this.maxAllowed = item.data.maxAllowed;
             this.icon = item.data.icon;
             count++;

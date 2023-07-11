@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public List<Inventory> shopList = new List<Inventory>();
     public bool hasAddedToShop;
 
+    public int money;
+
     public int tutorialProgress;
 
     public int cs1010Progress;

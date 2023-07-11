@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerTutorial : MonoBehaviour, IDataPersistence
 {
-    public PlayerPositionSO startingPosition;
-
     public int tutorialProgress;
+
+    public PlayerPositionSO startingPosition;
 
     void Start()
     {

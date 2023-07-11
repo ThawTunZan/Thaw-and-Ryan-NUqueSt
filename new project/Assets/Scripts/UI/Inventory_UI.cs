@@ -25,7 +25,6 @@ public class Inventory_UI : MonoBehaviour
     public TextMeshProUGUI itemDescText;
     public Button buyButton;
     public Button sellButton;
-    public Button dropButton2;
 
     [Header("Drop Panel Components")]
     public GameObject dropPanel;
@@ -44,6 +43,8 @@ public class Inventory_UI : MonoBehaviour
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
 
+    private PlayerMoney playerMoney;
+
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI toolbarInCanvas;
     private Inventory_UI chestInCanvas;
@@ -55,6 +56,8 @@ public class Inventory_UI : MonoBehaviour
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         inventoryByName.Add("Inventory", playerItems.inventory);
         inventoryByName.Add("Toolbar", playerItems.toolbar);
+
+        playerMoney = GameObject.Find("Player").GetComponent<PlayerMoney>();
 
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
@@ -161,22 +164,6 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
-    public void RemoveAmountUI2()
-    {
-        if (clickedSlot != null)
-        {
-            Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
-            Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[clickedSlot.slotID].itemName);
-            if (itemToDrop != null)
-            {
-                playerItems.DropItem(itemToDrop, fromInventory.slots[clickedSlot.slotID].count);
-                fromInventory.Remove(clickedSlot.slotID, fromInventory.slots[clickedSlot.slotID].count);
-                Refresh();
-                ItemDescDisable();
-            }
-        }
-    }
-
     /*
      * This function is called when player clicks OK on the drop panel. It handles the item to remove and the amount removed.
      */
@@ -264,23 +251,34 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    // Item Description, Also used in Shop
     public void SlotClick(Slot_UI slot)
     {
         clickedSlot = slot;
-        if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
-        {
-            buyButton.interactable = true;
-            sellButton.interactable = true;
-            dropButton2.interactable = false;
-        }
-        else
-        {
-            buyButton.interactable = false;
-            sellButton.interactable = false;
-            dropButton2.interactable = true;
-        }
         itemNameText.text = clickedSlot.itemName;
         itemDescText.text = clickedSlot.itemDesc;
+        if (shopPanel.activeSelf)
+        {
+            if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
+            {
+                if (playerMoney.money >= clickedSlot.itemBuyCost)
+                {
+                    buyButton.interactable = true;
+                }
+                else
+                {
+                    buyButton.interactable = false;
+                }
+                sellButton.interactable = false;
+            }
+            else
+            {
+                buyButton.interactable = false;
+                sellButton.interactable = true;
+            }
+        }
+        itemDescText.text += "\n\nBuy cost: $" + clickedSlot.itemBuyCost;
+        itemDescText.text += "\n\nSell cost: $" + clickedSlot.itemSellCost;
     }
 
     public void ItemDescDisable()
@@ -288,9 +286,51 @@ public class Inventory_UI : MonoBehaviour
         clickedSlot = null;
         buyButton.interactable = false;
         sellButton.interactable = false;
-        dropButton2.interactable = false;
         itemNameText.text = null;
         itemDescText.text = null;
+    }
+
+    public void ClickedBuy()
+    {
+        Item boughtItem = ItemManager.instance.GetItemByName(clickedSlot.itemName);
+        if (boughtItem.data.maxAllowed == 1)
+        {
+            playerMoney.money -= clickedSlot.itemBuyCost;
+            playerItems.inventory.Add(boughtItem);
+        }
+        else
+        {
+            BuyAmountUI(boughtItem);
+        }
+        ItemDescDisable();
+        Refresh();
+    }
+
+    public void BuyAmountUI(Item boughtItem)
+    {
+
+    }
+
+    public void ClickedSell()
+    {
+        playerMoney.money += clickedSlot.itemSellCost;
+        Item soldItem = ItemManager.instance.GetItemByName(clickedSlot.itemName);
+        if (soldItem.data.maxAllowed == 1)
+        {
+            playerMoney.money += clickedSlot.itemBuyCost;
+            playerItems.inventory.slots[clickedSlot.slotID].RemoveItem();
+        }
+        else
+        {
+            SellAmountUI(soldItem);
+        }
+        ItemDescDisable();
+        Refresh();
+    }
+    
+    public void SellAmountUI(Item soldItem)
+    {
+
     }
 
     /*

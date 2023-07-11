@@ -8,6 +8,7 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public bool disableToolbar;
     public Inventory inventory;
     public Inventory toolbar;
+
     public PlayerPositionSO startingPosition;
     private SpriteRenderer playerRenderer;
 
@@ -22,8 +23,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             toolbar = GameManager.instance.toolbar;
         }
         //Uncomment below lines if don't want to load from sample scene
-        inventory = new Inventory("Inventory", 21);
-        toolbar = new Inventory("Toolbar", 7);
+        //inventory = new Inventory("Inventory", 21);
+        //toolbar = new Inventory("Toolbar", 7);
     }
 
     private void Update()

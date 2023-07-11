@@ -39,6 +39,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Inventory inventory;
     public Inventory toolbar;
 
+    public bool openShop;
+
     private void Awake()
     {
         if (instance != null)
@@ -186,16 +188,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 // add quest to Quest List under Player Quests component in Player via QuestList script
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
-                DisplayChoices();
             }
             else if (currentLine.StartsWith("Sure. This is what we have in stock."))
             {
-                ExitDialogueMode();
+                openShop = true;
             }
-            else
-            {
-                DisplayChoices();
-            }
+            DisplayChoices();
         }
         else
         {

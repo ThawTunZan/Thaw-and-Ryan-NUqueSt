@@ -14,6 +14,8 @@ public class Slot_UI : MonoBehaviour
 
     public string itemName;
     public string itemDesc;
+    public int itemBuyCost;
+    public int itemSellCost;
 
     [SerializeField] private GameObject highlight;
 
@@ -26,6 +28,8 @@ public class Slot_UI : MonoBehaviour
         {
             itemName = slot.itemName; 
             itemDesc = slot.itemDesc;
+            itemBuyCost = slot.itemBuyCost;
+            itemSellCost = slot.itemSellCost;
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             if (slot.maxAllowed == 1)

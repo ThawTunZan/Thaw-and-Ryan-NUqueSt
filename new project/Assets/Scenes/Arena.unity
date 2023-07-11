@@ -460,6 +460,7 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: 
   chestPanel: {fileID: 0}
+  shopPanel: {fileID: 0}
   slots:
   - {fileID: 2125548226}
   - {fileID: 359471887}
@@ -482,6 +483,10 @@ MonoBehaviour:
   - {fileID: 591104120}
   - {fileID: 1680641942}
   - {fileID: 893796450}
+  itemNameText: {fileID: 0}
+  itemDescText: {fileID: 0}
+  buyButton: {fileID: 0}
+  sellButton: {fileID: 0}
   dropPanel: {fileID: 0}
   dropButton: {fileID: 0}
   dropText: {fileID: 0}
@@ -859,6 +864,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1377450038}
   quantityText: {fileID: 1848068163}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &77737159
 MonoBehaviour:
@@ -1071,6 +1080,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1988004016}
   quantityText: {fileID: 597697736}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &88291035
 GameObject:
@@ -1245,6 +1258,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 133883252}
   quantityText: {fileID: 635335453}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &105893363
 GameObject:
@@ -1568,6 +1585,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 685826439}
   quantityText: {fileID: 232687796}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!224 &145952094
 RectTransform:
@@ -1955,6 +1976,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 2115643496}
   quantityText: {fileID: 996743989}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &158130427
 GameObject:
@@ -2091,6 +2116,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1615856764}
   quantityText: {fileID: 908521992}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &158130431
 MonoBehaviour:
@@ -2265,6 +2294,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 826120308}
   quantityText: {fileID: 1411840257}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &158653629
 MonoBehaviour:
@@ -2439,6 +2472,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1842830381}
   quantityText: {fileID: 1852885407}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &163833872
 MonoBehaviour:
@@ -3869,6 +3906,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 452186330}
   quantityText: {fileID: 258354394}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &288734513
 GameObject:
@@ -4489,6 +4530,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1072540822}
   quantityText: {fileID: 1535927866}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &323095764
 GameObject:
@@ -4950,6 +4995,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1986046707}
   quantityText: {fileID: 2137045048}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &339613056
 GameObject:
@@ -5620,6 +5669,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1240408238}
   quantityText: {fileID: 1633983636}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &359471888
 MonoBehaviour:
@@ -6214,6 +6267,7 @@ MonoBehaviour:
   inventoryPanel: {fileID: 2064440024}
   inventoryName: Inventory
   chestPanel: {fileID: 1551066139}
+  shopPanel: {fileID: 0}
   slots:
   - {fileID: 2092241970}
   - {fileID: 826763413}
@@ -6236,6 +6290,10 @@ MonoBehaviour:
   - {fileID: 1387139767}
   - {fileID: 285414687}
   - {fileID: 145952093}
+  itemNameText: {fileID: 0}
+  itemDescText: {fileID: 0}
+  buyButton: {fileID: 0}
+  sellButton: {fileID: 0}
   dropPanel: {fileID: 985658820}
   dropButton: {fileID: 2039919643}
   dropText: {fileID: 517125410}
@@ -7037,6 +7095,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1512173757}
   quantityText: {fileID: 1851494931}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &483524782
 GameObject:
@@ -7941,6 +8003,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 996387071}
   quantityText: {fileID: 602659736}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &536304085
 MonoBehaviour:
@@ -8689,6 +8755,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 59045512}
   quantityText: {fileID: 1676636147}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &591104121
 MonoBehaviour:
@@ -9761,6 +9831,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 331278806}
   quantityText: {fileID: 323095766}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &695580216
 MonoBehaviour:
@@ -10813,6 +10887,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1640415409}
   quantityText: {fileID: 928398327}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &832460882
 GameObject:
@@ -11084,6 +11162,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 2124900490}
   quantityText: {fileID: 514120422}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &835109731
 MonoBehaviour:
@@ -11296,6 +11378,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 108154603}
   quantityText: {fileID: 1312450735}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &842295103
 GameObject:
@@ -11509,6 +11595,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1700210444}
   quantityText: {fileID: 218311448}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &850790803
 MonoBehaviour:
@@ -38219,6 +38309,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1918022068}
   quantityText: {fileID: 1645971778}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &893796451
 MonoBehaviour:
@@ -38604,6 +38698,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1944284212}
   quantityText: {fileID: 1260977227}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &918923762
 MonoBehaviour:
@@ -38937,6 +39035,13 @@ MonoBehaviour:
     slots: []
   chestList: []
   hasAddedToChest: 0
+  shop0:
+    slots: []
+  shop1:
+    slots: []
+  shopList: []
+  hasAddedToShop: 0
+  money: 0
   tutorialProgress: 0
   cs1010Progress: 0
   cs1231Progress: 0
@@ -39530,6 +39635,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 498750107}
   quantityText: {fileID: 1626346108}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1001923991
 MonoBehaviour:
@@ -40971,6 +41080,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1664142283}
   quantityText: {fileID: 1315499073}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1106710582
 GameObject:
@@ -41107,6 +41220,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1118788561}
   quantityText: {fileID: 371092495}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1106710586
 MonoBehaviour:
@@ -41776,6 +41893,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1225913995}
   quantityText: {fileID: 298103122}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1001 &1132735687
 PrefabInstance:
@@ -41873,6 +41994,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4710834851946558930, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: d577f73b7d940044aa152a7cbd4e84ea, type: 2}
+    - target: {fileID: 4918426996684050738, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: d577f73b7d940044aa152a7cbd4e84ea, type: 2}
@@ -42402,6 +42527,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 277121770}
   quantityText: {fileID: 578637742}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1178812728
 GameObject:
@@ -43537,6 +43666,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1691868237}
   quantityText: {fileID: 387247387}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1283695406
 GameObject:
@@ -43688,6 +43821,7 @@ MonoBehaviour:
   inventoryPanel: {fileID: 0}
   inventoryName: Toolbar
   chestPanel: {fileID: 0}
+  shopPanel: {fileID: 0}
   slots:
   - {fileID: 1055955747}
   - {fileID: 2090772789}
@@ -43696,6 +43830,10 @@ MonoBehaviour:
   - {fileID: 1126179205}
   - {fileID: 564059353}
   - {fileID: 466782219}
+  itemNameText: {fileID: 0}
+  itemDescText: {fileID: 0}
+  buyButton: {fileID: 0}
+  sellButton: {fileID: 0}
   dropPanel: {fileID: 0}
   dropButton: {fileID: 0}
   dropText: {fileID: 0}
@@ -44452,6 +44590,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 326755571}
   quantityText: {fileID: 1887116035}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1322914024
 MonoBehaviour:
@@ -44664,6 +44806,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 899172164}
   quantityText: {fileID: 1596150460}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1343028939
 GameObject:
@@ -45289,6 +45435,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1449098675}
   quantityText: {fileID: 1759612059}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1401701245
 GameObject:
@@ -96139,6 +96289,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1037574302}
   quantityText: {fileID: 832460884}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1429359085
 MonoBehaviour:
@@ -96427,6 +96581,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 205577862}
   quantityText: {fileID: 1015840811}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1457337502
 GameObject:
@@ -96601,6 +96759,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1112289082}
   quantityText: {fileID: 1605262178}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1478926779
 GameObject:
@@ -97327,6 +97489,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 149834450}
   quantityText: {fileID: 812336965}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1525095499
 GameObject:
@@ -99522,6 +99688,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 60055924}
   quantityText: {fileID: 1031519766}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1680641943
 MonoBehaviour:
@@ -100817,6 +100987,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 428699389}
   quantityText: {fileID: 1666632625}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &1818218036
 GameObject:
@@ -100953,6 +101127,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 812437574}
   quantityText: {fileID: 614663263}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1818218040
 MonoBehaviour:
@@ -102016,6 +102194,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 230464808}
   quantityText: {fileID: 1310916730}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &1897697489
 MonoBehaviour:
@@ -103959,6 +104141,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 723610208}
   quantityText: {fileID: 766408079}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!1 &2109480397
 GameObject:
@@ -104166,6 +104352,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 500495549}
   quantityText: {fileID: 484676581}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &2110214323
 MonoBehaviour:
@@ -104568,6 +104758,10 @@ MonoBehaviour:
   slotID: 0
   itemIcon: {fileID: 1315695008}
   quantityText: {fileID: 195978359}
+  itemName: 
+  itemDesc: 
+  itemBuyCost: 0
+  itemSellCost: 0
   highlight: {fileID: 0}
 --- !u!114 &2125548227
 MonoBehaviour:

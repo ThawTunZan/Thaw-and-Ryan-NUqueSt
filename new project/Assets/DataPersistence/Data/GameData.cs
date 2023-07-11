@@ -31,6 +31,8 @@ public class GameData
     public List<Inventory> shopList = new List<Inventory>();
     public bool hasAddedToShop;
 
+    public int money;
+
     public string story;                        // quest progress for WeaponSmith NPC
     public string placeHolderStory;
 
