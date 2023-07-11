@@ -37,7 +37,19 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
      */
     private void CheckQuestProgress(string currScene)
     {
-        if (currScene == "Cave_1a") // For CS1010
+        if (currScene == "Cave_1")
+        {
+            if (SearchForQuest("CS1010") && cs1010Progress != -1)
+            {
+                cs1010Progress = 0;
+            }
+            if (cs1010Progress != -1)
+            {
+                GameObject holeCover = GameObject.Find("CS1010Cover");
+                holeCover.SetActive(false);
+            }
+        }
+        else if (currScene == "Cave_1a") // For CS1010
         {
             PuzzleDoor puzzle1 = GameObject.Find("PuzzleDoor1").GetComponent<PuzzleDoor>();
             ForLoopPuzzle puzzle2 = GameObject.Find("WallPuzzleTrigger").GetComponent<ForLoopPuzzle>();
@@ -61,6 +73,18 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             NQueensPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<NQueensPuzzle>();
             puzzle1.CheckQuestProgress(cs2040Progress);
         }
+    }
+
+    private bool SearchForQuest(string questName)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (questList.questSlots[i].questName == questName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void Update()
