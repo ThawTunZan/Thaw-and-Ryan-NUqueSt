@@ -9,6 +9,8 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
     private int randX;
     public int puzzleAnswer;
 
+    private bool hasQuest = true;
+
     [SerializeField] private GameObject puzzleDoor1;
     [SerializeField] private GameObject puzzleDoor2;
 
@@ -16,6 +18,12 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
     {
         base.Start();
         randX = Random.Range(0, 3);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        UpdateQuestProgress();
     }
 
     protected override void ChangePuzzleText()
@@ -89,6 +97,27 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
             puzzleTrigger.gameObject.SetActive(false);
             puzzleDoor1.SetActive(false);
             puzzleDoor2.SetActive(false);
+        }
+    }
+
+    private void UpdateQuestProgress()
+    {
+        if (playerQuests.cs1231Progress >= cs1231Progress && hasQuest)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (playerQuests.questList.questSlots[i].questName == "CS1231")
+                {
+                    playerQuests.questList.questSlots[i].done = true;
+                    hasQuest = false;
+                    break;
+                }
+                else if (playerQuests.questList.questSlots[i].questName == null)
+                {
+                    hasQuest = false;
+                    break;
+                }
+            }
         }
     }
 }

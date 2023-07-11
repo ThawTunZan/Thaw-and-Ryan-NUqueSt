@@ -34,7 +34,7 @@ public class WallPuzzle : MonoBehaviour
         HideUI();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (playerInRange && puzzleActivated.activeSelf)
         {
