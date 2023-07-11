@@ -89,16 +89,17 @@ public class Inventory_UI : MonoBehaviour
 
     public void ToggleInventory()
     {
-        if (!playerItems.disableToolbar && !chestPanel.activeSelf && Input.GetKeyDown(KeyCode.Tab))
+        if (!playerItems.disableToolbar && !shopPanel.activeSelf && !chestPanel.activeSelf && Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryPanel.SetActive(true);
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
             Refresh();
         }
-        else if (playerItems.disableToolbar && !chestPanel.activeSelf && (inventoryPanel.activeSelf || dropPanel.activeSelf)
-            && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
+        else if (playerItems.disableToolbar && !shopPanel.activeSelf && !chestPanel.activeSelf 
+            && (inventoryPanel.activeSelf || dropPanel.activeSelf) && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
         {
+            slotBlocker.SetActive(false);
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             ItemDescDisable();
@@ -234,6 +235,7 @@ public class Inventory_UI : MonoBehaviour
     {
         dropPanel.SetActive(false);
         shopAmountPanel.SetActive(false);
+        slotBlocker.SetActive(false);
         if (!inventoryPanel.activeSelf)
         {
             playerItems.disableToolbar = false;
@@ -318,8 +320,14 @@ public class Inventory_UI : MonoBehaviour
                     sellButton.interactable = true;
                 }
             }
-            itemDescText.text += "\n\nBuy cost: " + clickedSlot.itemBuyCost;
-            itemDescText.text += "\n\nSell cost: " + clickedSlot.itemSellCost;
+            if (clickedSlot.itemBuyCost != 0)
+            {
+                itemDescText.text += "\n\nBuy cost: " + clickedSlot.itemBuyCost;
+            }
+            if (clickedSlot.itemSellCost != 0)
+            {
+                itemDescText.text += "\n\nSell cost: " + clickedSlot.itemSellCost;
+            }
         }
         else
         {
@@ -341,10 +349,12 @@ public class Inventory_UI : MonoBehaviour
 
     public void ClickedBuy()
     {
+        Inventory fromShop = inventoryByName[clickedSlot.inventoryName];
         Item boughtItem = ItemManager.instance.GetItemByName(clickedSlot.itemName);
         if (boughtItem.data.maxAllowed == 1)
         {
             playerMoney.money -= clickedSlot.itemBuyCost;
+            fromShop.Remove(clickedSlot.slotID);
             playerItems.inventory.Add(boughtItem);
             ItemDescDisable();
             Refresh();
@@ -380,11 +390,12 @@ public class Inventory_UI : MonoBehaviour
 
     public void ClickedSell()
     {
+        Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
         Item soldItem = ItemManager.instance.GetItemByName(clickedSlot.itemName);
         if (soldItem.data.maxAllowed == 1)
         {
             playerMoney.money += clickedSlot.itemBuyCost;
-            playerItems.inventory.Remove(clickedSlot.slotID);
+            fromInventory.Remove(clickedSlot.slotID);
             ItemDescDisable();
             Refresh();
         }
@@ -404,7 +415,7 @@ public class Inventory_UI : MonoBehaviour
         Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
         string text = shopAmountText.text;
         bool parseSuccess = int.TryParse(text.Trim(), out int amountToSell);
-        if (parseSuccess && playerItems.inventory.slots[clickedSlot.slotID].count >= amountToSell && amountToSell >= 0)
+        if (parseSuccess && fromInventory.slots[clickedSlot.slotID].count >= amountToSell && amountToSell >= 0)
         {
             fromInventory.Remove(clickedSlot.slotID, amountToSell);
             playerMoney.money += amountToSell * itemToSell.data.itemSellCost;

@@ -12,6 +12,8 @@ public class ClassInheritancePuzzle : WallPuzzle
     private int currQ = 1;
     private int totalQ = 2;
 
+    bool hasQuest = true;
+
     [SerializeField] private GameObject puzzleDoor1;
     [SerializeField] private GameObject puzzleDoor2;
 
@@ -19,6 +21,12 @@ public class ClassInheritancePuzzle : WallPuzzle
     {
         base.Start();
         randX = Random.Range(0, 4);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        UpdateQuestProgress();
     }
 
     protected override void ChangePuzzleText()
@@ -146,6 +154,27 @@ public class ClassInheritancePuzzle : WallPuzzle
             {
                 puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
                 startBattle = true;
+            }
+        }
+    }
+
+    private void UpdateQuestProgress()
+    {
+        if (playerQuests.cs2030Progress >= cs2030Progress && hasQuest)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (playerQuests.questList.questSlots[i].questName == "CS2030")
+                {
+                    playerQuests.questList.questSlots[i].done = true;
+                    hasQuest = false;
+                    break;
+                }
+                else if (playerQuests.questList.questSlots[i].questName == null)
+                {
+                    hasQuest = false;
+                    break;
+                }
             }
         }
     }

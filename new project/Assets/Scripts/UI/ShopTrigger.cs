@@ -8,6 +8,7 @@ public class ShopTrigger : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject dropPanel;
     public GameObject shopAmountPanel;
+    public GameObject slotBlocker;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI shopInCanvas;
@@ -52,6 +53,7 @@ public class ShopTrigger : MonoBehaviour
             shopPanel.SetActive(false);
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
+            slotBlocker.SetActive(false);
             inventoryInCanvas.ItemDescDisable();
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;

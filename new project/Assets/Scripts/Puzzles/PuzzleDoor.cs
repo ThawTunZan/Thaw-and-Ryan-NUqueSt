@@ -23,6 +23,7 @@ public class PuzzleDoor : MonoBehaviour
     public GameObject lockedWall;
 
     private PlayerQuests playerQuests;
+    private bool hasQuest = true;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class PuzzleDoor : MonoBehaviour
         CheckDoor1();
         CheckLockedWall();
         CheckDoor2();
+        UpdateQuestProgress();
     }
 
     public void CheckDoorsAtStart(int progress)
@@ -94,14 +96,6 @@ public class PuzzleDoor : MonoBehaviour
         }
         else
         {
-            //if (playerQuests.cs1010Progress == 3 && wallPuzzleCorrect.activeSelf)
-            //{
-            //    playerQuests.cs1010Progress = 2;
-            //}
-            //else if (playerQuests.cs1010Progress == 3 && !wallPuzzleCorrect.activeSelf)
-            //{
-            //    playerQuests.cs1010Progress = 1;
-            //}
             Door2.SetActive(true);
         }
     }
@@ -112,6 +106,27 @@ public class PuzzleDoor : MonoBehaviour
         {
             Destroy(activateWallPuzzle);
             Destroy(lockedWall);
+        }
+    }
+
+    private void UpdateQuestProgress()
+    {
+        if (playerQuests.cs1010Progress > 2 && hasQuest)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (playerQuests.questList.questSlots[i].questName == "CS1010")
+                {
+                    playerQuests.questList.questSlots[i].done = true;
+                    hasQuest = false;
+                    break;
+                }
+                else if (playerQuests.questList.questSlots[i].questName == null)
+                {
+                    hasQuest = false;
+                    break;
+                }
+            }
         }
     }
 }

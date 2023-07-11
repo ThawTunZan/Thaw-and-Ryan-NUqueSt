@@ -6,8 +6,6 @@ public class ChestItems : MonoBehaviour, IDataPersistence
 {
     public string chestName;
     public Inventory chestInventory;
-    //public Dictionary<string, Inventory> stringToChestManager;
-    //public Dictionary<string, Inventory> stringToChestData;
 
     public PlayerPositionSO startingPosition;
     //private SpriteRenderer playerRenderer;

@@ -9,6 +9,7 @@ public class ChestTrigger : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject dropPanel;
     public GameObject visualCue;
+    public GameObject slotBlocker;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI chestInCanvas;
@@ -62,6 +63,7 @@ public class ChestTrigger : MonoBehaviour
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             chestPanel.SetActive(false);
+            slotBlocker.SetActive(false);
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
         }

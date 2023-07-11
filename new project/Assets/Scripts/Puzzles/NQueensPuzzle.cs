@@ -11,6 +11,8 @@ public class NQueensPuzzle : WallPuzzle
     public int currQ;
     private int totalQ = 4;
 
+    bool hasQuest;
+
     [SerializeField] private GameObject puzzleDoor1;
 
     protected override void Start()
@@ -18,6 +20,12 @@ public class NQueensPuzzle : WallPuzzle
         base.Start();
         queenChecker = GameObject.Find("QueenPieces").GetComponent<QueenChecker>();
         currQ = GameManager.instance.cs2040Progress + 1;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        UpdateQuestProgress();
     }
 
     protected override void ChangePuzzleText()
@@ -107,6 +115,27 @@ public class NQueensPuzzle : WallPuzzle
         {
             puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
             startBattle = true;
+        }
+    }
+
+    private void UpdateQuestProgress()
+    {
+        if (playerQuests.cs2040Progress > cs2040Progress && hasQuest)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (playerQuests.questList.questSlots[i].questName == "CS2040")
+                {
+                    playerQuests.questList.questSlots[i].done = true;
+                    hasQuest = false;
+                    break;
+                }
+                else if (playerQuests.questList.questSlots[i].questName == null)
+                {
+                    hasQuest = false;
+                    break;
+                }
+            }
         }
     }
 }

@@ -29,7 +29,6 @@ public class GameData
     public Inventory shop0; // shop0: blacksmith
     public Inventory shop1; // shop1: generalshop
     public List<Inventory> shopList = new List<Inventory>();
-    public bool hasAddedToShop;
     public float currDay;
 
     public int money;
@@ -78,7 +77,6 @@ public class GameData
         shop1 = new Inventory("Shop1", 21);
         shopList.Add(shop0);
         shopList.Add(shop1);
-        hasAddedToShop = false;
 
         hours = 8;
 
