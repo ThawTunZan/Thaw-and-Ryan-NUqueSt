@@ -4,5 +4,57 @@ using UnityEngine;
 
 public class ShopTrigger : MonoBehaviour
 {
-    
+    public GameObject shopPanel;
+    public GameObject inventoryPanel;
+    public GameObject dropPanel;
+    public GameObject shopAmountPanel;
+
+    private Inventory_UI inventoryInCanvas;
+    private Inventory_UI shopInCanvas;
+    private ShopItems shopItems;
+    private PlayerItems playerItems;
+    private PlayerMovement playerMovement;
+    private GameObject inventoryNewPosition;
+    private GameObject inventoryOriginPosition;
+
+    private void Start()
+    {
+        inventoryInCanvas = GameObject.Find("Inventory").GetComponent<Inventory_UI>();
+        shopInCanvas = GameObject.Find("Shop").GetComponent<Inventory_UI>();
+        shopItems = gameObject.GetComponent<ShopItems>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        inventoryNewPosition = GameObject.Find("InventoryNewPosition");
+        inventoryOriginPosition = GameObject.Find("InventoryOriginPosition");
+    }
+
+    private void Update()
+    {
+        if (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().openShop && Input.GetKeyDown(KeyCode.Space))
+        {
+            inventoryPanel.transform.position = inventoryNewPosition.transform.position;
+            inventoryInCanvas.inventoryByName.Add(shopItems.shopName, shopItems.shopInventory);
+            shopInCanvas.inventoryName = shopItems.shopName;
+            inventoryInCanvas.Refresh();
+            shopItems.ShopRefresh();
+            shopPanel.SetActive(true);
+            inventoryPanel.SetActive(true);
+            playerItems.disableToolbar = true;
+            playerMovement.enabled = false;
+            DialogueManager.GetInstance().openShop = false;
+        }
+        else if (shopPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
+            inventoryInCanvas.inventoryByName.Remove(shopItems.shopName);
+            shopInCanvas.inventoryName = null;
+            shopAmountPanel.SetActive(false);
+            shopPanel.SetActive(false);
+            dropPanel.SetActive(false);
+            inventoryPanel.SetActive(false);
+            inventoryInCanvas.ItemDescDisable();
+            playerItems.disableToolbar = false;
+            playerMovement.enabled = true;
+        }
+    }
 }
