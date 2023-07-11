@@ -16,6 +16,8 @@ public class Inventory_UI : MonoBehaviour
 
     public GameObject chestPanel;
 
+    public GameObject shopPanel;
+
     public List<Slot_UI> slots = new List<Slot_UI>();
 
     [Header("Item Description Components")]
@@ -86,6 +88,7 @@ public class Inventory_UI : MonoBehaviour
         {
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
+            ItemDescDisable();
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
         }
@@ -169,6 +172,7 @@ public class Inventory_UI : MonoBehaviour
                 playerItems.DropItem(itemToDrop, fromInventory.slots[clickedSlot.slotID].count);
                 fromInventory.Remove(clickedSlot.slotID, fromInventory.slots[clickedSlot.slotID].count);
                 Refresh();
+                ItemDescDisable();
             }
         }
     }
@@ -277,6 +281,16 @@ public class Inventory_UI : MonoBehaviour
         }
         itemNameText.text = clickedSlot.itemName;
         itemDescText.text = clickedSlot.itemDesc;
+    }
+
+    public void ItemDescDisable()
+    {
+        clickedSlot = null;
+        buyButton.interactable = false;
+        sellButton.interactable = false;
+        dropButton2.interactable = false;
+        itemNameText.text = null;
+        itemDescText.text = null;
     }
 
     /*
