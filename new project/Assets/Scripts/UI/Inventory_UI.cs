@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
@@ -229,6 +230,17 @@ public class Inventory_UI : MonoBehaviour
         shopAmountText.text = "0";
     }
 
+    public void ClosePanelButton()
+    {
+        dropPanel.SetActive(false);
+        shopAmountPanel.SetActive(false);
+        if (!inventoryPanel.activeSelf)
+        {
+            playerItems.disableToolbar = false;
+            playerMovement.enabled = true;
+        }
+    }
+
     /*
      * The four functions below that start with "Slot" are Event Triggers found in every Slot
      * Each Slot has their own slotID, which is done by SetupSlots() function.
@@ -306,8 +318,15 @@ public class Inventory_UI : MonoBehaviour
                     sellButton.interactable = true;
                 }
             }
-            itemDescText.text += "\n\nBuy cost: $" + clickedSlot.itemBuyCost;
-            itemDescText.text += "\n\nSell cost: $" + clickedSlot.itemSellCost;
+            itemDescText.text += "\n\nBuy cost: " + clickedSlot.itemBuyCost;
+            itemDescText.text += "\n\nSell cost: " + clickedSlot.itemSellCost;
+        }
+        else
+        {
+            itemNameText.text = null;
+            itemDescText.text = null;
+            clickedSlot.itemBuyCost = 0;
+            clickedSlot.itemSellCost = 0;
         }
     }
 

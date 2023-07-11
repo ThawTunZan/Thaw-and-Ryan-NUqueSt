@@ -22,7 +22,7 @@ public class PlayerMoney : MonoBehaviour, IDataPersistence
     private void Update()
     {
         GameManager.instance.money = money;
-        moneyText.text = "Money: $" + money;
+        moneyText.text = "GPA: " + money;
     }
 
     public void LoadData(GameData data)
