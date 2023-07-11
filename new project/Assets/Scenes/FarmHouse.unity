@@ -96515,6 +96515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641959404}
   - component: {fileID: 1641959403}
+  - component: {fileID: 1641959405}
   m_Layer: 0
   m_Name: ForShopDailyRestock
   m_TagString: Untagged
@@ -96553,6 +96554,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641959405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641959402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9ebd57b6343764b8d663c3a02fa5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopName: Shop1
+  shopInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 4cc2b5e2c3b443442bc6828e71b2e03d, type: 2}
 --- !u!1 &1644317432
 GameObject:
   m_ObjectHideFlags: 0
@@ -108849,7 +108866,6 @@ MonoBehaviour:
   shop1:
     slots: []
   shopList: []
-  hasAddedToShop: 0
   currDay: 0
   money: 0
   tutorialProgress: 0

@@ -1693,6 +1693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140566767}
   - component: {fileID: 140566766}
+  - component: {fileID: 140566768}
   m_Layer: 0
   m_Name: ForDailyShopRestock
   m_TagString: Untagged
@@ -1731,6 +1732,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140566768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140566765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9ebd57b6343764b8d663c3a02fa5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopName: Shop1
+  shopInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
 --- !u!1 &142915232
 GameObject:
   m_ObjectHideFlags: 0
@@ -8139,7 +8156,6 @@ MonoBehaviour:
   shop1:
     slots: []
   shopList: []
-  hasAddedToShop: 0
   currDay: 0
   money: 0
   tutorialProgress: 0
@@ -11431,6 +11447,10 @@ PrefabInstance:
       propertyPath: chestPanel
       value: 
       objectReference: {fileID: 1039619168}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: slotBlocker
+      value: 
+      objectReference: {fileID: 1420650731}
     - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
       propertyPath: inventoryPanel
       value: 

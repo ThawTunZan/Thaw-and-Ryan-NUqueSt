@@ -6,7 +6,7 @@ INCLUDE globals.ink
 Hi! I'm George, Leo's older brother!
 How can I help you?
     * [I want to buy something.]
-        We are currently out of stock.
+        Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
         {allQuestDone:I do not require assistance for now. |{(!validTime): Thanks for the help. Maybe come another day! |{questStarted:I have already given you a quest. -> in_quest|{(!questMA1511Done): -> MA1511Convo|{(!questMA1512Done): -> MA1512Convo|{(!questMA1508EDone) : ->MA1508EConvo}}}}}}

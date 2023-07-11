@@ -6,14 +6,10 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 {
     public string shopName;
     public Inventory shopInventory;
-    //public Dictionary<string, Inventory> stringToShopManager;
-    //public Dictionary<string, Inventory> stringToShopData;
 
     public PlayerPositionSO startingPosition;
 
     private Inventory_UI shopInCanvas;
-
-    private bool hasAddedToShop;
 
     private float currDay;
 
@@ -23,18 +19,9 @@ public class ShopItems : MonoBehaviour, IDataPersistence
         shopInCanvas = GameObject.Find("Shop").GetComponent<Inventory_UI>();
         if (startingPosition.transittedScene)
         {
-            hasAddedToShop = GameManager.instance.hasAddedToShop;
             currDay = GameManager.instance.currDay;
             // shop0: blacksmith
             // shop1: generalshop
-            if (!hasAddedToShop)
-            {
-                GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Hoe"));
-                GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
-                GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
-                GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Potato Seed"), 10);
-                hasAddedToShop = true;
-            }
             shopInventory = new Inventory(shopName, 21);
             if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
             {
@@ -45,7 +32,6 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        GameManager.instance.hasAddedToShop = hasAddedToShop;
         GameManager.instance.currDay = currDay;
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
         {
@@ -54,12 +40,36 @@ public class ShopItems : MonoBehaviour, IDataPersistence
         if (GameManager.instance.day > currDay)
         {
             currDay = GameManager.instance.day;
+            for (int i = 0; i < 21; i++)
+            {
+                if (GameManager.instance.shop0.slots[i] == null)
+                {
+                    break;
+                }
+                else
+                {
+                    GameManager.instance.shop0.Remove(i, GameManager.instance.shop0.slots[i].count);
+                }
+            }
+            for (int i = 0; i < 21; i++)
+            {
+                if (GameManager.instance.shop1.slots[i] == null)
+                {
+                    break;
+                }
+                else
+                {
+                    GameManager.instance.shop1.Remove(i, GameManager.instance.shop1.slots[i].count);
+                }
+            }
             ShopRestock();
         }
     }
 
     private void ShopRestock()
     {
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Potato Seed"), 10);
     }
@@ -82,7 +92,6 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        hasAddedToShop = data.hasAddedToShop;
         currDay = data.currDay;
         shopInventory = new Inventory(shopName, 21);
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
@@ -152,7 +161,6 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.hasAddedToShop = hasAddedToShop;
         data.currDay = currDay;
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
         {
