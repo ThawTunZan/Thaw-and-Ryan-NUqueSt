@@ -127,9 +127,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
                     dialogueVariables.InkSetVariables(currentStory, "questDone", true);
-                   // dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", true);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", false);
-                    //dialogueVariables.InkSetVariables(currentStory, "validTime", false);
                     // remove the quest from quest slot
                     player.questList.questSlots[i].questName = "";
                     player.questList.questSlots[i].questDescription = "";
@@ -141,7 +139,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 else
                 {
                     dialogueVariables.InkSetVariables(currentStory, "questDone", false);
-                   // dialogueVariables.InkSetVariables(currentStory, "quest" + player.questList.questSlots[i].questName + "Done", false);
                     dialogueVariables.InkSetVariables(currentStory, "questStarted", true);
                     dialogueVariables.InkSetVariables(currentStory, "validTime", true);
                 }

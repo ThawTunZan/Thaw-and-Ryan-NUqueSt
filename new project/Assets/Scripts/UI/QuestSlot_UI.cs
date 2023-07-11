@@ -101,7 +101,7 @@ public class QuestSlot_UI : MonoBehaviour
                 }
             }
         }
-        if (questSlot.questName == "HSA1000")
+        if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101")
         {
             if (questSlot.placesToVisit.Count == 0)
             {

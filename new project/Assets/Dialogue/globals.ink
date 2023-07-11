@@ -23,7 +23,7 @@ VAR questCS1010Done = false
 VAR questCS1231Done = false
 VAR questCS2040Done = false
 VAR questCS2030Done = false
-VAR questCS2103Done = false 
+
 
 #Geologist
 VAR questGEA1000Done = false
