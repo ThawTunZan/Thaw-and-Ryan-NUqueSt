@@ -8156,7 +8156,6 @@ MonoBehaviour:
   shop1:
     slots: []
   shopList: []
-  currDay: 0
   money: 0
   tutorialProgress: 0
   cs1010Progress: 0
@@ -8164,6 +8163,7 @@ MonoBehaviour:
   cs2030Progress: 0
   cs2040Progress: 0
   cs2040SeenBefore: []
+  dayChecker: 0
   cave1RockNames: []
   cave1aRockNames: []
   cave1bRockNames: []
@@ -46114,7 +46114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &674797928552778914
 PrefabInstance:
   m_ObjectHideFlags: 0

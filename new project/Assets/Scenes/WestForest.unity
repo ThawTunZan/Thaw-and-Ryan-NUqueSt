@@ -14179,6 +14179,10 @@ PrefabInstance:
       propertyPath: swordAttackGameObject
       value: 
       objectReference: {fileID: 581036482}
+    - target: {fileID: 2104923001056103945, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 662a78bc6feb19e44b0cf3a1ede6ace8, type: 2}
     - target: {fileID: 2458595976668929069, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -81461,7 +81465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1538225350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -128439,8 +128443,6 @@ MonoBehaviour:
   shop1:
     slots: []
   shopList: []
-  hasAddedToShop: 0
-  currDay: 0
   money: 0
   tutorialProgress: 0
   cs1010Progress: 0
@@ -128448,6 +128450,19 @@ MonoBehaviour:
   cs2030Progress: 0
   cs2040Progress: 0
   cs2040SeenBefore: []
+  dayChecker: 0
+  cave1RockNames: []
+  cave1aRockNames: []
+  cave1bRockNames: []
+  cave2aRockNames: []
+  cave3aRockNames: []
+  cave4aRockNames: []
+  cave1RockStates: 
+  cave1aRockStates: 
+  cave1bRockStates: 
+  cave2aRockStates: 
+  cave3aRockStates: 
+  cave4aRockStates: 
   hours: 0
   minutes: 0
   seconds: 0

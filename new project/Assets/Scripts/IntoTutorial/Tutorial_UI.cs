@@ -152,7 +152,7 @@ public class Tutorial_UI : MonoBehaviour
     {
         if (attackSwordFirst == null)
         {
-            removeItemPanel.SetActive(true);
+            //removeItemPanel.SetActive(true);
             playerMovement.movespeed = originalSpeed;
             attackSwordDone = true;
             slimeMovement.enabled = true;

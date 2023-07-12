@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
             dayChecker = GameManager.instance.dayChecker;
         }
         string currScene = SceneManager.GetActiveScene().name;
+        CheckNewDay();
         CheckCaveScene(currScene);
     }
 
@@ -29,6 +31,24 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
         GameManager.instance.dayChecker = dayChecker;
         GameManager.instance.listOfRockNames = listOfRockNames;
         GameManager.instance.listOfRockStates = listOfRockStates;
+    }
+
+    private void CheckNewDay()
+    {
+        if (GameManager.instance.day > dayChecker)
+        {
+            for (int i = 0; i < listOfRockNames.Count; i++)
+            {
+                if (listOfRockNames[i].Count != 0)
+                {
+                    for (int j = 0; j < listOfRockStates[i].Count; j++)
+                    {
+                        listOfRockStates[i][j] = 1;
+                    }
+                }
+            }
+            dayChecker = GameManager.instance.day;
+        }
     }
 
     private void CheckCaveScene(string currScene)
@@ -81,15 +101,6 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
                     rock.SetActive(false);
                 }
             }
-        }
-        if (GameManager.instance.day > dayChecker)
-        {
-            Transform rockSpawner = GameObject.Find("RockSpawner").transform;
-            for (int i = 0; i < listOfRockStates[index].Count; i++)
-            {
-                listOfRockStates[index][i] = 1;
-            }
-            dayChecker = GameManager.instance.day;
         }
     }
 

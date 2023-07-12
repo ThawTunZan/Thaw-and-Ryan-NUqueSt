@@ -29,7 +29,6 @@ public class GameData
     public Inventory shop0; // shop0: blacksmith
     public Inventory shop1; // shop1: generalshop
     public List<Inventory> shopList = new List<Inventory>();
-    public float currDay;
 
     public int money;
 

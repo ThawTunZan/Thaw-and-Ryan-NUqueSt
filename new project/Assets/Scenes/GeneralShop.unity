@@ -546,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &14864992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11852,6 +11852,10 @@ PrefabInstance:
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 11400000, guid: e2b6a835ccd23b44eb40e50782b6156a, type: 2}
+    - target: {fileID: 2104923001056103945, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: e2b6a835ccd23b44eb40e50782b6156a, type: 2}
     - target: {fileID: 3568565333973212876, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15613,7 +15617,6 @@ MonoBehaviour:
   shop1:
     slots: []
   shopList: []
-  currDay: 0
   money: 0
   tutorialProgress: 0
   cs1010Progress: 0
@@ -15621,6 +15624,19 @@ MonoBehaviour:
   cs2030Progress: 0
   cs2040Progress: 0
   cs2040SeenBefore: []
+  dayChecker: 0
+  cave1RockNames: []
+  cave1aRockNames: []
+  cave1bRockNames: []
+  cave2aRockNames: []
+  cave3aRockNames: []
+  cave4aRockNames: []
+  cave1RockStates: 
+  cave1aRockStates: 
+  cave1bRockStates: 
+  cave2aRockStates: 
+  cave3aRockStates: 
+  cave4aRockStates: 
   hours: 0
   minutes: 0
   seconds: 0
