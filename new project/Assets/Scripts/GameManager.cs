@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public int cs2040Progress;
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
+    public float dayChecker;
     public List<List<string>> listOfRockNames = new List<List<string>>();
     public List<string> cave1RockNames = new List<string>();
     public List<string> cave1aRockNames = new List<string>();
@@ -42,7 +43,6 @@ public class GameManager : MonoBehaviour
     public List<string> cave2aRockNames = new List<string>();
     public List<string> cave3aRockNames = new List<string>();
     public List<string> cave4aRockNames = new List<string>();
-
     public List<List<int>> listOfRockStates = new List<List<int>>();
     public List<int> cave1RockStates = new List<int>();
     public List<int> cave1aRockStates = new List<int>();

@@ -8,6 +8,8 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
     public List<List<string>> listOfRockNames = new List<List<string>>();
     public List<List<int>> listOfRockStates = new List<List<int>>();
 
+    private float dayChecker;
+
     public PlayerPositionSO startingPosition;
 
     private void Start()
@@ -16,6 +18,7 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
         {
             listOfRockNames = GameManager.instance.listOfRockNames;
             listOfRockStates = GameManager.instance.listOfRockStates;
+            dayChecker = GameManager.instance.dayChecker;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckCaveScene(currScene);
@@ -23,6 +26,7 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
+        GameManager.instance.dayChecker = dayChecker;
         GameManager.instance.listOfRockNames = listOfRockNames;
         GameManager.instance.listOfRockStates = listOfRockStates;
     }
@@ -78,17 +82,28 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
                 }
             }
         }
+        if (GameManager.instance.day > dayChecker)
+        {
+            Transform rockSpawner = GameObject.Find("RockSpawner").transform;
+            for (int i = 0; i < listOfRockStates[index].Count; i++)
+            {
+                listOfRockStates[index][i] = 1;
+            }
+            dayChecker = GameManager.instance.day;
+        }
     }
 
     public void LoadData(GameData data)
     {
         listOfRockNames = data.listOfRockNames;
         listOfRockStates = data.listOfRockStates;
+        dayChecker = data.dayChecker;
     }
 
     public void SaveData(GameData data)
     {
         data.listOfRockNames = listOfRockNames;
         data.listOfRockStates = listOfRockStates;
+        data.dayChecker = dayChecker;
     }
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 5988033192254954714}
   - component: {fileID: 1186009404830605522}
   - component: {fileID: 4918426996684050738}
+  - component: {fileID: 2104923001056103945}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -325,8 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ded9a8242cf8944b4f2282afedf3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPosition: {fileID: 0}
   tutorialProgress: 0
+  startingPosition: {fileID: 0}
 --- !u!114 &4918426996684050738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +341,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
+  startingPosition: {fileID: 0}
+--- !u!114 &2104923001056103945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568565333973212876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f3cf7c7f4471a478c27e86e5eb77a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   startingPosition: {fileID: 0}
 --- !u!1 &3747749977762609161
 GameObject:
