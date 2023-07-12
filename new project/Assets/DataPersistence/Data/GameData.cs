@@ -45,6 +45,22 @@ public class GameData
     public int cs2040Progress;
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
+    public List<List<string>> listOfRockNames = new List<List<string>>();
+    public List<string> cave1RockNames = new List<string>();
+    public List<string> cave1aRockNames = new List<string>();
+    public List<string> cave1bRockNames = new List<string>();
+    public List<string> cave2aRockNames = new List<string>();
+    public List<string> cave3aRockNames = new List<string>();
+    public List<string> cave4aRockNames = new List<string>();
+
+    public List<List<int>> listOfRockStates = new List<List<int>>();
+    public List<int> cave1RockStates = new List<int>();
+    public List<int> cave1aRockStates = new List<int>();
+    public List<int> cave1bRockStates = new List<int>();
+    public List<int> cave2aRockStates = new List<int>();
+    public List<int> cave3aRockStates = new List<int>();
+    public List<int> cave4aRockStates = new List<int>();
+
     public float hours;
 
     public float day;
@@ -87,6 +103,20 @@ public class GameData
         cs1231Progress = -1;
         cs2030Progress = -1;
         cs2040Progress = -1;
+
+        listOfRockNames.Add(cave1RockNames);
+        listOfRockNames.Add(cave1aRockNames);
+        listOfRockNames.Add(cave1bRockNames);
+        listOfRockNames.Add(cave2aRockNames);
+        listOfRockNames.Add(cave3aRockNames);
+        listOfRockNames.Add(cave4aRockNames);
+
+        listOfRockStates.Add(cave1RockStates);
+        listOfRockStates.Add(cave1aRockStates);
+        listOfRockStates.Add(cave1bRockStates);
+        listOfRockStates.Add(cave2aRockStates);
+        listOfRockStates.Add(cave3aRockStates);
+        listOfRockStates.Add(cave4aRockStates);
 
         tutorialProgress = 0;
 
