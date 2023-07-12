@@ -124,7 +124,9 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        bool isInside = (sceneName == "FarmHouse" || sceneName == "Game" || sceneName == "Village_WeaponShop");
+        bool isInside = (sceneName == "GeneralShop" || sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop"
+            || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
+            || sceneName == "NerdNPC House");
         if (hours >= 18 && hours <= 21 && !isInside)
         {
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
