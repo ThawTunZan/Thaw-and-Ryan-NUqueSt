@@ -19,7 +19,7 @@ public class ChestItems : MonoBehaviour, IDataPersistence
         gameObject.name = chestName;
         //playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         chestInCanvas = GameObject.Find("ChestInv").GetComponent<Inventory_UI>();
-        if (startingPosition.transittedScene)
+        if (startingPosition.transittedScene || startingPosition.playerDead)
         {
             hasAddedToChest = GameManager.instance.hasAddedToChest;
             // chest0: PlayerHouse

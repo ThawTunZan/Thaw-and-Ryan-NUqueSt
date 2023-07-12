@@ -11,15 +11,15 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private Inventory_UI shopInCanvas;
 
-    private float currDay;
+    private float dayChecker;
 
     private void Start()
     {
         gameObject.name = shopName;
         shopInCanvas = GameObject.Find("Shop").GetComponent<Inventory_UI>();
-        if (startingPosition.transittedScene)
+        if (startingPosition.transittedScene || startingPosition.playerDead)
         {
-            currDay = GameManager.instance.currDay;
+            dayChecker = GameManager.instance.dayChecker;
             // shop0: blacksmith
             // shop1: generalshop
             shopInventory = new Inventory(shopName, 21);
@@ -32,37 +32,31 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        GameManager.instance.currDay = currDay;
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
         {
             GameManager.instance.shopList[lastDigit] = shopInventory;
         }
-        if (GameManager.instance.day > currDay)
+        if (GameManager.instance.day > dayChecker)
         {
-            currDay = GameManager.instance.day;
-            for (int i = 0; i < 21; i++)
-            {
-                if (GameManager.instance.shop0.slots[i] == null)
-                {
-                    break;
-                }
-                else
-                {
-                    GameManager.instance.shop0.Remove(i, GameManager.instance.shop0.slots[i].count);
-                }
-            }
-            for (int i = 0; i < 21; i++)
-            {
-                if (GameManager.instance.shop1.slots[i] == null)
-                {
-                    break;
-                }
-                else
-                {
-                    GameManager.instance.shop1.Remove(i, GameManager.instance.shop1.slots[i].count);
-                }
-            }
+            EmptyShop(GameManager.instance.shop0);
+            EmptyShop(GameManager.instance.shop1);
             ShopRestock();
+            dayChecker = GameManager.instance.day;
+        }
+    }
+    
+    private void EmptyShop(Inventory shop)
+    {
+        for (int i = 0; i < 21; i++)
+        {
+            if (shop.slots[i] == null)
+            {
+                break;
+            }
+            else
+            {
+                shop.Remove(i, shop.slots[i].count);
+            }
         }
     }
 
@@ -92,7 +86,6 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        currDay = data.currDay;
         shopInventory = new Inventory(shopName, 21);
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
         {
@@ -161,7 +154,6 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        data.currDay = currDay;
         if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
         {
             data.shopList[lastDigit] = shopInventory;
