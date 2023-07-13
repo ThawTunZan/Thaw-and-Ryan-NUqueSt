@@ -109,6 +109,7 @@ public class Inventory_UI : MonoBehaviour
         else if (playerItems.disableToolbar && !shopPanel.activeSelf && !chestPanel.activeSelf 
             && (inventoryPanel.activeSelf || dropPanel.activeSelf) && (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)))
         {
+            helpPanel.SetActive(false);
             slotBlocker.SetActive(false);
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
@@ -439,6 +440,9 @@ public class Inventory_UI : MonoBehaviour
     {
         if (!helpPanel.activeSelf)
         {
+            Debug.Log(clickedSlot);
+            Debug.Log(clickedSlot.itemName);
+            Debug.Log(clickedSlot.itemType);
             helpDescText.rectTransform.offsetMin = new Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f);
             helpPanel.SetActive(true);
             string itemType = clickedSlot.itemType;
