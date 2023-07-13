@@ -438,84 +438,81 @@ public class Inventory_UI : MonoBehaviour
 
     public void ClickedHelp()
     {
-        if (!helpPanel.activeSelf)
+        helpDescText.rectTransform.offsetMin = new Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f);
+        helpPanel.SetActive(true);
+        string itemType = clickedSlot.itemType;
+        string usageStatement = "To use a " + itemType + ", drag the " + itemType + " into the toolbar at the bottom of the " +
+            "screen. After placing it in your toolbar, click on the hotkey that the " + itemType + " was placed at. For " +
+            "example, if the " + itemType + " was placed in the second slot, then press the 2 key on your keyboard to equip " +
+            "\nthe " + itemType + ". Make sure you close your inventory first.";
+        string strengthStatement = "From strongest to weakest: Diamond, Gold, Iron, Copper, Stone";
+        if (itemType == "Pickaxe")
         {
-            Debug.Log(clickedSlot);
-            Debug.Log(clickedSlot.itemName);
-            Debug.Log(clickedSlot.itemType);
-            helpDescText.rectTransform.offsetMin = new Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f);
-            helpPanel.SetActive(true);
-            string itemType = clickedSlot.itemType;
-            string usageStatement = "To use a " + itemType + ", drag the " + itemType + " into the toolbar at the bottom of the " +
-                "screen. After placing it in your toolbar, click on the hotkey that the " + itemType + " was placed at. For " +
-                "example, if the " + itemType + " was placed in the second slot, then press the 2 key on your keyboard to equip " +
-                "\nthe " + itemType + ". Make sure you close your inventory first.";
-            if (itemType == "Pickaxe")
-            {
-                helpNameText.text = itemType + "s";
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
-                helpDescText.text = "Pickaxes are used in mining rocks. Rocks can only be mined in the cave. Pickaxes of " +
-                    "different materials e.g. Stone vs Iron have different mining strengths and will break rocks faster if " +
-                    "it is made of a stronger material. Rocks mined will drop ores." +
-                    "\n\n" + usageStatement +
-                    "\n\nAfter doing the above, try left clicking near a rock to mine it.";
-            }
-            else if (itemType == "Sword")
-            {
-                helpNameText.text = itemType + "s";
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpSword");
-                helpDescText.text = "Swords are used in combat against enemies. Swords of different materials e.g. Stone vs Iron " +
-                    "have different hitting strengths and will kill enemies faster if it is made of a stronger material." +
-                    "\n\n" + usageStatement +
-                    "\n\nAfter doing the above, try left clicking near enemies to attack them.";
-            }
-            else if (itemType == "Hoe")
-            {
-                helpNameText.text = itemType + "s";
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
-                helpDescText.text = "Hoes are used in tilling grass and harvesting crops. Hoes can only be used outside your house. " +
-                    "It will not work in any other places. Hoes of different materials e.g. Stone vs Iron have different " +
-                    "radiuses in how far the tool can reach and will reach further if it is made of a stronger material." +
-                    "\n\n" + usageStatement + 
-                    "\n\nAfter doing the above, try left clicking grass close to you to till them, and right click on fully grown " +
-                    "crops to harvest them. They are fully grown if the tile is highlighted in green.";
-            }
-            else if (itemType == "Seed")
-            { 
-                helpNameText.text = itemType + "s";
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
-                helpDescText.text = "Seeds are used in growing crops. Seeds can only be grown on tilled grass outside your house. " +
-                    "It will not work in any other places." +
-                    "\n\n" + usageStatement + 
-                    "\n\nAfter doing the above, try left clicking the seed on a tilled grass to plant it.";
-            }
-            else if (itemType == "Ore")
-            {
-                helpNameText.text = itemType + "s";
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
-                helpDescText.text = "Ores are obtained from mining rocks. Its main purpose is to provide a source of income via GPA " +
-                    "by selling the ores at shops. Ores can only be obtained from the rocks in caves." +
-                    "\n\nOres do not have a usage unlike other items. Putting it in your toolbar and left clicking or " +
-                    "right clicking does not do anything to the ore." +
-                    "\n\nWe were gonna make a crafting system but had no time :(";
-            }
-            else if (itemType == "Food")
-            {
-                helpNameText.text = itemType;
-                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
-                helpDescText.text = "Food is used to regenerate health. Food can only be obtained from growing crops. These crops " +
-                    "come from seeds planted on grass tilled by a hoe." +
-                    "\n\n" + usageStatement + 
-                    "\n\nAfter doing the above, try left clicking when you're damaged to heal for a portion of your health.";
-            }
-            LayoutRebuilder.ForceRebuildLayoutImmediate(helpDescText.rectTransform);
-            Canvas.ForceUpdateCanvases();
-            helpDescScrollbar.value = 1f;
-            float textLength = helpDescText.textBounds.size.y;
-            float panelLength = 484.4353f;
-            helpDescText.rectTransform.offsetMin = new
-                Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f + panelLength - textLength - 4);
+            helpNameText.text = itemType + "s";
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
+            helpDescText.text = "Pickaxes are used in mining rocks. Rocks can only be mined in the cave. Pickaxes of " +
+                "different materials e.g. Stone vs Iron have different mining strengths and will break rocks faster if " +
+                "it is made of a stronger material. Rocks mined will drop ores." +
+                "\n\n" + strengthStatement +
+                "\n\n" + usageStatement +
+                "\n\nAfter doing the above, try left clicking near a rock to mine it.";
         }
+        else if (itemType == "Sword")
+        {
+            helpNameText.text = itemType + "s";
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpSword");
+            helpDescText.text = "Swords are used in combat against enemies. Swords of different materials e.g. Stone vs Iron " +
+                "have different hitting strengths and will kill enemies faster if it is made of a stronger material." +
+                "\n\n" + strengthStatement +
+                "\n\n" + usageStatement +
+                "\n\nAfter doing the above, try left clicking near enemies to attack them.";
+        }
+        else if (itemType == "Hoe")
+        {
+            helpNameText.text = itemType + "s";
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+            helpDescText.text = "Hoes are used in tilling grass and harvesting crops. Hoes can only be used outside your house. " +
+                "It will not work in any other places. Hoes of different materials e.g. Stone vs Iron have different " +
+                "radiuses in how far the tool can reach and will reach further if it is made of a stronger material." +
+                "\n\n" + strengthStatement +
+                "\n\n" + usageStatement + 
+                "\n\nAfter doing the above, try left clicking grass close to you to till them, and right click on fully grown " +
+                "crops to harvest them. They are fully grown if the tile is highlighted in green.";
+        }
+        else if (itemType == "Seed")
+        { 
+            helpNameText.text = itemType + "s";
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+            helpDescText.text = "Seeds are used in growing crops. Seeds can only be grown on tilled grass outside your house. " +
+                "It will not work in any other places." +
+                "\n\n" + usageStatement + 
+                "\n\nAfter doing the above, try left clicking the seed on a tilled grass to plant it.";
+        }
+        else if (itemType == "Ore")
+        {
+            helpNameText.text = itemType + "s";
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
+            helpDescText.text = "Ores are obtained from mining rocks. Its main purpose is to provide a source of income via GPA " +
+                "by selling the ores at shops. Ores can only be obtained from the rocks in caves." +
+                "\n\nOres do not have a usage unlike other items. Putting it in your toolbar and left clicking or " +
+                "right clicking does not do anything to the ore." +
+                "\n\nWe were gonna make a crafting system but had no time :(";
+        }
+        else if (itemType == "Food")
+        {
+            helpNameText.text = itemType;
+            helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+            helpDescText.text = "Food is used to regenerate health. Food can only be obtained from growing crops. These crops " +
+                "come from seeds planted on grass tilled by a hoe." +
+                "\n\n" + usageStatement + 
+                "\n\nAfter doing the above, try left clicking when you're damaged to heal for a portion of your health.";
+        }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(helpDescText.rectTransform);
+        Canvas.ForceUpdateCanvases();
+        helpDescScrollbar.value = 1f;
+        float textLength = helpDescText.textBounds.size.y;
+        helpDescText.rectTransform.offsetMin = new
+            Vector2(helpDescText.rectTransform.offsetMin.x, -354.2301f + 494.2294f - textLength - 4);
     }
 
     public void CloseHelp()
