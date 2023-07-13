@@ -12,6 +12,7 @@ public class Slot_UI : MonoBehaviour
     public Image itemIcon;
     public TextMeshProUGUI quantityText;
 
+    public string itemType;
     public string itemName;
     public string itemDesc;
     public int itemBuyCost;
@@ -26,6 +27,7 @@ public class Slot_UI : MonoBehaviour
     {
         if(slot != null)
         {
+            itemType = slot.itemType;
             itemName = slot.itemName; 
             itemDesc = slot.itemDesc;
             itemBuyCost = slot.itemBuyCost;
@@ -45,6 +47,7 @@ public class Slot_UI : MonoBehaviour
 
     public void SetEmpty()
     {
+        itemType = null;
         itemName = null;
         itemDesc = null;
         itemIcon.sprite = null;

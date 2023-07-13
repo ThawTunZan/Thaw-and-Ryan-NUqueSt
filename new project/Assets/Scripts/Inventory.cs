@@ -9,6 +9,7 @@ public class Inventory
     [System.Serializable]
     public class Slot
     {
+        public string itemType;
         public string itemName;
         public string itemDesc;
         public int itemBuyCost;
@@ -51,6 +52,7 @@ public class Inventory
 
         public void AddItem(Item item)
         {
+            this.itemType = item.data.itemType;
             this.itemName = item.data.itemName;
             this.itemDesc = item.data.itemDesc;
             this.itemBuyCost = item.data.itemBuyCost;

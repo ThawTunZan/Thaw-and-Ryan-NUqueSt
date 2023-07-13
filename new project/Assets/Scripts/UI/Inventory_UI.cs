@@ -3,11 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 using static Inventory;
+using UnityEngine.SceneManagement;
 
 public class Inventory_UI : MonoBehaviour
 {
@@ -27,6 +26,8 @@ public class Inventory_UI : MonoBehaviour
     public Scrollbar itemDescScrollbar;
     public Button buyButton;
     public Button sellButton;
+    public Button trashButton;
+    public Button helpButton;
 
     [Header("Shop Components")]
     public GameObject shopPanel;
@@ -39,6 +40,14 @@ public class Inventory_UI : MonoBehaviour
     [Header("Drop Panel Components")]
     public GameObject dropPanel;
     public TMP_InputField dropText;
+
+    [Header("Help Panel Components")]
+    public GameObject helpPanel;
+    public TextMeshProUGUI helpNameText;
+    public Image helpImage;
+    public TextMeshProUGUI helpDescText;
+    public Scrollbar helpDescScrollbar;
+
 
     public Dictionary<string, Inventory> inventoryByName = new Dictionary<string, Inventory>();
 
@@ -154,66 +163,49 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * This function is called when a player drags an item out of their inventory/toolbar and drops it out (by releasing when cursor is 
-     * outside of any UI). It is attached to RemoveItem_Panel under Canvas.
+     * This function is called when a player clicks on the trash button in the item description panel. It opens up a panel confirming
+     * whether the player wants to trash the item or not.
      */
     public void RemoveAmountUI()
     {
-        if (draggedSlot != null)
+        if (clickedSlot != null)
         {
-            Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
-            Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
+            Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
+            Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[clickedSlot.slotID].itemName);
             if (itemToDrop != null)
             {
-                if (fromInventory.slots[draggedSlot.slotID].maxAllowed == 1)
-                {
-                    playerItems.DropItem(itemToDrop);
-                    fromInventory.Remove(draggedSlot.slotID);
-                    Refresh();
-                }
-                else
-                {
-                    slotBlocker.SetActive(true);
-                    playerItems.disableToolbar = true;
-                    dropPanel.SetActive(true);
-                    playerMovement.enabled = false;
-                }
+                slotBlocker.SetActive(true);
+                dropPanel.SetActive(true);
             }
         }
     }
 
     /*
-     * This function is called when player clicks OK on the drop panel. It handles the item to remove and the amount removed.
+     * This function is called when player clicks OK on the trash panel. It handles the item to remove.
      */
     public void Remove()
     {
-        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
-        Item itemToDrop = ItemManager.instance.GetItemByName(fromInventory.slots[draggedSlot.slotID].itemName);
+        Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
         string text = dropText.text;
         bool parseSuccess = int.TryParse(text.Trim(), out int amountToDrop);
-        if (parseSuccess && amountToDrop <= fromInventory.slots[draggedSlot.slotID].count && amountToDrop >= 0)
+        if (parseSuccess && amountToDrop <= fromInventory.slots[clickedSlot.slotID].count && amountToDrop >= 0)
         {
-            playerItems.DropItem(itemToDrop, amountToDrop);
-            fromInventory.Remove(draggedSlot.slotID, amountToDrop);
+            fromInventory.Remove(clickedSlot.slotID, amountToDrop);
             Refresh();
         }
-        dropPanel.SetActive(false);
-        if (!inventoryPanel.activeSelf)
-        {
-            playerItems.disableToolbar = false;
-            playerMovement.enabled = true;
-        }
-        draggedSlot = null;
+        ItemDescDisable();
         slotBlocker.SetActive(false);
+        dropPanel.SetActive(false);
+        clickedSlot = null;
     }
 
     /* 
-     * Both these SetTo functions refer to the triple up arrows and triple down arrows on the drop panel
+     * These SetTo functions refer to the triple up arrows and triple down arrows on the drop panel
      */ 
     public void SetToMax()
     {
-        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
-        dropText.text = fromInventory.slots[draggedSlot.slotID].count.ToString();
+        Inventory fromInventory = inventoryByName[clickedSlot.inventoryName];
+        dropText.text = fromInventory.slots[clickedSlot.slotID].count.ToString();
     }
 
     public void SetToMin()
@@ -302,6 +294,8 @@ public class Inventory_UI : MonoBehaviour
         {
             itemNameText.text = clickedSlot.itemName;
             itemDescText.text = clickedSlot.itemDesc;
+            itemDescScrollbar.interactable = true;
+            helpButton.interactable = true;
             if (shopPanel.activeSelf)
             {
                 if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
@@ -315,11 +309,20 @@ public class Inventory_UI : MonoBehaviour
                         buyButton.interactable = false;
                     }
                     sellButton.interactable = false;
+                    trashButton.interactable = false;
                 }
                 else
                 {
                     buyButton.interactable = false;
                     sellButton.interactable = true;
+                    trashButton.interactable = true;
+                }
+            }
+            else
+            {
+                if (SceneManager.GetActiveScene().name != "IntroTutorial")
+                {
+                    trashButton.interactable = true;
                 }
             }
             itemDescText.text += "\n\nUnit purchase cost: ";
@@ -350,11 +353,11 @@ public class Inventory_UI : MonoBehaviour
         }
         else
         {
-            itemNameText.text = null;
-            itemDescText.text = null;
             clickedSlot.itemBuyCost = 0;
             clickedSlot.itemSellCost = 0;
             itemDescScrollbar.value = 1f;
+            itemDescText.rectTransform.offsetMin = new Vector2(itemDescText.rectTransform.offsetMin.x, 0);
+            ItemDescDisable();
         }
     }
 
@@ -363,6 +366,9 @@ public class Inventory_UI : MonoBehaviour
         clickedSlot = null;
         buyButton.interactable = false;
         sellButton.interactable = false;
+        trashButton.interactable = false;
+        helpButton.interactable = false;
+        itemDescScrollbar.interactable = false;
         itemNameText.text = null;
         itemDescText.text = null;
     }
@@ -427,6 +433,92 @@ public class Inventory_UI : MonoBehaviour
             slotBlocker.SetActive(true);
             shopAmountPanel.SetActive(true);
         }
+    }
+
+    public void ClickedHelp()
+    {
+        if (!helpPanel.activeSelf)
+        {
+            helpDescText.rectTransform.offsetMin = new Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f);
+            helpPanel.SetActive(true);
+            string itemType = clickedSlot.itemType;
+            string usageStatement = "To use a " + itemType + ", drag the " + itemType + " into the toolbar at the bottom of the " +
+                "screen. After placing it in your toolbar, click on the hotkey that the " + itemType + " was placed at. For " +
+                "example, if the " + itemType + " was placed in the second slot, then press the 2 key on your keyboard to equip " +
+                "\nthe " + itemType + ". Make sure you close your inventory first.";
+            if (itemType == "Pickaxe")
+            {
+                helpNameText.text = itemType + "s";
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
+                helpDescText.text = "Pickaxes are used in mining rocks. Rocks can only be mined in the cave. Pickaxes of " +
+                    "different materials e.g. Stone vs Iron have different mining strengths and will break rocks faster if " +
+                    "it is made of a stronger material. Rocks mined will drop ores." +
+                    "\n\n" + usageStatement +
+                    "\n\nAfter doing the above, try left clicking near a rock to mine it.";
+            }
+            else if (itemType == "Sword")
+            {
+                helpNameText.text = itemType + "s";
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpSword");
+                helpDescText.text = "Swords are used in combat against enemies. Swords of different materials e.g. Stone vs Iron " +
+                    "have different hitting strengths and will kill enemies faster if it is made of a stronger material." +
+                    "\n\n" + usageStatement +
+                    "\n\nAfter doing the above, try left clicking near enemies to attack them.";
+            }
+            else if (itemType == "Hoe")
+            {
+                helpNameText.text = itemType + "s";
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+                helpDescText.text = "Hoes are used in tilling grass and harvesting crops. Hoes can only be used outside your house. " +
+                    "It will not work in any other places. Hoes of different materials e.g. Stone vs Iron have different " +
+                    "radiuses in how far the tool can reach and will reach further if it is made of a stronger material." +
+                    "\n\n" + usageStatement + 
+                    "\n\nAfter doing the above, try left clicking grass close to you to till them, and right click on fully grown " +
+                    "crops to harvest them. They are fully grown if the tile is highlighted in green.";
+            }
+            else if (itemType == "Seed")
+            { 
+                helpNameText.text = itemType + "s";
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+                helpDescText.text = "Seeds are used in growing crops. Seeds can only be grown on tilled grass outside your house. " +
+                    "It will not work in any other places." +
+                    "\n\n" + usageStatement + 
+                    "\n\nAfter doing the above, try left clicking the seed on a tilled grass to plant it.";
+            }
+            else if (itemType == "Ore")
+            {
+                helpNameText.text = itemType + "s";
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpPickaxe");
+                helpDescText.text = "Ores are obtained from mining rocks. Its main purpose is to provide a source of income via GPA " +
+                    "by selling the ores at shops. Ores can only be obtained from the rocks in caves." +
+                    "\n\nOres do not have a usage unlike other items. Putting it in your toolbar and left clicking or " +
+                    "right clicking does not do anything to the ore." +
+                    "\n\nWe were gonna make a crafting system but had no time :(";
+            }
+            else if (itemType == "Food")
+            {
+                helpNameText.text = itemType;
+                helpImage.sprite = Resources.Load<Sprite>("Help/HelpHoe");
+                helpDescText.text = "Food is used to regenerate health. Food can only be obtained from growing crops. These crops " +
+                    "come from seeds planted on grass tilled by a hoe." +
+                    "\n\n" + usageStatement + 
+                    "\n\nAfter doing the above, try left clicking when you're damaged to heal for a portion of your health.";
+            }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(helpDescText.rectTransform);
+            Canvas.ForceUpdateCanvases();
+            helpDescScrollbar.value = 1f;
+            float textLength = helpDescText.textBounds.size.y;
+            float panelLength = 484.4353f;
+            helpDescText.rectTransform.offsetMin = new
+                Vector2(helpDescText.rectTransform.offsetMin.x, -380.4354f + panelLength - textLength - 4);
+        }
+    }
+
+    public void CloseHelp()
+    {
+        helpNameText.text = null;
+        helpDescScrollbar.value = 1f;
+        helpPanel.SetActive(false);
     }
 
     public void SellFromInventory()
