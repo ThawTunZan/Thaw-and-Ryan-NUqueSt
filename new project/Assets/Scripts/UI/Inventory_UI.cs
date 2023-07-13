@@ -24,6 +24,7 @@ public class Inventory_UI : MonoBehaviour
     [Header("Item Description Components")]
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescText;
+    public Scrollbar itemDescScrollbar;
     public Button buyButton;
     public Button sellButton;
 
@@ -296,6 +297,7 @@ public class Inventory_UI : MonoBehaviour
     public void SlotClick(Slot_UI slot)
     {
         clickedSlot = slot;
+        itemDescText.rectTransform.offsetMin = new Vector2(itemDescText.rectTransform.offsetMin.x, -160);
         if (clickedSlot.itemName != null)
         {
             itemNameText.text = clickedSlot.itemName;
@@ -320,14 +322,31 @@ public class Inventory_UI : MonoBehaviour
                     sellButton.interactable = true;
                 }
             }
+            itemDescText.text += "\n\nUnit purchase cost: ";
             if (clickedSlot.itemBuyCost != 0)
             {
-                itemDescText.text += "\n\nBuy cost: " + clickedSlot.itemBuyCost;
+                itemDescText.text += clickedSlot.itemBuyCost;
             }
+            else
+            {
+                itemDescText.text += "-";
+            }
+            itemDescText.text += "\n\nUnit selling price: ";
             if (clickedSlot.itemSellCost != 0)
             {
-                itemDescText.text += "\n\nSell cost: " + clickedSlot.itemSellCost;
+                itemDescText.text += clickedSlot.itemSellCost;
             }
+            else
+            {
+                itemDescText.text += "-";
+            }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(itemDescText.rectTransform);
+            Canvas.ForceUpdateCanvases();
+            itemDescScrollbar.value = 1f;
+            float textLength = itemDescText.textBounds.size.y;
+            float panelLength = 304.5788f;
+            itemDescText.rectTransform.offsetMin = new 
+                Vector2(itemDescText.rectTransform.offsetMin.x, -160 + panelLength - textLength - 4);
         }
         else
         {
@@ -335,6 +354,7 @@ public class Inventory_UI : MonoBehaviour
             itemDescText.text = null;
             clickedSlot.itemBuyCost = 0;
             clickedSlot.itemSellCost = 0;
+            itemDescScrollbar.value = 1f;
         }
     }
 
