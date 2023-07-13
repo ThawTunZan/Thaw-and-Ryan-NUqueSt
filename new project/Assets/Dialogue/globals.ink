@@ -59,4 +59,20 @@ VAR PhysicistQuestName = ""
 VAR PhysicistQuestDesc = ""
 VAR PhysicistValidTime = true
 
+#CEG
+VAR questCG1111ADone = false
+VAR questCG2111ADone = false
+VAR questEG1311Done = false
+VAR CEGQuestDone = false
+VAR CEGQuestStarted = false
+VAR CEGQuestName = ""
+VAR CEGQuestDesc = ""
+VAR CEGValidTime = true
+
+
+#Artist
+VAR questDTK1000Done = false
+VAR questEG2501Done = false
+
+
 
