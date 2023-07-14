@@ -77,6 +77,10 @@ public class PlayerRocks : MonoBehaviour, IDataPersistence
         {
             UpdateCaveList(5);
         }
+        else if (currScene == "DCave_1")
+        {
+            UpdateCaveList(6);
+        }
     }
 
     private void UpdateCaveList(int index)
