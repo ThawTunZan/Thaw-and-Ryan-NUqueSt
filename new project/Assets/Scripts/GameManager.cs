@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         listOfRockStates.Add(cave2aRockStates);
         listOfRockStates.Add(cave3aRockStates);
         listOfRockStates.Add(cave4aRockStates);
-        listOfRockNames.Add(dcave1RockStates);
+        listOfRockStates.Add(dcave1RockStates);
 
         DontDestroyOnLoad(gameObject);  //else
     }
