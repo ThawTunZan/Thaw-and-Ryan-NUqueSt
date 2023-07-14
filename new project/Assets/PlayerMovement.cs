@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //misc
     bool canMove = true;
 
+    public bool facingUp;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -107,6 +109,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             //to move up animation
             if (movementInput.y > 0 && movementInput.x == 0)
             {
+                facingUp = true;
                 animator.SetBool("isMovingUp", true);
                 animator.SetBool("isMovingDown", false);
                 animator.SetBool("isMovingSide", false);
@@ -115,6 +118,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             //to move down animation
             else if (movementInput.y < 0 && movementInput.x == 0)
             {
+                facingUp = false;
                 animator.SetBool("isMovingUp", false);
                 animator.SetBool("isMovingDown", true);
                 animator.SetBool("isMovingSide", false);

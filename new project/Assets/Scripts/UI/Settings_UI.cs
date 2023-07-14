@@ -25,7 +25,7 @@ public class Settings_UI : MonoBehaviour
     {
         optionsText = optionsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
         optionsText.text = "W A S D - Movement\nESC - Options Panel/Close Active UI\nTAB - Inventory Panel\nQ - Quest Panel\nE - Interact" +
-            "\nSpace Bar - Proceed Dialogue\nLeft Click - Use Item in Toolbar\n";
+            "\nSpace Bar - Proceed Dialogue\nLeft Click - Use Item in Toolbar\nRight Click - Use Item in Toolbar";
 
         creditsText = creditsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
         creditsText.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +

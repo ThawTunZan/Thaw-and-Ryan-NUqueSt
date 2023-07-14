@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public List<string> cave2aRockNames = new List<string>();
     public List<string> cave3aRockNames = new List<string>();
     public List<string> cave4aRockNames = new List<string>();
+    public List<string> dcave1RockNames = new List<string>();
     public List<List<int>> listOfRockStates = new List<List<int>>();
     public List<int> cave1RockStates = new List<int>();
     public List<int> cave1aRockStates = new List<int>();
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     public List<int> cave2aRockStates = new List<int>();
     public List<int> cave3aRockStates = new List<int>();
     public List<int> cave4aRockStates = new List<int>();
+    public List<int> dcave1RockStates = new List<int>();
 
     // for day and night system
     public float hours;
@@ -94,6 +96,7 @@ public class GameManager : MonoBehaviour
         listOfRockNames.Add(cave2aRockNames);
         listOfRockNames.Add(cave3aRockNames);
         listOfRockNames.Add(cave4aRockNames);
+        listOfRockNames.Add(dcave1RockNames);
 
         listOfRockStates.Add(cave1RockStates);
         listOfRockStates.Add(cave1aRockStates);
@@ -101,6 +104,7 @@ public class GameManager : MonoBehaviour
         listOfRockStates.Add(cave2aRockStates);
         listOfRockStates.Add(cave3aRockStates);
         listOfRockStates.Add(cave4aRockStates);
+        listOfRockNames.Add(dcave1RockStates);
 
         DontDestroyOnLoad(gameObject);  //else
     }

@@ -7,9 +7,10 @@ public class ChestTrigger : MonoBehaviour
 {
     public GameObject chestPanel;
     public GameObject inventoryPanel;
+    public GameObject helpPanel;
+    public GameObject slotBlocker;
     public GameObject dropPanel;
     public GameObject visualCue;
-    public GameObject slotBlocker;
 
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI chestInCanvas;
@@ -60,6 +61,7 @@ public class ChestTrigger : MonoBehaviour
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
             inventoryInCanvas.inventoryByName.Remove(chestItems.chestName);
             chestInCanvas.inventoryName = null;
+            helpPanel.SetActive(false);
             dropPanel.SetActive(false);
             inventoryPanel.SetActive(false);
             chestPanel.SetActive(false);

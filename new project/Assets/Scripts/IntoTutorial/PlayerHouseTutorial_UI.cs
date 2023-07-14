@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerHouseTutorial_UI : MonoBehaviour
 {
-    public PlayerTutorial playerTutorial;
+    private PlayerTutorial playerTutorial;
 
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;

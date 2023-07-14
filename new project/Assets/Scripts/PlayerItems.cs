@@ -10,11 +10,9 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
     public Inventory toolbar;
 
     public PlayerPositionSO startingPosition;
-    private SpriteRenderer playerRenderer;
 
     private void Start()
     {
-        playerRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         if (startingPosition.transittedScene || startingPosition.playerDead)
         {
             inventory = new Inventory("Inventory", 21);
@@ -23,8 +21,8 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
             toolbar = GameManager.instance.toolbar;
         }
         //Uncomment below lines if don't want to load from sample scene
-        //inventory = new Inventory("Inventory", 21);
-        //toolbar = new Inventory("Toolbar", 7);
+        inventory = new Inventory("Inventory", 21);
+        toolbar = new Inventory("Toolbar", 7);
     }
 
     private void Update()
@@ -33,44 +31,23 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
         GameManager.instance.toolbar = toolbar;
     }
 
-    public void DropItem(Item item)
-    {
-        Vector2 spawnLocation = transform.position;
-        if (playerRenderer.flipX)
-        {
-            Instantiate(item, spawnLocation + new Vector2(-0.2f, -0.1f), Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(item, spawnLocation + new Vector2(0.2f, -0.1f), Quaternion.identity);
-        }
-    }
-
-    public void DropItem(Item item, int numToDrop)
-    {
-        for (int i = 0; i < numToDrop; i++)
-        {
-            DropItem(item);
-        }
-    }
-
     public void LoadData(GameData data)
     {
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);
         inventory = data.inventory;
         toolbar = data.toolbar;
-        foreach (Inventory.Slot slot in inventory.slots)
+        foreach (Slot slot in inventory.slots)
         {
             LoadItemSprite(slot);
         }
-        foreach (Inventory.Slot slot in toolbar.slots)
+        foreach (Slot slot in toolbar.slots)
         {
             LoadItemSprite(slot);
         }
     }
 
-    public void LoadItemSprite(Inventory.Slot slot)
+    public void LoadItemSprite(Slot slot)
     {
         if (slot.itemName == "Tomato")
         {
