@@ -97,17 +97,13 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            if (slot.itemName == "Stone Hoe")
+            if (slot.itemType == "Hoe")
             {
-                HightlightTilemap(1, "Hoe");
+                HightlightTilemap(slot.itemHoeRange, slot.itemType);
             }
-            else if (slot.itemName == "Tomato Seed")
+            else if (slot.itemType == "Seed")
             {
-                HightlightTilemap(1, "Seed");
-            }
-            else if (slot.itemName == "Potato Seed")
-            {
-                HightlightTilemap(1, "Seed");
+                HightlightTilemap(1, slot.itemType);
             }
         }
         else
@@ -138,33 +134,21 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            if (slot.itemName == "Tomato")
+            if (slot.itemType == "Food")
             {
-                EatFood(index, 5);
+                EatFood(index, slot.itemHealAmount);
             }
-            else if (slot.itemName == "Potato")
+            else if (slot.itemType == "Seed")
             {
-                EatFood(index, 5);
+                PlantSeed(index, 1, slot.itemName);
             }
-            else if (slot.itemName == "Tomato Seed")
+            else if (slot.itemType == "Sword" || slot.itemType == "Pickaxe")
             {
-                PlantSeed(index, 1, "Tomato Seed");
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
             }
-            else if (slot.itemName == "Potato Seed")
+            else if (slot.itemType == "Hoe")
             {
-                PlantSeed(index, 1, "Potato Seed");
-            }
-            else if (slot.itemName == "Stone Sword")
-            {
-                SwingTool(2f, 0f, "Sword");
-            }
-            else if (slot.itemName == "Stone Pickaxe")
-            {
-                SwingTool(1f, 1f, "Pickaxe");
-            }
-            else if (slot.itemName == "Stone Hoe")
-            {
-                SwingTool(0f, 0f, "Hoe");
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
                 UseHoeAddDirt();
             }
             Refresh();
@@ -211,10 +195,10 @@ public class Toolbar_UI : MonoBehaviour
         Inventory.Slot slot = playerItems.toolbar.slots[index];
         if (!slot.IsEmpty)
         {
-            if (slot.itemName == "Stone Hoe")
+            if (slot.itemType == "Hoe")
             {
-                SwingTool(0f, 0f, "Hoe");
-                UseHoeRemoveDirt(1);
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
+                UseHoeRemoveDirt(slot.itemHoeRange);
             }
             Refresh();
         }

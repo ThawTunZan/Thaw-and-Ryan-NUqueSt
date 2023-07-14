@@ -14,6 +14,10 @@ public class Inventory
         public string itemDesc;
         public int itemBuyCost;
         public int itemSellCost;
+        public int itemHealAmount;
+        public float itemSwordDamage;
+        public float itemPickaxeDamage;
+        public int itemHoeRange;
         public int count;
         public int maxAllowed;
         public Sprite icon;
@@ -57,6 +61,10 @@ public class Inventory
             this.itemDesc = item.data.itemDesc;
             this.itemBuyCost = item.data.itemBuyCost;
             this.itemSellCost = item.data.itemSellCost;
+            this.itemHealAmount = item.data.itemHealAmount;
+            this.itemSwordDamage = item.data.itemSwordDamage;
+            this.itemPickaxeDamage = item.data.itemPickaxeDamage;
+            this.itemHoeRange = item.data.itemHoeRange;
             this.maxAllowed = item.data.maxAllowed;
             this.icon = item.data.icon;
             count++;

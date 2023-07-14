@@ -49,62 +49,21 @@ public class PlayerItems : MonoBehaviour, IDataPersistence
 
     public void LoadItemSprite(Slot slot)
     {
-        if (slot.itemName == "Tomato")
+        string itemName = slot.itemName;
+        string directory = "";
+        if (slot.itemType == "Seed" || slot.itemType == "Food")
         {
-            slot.icon = Resources.Load<Sprite>("Farming/Tomato");
+            directory = "Farming/";
         }
-        else if (slot.itemName == "Potato")
+        else if (slot.itemType == "Ore")
         {
-            slot.icon = Resources.Load<Sprite>("Farming/Potato");
+            directory = "Ores/";
         }
-        else if (slot.itemName == "Potato Seed")
+        else if (slot.itemType == "Sword" || slot.itemType == "Pickaxe" || slot.itemType == "Hoe")
         {
-            slot.icon = Resources.Load<Sprite>("Farming/Potato_Seed");
+            directory = "Weapons/";
         }
-        else if (slot.itemName == "Tomato Seed")
-        {
-            slot.icon = Resources.Load<Sprite>("Farming/Tomato_Seed");
-        }
-        else if (slot.itemName == "Stone Sword")
-        {
-            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Sword");
-        }
-        else if (slot.itemName == "Stone Pickaxe")
-        {
-            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Pickaxe");
-        }
-        else if (slot.itemName == "Stone Hoe")
-        {
-            slot.icon = Resources.Load<Sprite>("Weapons/Stone_Hoe");
-        }
-        else if (slot.itemName == "Stone Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Stone_Ore");
-        }
-        else if (slot.itemName == "Coal Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Coal_Ore");
-        }
-        else if (slot.itemName == "Copper Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Copper_Ore");
-        }
-        else if (slot.itemName == "Iron Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Iron_Ore");
-        }
-        else if (slot.itemName == "Gold Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Gold_Ore");
-        }
-        else if (slot.itemName == "Emerald Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Emerald_Ore");
-        }
-        else if (slot.itemName == "Diamond Ore")
-        {
-            slot.icon = Resources.Load<Sprite>("Ores/Diamond_Ore");
-        }
+        slot.icon = Resources.Load<Sprite>(directory + itemName.Replace(" ", "_"));
     }
 
     public void SaveData(GameData data)

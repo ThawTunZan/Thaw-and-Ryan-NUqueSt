@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 public class Slot_UI : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class Slot_UI : MonoBehaviour
     public string itemDesc;
     public int itemBuyCost;
     public int itemSellCost;
+    public int itemHealAmount;
+    public float itemSwordDamage;
+    public float itemPickaxeDamage;
+    public int itemHoeRange;
 
     [SerializeField] private GameObject highlight;
 
@@ -32,6 +37,10 @@ public class Slot_UI : MonoBehaviour
             itemDesc = slot.itemDesc;
             itemBuyCost = slot.itemBuyCost;
             itemSellCost = slot.itemSellCost;
+            itemHealAmount = slot.itemHealAmount;
+            itemSwordDamage = slot.itemSwordDamage;
+            itemPickaxeDamage = slot.itemPickaxeDamage;
+            itemHoeRange = slot.itemHoeRange;
             itemIcon.sprite = slot.icon;
             itemIcon.color = new Color(1, 1, 1, 1);
             if (slot.maxAllowed == 1)
