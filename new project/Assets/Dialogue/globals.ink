@@ -23,6 +23,26 @@ VAR WeaponSmithValidTime = true
 #TownMayor
 VAR tutorialMayorSpoken = false
 VAR tutorialSecretarySpoken = false
+VAR TownMayorQuestDone = false
+VAR TownMayorQuestStarted = false
+VAR TownMayorQuestName = ""
+VAR TownMayorQuestDesc = ""
+VAR TownMayorValidTime = true
+
+#AvaSecretary
+VAR AvaSecretaryQuestDone = false
+VAR AvaSecretaryQuestStarted = false
+VAR AvaSecretaryQuestName = ""
+VAR AvaSecretaryQuestDesc = ""
+VAR AvaSecretaryValidTime = true
+
+#EveShop
+VAR EveShopQuestDone = false
+VAR EveShopQuestStarted = false
+VAR EveShopQuestName = ""
+VAR EveShopQuestDesc = ""
+VAR EveShopValidTime = true
+
 
 #Nerd
 VAR questCS1010Done = false

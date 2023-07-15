@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public string npcName;
+
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
@@ -29,6 +31,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.E))
             {
+                DialogueManager.GetInstance().localNPCName = npcName;
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
         }
