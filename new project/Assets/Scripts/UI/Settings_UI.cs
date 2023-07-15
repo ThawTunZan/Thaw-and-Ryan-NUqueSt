@@ -29,8 +29,8 @@ public class Settings_UI : MonoBehaviour
 
         creditsText = creditsPanel.transform.Find("ControlsHeader").transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
         creditsText.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +
-            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei\n\nPeer Evaluators: Unmei no Farfalla, PestControl, " +
-            "GrassToucher";
+            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei, Sean William Bulawan Villamin, Project Sage" +
+            "\n\nPeer Evaluators: Unmei no Farfalla, PestControl, GrassToucher";
 
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();

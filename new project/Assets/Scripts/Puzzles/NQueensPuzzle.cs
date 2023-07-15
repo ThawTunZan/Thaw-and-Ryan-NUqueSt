@@ -127,6 +127,8 @@ public class NQueensPuzzle : WallPuzzle
                 if (playerQuests.questList.questSlots[i].questName == "CS2040")
                 {
                     playerQuests.questList.questSlots[i].done = true;
+                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }

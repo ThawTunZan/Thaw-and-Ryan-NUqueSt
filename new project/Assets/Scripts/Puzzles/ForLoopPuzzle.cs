@@ -8,15 +8,13 @@ public class ForLoopPuzzle : WallPuzzle
     public int cs1010Progress;
 
     private int randX;
-    private int randA;
     private int randB;
     public int puzzleAnswer;
 
     protected override void Start()
     {
         base.Start();
-        randX = Random.Range(6, 15);
-        randA = Random.Range(5, 10);
+        randX = Random.Range(6, 10);
         randB = Random.Range(2, 5);
     }
 
@@ -25,7 +23,7 @@ public class ForLoopPuzzle : WallPuzzle
         puzzleText.text = "(1/1) Solve the for loop to free yourself!" +
             "\nEvery wrong answer has consequences..." +
             "\n\nint x = " + randX + ";" +
-            "\nfor (int i = 0; i < " + randA + "; i++)" +
+            "\nfor (int i = 0; i < " + 3 + "; i++)" +
             "\n{" +
             "\n    x = x * " + randB + " + i;" +
             "\n}" +
@@ -35,9 +33,8 @@ public class ForLoopPuzzle : WallPuzzle
     protected override int GetPuzzleAnswer()
     {
         puzzleAnswer = randX;
-        int a = randA;
         int b = randB;
-        for (int i = 0; i < a; i++)
+        for (int i = 0; i < 3; i++)
         {
             puzzleAnswer = puzzleAnswer * b + i;
         }

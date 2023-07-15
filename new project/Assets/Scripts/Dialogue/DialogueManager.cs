@@ -91,12 +91,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     public void CheckDate()
     {
-        print("where is the error");
+        //print("where is the error");
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
-        print("where is the errorr");
-        print(localNPCName + "QuestDone");
+        //print("where is the errorr");
+        //print(localNPCName + "QuestDone");
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
-        print("where is the errorrr");
+        //print("where is the errorrr");
         if (GameManager.instance.day != currDay)
         {
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);

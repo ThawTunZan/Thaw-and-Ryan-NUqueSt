@@ -41,7 +41,7 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
         {
             statement = "can Bing Chilling not be a mammal and not produce milk at the same time";
         }
-        puzzleText.text = "(1/1) Solve the implication logic statement or die!" +
+        puzzleText.text = "(1/1) Solve the if and only if statement or die!" +
             "\nEvery wrong answer has consequences..." +
             "\n\nStatement Alpha: A if and only if B." +
             "\nA := Bing Chilling is a mammal." +
@@ -109,6 +109,8 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
                 if (playerQuests.questList.questSlots[i].questName == "CS1231")
                 {
                     playerQuests.questList.questSlots[i].done = true;
+                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }

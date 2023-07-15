@@ -118,6 +118,8 @@ public class PuzzleDoor : MonoBehaviour
                 if (playerQuests.questList.questSlots[i].questName == "CS1010")
                 {
                     playerQuests.questList.questSlots[i].done = true;
+                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }
