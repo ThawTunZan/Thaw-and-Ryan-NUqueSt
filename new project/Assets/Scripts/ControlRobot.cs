@@ -46,7 +46,7 @@ public class ControlRobot : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 //if there is an active quest in the slot
-                if (/*playerQuest.questList.questSlots[i].questName == "CG1111A" &&*/ collision.gameObject.CompareTag("Player"))
+                if (playerQuest.questList.questSlots[i].questName == "CG1111A" && collision.gameObject.CompareTag("Player"))
                 {
                     playerMovement.enabled = false;
                     OpenPanels();
