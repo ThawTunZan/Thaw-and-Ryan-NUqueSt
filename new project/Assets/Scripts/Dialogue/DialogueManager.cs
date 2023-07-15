@@ -89,7 +89,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 ContinueStory();
             }
         }
-
     }
     
     public void CheckDate()
@@ -180,16 +179,20 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         return false;
     }
 
-    private void ContinueStory()
+    public void ContinueStory()
     {
         if (currentStory.canContinue)
         {
             string currentLine = currentStory.Continue();
             dialogueText.text = currentLine;
-            if (currentLine.StartsWith("Great!"))
+            if (currentLine.Length < 2)
+            {
+                ContinueStory();
+            }
+            else if (currentLine.StartsWith("Great!"))
             {
                 // referencing dictionary in DialogueVariables script which references variables from globals.ink file
-                string questName =  currentStory.variablesState[localNPCName + "QuestName"].ToString();
+                string questName = currentStory.variablesState[localNPCName + "QuestName"].ToString();
                 string questDescription = currentStory.variablesState[localNPCName + "QuestDesc"].ToString();
 
                 // add quest to Quest List under Player Quests component in Player via QuestList script
