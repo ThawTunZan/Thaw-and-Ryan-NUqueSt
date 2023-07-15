@@ -201,9 +201,6 @@ public class SUMonsterAI : EnemyAI
         while (Vector3.Distance(enemy.transform.position, playerTransformLocation) >= 0.08f)
         {
             elapsedTime += Time.deltaTime;
-            print("elapsedTime is: " + elapsedTime);
-            print("playerTransformlocation is: "+ playerTransformLocation);
-
             if (elapsedTime >= 2.85f)
             {
                 break;

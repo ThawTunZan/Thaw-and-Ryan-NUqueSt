@@ -1,3 +1,4 @@
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,18 +10,20 @@ public class EnemyHealth : MonoBehaviour
 
     public PlayerQuests player;
 
-    public void Start()
+    public bool isBeingHit;
+
+    public virtual void Start()
     {
         animator = GetComponent<Animator>();
         animator.SetBool("alive", true);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        isBeingHit = false;
     }
 
-    public float Health { 
+    public virtual float Health { 
         set
         {
             _health = value;
-
             if (value < 0)
             {
                 animator.SetTrigger("Hit");
@@ -39,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public float _health = 3;
 
-    public void OnHit(float damage)
+    public virtual void OnHit(float damage)
     {
         Health -= damage;
         animator.SetTrigger("Hit");
@@ -47,11 +50,17 @@ public class EnemyHealth : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("SwordAttack"))
+        if (col.gameObject.CompareTag("SwordAttack") && !isBeingHit)
         {
             SwordAttack swordAttack = col.gameObject.GetComponentInParent<SwordAttack>();
             OnHit(swordAttack.swordDamage);
+            isBeingHit = true;
         }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        isBeingHit = false;
     }
 
     public virtual void SlimeDeath()
