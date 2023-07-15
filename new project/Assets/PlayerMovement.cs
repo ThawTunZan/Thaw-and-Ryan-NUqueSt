@@ -226,20 +226,40 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void AnimateToolColour()
     {
-        if (currFrame == 0) 
+        if (currFrame == 0)
         {
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_0");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_0");
+            Debug.Log(itemRarity);
+            if (itemRarity == "Diamond")
+            {
+                weaponDarkColour.color = new Color32(29, 204, 210, 255);
+                weaponLightColour.color = new Color32(117, 226, 205, 255);
+            }
             currFrame++;
         }
         else if (currFrame == 1)
         {
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_1");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_1");
             currFrame++;
         }
         else if (currFrame == 2)
         {
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_2");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_2");
             currFrame++;
         }
         else if (currFrame == 3)
         {
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_3");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_3");
+            currFrame++;
+        }
+        else if (currFrame == 4)
+        {
+            weaponDarkColour.sprite = null;
+            weaponLightColour.sprite = null;
             currFrame = 0;
         }
     }
