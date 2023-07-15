@@ -106,6 +106,7 @@ public class GameData
         cs1231Progress = -1;
         cs2030Progress = -1;
         cs2040Progress = -1;
+        ma1511Progress = -1;
 
         listOfRockNames.Add(cave1RockNames);
         listOfRockNames.Add(cave1aRockNames);

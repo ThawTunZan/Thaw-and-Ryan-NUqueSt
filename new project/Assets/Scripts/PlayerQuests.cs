@@ -73,7 +73,18 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "Village_WeaponShop") // For MA1511
         {
-            
+            if (ma1511Progress >= 2)
+            {
+                GameObject.Find("Slime (1)").SetActive(false);
+            }
+            if (ma1511Progress >= 1)
+            {
+                GameObject.Find("Slime").SetActive(false);
+            }
+            if (ma1511Progress >= 0)
+            {
+                GameObject.Find("MA1511Collider").SetActive(false);
+            }
         }
     }
 
