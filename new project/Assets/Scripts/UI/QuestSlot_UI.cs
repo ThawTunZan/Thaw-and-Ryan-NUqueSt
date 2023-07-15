@@ -34,6 +34,10 @@ public class QuestSlot_UI : MonoBehaviour
         PlayerQuests player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
         Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
+        if (questSlot.done == true)
+        {
+            questStatus.SetActive(true);
+        }
         if (questSlot.questName == "MA1511")
         {
             if (questSlot.slimesRequired <= 0)

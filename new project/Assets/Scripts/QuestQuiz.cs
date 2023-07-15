@@ -33,7 +33,7 @@ public class QuestQuiz : MonoBehaviour
         {
             if (playerQuest.questList.questSlots[i].questName == "PC1201")
             {
-                playerQuest.questList.questSlots[i].done = true;
+                playerQuest.questList.questSlots[i].done = true;    
             }
         }
     }
@@ -63,7 +63,7 @@ public class QuestQuiz : MonoBehaviour
     {
         for (int i = 0; i < 5; i += 1)
         {
-            if (collision != null && playerQuest.questList.questSlots[i].questName == "PC1201" && playerQuest.questList.questSlots[i].done == false)
+            if (collision.CompareTag("Player") && playerQuest.questList.questSlots[i].questName == "PC1201" && playerQuest.questList.questSlots[i].done == false)
             {
                 OpenQuestionPanel();
             }
