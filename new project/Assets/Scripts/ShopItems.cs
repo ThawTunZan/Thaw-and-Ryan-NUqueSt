@@ -62,8 +62,18 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private void ShopRestock()
     {
-        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Hoe"));
-        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Pickaxe"));
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Potato Seed"), 10);
     }
