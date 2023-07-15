@@ -44,6 +44,8 @@ public class GameData
     public int cs2040Progress;
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
+    public int ma1511Progress;
+
     public float dayChecker;
     public List<List<string>> listOfRockNames = new List<List<string>>();
     public List<string> cave1RockNames = new List<string>();

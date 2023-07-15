@@ -14,6 +14,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int cs2040Progress;
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
+    public int ma1511Progress;
+
     private void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -26,6 +28,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs2030Progress = GameManager.instance.cs2030Progress;
             cs2040Progress = GameManager.instance.cs2040Progress;
             cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
+            ma1511Progress = GameManager.instance.ma1511Progress;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckQuestProgress(currScene);
@@ -68,6 +71,10 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             NQueensPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<NQueensPuzzle>();
             puzzle1.CheckQuestProgress(cs2040Progress);
         }
+        else if (currScene == "Village_WeaponShop") // For MA1511
+        {
+            
+        }
     }
 
     private bool SearchForQuest(string questName)
@@ -104,6 +111,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs2030Progress = cs2030Progress;
         GameManager.instance.cs2040Progress = cs2040Progress;
         GameManager.instance.cs2040SeenBefore = cs2040SeenBefore;
+
+        GameManager.instance.ma1511Progress = ma1511Progress;
     }
 
     public void LoadData(GameData data)
@@ -116,6 +125,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs2030Progress = data.cs2030Progress;
         cs2040Progress = data.cs2040Progress;
         cs2040SeenBefore = data.cs2040SeenBefore;
+
+        ma1511Progress = data.ma1511Progress;
     }
 
     public void SaveData(GameData data)
@@ -127,5 +138,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2030Progress = cs2030Progress;
         data.cs2040Progress = cs2040Progress;
         data.cs2040SeenBefore = cs2040SeenBefore;
+
+        data.ma1511Progress = ma1511Progress;
     }
 }
