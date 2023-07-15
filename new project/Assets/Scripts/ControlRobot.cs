@@ -67,6 +67,7 @@ public class ControlRobot : MonoBehaviour
         virtualCamera.Follow = robot.transform;
         TimerOn = true;
         questComplete.colorsDetected.Clear();
+        playerMovement.movespeed = 0;
     }
 
     public void NoPressed()
@@ -95,6 +96,7 @@ public class ControlRobot : MonoBehaviour
             TimerOn = false;
             timer = 60;
             timerPanel.SetActive(false);
+            playerMovement.movespeed = 1f;
         }
     }
 
@@ -102,5 +104,6 @@ public class ControlRobot : MonoBehaviour
     {
         playerMovement.enabled = true;
         questPanel.SetActive(false);
+        playerMovement.movespeed = 1f;
     }
 }

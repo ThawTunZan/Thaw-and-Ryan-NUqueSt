@@ -13,7 +13,7 @@ public class SUMonsterAI : EnemyAI
     private int throwRocksCooldown = 6000;
     private int slamGroundCooldown = 6000;
     private int chargeCooldown = 8000;
-    private int meleeAttackCooldown = 2000;
+    private int meleeAttackCooldown = 3500;
 
     public bool isThrowOnCooldown = false;
     public bool isSlamGroundOnCooldown = false;
@@ -39,11 +39,11 @@ public class SUMonsterAI : EnemyAI
         {
             vectorTowardsPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
-            if (!isCharging && !isThrowing)
+            if (!isCharging && !isThrowing && isMeleeAttacking)
             {
                 followPlayer();
             }
-            if (distToPlayer <= 0.5)
+            if (distToPlayer <= 0.5 && !isMeleeAttackOnCooldown)
             {
                 MeleeAttack();
             }
@@ -162,6 +162,7 @@ public class SUMonsterAI : EnemyAI
         animator.SetTrigger("isAttacking");
         await Task.Delay(meleeAttackCooldown);
         isMeleeAttackOnCooldown = false;
+        isMeleeAttacking = false;
     }
 
     private async void ThrowRocks()

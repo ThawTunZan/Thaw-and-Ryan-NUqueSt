@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3045464743074517652}
   - component: {fileID: 7237662395447600919}
   - component: {fileID: 1661974025940782263}
+  - component: {fileID: 129631368693871822}
   m_Layer: 9
   m_Name: goblin
   m_TagString: Enemy
@@ -147,7 +148,6 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   player: {fileID: 0}
   enemy: {fileID: 3045464743074517672}
-  enemyObject: {fileID: 3045464743074517675}
   movespeed: 1
   interestMap:
   - 0
@@ -253,3 +253,19 @@ MonoBehaviour:
   animator: {fileID: 0}
   player: {fileID: 0}
   _health: 2
+--- !u!70 &129631368693871822
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045464743074517675}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0009287596, y: 0.017646305}
+  m_Size: {x: 0.087812185, y: 0.22526734}
+  m_Direction: 0

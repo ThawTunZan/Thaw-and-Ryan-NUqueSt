@@ -62,13 +62,8 @@ public class CompleteCg1111A : MonoBehaviour
                     virtualCamera.Follow = player.transform;
                     timerPanel.SetActive(false);
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                    foreach (QuestSlot_UI questSlots in quest_UI.questSlots)
-                    {
-                        if (questSlots.questNameText.text == "CG1111A")
-                        {
-                            questSlots.questStatus.SetActive(true);
-                        }
-                    }
+                    quest_UI.questSlots[i].questStatus.SetActive(true);
+                    playerMovement.movespeed = 1f;
                 }
             }
         }
