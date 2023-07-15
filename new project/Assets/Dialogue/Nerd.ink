@@ -47,9 +47,9 @@ I should tell other villagers about how you are a great puzzle solver! Maybe the
 === CS2030Convo ===
 {(!NerdQuestDone):
 Hey it's you again, my fav fellow quest enthusiast <3! 
-Yesterday, I was at on the third level of the cave looking for clues for more puzzles using my trusty magnifying glass and I discovered a MAZE!
-This maze was unlike any other maze... It was hella confusing...
--> start_quest("CS2030", "Help me solve the maze in the 3rd floor of the cave")
+Yesterday, I was at on the fourth level of the cave looking for clues for more puzzles using my trusty magnifying glass and I discovered a strange house!
+This house had strange notes on the ground and I couldn't read it...
+-> start_quest("CS2030", "Help me solve the maze in the fourth floor of the cave")
 -> END
 } 
 SHEEEEESH how did you solve the maze?? I was completely lost inside yesterday. I thought it was a BOX!
@@ -63,9 +63,9 @@ Anyway, thanks for solving the maze and telling me the correct route!
 {(!NerdQuestDone):
 Bruhhhhhhhhhhhhhhhhhhhh. You did an amazing job with the puzzle previously, mr yi long ma!
 Anyway, theres a puzzle that I have so much trouble solving. It is such a brain teaser!
-I will need you to go to the second level of the cave and solve a puzzle for me!
+I will need you to go to the third level of the cave and solve a puzzle for me!
 Do you think you can help me with it?
--> start_quest("CS1231", "Go to second floor of the cave and solve a puzzle!")
+-> start_quest("CS1231", "Go to third floor of the cave and solve a puzzle!")
 ->END
 } 
 WOW! You breeze through those logic question like nothing!     
@@ -79,7 +79,7 @@ Thanks for the help! My brain is a bit too fuzzy for this... @_@
 Hey You must be the new kid in town! Have you explore the cave south of the village?
 There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics that works with something to do with AND Gates and For LOOPS... Hmmm
 Do you think you can help me solve it?
--> start_quest("CS1010", "Help me solve the puzzle in the first floor of the cave down south")
+-> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south")
 ->END
 } #Quest completed response
 ~questCS1010Done = true
