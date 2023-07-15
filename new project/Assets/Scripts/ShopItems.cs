@@ -11,7 +11,7 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private Inventory_UI shopInCanvas;
 
-    private float dayChecker;
+    private bool dayChecker;
 
     private void Start()
     {
@@ -19,29 +19,26 @@ public class ShopItems : MonoBehaviour, IDataPersistence
         shopInCanvas = GameObject.Find("Shop").GetComponent<Inventory_UI>();
         if (startingPosition.transittedScene || startingPosition.playerDead)
         {
-            dayChecker = GameManager.instance.dayChecker;
             // shop0: blacksmith
             // shop1: generalshop
             shopInventory = new Inventory(shopName, 21);
-            if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
-            {
-                shopInventory = GameManager.instance.shopList[lastDigit];
-            }
+            UpdateShop();
         }
     }
 
     private void Update()
     {
-        if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
-        {
-            GameManager.instance.shopList[lastDigit] = shopInventory;
-        }
-        if (GameManager.instance.day > dayChecker)
+        if (GameManager.instance.hours == 8f && GameManager.instance.minutes == 0f && !dayChecker)
         {
             EmptyShop(GameManager.instance.shop0);
             EmptyShop(GameManager.instance.shop1);
             ShopRestock();
-            dayChecker = GameManager.instance.day;
+            UpdateShop();
+            dayChecker = true;
+        }
+        if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
+        {
+            GameManager.instance.shopList[lastDigit] = shopInventory;
         }
     }
     
@@ -62,10 +59,28 @@ public class ShopItems : MonoBehaviour, IDataPersistence
 
     private void ShopRestock()
     {
-        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Hoe"));
-        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Stone Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Copper Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Iron Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Gold Pickaxe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Hoe"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Sword"));
+        GameManager.instance.shop0.Add(ItemManager.instance.GetItemByName("Diamond Pickaxe"));
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Tomato Seed"), 10);
         GameManager.instance.shop1.Add(ItemManager.instance.GetItemByName("Potato Seed"), 10);
+    }
+
+    private void UpdateShop()
+    {
+        if (int.TryParse(shopName.Substring(shopName.Length - 1), out int lastDigit))
+        {
+            shopInventory = GameManager.instance.shopList[lastDigit];
+        }
     }
 
     public void ShopRefresh()

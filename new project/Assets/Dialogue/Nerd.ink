@@ -33,7 +33,7 @@ HELLLLLLLLLLLO. The maze has been so fun to explore after you helped me solve it
 After the maze I discovered something new! There seems to be a whole new floor in the cave with weird moveable rocks. 
 I suspect you have to form some kind of configuration. If I remember correctly, it was labelled as N-queens or something
 Do you think you can take a look for me?
--> start_quest("CS2040", "Go to 4th floor of cave and solve the N-queen puzzle!")
+-> start_quest("CS2040", "Go to fifth floor of cave and solve the N-queen puzzle!")
 ->END
 }
 

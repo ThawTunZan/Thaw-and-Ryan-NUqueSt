@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -429,10 +429,11 @@ MonoBehaviour:
   movespeed: 1
   collisionOffset: 0.05
   startingPosition: {fileID: 0}
-  facingUp: 0
   weaponDarkColour: {fileID: 8404195195031376752}
   weaponLightColour: {fileID: 6459554918124979092}
+  itemType: 
   itemRarity: 
+  facingDir: 
 --- !u!114 &1127771672293020546
 MonoBehaviour:
   m_ObjectHideFlags: 0

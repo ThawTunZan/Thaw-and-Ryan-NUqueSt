@@ -91,6 +91,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
     }
+    
     public void CheckDate()
     {
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
@@ -112,6 +113,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
         }
     }
+
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
@@ -154,8 +156,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         ContinueStory();
     }
-
-    
 
     private void ExitDialogueMode()
     {
@@ -236,6 +236,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
     }
+    
     public void SaveData(GameData data)
     {
     }

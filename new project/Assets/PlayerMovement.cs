@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,11 +27,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //misc
     bool canMove = true;
 
-    public bool facingUp;
-
     public SpriteRenderer weaponDarkColour;
     public SpriteRenderer weaponLightColour;
+    public string itemType;
     public string itemRarity;
+    public string facingDir;
     private int currFrame;
 
     void Start()
@@ -115,16 +116,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             //to move up animation
             if (movementInput.y > 0 && movementInput.x == 0)
             {
-                facingUp = true;
+                spriteRenderer.flipX = false;
                 animator.SetBool("isMovingUp", true);
                 animator.SetBool("isMovingDown", false);
                 animator.SetBool("isMovingSide", false);
-
             }
             //to move down animation
             else if (movementInput.y < 0 && movementInput.x == 0)
             {
-                facingUp = false;
+                spriteRenderer.flipX = false;
                 animator.SetBool("isMovingUp", false);
                 animator.SetBool("isMovingDown", true);
                 animator.SetBool("isMovingSide", false);
@@ -176,9 +176,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void AnimateToolAttack(string toolType, string toolRarity)
     {
+        itemType = toolType;
         itemRarity = toolRarity;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
         {
+            facingDir = "Down";
             if (toolType == "Sword")
             {
                 animator.SetTrigger("swordAttackDown");
@@ -192,8 +195,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 animator.SetTrigger("hoeAttackDown");
             }
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_up") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_up"))
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_up") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_up"))
         {
+            facingDir = "Up";
             if (toolType == "Sword")
             {
                 animator.SetTrigger("swordAttackUp");
@@ -207,8 +212,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 animator.SetTrigger("hoeAttackUp");
             }
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_side") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_side"))
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_side") 
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_side"))
         {
+            facingDir = "Side";
             if (toolType == "Sword")
             {
                 animator.SetTrigger("swordAttackSide");
@@ -224,14 +231,38 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void PickaxeSideColour()
+    public void AnimateToolColour()
     {
         if (currFrame == 0)
         {
-            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_0");
-            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_0");
-            Debug.Log(itemRarity);
-            if (itemRarity == "Diamond")
+            if (gameObject.GetComponent<SpriteRenderer>().flipX && facingDir == "Side")
+            {
+                weaponDarkColour.flipX = true;
+                weaponLightColour.flipX = true;
+            }
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/Dark" + itemType + facingDir + "_0");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/Light" + itemType + facingDir + "_0");
+            if (itemRarity == "Stone")
+            {
+                weaponDarkColour.color = new Color32(128, 128, 128, 255);
+                weaponLightColour.color = new Color32(165, 165, 165, 255);
+            }
+            else if (itemRarity == "Copper")
+            {
+                weaponDarkColour.color = new Color32(159, 57, 58, 255);
+                weaponLightColour.color = new Color32(229, 101, 58, 255);
+            }
+            else if (itemRarity == "Iron")
+            {
+                weaponDarkColour.color = new Color32(108, 144, 155, 255);
+                weaponLightColour.color = new Color32(202, 231, 233, 255);
+            }
+            else if (itemRarity == "Gold")
+            {
+                weaponDarkColour.color = new Color32(216, 131, 58, 255);
+                weaponLightColour.color = new Color32(255, 231, 80, 255);
+            }
+            else if (itemRarity == "Diamond")
             {
                 weaponDarkColour.color = new Color32(29, 204, 210, 255);
                 weaponLightColour.color = new Color32(117, 226, 205, 255);
@@ -240,26 +271,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
         else if (currFrame == 1)
         {
-            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_1");
-            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_1");
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/Dark" + itemType + facingDir + "_1");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/Light" + itemType + facingDir + "_1");
             currFrame++;
         }
         else if (currFrame == 2)
         {
-            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_2");
-            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_2");
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/Dark" + itemType + facingDir + "_2");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/Light" + itemType + facingDir + "_2");
             currFrame++;
         }
         else if (currFrame == 3)
         {
-            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/DarkPickaxeSide_3");
-            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/LightPickaxeSide_3");
+            weaponDarkColour.sprite = Resources.Load<Sprite>("Colour/Dark" + itemType + facingDir + "_3");
+            weaponLightColour.sprite = Resources.Load<Sprite>("Colour/Light" + itemType + facingDir + "_3");
             currFrame++;
         }
         else if (currFrame == 4)
         {
             weaponDarkColour.sprite = null;
             weaponLightColour.sprite = null;
+            weaponDarkColour.flipX = false;
+            weaponLightColour.flipX = false;
             currFrame = 0;
         }
     }
