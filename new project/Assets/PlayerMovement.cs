@@ -224,7 +224,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void AnimateToolColour()
+    public void PickaxeSideColour()
     {
         if (currFrame == 0)
         {
