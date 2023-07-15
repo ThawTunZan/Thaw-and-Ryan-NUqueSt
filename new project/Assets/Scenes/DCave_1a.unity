@@ -2189,6 +2189,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79147670}
   m_CullTransparentMesh: 1
+--- !u!1 &82421023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82421024}
+  - component: {fileID: 82421025}
+  m_Layer: 0
+  m_Name: Dark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &82421024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82421023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484351009}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &82421025
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82421023}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &97616389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2467,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &115205622
 GameObject:
@@ -2677,6 +2765,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &117800628
 MonoBehaviour:
@@ -3256,6 +3348,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &156846904
 GameObject:
@@ -3548,6 +3644,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &157171540
 MonoBehaviour:
@@ -3939,6 +4039,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &209570083
 GameObject:
@@ -4096,6 +4200,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &209570087
 MonoBehaviour:
@@ -4890,6 +4998,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &248920857
 MonoBehaviour:
@@ -5123,6 +5235,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &250842832
 GameObject:
@@ -5695,6 +5811,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &261384966
 MonoBehaviour:
@@ -5902,6 +6022,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &270785284
 MonoBehaviour:
@@ -7426,6 +7550,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &347322568
 MonoBehaviour:
@@ -7613,7 +7741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: 5e055597dbe641446bb59c2caeed5147, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: 5e055597dbe641446bb59c2caeed5147, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8599,6 +8727,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &408094356
 MonoBehaviour:
@@ -9286,6 +9418,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &436306976
 MonoBehaviour:
@@ -9822,6 +9958,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &458675659
 MonoBehaviour:
@@ -10190,6 +10330,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &476315271
 GameObject:
@@ -10283,6 +10427,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &476315275
 MonoBehaviour:
@@ -11399,6 +11547,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &540827435
 MonoBehaviour:
@@ -12605,6 +12757,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &607028001
 GameObject:
@@ -12695,7 +12851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: 977fc03cd1dfb2d4aba30b38bef42eaf, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: 977fc03cd1dfb2d4aba30b38bef42eaf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14834,6 +14990,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &684220827
 MonoBehaviour:
@@ -15029,6 +15189,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &694956654
 MonoBehaviour:
@@ -16081,6 +16245,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &766407003
 MonoBehaviour:
@@ -16464,6 +16632,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &787487339
 MonoBehaviour:
@@ -16870,6 +17042,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &798070369
 MonoBehaviour:
@@ -17065,6 +17241,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &800852390
 MonoBehaviour:
@@ -17675,6 +17855,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &831901529
 GameObject:
@@ -17870,6 +18054,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1001 &832556534
 PrefabInstance:
@@ -18570,6 +18758,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &855447253
 MonoBehaviour:
@@ -19150,6 +19342,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!224 &883660040
 RectTransform:
@@ -19817,6 +20013,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &953586760
 MonoBehaviour:
@@ -21368,6 +21568,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1046070315
 MonoBehaviour:
@@ -22240,6 +22444,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1097446259
 GameObject:
@@ -22892,6 +23100,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1122526469
 MonoBehaviour:
@@ -23023,6 +23235,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1124792514
 MonoBehaviour:
@@ -23659,6 +23875,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1192455203
 GameObject:
@@ -24078,6 +24298,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1199572419
 MonoBehaviour:
@@ -24420,6 +24644,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1212664911
 MonoBehaviour:
@@ -24820,6 +25048,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1222240083
 MonoBehaviour:
@@ -26739,6 +26971,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1282486577
 GameObject:
@@ -26832,6 +27068,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1282486581
 MonoBehaviour:
@@ -27101,6 +27341,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1299418930
 GameObject:
@@ -28348,6 +28592,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1387049108
 MonoBehaviour:
@@ -30272,6 +30520,39 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1484351007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484351009}
+  m_Layer: 0
+  m_Name: WeaponColour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484351009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484351007}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 82421024}
+  - {fileID: 1793621132}
+  m_Father: {fileID: 1675395090}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498702433
 GameObject:
   m_ObjectHideFlags: 0
@@ -30420,7 +30701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: cfe9b0a33e1848447bf4f3a582f1ca78, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6154831188857250743, guid: cfe9b0a33e1848447bf4f3a582f1ca78, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30999,6 +31280,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1564304881
 GameObject:
@@ -31680,6 +31965,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1592079826
 MonoBehaviour:
@@ -31811,6 +32100,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1606109948
 MonoBehaviour:
@@ -32698,6 +32991,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1635088537
 GameObject:
@@ -33154,6 +33451,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1664470117
 MonoBehaviour:
@@ -33420,6 +33721,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1668393221
 MonoBehaviour:
@@ -33691,6 +33996,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1669568900
 MonoBehaviour:
@@ -33771,7 +34080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34202,6 +34511,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1693564325
 MonoBehaviour:
@@ -34568,6 +34881,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1713873146
 GameObject:
@@ -35655,6 +35972,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1762358153
 MonoBehaviour:
@@ -36175,6 +36496,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1791386705
 GameObject:
@@ -36332,6 +36657,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1791386709
 MonoBehaviour:
@@ -36371,6 +36700,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791386705}
   m_CullTransparentMesh: 1
+--- !u!1 &1793621131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1793621132}
+  - component: {fileID: 1793621133}
+  m_Layer: 0
+  m_Name: Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1793621132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793621131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484351009}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1793621133
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793621131}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1804014615
 GameObject:
   m_ObjectHideFlags: 0
@@ -36609,6 +37022,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1807282814
 MonoBehaviour:
@@ -37452,6 +37869,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1831411960
 MonoBehaviour:
@@ -39394,6 +39815,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1942338390
 MonoBehaviour:
@@ -39627,6 +40052,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1954126081
 GameObject:
@@ -40109,6 +40538,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &1971302569
 GameObject:
@@ -40577,6 +41010,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &1993923363
 MonoBehaviour:
@@ -40723,11 +41160,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 6490797398714549649, guid: 6fc00ad34e4cd24498ac38f520e5ef2c, type: 3}
+  - {fileID: 2039581920320818288, guid: e4682b9859cd71b49bb844916ea9a440, type: 3}
   - {fileID: 6490797398714549649, guid: f3935e4cc7549434c80bbdb92bd13abb, type: 3}
+  - {fileID: 2039581920320818288, guid: 5e055597dbe641446bb59c2caeed5147, type: 3}
+  - {fileID: 2039581920320818288, guid: 7219ed4f88cf03e40a8169868951e7db, type: 3}
+  - {fileID: 2039581920320818288, guid: a3fcd2f134b21cb4cadd665329c074e6, type: 3}
   - {fileID: 6490797398714549649, guid: 0ffc32c0283e14547a85ab6d8b4432b8, type: 3}
+  - {fileID: 2039581920320818288, guid: ff46fe063f425f946968db769546270d, type: 3}
+  - {fileID: 2039581920320818288, guid: 977fc03cd1dfb2d4aba30b38bef42eaf, type: 3}
   - {fileID: 6490797398714549649, guid: 8865467eee9b0044eac958b2de684d37, type: 3}
+  - {fileID: 2039581920320818288, guid: cfe9b0a33e1848447bf4f3a582f1ca78, type: 3}
   - {fileID: 6490797398714549649, guid: 531d8869cae6ab644bb8609c351a65e6, type: 3}
+  - {fileID: 2039581920320818288, guid: b49cb87c1d1500b48ab6da831ccb492b, type: 3}
+  - {fileID: 2039581920320818288, guid: 785ad7b98ca7fdf43b6afdd59824a5ce, type: 3}
+  - {fileID: 2039581920320818288, guid: 01c5317af8069114ca017b54d25c3782, type: 3}
   - {fileID: 6490797398714549649, guid: 129946bbf3977be47b79859a13a11166, type: 3}
+  - {fileID: 2039581920320818288, guid: ccc606a57fe9ccb4b8e0b247ebd4b940, type: 3}
+  - {fileID: 2039581920320818288, guid: 71b4fe2171baae0429a879c61c4bc0f3, type: 3}
   - {fileID: 6490797398714549649, guid: efcdb9977a28def4b89e27502912962b, type: 3}
   - {fileID: 6490797398714549649, guid: 34ac5f408437bc541aa3fbe22778b9e0, type: 3}
   - {fileID: 2039581920320818288, guid: 081425f58b0866e458a574729a06cab9, type: 3}
@@ -40919,6 +41368,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &2013268516
 MonoBehaviour:
@@ -41536,6 +41989,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!114 &2037775039
 MonoBehaviour:
@@ -41769,6 +42226,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &2064300960
 GameObject:
@@ -43077,6 +43538,10 @@ MonoBehaviour:
   itemDesc: 
   itemBuyCost: 0
   itemSellCost: 0
+  itemHealAmount: 0
+  itemSwordDamage: 0
+  itemPickaxeDamage: 0
+  itemHoeRange: 0
   highlight: {fileID: 0}
 --- !u!1 &2146721071
 GameObject:

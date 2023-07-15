@@ -2,10 +2,12 @@ using PlayFab.EconomyModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static Inventory;
 
 public class Toolbar_UI : MonoBehaviour
 {
@@ -144,11 +146,11 @@ public class Toolbar_UI : MonoBehaviour
             }
             else if (slot.itemType == "Sword" || slot.itemType == "Pickaxe")
             {
-                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType, slot.itemName.Split(" ")[0]);
             }
             else if (slot.itemType == "Hoe")
             {
-                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType, slot.itemName.Split(" ")[0]);
                 UseHoeAddDirt();
             }
             Refresh();
@@ -175,11 +177,11 @@ public class Toolbar_UI : MonoBehaviour
         }
     }
 
-    private void SwingTool(float swordDamage, float pickaxeDamage, string itemName)
+    private void SwingTool(float swordDamage, float pickaxeDamage, string itemType, string itemRarity)
     {
         swordAttack.swordDamage = swordDamage;
         swordAttack.pickaxeDamage = pickaxeDamage;
-        playerMovement.AnimateToolAttack(itemName);
+        playerMovement.AnimateToolAttack(itemType, itemRarity);
     }
 
     private void UseHoeAddDirt()
@@ -197,7 +199,7 @@ public class Toolbar_UI : MonoBehaviour
         {
             if (slot.itemType == "Hoe")
             {
-                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType);
+                SwingTool(slot.itemSwordDamage, slot.itemPickaxeDamage, slot.itemType, slot.itemName.Split(" ")[0]);
                 UseHoeRemoveDirt(slot.itemHoeRange);
             }
             Refresh();

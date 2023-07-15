@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -26,6 +27,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     bool canMove = true;
 
     public bool facingUp;
+
+    public SpriteRenderer weaponDarkColour;
+    public SpriteRenderer weaponLightColour;
+    public string itemRarity;
+    private int currFrame;
 
     void Start()
     {
@@ -168,8 +174,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         movementInput = movementValue.Get<Vector2>();
     }
 
-    public void AnimateToolAttack(string toolType)
+    public void AnimateToolAttack(string toolType, string toolRarity)
     {
+        itemRarity = toolRarity;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("player_idle_down") || animator.GetCurrentAnimatorStateInfo(0).IsName("player_walk_down"))
         {
             if (toolType == "Sword")
@@ -214,6 +221,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             {
                 animator.SetTrigger("hoeAttackSide");
             }
+        }
+    }
+
+    public void AnimateToolColour()
+    {
+        if (currFrame == 0) 
+        {
+            currFrame++;
+        }
+        else if (currFrame == 1)
+        {
+            currFrame++;
+        }
+        else if (currFrame == 2)
+        {
+            currFrame++;
+        }
+        else if (currFrame == 3)
+        {
+            currFrame = 0;
         }
     }
 
