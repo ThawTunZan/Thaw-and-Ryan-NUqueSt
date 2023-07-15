@@ -19,9 +19,21 @@ public class ColorDetectionCG1111 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("robot"))
+        if (collision.CompareTag("robot") && SameColor(colorName))
         {
             questComplete.colorsDetected.Add(colorName);
         }
+    }
+
+    private bool SameColor(string color)
+    {
+        foreach (string indexColor in questComplete.colorsDetected)
+        {
+            if (color == indexColor)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

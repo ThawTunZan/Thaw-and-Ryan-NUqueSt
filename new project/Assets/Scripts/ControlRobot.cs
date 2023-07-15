@@ -15,7 +15,7 @@ public class ControlRobot : MonoBehaviour
     public float timer;
 
     public bool TimerOn;
-
+    public CompleteCg1111A questComplete;
     private PlayerQuests playerQuest;
     // Start is called before the first frame update
     void Start()
@@ -66,6 +66,7 @@ public class ControlRobot : MonoBehaviour
         robotMovement.enabled = true;
         virtualCamera.Follow = robot.transform;
         TimerOn = true;
+        questComplete.colorsDetected.Clear();
     }
 
     public void NoPressed()
