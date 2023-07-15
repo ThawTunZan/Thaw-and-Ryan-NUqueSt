@@ -127,7 +127,9 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         bool isInside = (sceneName == "GeneralShop" || sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop"
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
             || sceneName == "NerdNPC House");
-        if (hours >= 18 && hours <= 21 && !isInside)
+        bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" || sceneName == "Cave_4a" 
+            || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a");
+        if (hours >= 18 && hours <= 21 && !isInside && !inCave)
         {
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
             foreach (Animator animator in animatorTorchList)
@@ -140,7 +142,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
                 lightComponent.intensity = ppv.weight;
             }
         }
-        else if (hours >= 8 && hours < 18)
+        else if (hours >= 8 && hours < 18 && !isInside && !inCave)
         {
             ppv.weight = 0;
             foreach (Animator animator in animatorTorchList)
@@ -156,6 +158,19 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         else if (isInside)
         {
             ppv.weight = 0;
+        }
+        else if (inCave)
+        {
+            ppv.weight = 1;
+            foreach (Animator animator in animatorTorchList)
+            {
+                animator.SetBool("isNoon", true);
+            }
+            foreach (GameObject obj in taggedObjects)
+            {
+                Light2D lightComponent = obj.GetComponent<Light2D>();
+                lightComponent.intensity = ppv.weight;
+            }
         }
     }
     public void LoadData(GameData data)

@@ -14,6 +14,7 @@ public class QuestList
         public string questName;
         public string questDescription;
         public bool done;
+        public float gpaReward;
 
         // add more requirements here for different quests
         public int slimesRequired;
@@ -34,27 +35,65 @@ public class QuestList
             if (quest_name == "MA1511")
             {
                 slimesRequired = 2;
+                gpaReward = 1;
             }
             if (quest_name == "MA1512")
             {
                 //requireItems = new List<Dictionary<string, int>>();
                 requireItems.Add(new Dictionary<string, int> { { "Tomato", 2 } });
+                gpaReward = 1;
             }
             if (quest_name == "HSA1000")
             {
                 placesToVisit.Add("Cave_1");
+                gpaReward = 2;
             }
             if (quest_name == "GESS1001")
             {
                 placesToVisit.Add("Cave_1b");
+                gpaReward = 2;
             }
             if (quest_name == "GEA1000")
             {
                 requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
+                gpaReward = 2;
             }
             if (quest_name == "PC1101")
             {
                 placesToVisit.Add("Village");
+                gpaReward = 1;
+            }
+            if (quest_name == "CS1010")
+            {
+                gpaReward = 4;
+            }
+            if (quest_name == "CS1231")
+            {
+                gpaReward = 4;
+            }
+            if (quest_name == "CS2030")
+            {
+                gpaReward = 4;
+            }
+            if (quest_name == "CS2040")
+            {
+                gpaReward = 4;
+            }
+            if (quest_name == "PC1201")
+            {
+                gpaReward = 3;
+            }
+            if (quest_name == "CG1111A")
+            {
+                gpaReward = 3;
+            }
+            if (quest_name == "CG2111A")
+            {
+                gpaReward = 4;
+            }
+            if (quest_name == "EG1311")
+            {
+                gpaReward = 3;
             }
         }
     }

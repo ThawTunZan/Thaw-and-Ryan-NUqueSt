@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public bool openShop;
 
     public string localNPCName;
+    private PlayerMoney playerMoney;
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
         toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
+        playerMoney = GameObject.Find("Player").GetComponent<PlayerMoney>();
 
     }
 
@@ -91,12 +93,9 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
     public void CheckDate()
     {
-        print("where is the error");
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
-        print("where is the errorr");
         print(localNPCName + "QuestDone");
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
-        print("where is the errorrr");
         if (GameManager.instance.day != currDay)
         {
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
@@ -132,6 +131,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 //to make questStarted false and questDone true when quest is completed
                 if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
                 {
+                    // finished the quest 
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", true);
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", false);
                     // remove the quest from quest slot
@@ -141,9 +141,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
                     player.questList.questSlots[i].count = 0;
+                    playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
                 }
                 else
                 {
+                    // quest is not finished while having it
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", true);
                     dialogueVariables.InkSetVariables(currentStory, "validTime", true);

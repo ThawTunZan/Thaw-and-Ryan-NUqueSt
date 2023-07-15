@@ -82,6 +82,7 @@ Do you think you can help me solve it?
 -> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south")
 ->END
 } #Quest completed response
+Damnnn... For a first timer, you are pretty good at solving puzzles! Thanks for the help! If I discovered more puzzles I will let you know!
 ~questCS1010Done = true
 ~NerdValidTime = false
 ->END
