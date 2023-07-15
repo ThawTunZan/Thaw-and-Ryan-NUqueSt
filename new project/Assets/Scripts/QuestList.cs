@@ -52,6 +52,10 @@ public class QuestList
             {
                 requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
             }
+            if (quest_name == "PC1101")
+            {
+                placesToVisit.Add("Village");
+            }
         }
     }
 

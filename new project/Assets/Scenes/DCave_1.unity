@@ -13844,6 +13844,7 @@ MonoBehaviour:
   questPanel: {fileID: 385790038}
   timerPanel: {fileID: 1105429493}
   timer: 0
+  TimerOn: 0
 --- !u!61 &525190218
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26423,6 +26424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee270ca7d62a1ef48aad5d1794c4b115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerPanel: {fileID: 1105429493}
+  timer: 0
+  controlRobot: {fileID: 525190217}
   colorsDetected: []
 --- !u!1 &952003163
 GameObject:
@@ -52097,7 +52101,7 @@ MonoBehaviour:
   dayText: {fileID: 0}
   timeText: {fileID: 0}
   ppv: {fileID: 1834412715}
-  startingPosition: {fileID: 11400000, guid: e9c36fbefd06c2d4f8fc08d685cab917, type: 2}
+  startingPosition: {fileID: 11400000, guid: bb7413ca1b9bc834694134e498917757, type: 2}
 --- !u!114 &1834412715
 MonoBehaviour:
   m_ObjectHideFlags: 0

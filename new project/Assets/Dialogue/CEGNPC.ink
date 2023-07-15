@@ -4,10 +4,10 @@ INCLUDE globals.ink
 === main ===
 Hmmm... How much ram will be needed to run this in my computer...
 Oh! Hi there!
-    
-[What's up?]
+* [What's up?]
       Nothing much! Just wondering what I should do for my next project!-> DONE
-[Do you have any quests?]{allQuestDone:I do not require assistance for now.|{(!CEGValidTime): Thanks for the help! Maybe come another time. |{CEGQuestStarted:I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
+* [Do you have any quests?]
+{allQuestDone:I do not require assistance for now.|{(!CEGValidTime): Thanks for the help! Maybe come another time. |{CEGQuestStarted:I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
 [Leave]
   Goodbye.-> DONE
 -> END
@@ -50,8 +50,7 @@ Anyway, Thanks for the help!
 
 === CG1111AConvo ===
 {(!CEGQuestDone):
-    You must be the new person in town! My name is TeeHaw.
-    I am a computer engineer! 
+    You must be the new person in town! My name is TeeHaw. I am a computer engineer! 
     Based on your facial expression you don't seem to be surprised! That must mean there are computer engineers in your world!
     Anyway, I have been working on a project recently and I need some help!
     I need you to help me with testing a prototype of mine! I placed it in one of the level in the cave of the dessert!
@@ -66,15 +65,20 @@ Anyway, Thanks for the help!
     -> END
 
 === in_quest ===
-[What am I supposed to do again?]{questDesc}-> DONE
-[Leave]
+* [What am I supposed to do again?]
+    {CEGQuestDesc}-> DONE
+* [Leave]
   Goodbye.-> DONE
 
 -> END
 
 === start_quest(Name, Desc) ===
-[Yes]
-  Great!~ CEGQuestName = Name~ CEGQuestDesc = CEGQuestStarted = true-> DONE
-[No]
+* [Yes]
+  Great!
+  ~ CEGQuestName = Name
+  ~ CEGQuestDesc = Desc
+  ~ CEGQuestStarted = true
+  -> DONE
+* [No]
   Sleep with one eye open :)-> DONE
 -> END

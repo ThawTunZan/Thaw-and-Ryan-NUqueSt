@@ -7,9 +7,10 @@ INCLUDE globals.ink
 Hmmm this light seems strange, I wonder what it will do in this...
 Oh hey there!
     
-[I want to buy something.]
+* [I want to buy something.]
       We are currently out of stock.-> DONE
-[Do you have any quests?]{allQuestDone:I do not require assistance for now.|{(!PhysicistValidTime): Thanks for the help! Maybe come another time. |{PhysicistQuestStarted:I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
+* [Do you have any quests?]
+{allQuestDone:I do not require assistance for now.|{(!PhysicistValidTime): Thanks for the help! Maybe come another time. |{PhysicistQuestStarted:I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
 [Leave]
   Goodbye.-> DONE
 -> END
@@ -48,15 +49,20 @@ Oh hey there!
     -> END
 
 === in_quest ===
-[What am I supposed to do again?]{questDesc}-> DONE
-[Leave]
+* [What am I supposed to do again?]
+{PhysicistQuestDesc}-> DONE
+* [Leave]
   Goodbye.-> DONE
 
 -> END
 
 === start_quest(Name, Desc) ===
-[Yes]
-  Great!~ PhysicistQuestName = Name~ PhysicistQuestDesc = Desc~ PhysicistQuestStarted = true-> DONE
-[No]
+* [Yes]
+  Great!
+  ~ PhysicistQuestName = Name
+  ~ PhysicistQuestDesc = Desc
+  ~ PhysicistQuestStarted = true
+  -> DONE
+* [No]
   Sleep with one eye open :)-> DONE
 -> END

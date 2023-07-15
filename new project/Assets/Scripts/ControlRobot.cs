@@ -14,7 +14,7 @@ public class ControlRobot : MonoBehaviour
     public GameObject timerPanel;
     public float timer;
 
-    private bool TimerOn;
+    public bool TimerOn;
 
     private PlayerQuests playerQuest;
     // Start is called before the first frame update

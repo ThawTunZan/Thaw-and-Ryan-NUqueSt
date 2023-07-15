@@ -109,5 +109,9 @@ public class QuestSlot_UI : MonoBehaviour
                 questStatus.SetActive(true);
             }
         }
+        if (questSlot.questName == "CG1111A" && questSlot.done)
+        {
+            questStatus.SetActive(true);
+        }
     }
 }
