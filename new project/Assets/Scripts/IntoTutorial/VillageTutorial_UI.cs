@@ -18,6 +18,8 @@ public class VillageTutorial_UI : MonoBehaviour
         }
         else
         {
+            GameObject.Find("WestPathBlock").SetActive(false);
+            GameObject.Find("NorthPathBlock").SetActive(false);
             Destroy(this.gameObject);
         }
     }

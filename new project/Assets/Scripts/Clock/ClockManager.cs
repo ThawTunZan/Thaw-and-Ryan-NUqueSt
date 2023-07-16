@@ -32,6 +32,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     private void Awake()
     {
     }
+
     void Start()
     {
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
@@ -130,9 +131,10 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         string sceneName = currentScene.name;
         bool isInside = (sceneName == "GeneralShop" || sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop"
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
-            || sceneName == "NerdNPC House");
-        bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" || sceneName == "Cave_4a" 
-            || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a" || sceneName == "DCave_2a");
+            || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse");
+        bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" 
+            || sceneName == "Cave_4a" || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a" 
+            || sceneName == "DCave_2a");
         timeText.color = Color.white;
         goToSleepText.text = "";
         if (hours >= 18 && hours <= 21 && !isInside && !inCave)
@@ -184,6 +186,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             }
         }
     }
+
     public void LoadData(GameData data)
     {
         days = data.day;
