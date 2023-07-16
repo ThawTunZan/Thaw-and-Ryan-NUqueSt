@@ -45,6 +45,8 @@ public class GameData
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
     public int ma1511Progress;
+    public int eg1311Progress;
+    public int cg2111aProgress;
 
     public float dayChecker;
     public List<List<string>> listOfRockNames = new List<List<string>>();
@@ -55,6 +57,8 @@ public class GameData
     public List<string> cave3aRockNames = new List<string>();
     public List<string> cave4aRockNames = new List<string>();
     public List<string> dcave1RockNames = new List<string>();
+    public List<string> dcave1aRockNames = new List<string>();
+    public List<string> dcave2aRockNames = new List<string>();
     public List<List<int>> listOfRockStates = new List<List<int>>();
     public List<int> cave1RockStates = new List<int>();
     public List<int> cave1aRockStates = new List<int>();
@@ -63,6 +67,8 @@ public class GameData
     public List<int> cave3aRockStates = new List<int>();
     public List<int> cave4aRockStates = new List<int>();
     public List<int> dcave1RockStates = new List<int>();
+    public List<int> dcave1aRockStates = new List<int>();
+    public List<int> dcave2aRockStates = new List<int>();
 
     public float hours;
 
@@ -107,6 +113,8 @@ public class GameData
         cs2030Progress = -1;
         cs2040Progress = -1;
         ma1511Progress = -1;
+        eg1311Progress = -1;
+        cg2111aProgress = -1;
 
         listOfRockNames.Add(cave1RockNames);
         listOfRockNames.Add(cave1aRockNames);
@@ -115,6 +123,8 @@ public class GameData
         listOfRockNames.Add(cave3aRockNames);
         listOfRockNames.Add(cave4aRockNames);
         listOfRockNames.Add(dcave1RockNames);
+        listOfRockNames.Add(dcave1aRockNames);
+        listOfRockNames.Add(dcave2aRockNames);
 
         listOfRockStates.Add(cave1RockStates);
         listOfRockStates.Add(cave1aRockStates);
@@ -123,6 +133,8 @@ public class GameData
         listOfRockStates.Add(cave3aRockStates);
         listOfRockStates.Add(cave4aRockStates);
         listOfRockStates.Add(dcave1RockStates);
+        listOfRockStates.Add(dcave1aRockStates);
+        listOfRockStates.Add(dcave2aRockStates);
 
         tutorialProgress = 0;
 

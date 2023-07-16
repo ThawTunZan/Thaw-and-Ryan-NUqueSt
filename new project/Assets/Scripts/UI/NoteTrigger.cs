@@ -30,7 +30,6 @@ public class NoteTrigger : MonoBehaviour
         {
             TriggerNote();
         }
-
     }
 
     private void TriggerNote()

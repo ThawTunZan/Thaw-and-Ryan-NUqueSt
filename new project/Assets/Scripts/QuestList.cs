@@ -91,10 +91,12 @@ public class QuestList
             }
             if (quest_name == "CG2111A")
             {
+                GameObject.Find("Player").GetComponent<PlayerQuests>().cg2111aProgress = 0;
                 gpaReward = 4;
             }
             if (quest_name == "EG1311")
             {
+                GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
                 gpaReward = 3;
             }
         }

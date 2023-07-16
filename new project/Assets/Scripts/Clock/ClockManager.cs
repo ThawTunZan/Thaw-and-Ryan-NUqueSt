@@ -132,7 +132,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
             || sceneName == "NerdNPC House");
         bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" || sceneName == "Cave_4a" 
-            || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a");
+            || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a" || sceneName == "DCave_2a");
         timeText.color = Color.white;
         goToSleepText.text = "";
         if (hours >= 18 && hours <= 21 && !isInside && !inCave)

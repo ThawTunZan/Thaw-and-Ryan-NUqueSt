@@ -16,6 +16,9 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     public int ma1511Progress;
 
+    public int eg1311Progress;
+    public int cg2111aProgress;
+
     private void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -84,6 +87,20 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             if (ma1511Progress >= 0)
             {
                 GameObject.Find("MA1511Collider").SetActive(false);
+            }
+        }
+        else if (currScene == "ToDCave_1") // For EG1311
+        {
+            if (eg1311Progress == 0)
+            {
+                GameObject.Find("EG1311Collider").SetActive(false);
+            }
+        }
+        else if (currScene == "ToDCave_1a") // For CG2111A
+        {
+            if (cg2111aProgress == 0)
+            {
+                GameObject.Find("CG2111ACollider").SetActive(false);
             }
         }
     }
