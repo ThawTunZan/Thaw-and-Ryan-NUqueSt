@@ -29,6 +29,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     private List<Animator> animatorTorchList;
     GameObject[] taggedObjects;
 
+    private PlayerTutorial playerTutorial;
+
     private void Awake()
     {
     }
@@ -38,6 +40,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
         timeText = GameObject.Find("Time").GetComponent<TextMeshProUGUI>();
         goToSleepText = GameObject.Find("GoToSleepText").GetComponent<TextMeshProUGUI>();
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
         
         if (startingPosition.transittedScene) {
             hours = GameManager.instance.hours;
@@ -96,7 +99,26 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         dayText.text = "Day: " + days;
         timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
-        CalcTime();
+        if (playerTutorial.tutorialProgress >= 3)
+        {
+            CalcTime();
+        }
+        else if (playerTutorial.tutorialProgress == 2)
+        {
+            hours = 8;
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
+        else
+        {
+            hours = 22;
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
     }
 
     public void CalcTime()
@@ -139,51 +161,44 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         goToSleepText.text = "";
         if (hours >= 18 && hours <= 21 && !isInside && !inCave)
         {
-            ppv.weight = (((hours - 18) * 60) + minutes) / 240;
-            foreach (Animator animator in animatorTorchList)
-            {
-                animator.SetBool("isNoon", true);
-            }
-            foreach (GameObject obj in taggedObjects)
-            {
-                Light2D lightComponent = obj.GetComponent<Light2D>();
-                lightComponent.intensity = ppv.weight;
-            }
+            ppv.weight = (((hours - 18) * 60) + minutes) / (float)(240 / 0.7);
+            ChangeTorchIntensity(ppv.weight);
         }
         else if (hours >= 8 && hours < 18 && !isInside && !inCave)
         {
             ppv.weight = 0;
-            foreach (Animator animator in animatorTorchList)
-            {
-                animator.SetBool("isNoon", false);
-            }
-            foreach (GameObject obj in taggedObjects)
-            {
-                Light2D lightComponent = obj.GetComponent<Light2D>();
-                lightComponent.intensity = 0;
-            }
         }
-        else if (hours >= 22) 
+        else if (hours >= 22)
         {
             timeText.color = Color.red;
             goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
+            if (!isInside)
+            {
+                ppv.weight = 0.7f;
+                ChangeTorchIntensity(1);
+            }
         }
         else if (isInside)
         {
-            ppv.weight = 0;
+            ppv.weight = 0f;
         }
         else if (inCave)
         {
             ppv.weight = 0.7f;
-            foreach (Animator animator in animatorTorchList)
-            {
-                animator.SetBool("isNoon", true);
-            }
-            foreach (GameObject obj in taggedObjects)
-            {
-                Light2D lightComponent = obj.GetComponent<Light2D>();
-                lightComponent.intensity = 1;
-            }
+            ChangeTorchIntensity(1);
+        }
+    }
+
+    private void ChangeTorchIntensity(float intensity)
+    {
+        foreach (Animator animator in animatorTorchList)
+        {
+            animator.SetBool("isNoon", true);
+        }
+        foreach (GameObject obj in taggedObjects)
+        {
+            Light2D lightComponent = obj.GetComponent<Light2D>();
+            lightComponent.intensity = intensity;
         }
     }
 

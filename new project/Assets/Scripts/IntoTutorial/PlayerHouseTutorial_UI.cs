@@ -41,7 +41,7 @@ public class PlayerHouseTutorial_UI : MonoBehaviour
             Destroy(saveFirst2);
             TutorialPart2();
         }
-        else
+        else if (GameManager.instance.tutorialProgress == 3)
         {
             Destroy(seeChestFirst);
             Destroy(saveFirst1);
