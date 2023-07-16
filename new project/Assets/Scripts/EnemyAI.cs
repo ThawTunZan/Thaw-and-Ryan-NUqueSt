@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
        of the 8 directions
      * Ranges from -1 to 1 where -1 is directly opposite and 1 means that the respective direction is parallel to the directional vector from enemy to player
      */
-    public void populateIntMap(double x_toTarget, double y_toTarget, double radius, double r, bool isObstructed)
+    public void populateIntMap(double x_toTarget, double y_toTarget, double r, bool isObstructed)
     {
         double componentOfDiag = math.sqrt((5 * 5) / 2);
         interestMap[0] = ((0 * x_toTarget) + (5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North 
@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour
         interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-West
         
 
-        if (r < 0.58 && !isObstructed && gameObject.CompareTag("Slime"))
+        if (r < 0.581 && !isObstructed && gameObject.CompareTag("Slime"))
         {
             for (int x = 0; x < 8; x += 1)
             {
@@ -257,7 +257,7 @@ public class EnemyAI : MonoBehaviour
             {
                 enemySpriteRenderer.flipX = false;
             }
-            populateIntMap(x_diff, y_diff, 5, r, isObstructed);
+            populateIntMap(x_diff, y_diff, r, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
@@ -286,7 +286,7 @@ public class EnemyAI : MonoBehaviour
                 enemySpriteRenderer.flipX = false;
             }
             double newR = FindRadius((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y));
-            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), 5, newR, isObstructed);
+            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);

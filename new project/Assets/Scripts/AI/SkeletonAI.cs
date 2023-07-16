@@ -81,7 +81,7 @@ public class SkeletonAI : EnemyAI
             {
                 enemySpriteRenderer.flipX = false;
             }
-            populateIntMap(x_diff, y_diff, 5, r, isObstructed);
+            populateIntMap(x_diff, y_diff, r, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
@@ -115,7 +115,7 @@ public class SkeletonAI : EnemyAI
                 enemySpriteRenderer.flipX = false;
             }
             double newR = FindRadius((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y));
-            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), 5, newR, isObstructed);
+            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);

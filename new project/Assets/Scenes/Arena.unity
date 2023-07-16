@@ -43790,6 +43790,8 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  eg1311Progress: 0
+  cg2111aProgress: 0
   dayChecker: 0
   cave1RockNames: []
   cave1aRockNames: []
@@ -43798,6 +43800,8 @@ MonoBehaviour:
   cave3aRockNames: []
   cave4aRockNames: []
   dcave1RockNames: []
+  dcave1aRockNames: []
+  dcave2aRockNames: []
   cave1RockStates: 
   cave1aRockStates: 
   cave1bRockStates: 
@@ -43805,6 +43809,8 @@ MonoBehaviour:
   cave3aRockStates: 
   cave4aRockStates: 
   dcave1RockStates: 
+  dcave1aRockStates: 
+  dcave2aRockStates: 
   hours: 0
   minutes: 0
   seconds: 0
@@ -111572,7 +111578,9 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Left Leg
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8000441118678894727, guid: ce9de6eff68268441bd3dbe5c5b088c9, type: 3}
+    - {fileID: 3870616395656462338, guid: ce9de6eff68268441bd3dbe5c5b088c9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce9de6eff68268441bd3dbe5c5b088c9, type: 3}
 --- !u!1 &1755540487 stripped
 GameObject:

@@ -39,7 +39,7 @@ public class SUMonsterAI : EnemyAI
         {
             vectorTowardsPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
-            if (!isCharging && !isThrowing && isMeleeAttacking)
+            if (!isCharging && !isThrowing && !isMeleeAttacking)
             {
                 followPlayer();
             }
@@ -98,11 +98,11 @@ public class SUMonsterAI : EnemyAI
                 scalePlaceHolder.x = Mathf.Abs(scalePlaceHolder.x);
                 gameObject.transform.localScale = scalePlaceHolder;
             }
-            populateIntMap(x_diff, y_diff, 5, r, isObstructed);
+            populateIntMap(x_diff, y_diff, r, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
-            if (distToPlayer > 0.1 && !isCharging)
+            if (distToPlayer > 0.1)
             {
                 enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
                 animator.SetBool("isMoving", true);
@@ -114,7 +114,7 @@ public class SUMonsterAI : EnemyAI
             }
 
         }
-        else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
+        else if (r <= 4 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
             if (lastKnown.x == enemy.transform.position.x && lastKnown.y == enemy.transform.position.y)
             {
@@ -137,11 +137,11 @@ public class SUMonsterAI : EnemyAI
                 gameObject.transform.localScale = scalePlaceHolder;
             }
             double newR = FindRadius((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y));
-            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), 5, newR, isObstructed);
+            populateIntMap((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR, isObstructed);
             populateAvoidMap();
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);
-            if (distToPlayer > 0.1 && !isCharging)
+            if (distToPlayer > 0.1)
             {
                 animator.SetBool("isMoving", true);
                 enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
