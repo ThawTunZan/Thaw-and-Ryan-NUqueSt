@@ -19,6 +19,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     public TextMeshProUGUI timeText;
     [SerializeField] private Volume ppv;
 
+    public TextMeshProUGUI goToSleepText;
+
     public PlayerPositionSO startingPosition;
 
     private float tick;
@@ -34,6 +36,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
         timeText = GameObject.Find("Time").GetComponent<TextMeshProUGUI>();
+        goToSleepText = GameObject.Find("GoToSleepText").GetComponent<TextMeshProUGUI>();
+        
         if (startingPosition.transittedScene) {
             hours = GameManager.instance.hours;
             minutes = GameManager.instance.minutes;
@@ -129,6 +133,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             || sceneName == "NerdNPC House");
         bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" || sceneName == "Cave_4a" 
             || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a");
+        timeText.color = Color.white;
+        goToSleepText.text = "";
         if (hours >= 18 && hours <= 21 && !isInside && !inCave)
         {
             ppv.weight = (((hours - 18) * 60) + minutes) / 240;
@@ -154,6 +160,11 @@ public class ClockManager : MonoBehaviour, IDataPersistence
                 Light2D lightComponent = obj.GetComponent<Light2D>();
                 lightComponent.intensity = 0;
             }
+        }
+        else if (hours >= 22) 
+        {
+            timeText.color = Color.red;
+            goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
         }
         else if (isInside)
         {
