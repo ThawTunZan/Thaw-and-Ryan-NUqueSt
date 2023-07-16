@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
+
 public class ClockManager : MonoBehaviour, IDataPersistence
 {
     public static ClockManager instance;

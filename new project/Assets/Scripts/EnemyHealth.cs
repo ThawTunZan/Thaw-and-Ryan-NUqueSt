@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.SetBool("alive", true);
+        
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         isBeingHit = false;
     }
