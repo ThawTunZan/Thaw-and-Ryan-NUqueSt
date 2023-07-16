@@ -34,6 +34,8 @@ public class QuestList
         {
             if (quest_name == "MA1511")
             {
+                GameObject.Find("Player").GetComponent<PlayerQuests>().ma1511Progress = 0;
+                GameObject.Find("MA1511Collider").SetActive(false);
                 slimesRequired = 2;
                 gpaReward = 1;
             }

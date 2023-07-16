@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using TMPro;
 
 public class Quest_UI : MonoBehaviour
 {
     public GameObject questPanel;
+
+    private TextMeshProUGUI activeQuests;
 
     private PlayerQuests playerQuests;
     private PlayerItems playerItems;
@@ -19,6 +22,8 @@ public class Quest_UI : MonoBehaviour
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        activeQuests = GameObject.Find("ActiveQuests").GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
@@ -40,6 +45,8 @@ public class Quest_UI : MonoBehaviour
 
     void Setup()
     {
+        activeQuests.text = "Active Quests:\n";
+        string tempQuests = "";
         if (questSlots.Count == playerQuests.questList.questSlots.Count)
         {
             for (int i = 0; i < questSlots.Count; i++)
@@ -47,6 +54,12 @@ public class Quest_UI : MonoBehaviour
                 if (playerQuests.questList.questSlots[i].count == 1)
                 {
                     questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
+                    tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
+                    if (!playerQuests.questList.questSlots[i].done)
+                    {
+                        tempQuests += "Not ";
+                    }
+                    tempQuests += "Done\n";
                 }
                 else
                 {
@@ -54,5 +67,6 @@ public class Quest_UI : MonoBehaviour
                 }
             }
         }
+        activeQuests.text += tempQuests;
     }
 }
