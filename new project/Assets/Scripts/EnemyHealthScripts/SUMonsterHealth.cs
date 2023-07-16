@@ -40,4 +40,9 @@ public class SUMonsterHealth : EnemyHealth
         healthBar.SetHealth(Health);
         animator.SetTrigger("Hit");
     }
+
+    private void Update()
+    {
+        healthBar.SetHealth(Health);
+    }
 }
