@@ -172,7 +172,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         else if (inCave)
         {
-            ppv.weight = 1;
+            ppv.weight = 0.7f;
             foreach (Animator animator in animatorTorchList)
             {
                 animator.SetBool("isNoon", true);
@@ -180,7 +180,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             foreach (GameObject obj in taggedObjects)
             {
                 Light2D lightComponent = obj.GetComponent<Light2D>();
-                lightComponent.intensity = ppv.weight;
+                lightComponent.intensity = 1;
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Quest_UI : MonoBehaviour
 {
@@ -31,12 +32,14 @@ public class Quest_UI : MonoBehaviour
         Setup();
         if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Q))
         {
+            activeQuests.gameObject.SetActive(false);
             questPanel.SetActive(true);
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
+            activeQuests.gameObject.SetActive(true);
             questPanel.SetActive(false);
             playerItems.disableToolbar = false;
             playerMovement.enabled = true;
@@ -45,7 +48,10 @@ public class Quest_UI : MonoBehaviour
 
     void Setup()
     {
-        activeQuests.text = "Active Quests:\n";
+        if (SceneManager.GetActiveScene().name != "IntroTutorial")
+        {
+            activeQuests.text = "Active Quests:\n";
+        }
         string tempQuests = "";
         if (questSlots.Count == playerQuests.questList.questSlots.Count)
         {
