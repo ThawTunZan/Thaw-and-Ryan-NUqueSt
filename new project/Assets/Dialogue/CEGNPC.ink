@@ -1,4 +1,5 @@
 INCLUDE globals.ink
+EXTERNAL QuestCompleted()
 -> main
 
 === main ===
@@ -23,6 +24,7 @@ So do you think you can help me with the final test??
 -> start_quest("CG2111A", "Test my final product at one of the levels in the cave of the desert west of this village!")
 ->END
 }
+~ QuestCompleted()
 Finally! My robot works!! Without you I don't think I would have done it easily!!
 With this robot I can defend the village against the monsters!!
 Maybe I can even use it to investigate about the new SU Monster I have been hearing....
@@ -40,6 +42,7 @@ Anyway, Thanks for the help!
     -> start_quest("EG1311", "Use my prototype to overcome one of the obstacle in the cave of the desert west of village!")
     -> END
     }
+    ~ QuestCompleted()
     LEZGOOOOO!!!! It seems like my prototype is smurfing through these test cases!!
     I think I am gonna build the final product and give it a final test next time!
     Thanks for the help!!! Once I finish building the final product you can come and find me! Till next time!
@@ -59,6 +62,7 @@ Anyway, Thanks for the help!
     -> start_quest("CG1111A", "Test the prototype that I have placed in the cave in the desert west of village!")
     ->END
     }
+    ~ QuestCompleted()
      Amazing! My prototype seems to be working! Thanks for the help! Maybe I can use this prototype to defend against the monsters outside of our village!
      ~questCG1111ADone = true
      ~CEGValidTime = false

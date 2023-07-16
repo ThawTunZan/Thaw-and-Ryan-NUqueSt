@@ -1,5 +1,5 @@
 INCLUDE globals.ink
-
+EXTERNAL QuestCompleted()
 -> main
 
 === main ===

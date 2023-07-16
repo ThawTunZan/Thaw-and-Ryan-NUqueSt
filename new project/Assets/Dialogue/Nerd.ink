@@ -1,5 +1,5 @@
 INCLUDE globals.ink
-
+EXTERNAL QuestCompleted()
 -> main
 
 === main ===
@@ -36,7 +36,7 @@ Do you think you can take a look for me?
 -> start_quest("CS2040", "Go to fifth floor of cave and solve the N-queen puzzle!")
 ->END
 }
-
+~ QuestCompleted()
 WOW. The puzzle was the hardest one I have seen and you were able to solve it!. You really are amazing!
 I should tell other villagers about how you are a great puzzle solver! Maybe the mystery of the S/U Monster will finally be solved!
 ~questCS2040Done = true
@@ -52,6 +52,7 @@ This house had strange notes on the ground and I couldn't read it...
 -> start_quest("CS2030", "Help me solve the maze in the fourth floor of the cave")
 -> END
 } 
+~ QuestCompleted()
 SHEEEEESH how did you solve the maze?? I was completely lost inside yesterday. I thought it was a BOX!
 Anyway, thanks for solving the maze and telling me the correct route!
 
@@ -68,6 +69,7 @@ Do you think you can help me with it?
 -> start_quest("CS1231", "Go to third floor of the cave and solve a puzzle!")
 ->END
 } 
+~ QuestCompleted()
 WOW! You breeze through those logic question like nothing!     
 Thanks for the help! My brain is a bit too fuzzy for this... @_@
 ~questCS1231Done = true 
@@ -82,6 +84,7 @@ Do you think you can help me solve it?
 -> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south")
 ->END
 } #Quest completed response
+~ QuestCompleted()
 Damnnn... For a first timer, you are pretty good at solving puzzles! Thanks for the help! If I discovered more puzzles I will let you know!
 ~questCS1010Done = true
 ~NerdValidTime = false

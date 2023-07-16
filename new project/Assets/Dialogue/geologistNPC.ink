@@ -1,6 +1,6 @@
 
 INCLUDE globals.ink
-
+EXTERNAL QuestCompleted()
 -> main
 
 === main ===
@@ -28,6 +28,7 @@ What do you think? Are you down for it?
 ->start_quest("GEA1000", "Help me go take a look at the unique rock on the first floor of cave and gea sample of it! Give me an iron ore!")
 -> END
 }
+~ QuestCompleted()
 WOW! Thanks for the help! I can't believe it! This Rock looks amazing!.
 I can't imagine what I would do without you! I would have died in the cave...
      ~questGEA1000Done = true
@@ -45,7 +46,8 @@ Do you think you can help me find out what it is?
 -> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave")
 -> END
 }
-Brhhh... The details you showed me made me shiver... The possibility of the S/U monster existing seems high...
+~ QuestCompleted()
+Bruhhh... The details you showed me made me shiver... The possibility of the S/U monster existing seems high...
 I have a feeling the S/U Monster comes at the end of the week...
 Anyway, thx for the help! See you next time
      ~questGESS1001Done = true
@@ -68,6 +70,7 @@ So what do you think? Are you up for the task?
 -> start_quest("HSA1000", "Help me find a tombstone in the first level of the cave!")
 -> END
 }
+~ QuestCompleted()
 WOW! For a first timer you are pretty good! Your assistance helped me in confirming that ZEROGPA is a deadly disease. It is also the cause of the death of our lovely dead companion.
 Anyway, since you are such a reliable neighbour I will contact you when I need help again! You can do the same as well!
      ~questHSA1000Done = true
