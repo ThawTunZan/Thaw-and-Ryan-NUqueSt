@@ -1,5 +1,7 @@
 INCLUDE globals.ink
 
+EXTERNAL QuestCompleted()
+
 -> main
 
 === main ===
@@ -33,6 +35,7 @@ Could you get rid of the slimes in my shop?
 -> start_quest("MA1511", "Get rid of two slimes!")
 -> END
 } 
+~ QuestCompleted()
 PHEW! Those slimes were KILLING me!. I tried using my Engineering Calculus knowledge like Partial differentiation and power series to try calculating how heavy I have to hit the slimes but those slimes were TOUGH!
 Thanks for the help though! 
 ~questMA1511Done = true 

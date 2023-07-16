@@ -10643,12 +10643,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1106440921}
-          m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+          m_TargetAssemblyTypeName: Inventory_UI, Scripts
           m_MethodName: SlotBeginDrag
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 448161961}
-            m_ObjectArgumentAssemblyTypeName: Slot_UI, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: Slot_UI, Scripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -10675,7 +10675,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1106440921}
-          m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+          m_TargetAssemblyTypeName: Inventory_UI, Scripts
           m_MethodName: SlotEndDrag
           m_Mode: 1
           m_Arguments:
@@ -10691,12 +10691,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1106440921}
-          m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+          m_TargetAssemblyTypeName: Inventory_UI, Scripts
           m_MethodName: SlotDrop
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 448161961}
-            m_ObjectArgumentAssemblyTypeName: Slot_UI, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: Slot_UI, Scripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -10707,12 +10707,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1106440921}
-          m_TargetAssemblyTypeName: Inventory_UI, Assembly-CSharp
+          m_TargetAssemblyTypeName: Inventory_UI, Scripts
           m_MethodName: SlotClick
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 448161961}
-            m_ObjectArgumentAssemblyTypeName: Slot_UI, Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: Slot_UI, Scripts
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -26909,6 +26909,8 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  eg1311Progress: 0
+  cg2111aProgress: 0
   dayChecker: 0
   cave1RockNames: []
   cave1aRockNames: []
@@ -26917,6 +26919,8 @@ MonoBehaviour:
   cave3aRockNames: []
   cave4aRockNames: []
   dcave1RockNames: []
+  dcave1aRockNames: []
+  dcave2aRockNames: []
   cave1RockStates: 
   cave1aRockStates: 
   cave1bRockStates: 
@@ -26924,6 +26928,8 @@ MonoBehaviour:
   cave3aRockStates: 
   cave4aRockStates: 
   dcave1RockStates: 
+  dcave1aRockStates: 
+  dcave2aRockStates: 
   hours: 0
   minutes: 0
   seconds: 0
@@ -38451,7 +38457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Inventory_UI, Assembly-CSharp
+      value: Inventory_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -38459,7 +38465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Inventory_UI, Assembly-CSharp
+      value: Inventory_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -38471,7 +38477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[4].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Inventory_UI, Assembly-CSharp
+      value: Inventory_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -38491,7 +38497,7 @@ PrefabInstance:
       objectReference: {fileID: 1009228443}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Slot_UI, Assembly-CSharp
+      value: Slot_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -38499,7 +38505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Slot_UI, Assembly-CSharp
+      value: Slot_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -38511,7 +38517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500460705406443759, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_Delegates.Array.data[4].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Slot_UI, Assembly-CSharp
+      value: Slot_UI, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 3419473057119538190, guid: 9d940373e563d944b8016968e8427a8e, type: 3}
       propertyPath: m_IsActive

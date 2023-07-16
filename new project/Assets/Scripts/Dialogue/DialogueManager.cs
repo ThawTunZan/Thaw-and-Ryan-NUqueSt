@@ -94,16 +94,19 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public void CheckDate()
     {
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
-        print(localNPCName + "QuestDone");
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
         if (GameManager.instance.day != currDay)
         {
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
+            dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
         if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
         {
-            print("not valid time");
-            dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", false);
+
+        }
+        else if (GameManager.instance.day != currDay && (questIsDone == "True" || questIsDone == "true"))
+        {
+            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
         }
         else
         {
@@ -123,6 +126,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
         CheckDate();
+        currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
         for (int i = 0; i < 5; i++)
         {
             if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
@@ -135,30 +139,43 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                     // finished the quest 
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", true);
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", false);
-                    // remove the quest from quest slot
-                    player.questList.questSlots[i].questName = "";
-                    player.questList.questSlots[i].questDescription = "";
-                    player.questList.questSlots[i].done = false;
-                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                    quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
-                    player.questList.questSlots[i].count = 0;
-                    playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
+                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
                 }
-                else
+                else if (!QuestIsDone(i))
                 {
                     // quest is not finished while having it
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
                     dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", true);
-                    dialogueVariables.InkSetVariables(currentStory, "validTime", true);
+                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
                 }
             }
         }
         ContinueStory();
     }
 
+    public void QuestCompleted ()
+    {
+        for (int i = 0; i < 5; i += 1)
+        {
+            if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
+                && player.questList.questSlots[i].questName != "")
+            {
+                player.questList.questSlots[i].questName = "";
+                player.questList.questSlots[i].questDescription = "";
+                player.questList.questSlots[i].done = false;
+                player.questList.questSlots[i].count = 0;
+                playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
+                Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
+            }
+
+        }
+    }
+
     private void ExitDialogueMode()
     {
         dialogueVariables.StopListening(currentStory);
+        currentStory.UnbindExternalFunction("QuestCompleted");
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
