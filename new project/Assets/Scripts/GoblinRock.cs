@@ -36,9 +36,10 @@ public class GoblinRock : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 2)
+        if (timer > 3)
         {
             timer = 0;
+            enemyAnimator.SetBool("isMoving", false);
             initiateThrow();
         }
     }
@@ -47,10 +48,10 @@ public class GoblinRock : MonoBehaviour
     {
         float distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
 
-        if (distToPlayer <= 2)
+        if (distToPlayer <= 1.7 || distToPlayer >= 3.5)
         {
-            enemyAnimator.SetBool("isMoving", false);
-            enemyAnimator.SetTrigger("isAttacking");
+            //enemyAnimator.SetBool("isMoving", false);
+            enemyAnimator.SetTrigger("attack");
         }
     }
 

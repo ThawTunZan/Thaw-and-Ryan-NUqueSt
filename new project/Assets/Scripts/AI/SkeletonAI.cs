@@ -5,7 +5,53 @@ using UnityEngine;
 public class SkeletonAI : EnemyAI
 {
     public Animator skeletonAnimation;
+    public bool isAttacking;
+    public bool hasAttacked;
+    public float timer;
 
+    public override void Start()
+    {
+        
+        base.Start();
+        timer = 0;
+        isAttacking = false;
+        hasAttacked = false;
+        skeletonAnimation = GetComponent<Animator>();
+    }
+
+    public override void Update()
+    {
+        timer += Time.deltaTime;
+        double distToPlayerUpdate = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
+        if (timer > 4)
+        {
+            hasAttacked = false;
+        }
+        else
+        {
+            hasAttacked = true;
+        }
+        if (distToPlayerUpdate <= 0.2 && timer > 4 && !isAttacking)
+        {
+            timer = 0;
+            hasAttacked = true;
+            skeletonAnimation.SetTrigger("attack");
+        }
+        else if (distToPlayerUpdate > 0.2 && distToPlayerUpdate <= 0.7 && !hasAttacked && !isAttacking)
+        {
+            Vector3 dirToPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
+            enemy.MovePosition(enemy.transform.position + dirToPlayer * movespeed * 2 * Time.fixedDeltaTime);
+            skeletonAnimation.SetBool("isMoving", true);
+        }
+        else if (animator.GetBool("alive") && !isAttacking)
+        {
+            followPlayer();
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+    }
     public override Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
     {
         double xToPlayer = player.transform.position.x - enemy.transform.position.x;
@@ -29,7 +75,7 @@ public class SkeletonAI : EnemyAI
             return resultantVector;
         }
 
-
+        //circling around
         // isObstructed is to see if there is a clear line of sight between enemy and player. Returns true if there is no clear line of sight
         if (radius >= 0.58 && radius <= 0.7 && !isObstructed)
         {
@@ -86,19 +132,7 @@ public class SkeletonAI : EnemyAI
 
             enemy_path = weighTheMaps(x_diff, y_diff, r);
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
-
-            if (FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y) < 0.31)
-            {
-                if (skeletonCount == 10) { 
-                    skeletonAnimation.SetTrigger("attack");
-                    skeletonCount = 0;
-                }
-                else
-                {
-                    skeletonCount += 1;
-                }
-            }
-
+            skeletonAnimation.SetBool("isMoving", true);
         }
         else if (r <= 5 && Physics2D.Raycast(transform.position, dirVector, (float)r, LayerMask.GetMask("Obstacles")))
         {
@@ -120,6 +154,29 @@ public class SkeletonAI : EnemyAI
 
             enemy_path = weighTheMaps((lastKnown.x - enemy.transform.position.x), (lastKnown.y - enemy.transform.position.y), newR);
             enemy.MovePosition(enemy.transform.position + enemy_path * movespeed * Time.fixedDeltaTime);
+            skeletonAnimation.SetBool("isMoving", true);
+        }
+    }
+
+    public override void populateIntMap(double x_toTarget, double y_toTarget, double r, bool isObstructed)
+    {
+        double componentOfDiag = Mathf.Sqrt((5 * 5) / 2);
+        interestMap[0] = ((0 * x_toTarget) + (5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North 
+        interestMap[1] = ((componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-East 
+        interestMap[2] = ((5 * x_toTarget) + (0 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //East 
+        interestMap[3] = ((componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //South-East
+        interestMap[4] = ((0 * x_toTarget) + (-5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //South
+        interestMap[5] = ((-componentOfDiag * x_toTarget) + (-componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //South-West
+        interestMap[6] = ((-5 * x_toTarget) + (0 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //West
+        interestMap[7] = ((-componentOfDiag * x_toTarget) + (componentOfDiag * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North-West
+
+
+        if (r < 0.58 && !isObstructed)
+        {
+            for (int x = 0; x < 8; x += 1)
+            {
+                interestMap[x] *= -1;
+            }
         }
     }
 }

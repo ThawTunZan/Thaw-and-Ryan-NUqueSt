@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
        of the 8 directions
      * Ranges from -1 to 1 where -1 is directly opposite and 1 means that the respective direction is parallel to the directional vector from enemy to player
      */
-    public void populateIntMap(double x_toTarget, double y_toTarget, double r, bool isObstructed)
+    public virtual void populateIntMap(double x_toTarget, double y_toTarget, double r, bool isObstructed)
     {
         double componentOfDiag = math.sqrt((5 * 5) / 2);
         interestMap[0] = ((0 * x_toTarget) + (5 * y_toTarget)) / (5 * normaliseVector(x_toTarget, y_toTarget));    //North 
@@ -95,12 +95,10 @@ public class EnemyAI : MonoBehaviour
         RaycastHit2D hitSW = Physics2D.Raycast(transform.position, dirSW, 1f, layersToAvoid);
         RaycastHit2D hitNW = Physics2D.Raycast(transform.position, dirNW, 1f, layersToAvoid);
 
-        //Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), GetComponent<CircleCollider2D>(), true);
-
         if (hitUp.collider)
         {
             avoidanceMap[0] = 5;//1 - ((hitUp.distance - 0.075) / 0.5);
-            //  Debug.Log(hitUp);
+
         }
         else
         {
