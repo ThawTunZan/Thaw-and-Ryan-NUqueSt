@@ -11,30 +11,6 @@ public class SlimeAI : EnemyAI
 {
     public override Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
     {
-        /*
-        double xToPlayer = player.transform.position.x - enemy.transform.position.x;
-        double yToPlayer = player.transform.position.y - enemy.transform.position.y;
-        double r = FindRadius(xToPlayer, yToPlayer);
-        Vector3 dirToPlayer = new Vector3((float)xToPlayer, (float)yToPlayer, 0);
-        bool isObstructed = Physics2D.Raycast(transform.position, dirToPlayer, (float)r, LayerMask.GetMask("Obstacles"));
-
-        Vector3 resultantVector = new Vector3();
-
-        // isObstructed is to see if there is a clear line of sight between enemy and player. Returns true if there is no clear line of sight
-        if (radius > 0.3 || isObstructed)
-        {
-            for (int x = 0; x < 8; x += 1)
-            {
-                weightedMap[x] = interestMap[x] - avoidanceMap[x];
-                if (weightedMap[x] > 0)
-                {
-                    resultantVector += (dirArray[x] * (float)weightedMap[x]).normalized * (float)0.20;
-                }
-            }
-            return resultantVector;
-        }
-        return Vector3.zero;
-        */
         double xToPlayer = player.transform.position.x - enemy.transform.position.x;
         double yToPlayer = player.transform.position.y - enemy.transform.position.y;
         double r = FindRadius(xToPlayer, yToPlayer);
