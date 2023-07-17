@@ -68,7 +68,7 @@ public class Quest_UI : MonoBehaviour
                     }
                     else
                     {
-                        playerQuests.questList.questSlots[i].questDescription = "Report back to the villager that gave the quest!";
+                        questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
                     }
                     tempQuests += "Done\n";
                 }

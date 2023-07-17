@@ -48,6 +48,9 @@ public class GameData
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<string> completedQuestNames = new List<string>();
+    public List<string> completedQuestDescs = new List<string>();
+
     public float dayChecker;
     public List<List<string>> listOfRockNames = new List<List<string>>();
     public List<string> cave1RockNames = new List<string>();

@@ -19,6 +19,9 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<string> completedQuestNames = new List<string>();
+    public List<string> completedQuestDescs = new List<string>();
+
     private void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -32,6 +35,9 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs2040Progress = GameManager.instance.cs2040Progress;
             cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
             ma1511Progress = GameManager.instance.ma1511Progress;
+
+            completedQuestNames = GameManager.instance.completedQuestNames;
+            completedQuestDescs = GameManager.instance.completedQuestDescs;
         }
         string currScene = SceneManager.GetActiveScene().name;
         CheckQuestProgress(currScene);
@@ -141,6 +147,9 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs2040SeenBefore = cs2040SeenBefore;
 
         GameManager.instance.ma1511Progress = ma1511Progress;
+
+        GameManager.instance.completedQuestNames = completedQuestNames;
+        GameManager.instance.completedQuestDescs = completedQuestDescs;
     }
 
     public void LoadData(GameData data)
@@ -155,6 +164,9 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs2040SeenBefore = data.cs2040SeenBefore;
 
         ma1511Progress = data.ma1511Progress;
+
+        completedQuestNames = data.completedQuestNames;
+        completedQuestDescs = data.completedQuestDescs;
     }
 
     public void SaveData(GameData data)
@@ -168,5 +180,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2040SeenBefore = cs2040SeenBefore;
 
         data.ma1511Progress = ma1511Progress;
+
+        data.completedQuestNames = completedQuestNames;
+        data.completedQuestDescs = completedQuestDescs;
     }
 }
