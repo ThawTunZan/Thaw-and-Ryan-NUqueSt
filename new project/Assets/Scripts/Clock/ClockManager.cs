@@ -168,11 +168,18 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         else if (hours >= 8 && hours < 18 && !isInside && !inCave)
         {
             ppv.weight = 0;
+            SFXManager.instance.hasPlayedWarning = false;
         }
         else if (hours >= 22)
         {
             timeText.color = Color.red;
             goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
+            if (!SFXManager.instance.hasPlayedWarning)
+            {
+                SFXManager.instance.audioSource.clip = SFXManager.instance.audioClips[3];
+                SFXManager.instance.audioSource.Play();
+                SFXManager.instance.hasPlayedWarning = true;
+            }
             if (!isInside)
             {
                 ppv.weight = 0.7f;

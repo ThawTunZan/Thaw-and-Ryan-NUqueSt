@@ -21,7 +21,7 @@ public class GameData
     public Inventory toolbar;
 
     public Inventory chest0; // chest0: PlayerHouse
-    public Inventory chest1; // chest1: UNUSED
+    public Inventory chest1; // chest1: Desert
     public Inventory chest2; // chest2: Cave_1
     public List<Inventory> chestList = new List<Inventory>();
     public bool hasAddedToChest;

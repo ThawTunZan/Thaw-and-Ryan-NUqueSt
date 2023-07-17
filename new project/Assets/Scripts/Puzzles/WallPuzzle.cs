@@ -10,6 +10,7 @@ public class WallPuzzle : MonoBehaviour
     public TextMeshProUGUI puzzleText;
     public TMP_InputField puzzleInput;
     public Button puzzleButton;
+    public GameObject puzzleClose;
 
     public GameObject puzzleActivated;
     public GameObject puzzleCorrect;
@@ -53,22 +54,11 @@ public class WallPuzzle : MonoBehaviour
             GetPuzzleAnswer();
             ChangePuzzleText();
             ShowUI();
-            playerItems.disableToolbar = true;
-            playerMovement.enabled = false;
         }
         else if (playerItems.disableToolbar && puzzlePanel.activeSelf
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             HideUI();
-            playerItems.disableToolbar = false;
-            playerMovement.enabled = true;
-            if (startBattle)
-            {
-                puzzleTrigger.inBattle = true;
-                inBattle = true;
-                puzzleActivated.SetActive(false);
-                SpawnEnemy();
-            }
         }
     }
 
@@ -110,11 +100,13 @@ public class WallPuzzle : MonoBehaviour
             if (playerAnswer == GetPuzzleAnswer())
             {
                 puzzleText.text = "Correct!\n\nYou are now freed from this room.";
+                puzzleClose.SetActive(true);
                 ChangeQuestProgress();
             }
             else
             {
                 puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
+                puzzleClose.SetActive(true);
                 startBattle = true;
             }
         }
@@ -134,6 +126,16 @@ public class WallPuzzle : MonoBehaviour
         puzzlePanel.SetActive(false);
         puzzleText.gameObject.SetActive(false);
         puzzleInput.gameObject.SetActive(false);
+        puzzleClose.SetActive(false);
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
+        if (startBattle)
+        {
+            puzzleTrigger.inBattle = true;
+            inBattle = true;
+            puzzleActivated.SetActive(false);
+            SpawnEnemy();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

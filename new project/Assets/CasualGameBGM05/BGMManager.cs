@@ -4,13 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BGMusicManager : MonoBehaviour
+public class BGMManager : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
 
-    public static BGMusicManager instance;
+    public static BGMManager instance;
 
     private bool isPlaying0 = false;
     private bool isPlaying1 = false;
@@ -21,7 +21,6 @@ public class BGMusicManager : MonoBehaviour
     {
         if (instance != null)
         {
-            //Debug.LogError("Found more than one ItemManager in the scene. Destroying the newest one.-Ryan");
             Destroy(this.gameObject);
             return;
         }
