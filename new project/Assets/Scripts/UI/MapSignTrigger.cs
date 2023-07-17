@@ -10,7 +10,7 @@ public class MapSignTrigger : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private bool playerInRange;
-    private GameObject visualCue;
+    public GameObject visualCue;
 
     private void Start()
     {
