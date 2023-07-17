@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestboardTrigger : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class QuestboardTrigger : MonoBehaviour
     private PlayerMovement playerMovement;
 
     public GameObject completedQuestPanel;
+    public TextMeshProUGUI completedQuestText;
+    public Scrollbar scrollbar;
     private bool playerInRange;
     public GameObject visualCue;
 
@@ -34,14 +38,41 @@ public class QuestboardTrigger : MonoBehaviour
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
             completedQuestPanel.SetActive(true);
+            UpdateText();
         }
         else if (playerItems.disableToolbar && completedQuestPanel.activeSelf
             && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            playerItems.disableToolbar = false;
-            playerMovement.enabled = true;
-            completedQuestPanel.SetActive(false);
+            CloseQuestboard();
         }
+    }
+
+    private void UpdateText()
+    {
+        string text = "";
+        for (int i = 0; i < playerQuests.completedQuestDescs.Count; i++)
+        {
+            text += i + 1 + ". " + playerQuests.completedQuestNames[i] + ": " + playerQuests.completedQuestDescs + "\n";
+        }
+        if (text.Length < 2)
+        {
+            completedQuestText.text = "None yet. Start talking to a villager to start a quest!";
+        }
+        completedQuestText.text = text;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(completedQuestText.rectTransform);
+        Canvas.ForceUpdateCanvases();
+        scrollbar.value = 1f;
+        float textLength = completedQuestText.textBounds.size.y;
+        float panelLength = 1325.748f;
+        completedQuestText.rectTransform.offsetMin = new
+            Vector2(completedQuestText.rectTransform.offsetMin.x, -795.7479f + panelLength - textLength - 4);
+    }
+
+    public void CloseQuestboard()
+    {
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
+        completedQuestPanel.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

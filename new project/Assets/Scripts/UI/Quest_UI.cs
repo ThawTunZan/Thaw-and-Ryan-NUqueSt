@@ -17,6 +17,8 @@ public class Quest_UI : MonoBehaviour
     private PlayerTutorial playerTutorial;
 
     public List<QuestSlot_UI> questSlots = new List<QuestSlot_UI>();
+
+    private Dictionary<string, int> tempDict = new Dictionary<string, int>();
     
     private void Start()
     {
@@ -26,6 +28,11 @@ public class Quest_UI : MonoBehaviour
         playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
 
         activeQuests = GameObject.Find("ActiveQuests").GetComponent<TextMeshProUGUI>();
+
+        foreach (string completedQuest in playerQuests.completedQuestNames)
+        {
+            tempDict.Add(completedQuest, 0);
+        }
     }
 
     void Update()
@@ -68,6 +75,12 @@ public class Quest_UI : MonoBehaviour
                     }
                     else
                     {
+                        if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
+                        {
+                            tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
+                            playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
+                            playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
+                        }
                         questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
                     }
                     tempQuests += "Done\n";
