@@ -68,7 +68,7 @@ public class Health : MonoBehaviour, IDataPersistence
         }
         else if (collision.gameObject.CompareTag("rock"))
         {
-            health -= 5;
+            health -= 8;
             healthBar.SetHealth(health);
         }
          else if (collision.gameObject.CompareTag("SUMonsterMelee") && !hasCollided)
@@ -86,6 +86,11 @@ public class Health : MonoBehaviour, IDataPersistence
         {
            health -= 15;
            healthBar.SetHealth(health);
+        }
+        else if (collision.gameObject.CompareTag("slimeMelee"))
+        {
+            health -= 10;
+            healthBar.SetHealth(health);
         }
     }
 

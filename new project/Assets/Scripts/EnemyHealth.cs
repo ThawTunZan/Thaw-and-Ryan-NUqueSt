@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
-                Invoke(nameof(SlimeDeath), 1f);
+                Invoke(nameof(SlimeDeath), 2f);
             }
         }
         get

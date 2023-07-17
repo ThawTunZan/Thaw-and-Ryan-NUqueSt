@@ -70,10 +70,10 @@ GameObject:
   - component: {fileID: 8544336551416340014}
   - component: {fileID: -6581515254183478792}
   - component: {fileID: 2870300855378308371}
-  - component: {fileID: 6874649689561667666}
   - component: {fileID: 8523636946770749688}
   - component: {fileID: 4418798375562102735}
   - component: {fileID: 7660237786630036614}
+  - component: {fileID: 2346942270833384323}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -191,19 +191,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6874649689561667666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2997064449886215069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad335d308a7bdc4eb88ad277ede597d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 5
 --- !u!61 &8523636946770749688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -323,3 +310,19 @@ MonoBehaviour:
   isAttacking: 0
   hasAttacked: 0
   timer: 0
+--- !u!114 &2346942270833384323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2997064449886215069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7986b316eb9f58c4aad5c4e1c7a3d596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  player: {fileID: 0}
+  isBeingHit: 0
+  _health: 3

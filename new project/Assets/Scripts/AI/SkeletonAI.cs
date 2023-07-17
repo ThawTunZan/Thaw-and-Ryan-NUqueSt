@@ -31,13 +31,13 @@ public class SkeletonAI : EnemyAI
         {
             hasAttacked = true;
         }
-        if (distToPlayerUpdate <= 0.2 && timer > 4 && !isAttacking)
+        if (distToPlayerUpdate <= 0.2 && timer > 4 && !isAttacking && animator.GetBool("alive"))
         {
             timer = 0;
             hasAttacked = true;
             skeletonAnimation.SetTrigger("attack");
         }
-        else if (distToPlayerUpdate > 0.2 && distToPlayerUpdate <= 0.7 && !hasAttacked && !isAttacking)
+        else if (distToPlayerUpdate > 0.2 && distToPlayerUpdate <= 0.7 && !hasAttacked && !isAttacking && animator.GetBool("alive"))
         {
             Vector3 dirToPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             enemy.MovePosition(enemy.transform.position + dirToPlayer * movespeed * 2 * Time.fixedDeltaTime);

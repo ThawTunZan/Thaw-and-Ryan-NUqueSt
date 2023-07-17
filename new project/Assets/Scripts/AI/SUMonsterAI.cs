@@ -39,10 +39,6 @@ public class SUMonsterAI : EnemyAI
         {
             vectorTowardsPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             distToPlayer = FindRadius(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y);
-            if (!isCharging && !isThrowing && !isMeleeAttacking)
-            {
-                followPlayer();
-            }
             if (distToPlayer <= 0.5 && !isMeleeAttackOnCooldown)
             {
                 MeleeAttack();
@@ -51,7 +47,7 @@ public class SUMonsterAI : EnemyAI
             {
                // SlamGround();
             }
-            else if (distToPlayer > 0.8 && distToPlayer <= 1.6 && !isThrowing && !isThrowOnCooldown && !isCharging)//&& !isThrowOnCooldown && !isCharging && !isThrowing)
+            else if (distToPlayer > 0.8 && distToPlayer <= 1.6 && !isThrowing && !isThrowOnCooldown && !isCharging)
             {
                 ThrowRocks();
             }
@@ -59,6 +55,10 @@ public class SUMonsterAI : EnemyAI
             {
                 playerTransformLocation = player.transform.position;
                 Charge();
+            }
+            else if (!isCharging && !isThrowing && !isMeleeAttacking)
+            {
+                followPlayer();
             }
 
         }
@@ -201,7 +201,7 @@ public class SUMonsterAI : EnemyAI
         while (Vector3.Distance(enemy.transform.position, playerTransformLocation) >= 0.08f)
         {
             elapsedTime += Time.deltaTime;
-            if (elapsedTime >= 2.85f)
+            if (elapsedTime >= 1.5f)
             {
                 break;
             }
