@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class Quest_UI : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Quest_UI : MonoBehaviour
     private PlayerQuests playerQuests;
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
+    private PlayerTutorial playerTutorial;
 
     public List<QuestSlot_UI> questSlots = new List<QuestSlot_UI>();
     
@@ -23,6 +23,7 @@ public class Quest_UI : MonoBehaviour
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
 
         activeQuests = GameObject.Find("ActiveQuests").GetComponent<TextMeshProUGUI>();
     }
@@ -48,7 +49,7 @@ public class Quest_UI : MonoBehaviour
 
     void Setup()
     {
-        if (SceneManager.GetActiveScene().name != "IntroTutorial")
+        if (playerTutorial.tutorialProgress >= 3)
         {
             activeQuests.text = "Active Quests:\n";
         }
@@ -64,6 +65,10 @@ public class Quest_UI : MonoBehaviour
                     if (!playerQuests.questList.questSlots[i].done)
                     {
                         tempQuests += "Not ";
+                    }
+                    else
+                    {
+                        playerQuests.questList.questSlots[i].questDescription = "Report back to the villager that gave the quest!";
                     }
                     tempQuests += "Done\n";
                 }
