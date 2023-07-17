@@ -49,14 +49,15 @@ public class QuestboardTrigger : MonoBehaviour
 
     private void UpdateText()
     {
+        completedQuestText.rectTransform.offsetMin = new Vector2(completedQuestText.rectTransform.offsetMin.x, -795.7479f);
         string text = "";
         for (int i = 0; i < playerQuests.completedQuestDescs.Count; i++)
         {
-            text += i + 1 + ". " + playerQuests.completedQuestNames[i] + ": " + playerQuests.completedQuestDescs + "\n";
+            text += i + 1 + ". " + playerQuests.completedQuestNames[i] + ": " + playerQuests.completedQuestDescs[i] + "\n";
         }
         if (text.Length < 2)
         {
-            completedQuestText.text = "None yet. Start talking to a villager to start a quest!";
+            text = "None yet. Start talking to a villager to start a quest!";
         }
         completedQuestText.text = text;
         LayoutRebuilder.ForceRebuildLayoutImmediate(completedQuestText.rectTransform);
