@@ -243,12 +243,16 @@ public class Inventory_UI : MonoBehaviour
      */
     public void SlotBeginDrag(Slot_UI slot)
     {
-        draggedSlot = slot;
-        draggedIcon = Instantiate(draggedSlot.itemIcon);
-        draggedIcon.transform.SetParent(canvas.transform);
-        draggedIcon.raycastTarget = false;
-        draggedIcon.rectTransform.sizeDelta = new Vector2(50, 50);
-        MoveToMousePosition(draggedIcon.gameObject);
+        if (slot != null)
+        {
+            draggedSlot = slot;
+            SlotClick(draggedSlot);
+            draggedIcon = Instantiate(draggedSlot.itemIcon);
+            draggedIcon.transform.SetParent(canvas.transform);
+            draggedIcon.raycastTarget = false;
+            draggedIcon.rectTransform.sizeDelta = new Vector2(50, 50);
+            MoveToMousePosition(draggedIcon.gameObject);
+        }
     }
 
     public void SlotDrag()
@@ -264,10 +268,14 @@ public class Inventory_UI : MonoBehaviour
 
     public void SlotDrop(Slot_UI slot)
     {
-        Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
-        Inventory toInventory = inventoryByName[slot.inventoryName];
-        MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);
-        Refresh();
+        if (draggedSlot != null)
+        {
+            Inventory fromInventory = inventoryByName[draggedSlot.inventoryName];
+            Inventory toInventory = inventoryByName[slot.inventoryName];
+            MoveSlot(draggedSlot.slotID, fromInventory, slot.slotID, toInventory);
+            Refresh();
+            SlotClick(slot);
+        }
     }
 
     public void MoveSlot(int fromIndex, Inventory fromInventory, int toIndex, Inventory toInventory)
@@ -354,8 +362,6 @@ public class Inventory_UI : MonoBehaviour
         }
         else
         {
-            clickedSlot.itemBuyCost = 0;
-            clickedSlot.itemSellCost = 0;
             itemDescScrollbar.value = 1f;
             itemDescText.rectTransform.offsetMin = new Vector2(itemDescText.rectTransform.offsetMin.x, 0);
             ItemDescDisable();

@@ -2,7 +2,7 @@ using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static QuestList;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -33,7 +33,8 @@ public class EnemyHealth : MonoBehaviour
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
-                Invoke(nameof(SlimeDeath), 2f);
+                ChangeListState();
+                Invoke(nameof(SlimeDeath), 1f);
             }
         }
         get
@@ -67,5 +68,15 @@ public class EnemyHealth : MonoBehaviour
     public virtual void SlimeDeath()
     {
         Destroy(this.gameObject);
+    }
+
+    public void ChangeListState()
+    {
+        string currScene = SceneManager.GetActiveScene().name;
+        EnemySpawner enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        int enemyListIndex = enemySpawner.listOfEnemySceneNames.FindIndex(x => x == currScene);
+        string enemyNameInList = gameObject.name;
+        int enemyIndexInList = enemySpawner.listOfEnemyNames[enemyListIndex].FindIndex(x => x == enemyNameInList);
+        enemySpawner.listOfEnemyStates[enemyListIndex][enemyIndexInList] = 0;
     }
 }

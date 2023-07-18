@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MapSignTrigger : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class MapSignTrigger : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private bool playerInRange;
-    private GameObject visualCue;
+    public GameObject visualCue;
 
     private void Start()
     {

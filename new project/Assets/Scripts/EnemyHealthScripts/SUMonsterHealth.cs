@@ -25,6 +25,7 @@ public class SUMonsterHealth : EnemyHealth
             if (_health <= 0)
             {
                 animator.SetBool("alive", false);
+                ChangeListState();
                 Invoke(nameof(SlimeDeath), 1f);
             }
         }

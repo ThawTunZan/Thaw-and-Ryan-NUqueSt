@@ -37,67 +37,67 @@ public class QuestList
                 GameObject.Find("Player").GetComponent<PlayerQuests>().ma1511Progress = 0;
                 GameObject.Find("MA1511Collider").SetActive(false);
                 slimesRequired = 2;
-                gpaReward = 1;
+                gpaReward = 10;
             }
             if (quest_name == "MA1512")
             {
                 //requireItems = new List<Dictionary<string, int>>();
                 requireItems.Add(new Dictionary<string, int> { { "Tomato", 2 } });
-                gpaReward = 1;
+                gpaReward = 10;
             }
             if (quest_name == "HSA1000")
             {
                 placesToVisit.Add("Cave_1");
-                gpaReward = 2;
+                gpaReward = 20;
             }
             if (quest_name == "GESS1001")
             {
                 placesToVisit.Add("Cave_1b");
-                gpaReward = 2;
+                gpaReward = 20;
             }
             if (quest_name == "GEA1000")
             {
                 requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
-                gpaReward = 2;
+                gpaReward = 20;
             }
             if (quest_name == "PC1101")
             {
                 placesToVisit.Add("Village");
-                gpaReward = 1;
+                gpaReward = 10;
             }
             if (quest_name == "CS1010")
             {
-                gpaReward = 4;
+                gpaReward = 40;
             }
             if (quest_name == "CS1231")
             {
-                gpaReward = 4;
+                gpaReward = 40;
             }
             if (quest_name == "CS2030")
             {
-                gpaReward = 4;
+                gpaReward = 40;
             }
             if (quest_name == "CS2040")
             {
-                gpaReward = 4;
+                gpaReward = 40;
             }
             if (quest_name == "PC1201")
             {
-                gpaReward = 3;
+                gpaReward = 30;
             }
             if (quest_name == "CG1111A")
             {
-                gpaReward = 3;
+                gpaReward = 30;
             }
             if (quest_name == "CG2111A")
             {
                 GameObject.Find("Player").GetComponent<PlayerQuests>().cg2111aProgress = 0;
-                gpaReward = 4;
+                gpaReward = 40;
             }
             if (quest_name == "EG1311")
             {
                 GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
-                gpaReward = 3;
+                gpaReward = 30;
             }
         }
     }

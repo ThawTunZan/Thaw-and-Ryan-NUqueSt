@@ -79,7 +79,16 @@ public class Inventory
                 if (count == 0)
                 {
                     icon = null;
+                    itemType = "";
                     itemName = "";
+                    itemDesc = "";
+                    itemBuyCost = 0;
+                    itemSellCost = 0;
+                    itemHealAmount = 0;
+                    itemSwordDamage = 0;
+                    itemPickaxeDamage = 0;
+                    itemHoeRange = 0;
+                    maxAllowed = 32;
                 }
             }
         }

@@ -41,27 +41,15 @@ public class GameManager : MonoBehaviour
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
 
-    public float dayChecker;
+    public float rockDayChecker;
+    public List<string> listOfRockSceneNames = new List<string>();
     public List<List<string>> listOfRockNames = new List<List<string>>();
-    public List<string> cave1RockNames = new List<string>();
-    public List<string> cave1aRockNames = new List<string>();
-    public List<string> cave1bRockNames = new List<string>();
-    public List<string> cave2aRockNames = new List<string>();
-    public List<string> cave3aRockNames = new List<string>();
-    public List<string> cave4aRockNames = new List<string>();
-    public List<string> dcave1RockNames = new List<string>();
-    public List<string> dcave1aRockNames = new List<string>();
-    public List<string> dcave2aRockNames = new List<string>();
     public List<List<int>> listOfRockStates = new List<List<int>>();
-    public List<int> cave1RockStates = new List<int>();
-    public List<int> cave1aRockStates = new List<int>();
-    public List<int> cave1bRockStates = new List<int>();
-    public List<int> cave2aRockStates = new List<int>();
-    public List<int> cave3aRockStates = new List<int>();
-    public List<int> cave4aRockStates = new List<int>();
-    public List<int> dcave1RockStates = new List<int>();
-    public List<int> dcave1aRockStates = new List<int>();
-    public List<int> dcave2aRockStates = new List<int>();
+
+    public float enemyDayChecker;
+    public List<string> listOfEnemySceneNames = new List<string>();
+    public List<List<string>> listOfEnemyNames = new List<List<string>>();
+    public List<List<int>> listOfEnemyStates = new List<List<int>>();
 
     // for day and night system
     public float hours;
@@ -100,26 +88,6 @@ public class GameManager : MonoBehaviour
         shop1 = new Inventory("Shop1", 21);
         shopList.Add(instance.shop0);
         shopList.Add(instance.shop1);
-
-        listOfRockNames.Add(cave1RockNames);
-        listOfRockNames.Add(cave1aRockNames);
-        listOfRockNames.Add(cave1bRockNames);
-        listOfRockNames.Add(cave2aRockNames);
-        listOfRockNames.Add(cave3aRockNames);
-        listOfRockNames.Add(cave4aRockNames);
-        listOfRockNames.Add(dcave1RockNames);
-        listOfRockNames.Add(dcave1aRockNames);
-        listOfRockNames.Add(dcave2aRockNames);
-
-        listOfRockStates.Add(cave1RockStates);
-        listOfRockStates.Add(cave1aRockStates);
-        listOfRockStates.Add(cave1bRockStates);
-        listOfRockStates.Add(cave2aRockStates);
-        listOfRockStates.Add(cave3aRockStates);
-        listOfRockStates.Add(cave4aRockStates);
-        listOfRockStates.Add(dcave1RockStates);
-        listOfRockStates.Add(dcave1aRockStates);
-        listOfRockStates.Add(dcave2aRockStates);
 
         DontDestroyOnLoad(gameObject);  //else
     }
