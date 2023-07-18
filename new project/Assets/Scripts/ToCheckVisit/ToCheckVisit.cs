@@ -3,36 +3,57 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static QuestList;
 
 public class ToCheckVisit : MonoBehaviour
 {
     public string questName;
     private string currLocation;
     private PlayerQuests playerQuests;
-    private Scene scene;
+
+    public GameObject dialoguePanel;
+    public GameObject dialogueTrigger;
+    public GameObject visualCue;
+    private bool playerInRange;
+    private int questIndex;
+
     void Start()
     {
-        scene = SceneManager.GetActiveScene();
-        currLocation = scene.name;
+        currLocation = SceneManager.GetActiveScene().name;
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
+
     private void Update()
     {
-        
+        if (playerInRange && dialoguePanel.activeSelf && dialogueTrigger.activeSelf)
+        {
+            playerQuests.questList.questSlots[questIndex].placesToVisit.Remove(currLocation);
+            dialogueTrigger.SetActive(false);
+            visualCue.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            foreach (QuestList.QuestSlot questSlot in playerQuests.questList.questSlots)
+            for (int i = 0; i < 5; i++)
             {
-                // if quest is not done and it is the correct quest
-                if (questSlot.questName == questName && questSlot.done == false)
+                if (playerQuests.questList.questSlots[i].questName == questName && playerQuests.questList.questSlots[i].done == false)
                 {
-                    questSlot.placesToVisit.Remove(currLocation);
+                    dialogueTrigger.SetActive(true);
+                    playerInRange = true;
+                    questIndex = i;
                 }
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            playerInRange = false;
         }
     }
 }

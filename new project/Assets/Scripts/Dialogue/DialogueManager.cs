@@ -125,35 +125,42 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         playerItems.disableToolbar = true;
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        CheckDate();
-        currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
-        for (int i = 0; i < 5; i++)
+        if (localNPCName != "")
         {
-            if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
-                && player.questList.questSlots[i].questName != "")
+            CheckDate();
+            currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
+            for (int i = 0; i < 5; i++)
             {
-                string questSTARTEDLOLOL = currentStory.variablesState[localNPCName + "QuestStarted"].ToString();
-                //to make questStarted false and questDone true when quest is completed
-                if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
+                if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
+                    && player.questList.questSlots[i].questName != "")
                 {
-                    // finished the quest 
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", true);
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", false);
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
-                }
-                else if (!QuestIsDone(i))
-                {
-                    // quest is not finished while having it
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", true);
-                    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
+                    string questSTARTEDLOLOL = currentStory.variablesState[localNPCName + "QuestStarted"].ToString();
+                    //to make questStarted false and questDone true when quest is completed
+                    if (player.questList.questSlots[i].questName != "" && QuestIsDone(i) && (questSTARTEDLOLOL != "false" && questSTARTEDLOLOL != "False"))
+                    {
+                        // finished the quest 
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", true);
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", false);
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
+                    }
+                    else if (!QuestIsDone(i))
+                    {
+                        // quest is not finished while having it
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestStarted", true);
+                        dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
+                    }
                 }
             }
+        }
+        else
+        {
+            currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
         }
         ContinueStory();
     }
 
-    public void QuestCompleted ()
+    public void QuestCompleted()
     {
         for (int i = 0; i < 5; i += 1)
         {
@@ -168,7 +175,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                 quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
             }
-
         }
     }
 
@@ -206,7 +212,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 ContinueStory();
             }
-            else if (currentLine.StartsWith("Great!"))
+            else if (currentLine.StartsWith("Great!") && localNPCName != "")
             {
                 // referencing dictionary in DialogueVariables script which references variables from globals.ink file
                 string questName = currentStory.variablesState[localNPCName + "QuestName"].ToString();

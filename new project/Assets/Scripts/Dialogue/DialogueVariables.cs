@@ -19,7 +19,6 @@ public class DialogueVariables
         {
             try
             {
-                
                 globalVariablesStory.state.LoadJson(data.placeHolderStory);
             }
             catch (System.Exception e)
