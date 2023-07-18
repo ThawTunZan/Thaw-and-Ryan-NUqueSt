@@ -9,14 +9,10 @@ public class RockHealth : MonoBehaviour
     //private Animator animator;
     public string oreName;
 
-    private int caveListIndex;
-    private string currScene;
-
     public void Start()
     {
         //animator = GetComponent<Animator>();
         //animator.SetBool("alive", true);
-        currScene = SceneManager.GetActiveScene().name;
     }
 
     public float Health
@@ -31,17 +27,8 @@ public class RockHealth : MonoBehaviour
             if (_health <= 0)
             {
                 //animator.SetBool("alive", false);
-                Item oreToDrop = ItemManager.instance.GetItemByName(oreName);
-                int randomDropAmount = UnityEngine.Random.Range(1, 3);
-                for (int i = 0; i < randomDropAmount; i++)
-                {
-                    Instantiate(oreToDrop, gameObject.transform.position, Quaternion.identity);
-                }
-                RockSpawner rockSpawner = GameObject.Find("RockSpawner").GetComponent<RockSpawner>();
-                caveListIndex = rockSpawner.listOfRockSceneNames.FindIndex(x => x == currScene);
-                string rockNameInList = gameObject.transform.parent.gameObject.name;
-                int rockIndexInList = rockSpawner.listOfRockNames[caveListIndex].FindIndex(x => x == rockNameInList);
-                rockSpawner.listOfRockStates[caveListIndex][rockIndexInList] = 0;
+                SpawnOre();
+                ChangeListState();
                 Destroy(this.gameObject);
             }
         }
@@ -66,5 +53,25 @@ public class RockHealth : MonoBehaviour
             SwordAttack swordAttack = col.gameObject.GetComponentInParent<SwordAttack>();
             OnHit(swordAttack.pickaxeDamage);
         }
+    }
+
+    public void SpawnOre()
+    {
+        Item oreToDrop = ItemManager.instance.GetItemByName(oreName);
+        int randomDropAmount = UnityEngine.Random.Range(1, 3);
+        for (int i = 0; i < randomDropAmount; i++)
+        {
+            Instantiate(oreToDrop, gameObject.transform.position, Quaternion.identity);
+        }
+    }
+
+    public void ChangeListState()
+    {
+        string currScene = SceneManager.GetActiveScene().name;
+        RockSpawner rockSpawner = GameObject.Find("RockSpawner").GetComponent<RockSpawner>();
+        int caveListIndex = rockSpawner.listOfRockSceneNames.FindIndex(x => x == currScene);
+        string rockNameInList = gameObject.transform.parent.gameObject.name;
+        int rockIndexInList = rockSpawner.listOfRockNames[caveListIndex].FindIndex(x => x == rockNameInList);
+        rockSpawner.listOfRockStates[caveListIndex][rockIndexInList] = 0;
     }
 }
