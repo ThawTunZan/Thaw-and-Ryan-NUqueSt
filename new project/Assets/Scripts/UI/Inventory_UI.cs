@@ -243,8 +243,6 @@ public class Inventory_UI : MonoBehaviour
      */
     public void SlotBeginDrag(Slot_UI slot)
     {
-        Debug.Log(slot);
-        Debug.Log(slot.itemName);
         if (slot != null)
         {
             draggedSlot = slot;
