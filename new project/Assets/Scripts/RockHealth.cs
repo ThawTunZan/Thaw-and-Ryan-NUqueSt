@@ -7,40 +7,16 @@ using UnityEngine.SceneManagement;
 public class RockHealth : MonoBehaviour
 {
     //private Animator animator;
-    //private PlayerQuests player;
-    private int caveListIndex;
     public string oreName;
+
+    private int caveListIndex;
+    private string currScene;
 
     public void Start()
     {
         //animator = GetComponent<Animator>();
         //animator.SetBool("alive", true);
-        //player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        string currScene = SceneManager.GetActiveScene().name;
-        if (currScene == "Cave_1")
-        {
-            caveListIndex = 0;
-        }
-        else if (currScene == "Cave_1a")
-        {
-            caveListIndex = 1;
-        }
-        else if (currScene == "Cave_1b")
-        {
-            caveListIndex = 2;
-        }
-        else if (currScene == "Cave_2a")
-        {
-            caveListIndex = 3;
-        }
-        else if (currScene == "Cave_3a")
-        {
-            caveListIndex = 4;
-        }
-        else if (currScene == "Cave_4a")
-        {
-            caveListIndex = 5;
-        }
+        currScene = SceneManager.GetActiveScene().name;
     }
 
     public float Health
@@ -61,10 +37,11 @@ public class RockHealth : MonoBehaviour
                 {
                     Instantiate(oreToDrop, gameObject.transform.position, Quaternion.identity);
                 }
-                PlayerRocks playerRocks = GameObject.Find("Player").GetComponent<PlayerRocks>();
+                RockSpawner rockSpawner = GameObject.Find("RockSpawner").GetComponent<RockSpawner>();
+                caveListIndex = rockSpawner.listOfRockSceneNames.FindIndex(x => x == currScene);
                 string rockNameInList = gameObject.transform.parent.gameObject.name;
-                int rockIndexInList = playerRocks.listOfRockNames[caveListIndex].FindIndex(x => x == rockNameInList);
-                playerRocks.listOfRockStates[caveListIndex][rockIndexInList] = 0;
+                int rockIndexInList = rockSpawner.listOfRockNames[caveListIndex].FindIndex(x => x == rockNameInList);
+                rockSpawner.listOfRockStates[caveListIndex][rockIndexInList] = 0;
                 Destroy(this.gameObject);
             }
         }

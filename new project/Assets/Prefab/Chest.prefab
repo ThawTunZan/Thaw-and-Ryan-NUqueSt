@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 789564238414652854}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,6 @@ MonoBehaviour:
   chestInventory:
     slots: []
   startingPosition: {fileID: 0}
-  hasAddedToChest: 0
 --- !u!1 &7640188727470514520
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestPanel: {fileID: 0}
   inventoryPanel: {fileID: 0}
+  helpPanel: {fileID: 0}
+  slotBlocker: {fileID: 0}
   dropPanel: {fileID: 0}
   visualCue: {fileID: 8018312756101713871}
 --- !u!1 &8018312756101713871
