@@ -5,8 +5,8 @@ using Unity.Mathematics;
 
 public class rockTrajectory : MonoBehaviour
 {
-    private GameObject player;
-    private Rigidbody2D rb;
+    public GameObject player;
+    public Rigidbody2D rb;
 
     public float force;
     public float rotationRate;

@@ -17,11 +17,13 @@ public class CompleteCEGQuest : MonoBehaviour
     public float timer;
 
     public ControlRobot controlRobot;
+    public bool shotLanded; 
 
     public List<string> colorsDetected;
     // Start is called before the first frame update
     void Start()
     {
+        shotLanded = false;
         playerQuest = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
@@ -65,7 +67,7 @@ public class CompleteCEGQuest : MonoBehaviour
                     quest_UI.questSlots[i].questStatus.SetActive(true);
                     playerMovement.movespeed = 1f;
                 }
-                else if (playerQuest.questList.questSlots[i].questName == "EG1311")
+                else if (playerQuest.questList.questSlots[i].questName == "EG1311" && shotLanded)
                 {
                     controlRobot.TimerOn = false;
                     timer = 30f;
