@@ -36,9 +36,25 @@ public class SkeletonAI : EnemyAI
             timer = 0;
             hasAttacked = true;
             skeletonAnimation.SetTrigger("attack");
+            if (gameObject.transform.position.x > player.transform.position.x)
+            {
+                enemySpriteRenderer.flipX = true;
+            }
+            else
+            {
+                enemySpriteRenderer.flipX = false;
+            }
         }
         else if (distToPlayerUpdate > 0.2 && distToPlayerUpdate <= 0.7 && !hasAttacked && !isAttacking && animator.GetBool("alive"))
         {
+            if (gameObject.transform.position.x > player.transform.position.x)
+            {
+                enemySpriteRenderer.flipX = true;
+            }
+            else
+            {
+                enemySpriteRenderer.flipX = false;
+            }
             Vector3 dirToPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
             enemy.MovePosition(enemy.transform.position + dirToPlayer * movespeed * 2 * Time.fixedDeltaTime);
             skeletonAnimation.SetBool("isMoving", true);
