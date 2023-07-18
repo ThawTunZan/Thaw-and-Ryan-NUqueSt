@@ -13,10 +13,12 @@ public class ControlRobot : MonoBehaviour
     public GameObject questPanel;
     public GameObject timerPanel;
     public float timer;
+    public float givenTimer;
 
     public bool TimerOn;
-    public CompleteCg1111A questComplete;
+    public CompleteCEGQuest questComplete;
     private PlayerQuests playerQuest;
+    public string questName;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,14 @@ public class ControlRobot : MonoBehaviour
         virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         robot = GameObject.Find("Robot");
         robotMovement = GameObject.Find("Robot").GetComponent <RobotMovement>();
-        timer = 60f;
+        if (questName == "CG1111A")
+        {
+            timer = 45f;
+        }
+        else if (questName == "EG1311")
+        {
+            timer = 30f;
+        }
         TimerOn = false;
 
         playerQuest = GameObject.Find("Player").GetComponent<PlayerQuests>();
@@ -46,7 +55,7 @@ public class ControlRobot : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 //if there is an active quest in the slot
-                if (playerQuest.questList.questSlots[i].questName == "CG1111A" && collision.gameObject.CompareTag("Player"))
+                if (playerQuest.questList.questSlots[i].questName == questName && collision.gameObject.CompareTag("Player"))
                 {
                     playerMovement.enabled = false;
                     OpenPanels();
@@ -66,7 +75,10 @@ public class ControlRobot : MonoBehaviour
         robotMovement.enabled = true;
         virtualCamera.Follow = robot.transform;
         TimerOn = true;
-        questComplete.colorsDetected.Clear();
+        if (questName == "CG1111A" || questName == "CG2111A")
+        {
+            questComplete.colorsDetected.Clear();
+        }
         playerMovement.movespeed = 0;
     }
 
@@ -94,7 +106,7 @@ public class ControlRobot : MonoBehaviour
             robotMovement.enabled = false;
             virtualCamera.Follow = player.transform;
             TimerOn = false;
-            timer = 60;
+            timer = givenTimer;
             timerPanel.SetActive(false);
             playerMovement.movespeed = 1f;
         }
