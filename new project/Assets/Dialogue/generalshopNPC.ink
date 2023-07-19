@@ -3,15 +3,15 @@ EXTERNAL QuestCompleted()
 -> main
 
 === main ===
-Hi there! What can I get for you?
+Eve: Hi there! What can I get for you?
     * [I want to buy something.]
-        Sure. This is what we have in stock.
+        Eve: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        None at the moment.
+        Eve: None at the moment.
         -> DONE
     * [Leave]
-        Goodbye.
+        Eve: Goodbye.
         -> DONE
 
 -> END

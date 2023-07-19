@@ -212,7 +212,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             {
                 ContinueStory();
             }
-            else if (currentLine.StartsWith("Great!") && localNPCName != "")
+            else if (currentLine.Contains("Great!") && localNPCName != "")
             {
                 // referencing dictionary in DialogueVariables script which references variables from globals.ink file
                 string questName = currentStory.variablesState[localNPCName + "QuestName"].ToString();
@@ -222,7 +222,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
             }
-            else if (currentLine.StartsWith("Sure. This is what we have in stock."))
+            else if (currentLine.Contains("Sure. This is what we have in stock. "))
             {
                 openShop = true;
             }
