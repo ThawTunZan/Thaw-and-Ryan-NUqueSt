@@ -334,7 +334,7 @@ public class Inventory_UI : MonoBehaviour
                     trashButton.interactable = true;
                 }
             }
-            itemDescText.text += "\n\nUnit purchase cost: ";
+            itemDescText.text += "\n\nPer buy cost: ";
             if (clickedSlot.itemBuyCost != 0)
             {
                 itemDescText.text += clickedSlot.itemBuyCost;
@@ -343,7 +343,7 @@ public class Inventory_UI : MonoBehaviour
             {
                 itemDescText.text += "-";
             }
-            itemDescText.text += "\n\nUnit selling price: ";
+            itemDescText.text += "\n\nPer sell price: ";
             if (clickedSlot.itemSellCost != 0)
             {
                 itemDescText.text += clickedSlot.itemSellCost;
@@ -352,6 +352,7 @@ public class Inventory_UI : MonoBehaviour
             {
                 itemDescText.text += "-";
             }
+            itemDescText.fontSize = 22;
             LayoutRebuilder.ForceRebuildLayoutImmediate(itemDescText.rectTransform);
             Canvas.ForceUpdateCanvases();
             itemDescScrollbar.value = 1f;
@@ -513,6 +514,7 @@ public class Inventory_UI : MonoBehaviour
                 "\n\n" + usageStatement + 
                 "\n\nAfter doing the above, try left clicking when you're damaged to heal for a portion of your health.";
         }
+        helpDescText.fontSize = 22;
         LayoutRebuilder.ForceRebuildLayoutImmediate(helpDescText.rectTransform);
         Canvas.ForceUpdateCanvases();
         helpDescScrollbar.value = 1f;

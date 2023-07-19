@@ -28,6 +28,8 @@ public class QuestSlot_UI : MonoBehaviour
             questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
             questNPCImage.color = new Color(1, 1, 1, 1);
 
+            questDescriptionText.text += "\n\nGPA Reward: " + questSlot.gpaReward;
+
             LayoutRebuilder.ForceRebuildLayoutImmediate(questDescriptionText.rectTransform);
             Canvas.ForceUpdateCanvases();
             scrollbar.value = 1f;
