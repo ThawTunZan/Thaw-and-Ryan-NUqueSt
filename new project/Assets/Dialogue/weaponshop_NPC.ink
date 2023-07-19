@@ -75,7 +75,7 @@ George: Thanks a loooooooooooot for the help though! I can finally resume my wor
     ~ WeaponSmithQuestDone = false
     -> DONE
 * [No]
-    George: Sleep with one eye open :)
+    George: Ask me again when you're not busy!
     -> DONE
     
 -> END

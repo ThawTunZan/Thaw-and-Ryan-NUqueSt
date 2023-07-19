@@ -8,7 +8,7 @@ Eve: Hi there! What can I get for you?
         Eve: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:Eve: I do not require assistance for now.|{(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
+        {allQuestDone:Eve: I do not require assistance for now.|{(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo |{(!questHSI1000Done): -> HSI1000Convo}}}}}-> DONE
         -> DONE
     * [Leave]
         Eve: Goodbye.
@@ -16,14 +16,26 @@ Eve: Hi there! What can I get for you?
 
 -> END
 
-=== DTK1234Convo ===
+=== HSI1000Convo ===
 {(!EveShopQuestDone):
-    Eve: You must be the new person in town! My name is Galileo!
-    -> start_quest("PC1101", "Find out if there are moons around the planet Poopiter!")
+    Eve: 
+    -> start_quest("DTK1234", "Help me look for a unique flower in the desert, the caves and the forest!")
     ->END
     }
     ~ QuestCompleted()
-    Eve: WOW! I am actually right! There ARE FOUR moons around the planet POOPITER. The question now is what should i name it hmm.... Anyway, thx for the help!
+    Eve: 
+     ~questDTK1234Done = true
+     ~EveShopValidTime = false
+    -> END
+
+=== DTK1234Convo ===
+{(!EveShopQuestDone):
+    Eve: 
+    -> start_quest("DTK1234", "Find 5 leather pieces lying outside of your house.")
+    ->END
+    }
+    ~ QuestCompleted()
+    Eve: 
      ~questDTK1234Done = true
      ~EveShopValidTime = false
     -> END
@@ -44,5 +56,5 @@ Eve: Hi there! What can I get for you?
   ~ EveShopQuestStarted = true
   -> DONE
 * [No]
-  Eve: Sleep with one eye open :)-> DONE
+  Eve: Oh... okay. -> DONE
 -> END

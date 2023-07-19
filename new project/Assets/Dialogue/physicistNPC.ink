@@ -66,5 +66,5 @@ Galileo: Oh hey there!
   ~ PhysicistQuestStarted = true
   -> DONE
 * [No]
-  Galileo: Sleep with one eye open :)-> DONE
+  Galileo: Disappointing.-> DONE
 -> END

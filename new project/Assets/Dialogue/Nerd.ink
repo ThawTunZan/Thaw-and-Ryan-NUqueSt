@@ -100,7 +100,7 @@ Sam: Damnnn... For a first timer, you are pretty good at solving puzzles! Thanks
     ~ NerdQuestDone = false
     -> DONE
 * [No]
-    Sam: Sleep with one eye open :)
+    Sam: Ok.
     -> DONE
     
 -> END

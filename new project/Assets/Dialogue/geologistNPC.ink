@@ -58,7 +58,7 @@ Leo: Anyway, thx for the help! See you next time
 === HSA1000Convo ===
 {(!GeologistQuestDone):
 Leo: You must be the new person in town!
-Leo: My name is Tin!
+Leo: My name is Leo!
 Leo: I have been working on a project and I would like to know more about a topic
 Leo: Do you think anyone has died in the first level of the cave? The one down south!
 Leo: I've heard rumours that there was a person that died there!
@@ -96,7 +96,7 @@ Leo: Anyway, since you are such a reliable neighbour I will contact you when I n
     ~ GeologistQuestDone = false
     -> DONE
 * [No]
-    Leo: Sleep with one eye open :)
+    Leo: Some other time I guess?
     -> DONE
     
 -> END
