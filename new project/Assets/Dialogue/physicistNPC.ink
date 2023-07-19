@@ -10,9 +10,9 @@ Oh hey there!
 * [I want to buy something.]
       We are currently out of stock.-> DONE
 * [Do you have any quests?]
-{allQuestDone:I do not require assistance for now.|{(!PhysicistValidTime): Thanks for the help! Maybe come another time. |{PhysicistQuestStarted:I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
-[Leave]
-  Goodbye.-> DONE
+      {allQuestDone:I do not require assistance for now.|{(!PhysicistValidTime): Thanks for the help! Maybe come another time. |{PhysicistQuestStarted:I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
+* [Leave]
+      Goodbye.-> DONE
 -> END
 
 
