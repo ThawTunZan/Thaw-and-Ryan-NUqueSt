@@ -13,6 +13,7 @@ public class QuestList
     {
         public int count;
         public string questName;
+        public string questNPCName;
         public string questDescription;
         public bool done;
         public float gpaReward;
@@ -108,6 +109,7 @@ public class QuestList
                 GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
                 gpaReward = 30;
             }
+            questNPCName = DialogueManager.GetInstance().localNPCName;
         }
     }
 

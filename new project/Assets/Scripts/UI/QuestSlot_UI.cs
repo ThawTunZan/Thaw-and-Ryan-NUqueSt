@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 
@@ -9,6 +8,7 @@ public class QuestSlot_UI : MonoBehaviour
 {
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI questDescriptionText;
+    public string questNPCName;
     public GameObject questStatus;
 
     public void SetItem(QuestList.QuestSlot questSlot)
@@ -18,6 +18,7 @@ public class QuestSlot_UI : MonoBehaviour
         {
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
+            questNPCName = questSlot.questNPCName;
             QuestHandler(questSlot);
         }
     }
@@ -26,6 +27,7 @@ public class QuestSlot_UI : MonoBehaviour
     {
         questNameText.text = "";
         questDescriptionText.text = "";
+        questNPCName = "";
     }
 
     // add quests completion requirement here
