@@ -123,7 +123,8 @@ public class QuestList
             }
             if (quest_name == "HSS1000")
             {
-                gpaReward = 20;
+                placesToVisit.Add("ArtistHouse");
+                gpaReward = 10;
             }
             questNPCName = DialogueManager.GetInstance().localNPCName;
         }

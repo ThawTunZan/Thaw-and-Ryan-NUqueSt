@@ -8,13 +8,30 @@ Eve: Hi there! What can I get for you?
         Eve: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:Eve: I do not require assistance for now.|{(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo |{(!questHSI1000Done): -> HSI1000Convo}}}}}-> DONE
+        {allQuestDone:Eve: I do not require assistance for now.|{(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo|{(!questHSI1000Done): -> HSI1000Convo|{(!questHSS1000Done): ->HSS1000Convo}}}}}}-> DONE
         -> DONE
     * [Leave]
         Eve: Goodbye.
         -> DONE
 
 -> END
+
+=== HSS1000Convo ===
+{(!EveShopQuestDone):
+    Eve: Other than expressing myself through art and craft, I also love writing poems.
+    Eve: I have some really bad poems stashed up in my drawers.
+    Eve: However, I think I am improving!
+    Eve: I think my latest poem is really good!
+    Eve: Could you read my poem in my house and tell me your opinion?
+    -> start_quest("HSS1000", "Read my poem in my house and let me know what you think!")
+    ->END
+    }
+    ~ QuestCompleted()
+    Eve: Thank you for your feedback!
+    Eve: I will continue writing my poems while on shopkeeper duty.
+     ~questHSS1000Done = true
+     ~EveShopValidTime = false
+    -> END
 
 === HSI1000Convo ===
 {(!EveShopQuestDone):
@@ -31,7 +48,7 @@ Eve: Hi there! What can I get for you?
     Eve: Wow! The book appears to be right!
     Eve: I think I know what to draw next...
     Eve: Thank you very much!
-     ~questDTK1234Done = true
+     ~questHSI1000Done = true
      ~EveShopValidTime = false
     -> END
 
