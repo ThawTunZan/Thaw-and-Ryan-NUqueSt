@@ -37,13 +37,14 @@ public class Quest_UI : MonoBehaviour
 
     void Update()
     {
-        Setup();
+        ActiveQuestSetup();
         if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Q))
         {
             activeQuests.gameObject.SetActive(false);
             questPanel.SetActive(true);
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
+            Setup();
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
@@ -61,6 +62,25 @@ public class Quest_UI : MonoBehaviour
 
     void Setup()
     {
+        for (int i = 0; i < questSlots.Count; i++)
+        {
+            if (playerQuests.questList.questSlots[i].count == 1)
+            {
+                questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
+                if (playerQuests.questList.questSlots[i].done)
+                {
+                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
+                }
+            }
+            else
+            {
+                questSlots[i].SetEmpty();
+            }
+        }
+    }
+
+    void ActiveQuestSetup()
+    {
         if (playerTutorial.tutorialProgress >= 3)
         {
             activeQuests.text = "Active Quests:\n";
@@ -70,7 +90,7 @@ public class Quest_UI : MonoBehaviour
         {
             if (playerQuests.questList.questSlots[i].count == 1)
             {
-                questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
+                questSlots[i].QuestHandler(playerQuests.questList.questSlots[i]);
                 tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
                 if (!playerQuests.questList.questSlots[i].done)
                 {
@@ -87,10 +107,6 @@ public class Quest_UI : MonoBehaviour
                     questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
                 }
                 tempQuests += "Done\n";
-            }
-            else
-            {
-                questSlots[i].SetEmpty();
             }
         }
         activeQuests.text += tempQuests;

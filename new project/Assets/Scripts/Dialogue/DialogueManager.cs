@@ -247,26 +247,33 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
 
         int index = 0;
+        bool hasChoice = false;
+
         foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
-            choosingOption = true;
-            dialogueButton.SetActive(false);
+            hasChoice = true;
         }
 
         for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
-            choosingOption = false;
-            dialogueButton.SetActive(true);
+        }
+
+        if (hasChoice)
+        {
+            choosingOption = true;
+            dialogueButton.SetActive(false);
         }
     }
 
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+        choosingOption = false;
+        dialogueButton.SetActive(true);
         ContinueStory();
     }
     

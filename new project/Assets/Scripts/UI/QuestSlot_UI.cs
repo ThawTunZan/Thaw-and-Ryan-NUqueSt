@@ -19,23 +19,37 @@ public class QuestSlot_UI : MonoBehaviour
     {
         if (questSlot != null)
         {
-            
+            questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, -330.06f);
 
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
             questNPCName = questSlot.questNPCName;
             questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
             questNPCImage.color = new Color(1, 1, 1, 1);
-            QuestHandler(questSlot);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(questDescriptionText.rectTransform);
             Canvas.ForceUpdateCanvases();
             scrollbar.value = 1f;
+            float textLength = questDescriptionText.textBounds.size.y;
+            if (textLength <= 225)
+            {
+                questDescriptionText.rectTransform.offsetMin = new
+                Vector2(questDescriptionText.rectTransform.offsetMin.x, 0);
+            }
+            else
+            {
+                float panelLength = 550.06f;
+                questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, -330.06f + panelLength - textLength - 4);
+            }
         }
     }
 
     public void SetEmpty()
     {
+        questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, 0f);
         questNameText.text = "";
         questDescriptionText.text = "";
         questNPCName = "";
