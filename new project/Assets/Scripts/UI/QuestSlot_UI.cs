@@ -62,7 +62,7 @@ public class QuestSlot_UI : MonoBehaviour
     // add quests completion requirement here
     public void QuestHandler(QuestList.QuestSlot questSlot)
     {
-        PlayerQuests player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
         Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
         if (questSlot.done == true)
@@ -147,6 +147,29 @@ public class QuestSlot_UI : MonoBehaviour
         if (questSlot.questName == "CG1111A" && questSlot.done)
         {
             questStatus.SetActive(true);
+        }
+        if (questSlot.questName == "DTK1234")
+        {
+            for (int i = 0; i < 21; i++)
+            {
+                if (inventory.slots[i].itemName == "Leather Piece" && inventory.slots[i].count == 3)
+                {
+                    playerQuests.dtk1234Collected[0] = 0;
+                    questSlot.done = true;
+                    questStatus.SetActive(true);
+                    break;
+                }
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                if (toolbar.slots[i].itemName == "Leather Piece" && toolbar.slots[i].count == 3)
+                {
+                    playerQuests.dtk1234Collected[0] = 0;
+                    questSlot.done = true;
+                    questStatus.SetActive(true);
+                    break;
+                }
+            }
         }
     }
 }

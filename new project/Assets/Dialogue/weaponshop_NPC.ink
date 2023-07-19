@@ -19,7 +19,7 @@ George: How can I help you?
 
 === in_quest ===
 * [What am I supposed to do again?]
-    {WeaponSmithQuestDesc}
+    George: {WeaponSmithQuestDesc}
     -> DONE
 * [Leave]
     George: Goodbye.

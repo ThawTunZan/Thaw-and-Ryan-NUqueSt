@@ -19,6 +19,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<int> dtk1234Collected = new List<int>() { 0, 0, 0, 0 };
+
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
 
@@ -35,6 +37,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs2040Progress = GameManager.instance.cs2040Progress;
             cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
             ma1511Progress = GameManager.instance.ma1511Progress;
+            dtk1234Collected = GameManager.instance.dtk1234Collected;
 
             completedQuestNames = GameManager.instance.completedQuestNames;
             completedQuestDescs = GameManager.instance.completedQuestDescs;
@@ -109,6 +112,10 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
                 GameObject.Find("CG2111ACollider").SetActive(false);
             }
         }
+        else if (currScene == "ArtistHouse") // For DTK1234
+        {
+            GameObject.Find("DTK1234Quest").GetComponent<DTK1234Quest>().ChangeActive(dtk1234Collected);
+        }
     }
 
     private bool SearchForQuest(string questName)
@@ -147,6 +154,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs2040SeenBefore = cs2040SeenBefore;
 
         GameManager.instance.ma1511Progress = ma1511Progress;
+        GameManager.instance.dtk1234Collected = dtk1234Collected;
 
         GameManager.instance.completedQuestNames = completedQuestNames;
         GameManager.instance.completedQuestDescs = completedQuestDescs;
@@ -164,6 +172,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs2040SeenBefore = data.cs2040SeenBefore;
 
         ma1511Progress = data.ma1511Progress;
+        dtk1234Collected = data.dtk1234Collected;
 
         completedQuestNames = data.completedQuestNames;
         completedQuestDescs = data.completedQuestDescs;
@@ -180,6 +189,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2040SeenBefore = cs2040SeenBefore;
 
         data.ma1511Progress = ma1511Progress;
+        data.dtk1234Collected = dtk1234Collected;
 
         data.completedQuestNames = completedQuestNames;
         data.completedQuestDescs = completedQuestDescs;

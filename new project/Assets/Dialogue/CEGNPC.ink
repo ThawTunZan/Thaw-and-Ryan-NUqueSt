@@ -70,7 +70,7 @@ TeeHaw: Anyway, Thanks for the help!
 
 === in_quest ===
 * [What am I supposed to do again?]
-    {CEGQuestDesc}-> DONE
+TeeHaw: {CEGQuestDesc}-> DONE
 * [Leave]
   TeeHaw: Goodbye.-> DONE
 

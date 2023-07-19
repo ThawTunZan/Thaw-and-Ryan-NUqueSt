@@ -19,7 +19,7 @@ Sam: How can I help you?
 
 === in_quest ===
 * [What am I supposed to do again?]
-    {NerdQuestDesc}
+    Sam: {NerdQuestDesc}
     -> DONE
 * [Leave]
     Sam: Goodbye.

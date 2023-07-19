@@ -18,31 +18,44 @@ Eve: Hi there! What can I get for you?
 
 === HSI1000Convo ===
 {(!EveShopQuestDone):
-    Eve: 
+    Eve: Drawing art is no easy feat.
+    Eve: I'm usually out in nature looking for a beautiful landscape to draw.
+    Eve: I read a book about flora and now I'm curious.
+    Eve: Apparently there is a flower unique to every biome.
+    Eve: One for the desert, one in the caves, and one in the forest.
+    Eve: Could you help me find the flowers?
     -> start_quest("HSI1000", "Help me look for a unique flower in the desert, the caves and the forest!")
     ->END
     }
     ~ QuestCompleted()
-    Eve: 
+    Eve: Wow! The book appears to be right!
+    Eve: I think I know what to draw next...
+    Eve: Thank you very much!
      ~questDTK1234Done = true
      ~EveShopValidTime = false
     -> END
 
 === DTK1234Convo ===
 {(!EveShopQuestDone):
-    Eve: 
-    -> start_quest("DTK1234", "Find 5 leather pieces lying outside of your house.")
+    Eve: I have not told you this yet, but I am an artist!
+    Eve: I love drawing art and making craft.
+    Eve: Right now, there aren't many customers coming in so I'm bored.
+    Eve: There are some leather pieces in my house.
+    Eve: My house has a paintbrush logo on top of the door.
+    Eve: Will you help me bring my leather pieces?
+    -> start_quest("DTK1234", "Bring me my leather pieces from my house.")
     ->END
     }
     ~ QuestCompleted()
-    Eve: 
+    Eve: Thank you for bringing them!
+    Eve: In case you're wondering, I wanted to make a wallet.
      ~questDTK1234Done = true
      ~EveShopValidTime = false
     -> END
 
 === in_quest ===
 * [What am I supposed to do again?]
-{EveShopQuestDesc}-> DONE
+Eve: {EveShopQuestDesc}-> DONE
 * [Leave]
   Eve: Goodbye.-> DONE
 

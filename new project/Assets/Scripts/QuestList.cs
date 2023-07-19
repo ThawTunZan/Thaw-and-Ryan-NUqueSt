@@ -89,7 +89,7 @@ public class QuestList
             }
             if (quest_name == "CS2040")
             {
-                gpaReward = 40;
+                gpaReward = 50;
             }
             if (quest_name == "PC1201")
             {
@@ -108,6 +108,19 @@ public class QuestList
             {
                 GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
                 gpaReward = 30;
+            }
+            if (quest_name == "DTK1234")
+            {
+                GameObject.Find("Player").GetComponent<PlayerQuests>().dtk1234Collected[0] = 1;
+                gpaReward = 10;
+            }
+            if (quest_name == "HSI1000")
+            {
+                gpaReward = 30;
+            }
+            if (quest_name == "HSS1000")
+            {
+                gpaReward = 20;
             }
             questNPCName = DialogueManager.GetInstance().localNPCName;
         }

@@ -79,7 +79,7 @@ Leo: Anyway, since you are such a reliable neighbour I will contact you when I n
     
 === in_quest ===
 * [What am I supposed to do again?]
-    {GeologistQuestDesc}
+    Leo: {GeologistQuestDesc}
     -> DONE
 * [Leave]
     Leo: Goodbye.
