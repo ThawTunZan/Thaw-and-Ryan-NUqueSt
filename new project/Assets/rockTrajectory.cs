@@ -10,11 +10,11 @@ public class rockTrajectory : MonoBehaviour
 
     public float force;
     public float rotationRate;
-    private float rot;
+    public float rot;
 
     public float timer;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,7 +25,7 @@ public class rockTrajectory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (gameObject != null)
         {

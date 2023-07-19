@@ -17874,8 +17874,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: This is the test for the prototype I made! You can control the robot using
-    the WASD buttons! The robot has to touch every color tilted before reaching the
-    exit! Also, there's a time limit so make it quick!
+    the WASD buttons! The robot has to avoid the potholes and shoot at the target
+    at the exit by pressing e to finish the quest! Also, there's a time limit so
+    make it quick!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36205,7 +36206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195666358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 654e44bfb70db954a8f66c97fdc83d13, type: 3}
   m_Name: 
@@ -36232,6 +36233,7 @@ MonoBehaviour:
   upFacingSprite: {fileID: 317385298, guid: 30575a0a45e950a41852401d1b567968, type: 3}
   rock: {fileID: 8458789943560896957, guid: 1b102430456d5b148a07637872cdc268, type: 3}
   directionToThrow: {x: 0, y: 0, z: 0}
+  eg1311rockTrajectory: {fileID: 0}
 --- !u!1 &1202130507
 GameObject:
   m_ObjectHideFlags: 0

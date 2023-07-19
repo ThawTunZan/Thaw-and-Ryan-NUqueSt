@@ -17,21 +17,21 @@ public class EG1311RobotMovement : RobotMovement
     public override void Update ()
     {
         base.Update();
-        if (spriteRenderer.sprite.name == "Robot_0")
+        if (spriteRenderer.sprite == downFacingSprite)
         {
             directionToThrow = new Vector3(0, -0.2f, 0);
         }
-        if (spriteRenderer.sprite.name == "Robot_1")
+        else if (spriteRenderer.sprite == upFacingSprite)
         {
             directionToThrow = new Vector3(0, 0.2f, 0);
         }
-        if (gameObject.transform.localScale.x < 0)
+        else if (spriteRenderer.sprite == sideFacingSprite && spriteRenderer.flipX)
         {
-            directionToThrow = new Vector3(0, -0.2f, 0).normalized;
+            directionToThrow = new Vector3(-0.2f, 0, 0).normalized;
         }
-        if (gameObject.transform.localScale.x > 0)
+        else if (spriteRenderer.sprite == sideFacingSprite && !spriteRenderer.flipX)
         {
-            directionToThrow = new Vector3(0, 0.2f, 0).normalized;
+            directionToThrow = new Vector3(0.2f, 0, 0).normalized;
         }
         Shoot();
     }
@@ -39,7 +39,6 @@ public class EG1311RobotMovement : RobotMovement
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            eg1311rockTrajectory.rb.velocity = directionToThrow;
             Instantiate(rock, gameObject.transform.position, Quaternion.identity);
         }
     }

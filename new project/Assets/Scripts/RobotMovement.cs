@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class RobotMovement : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 movementInput;
+    public Vector2 movementInput;
     public SpriteRenderer spriteRenderer;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>(); //to check for collision
     public ContactFilter2D movementFilter;
