@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private GameObject dialogueButton;
 
     [Header("Load Globals JSON")]
     [SerializeField] private TextAsset loadGlobalsJSON;
@@ -40,6 +41,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public Inventory toolbar;
 
     public bool openShop;
+
+    private bool choosingOption;
 
     public string localNPCName;
     private PlayerMoney playerMoney;
@@ -84,7 +87,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         if (dialogueIsPlaying)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !choosingOption)
             {
                 ContinueStory();
             }
@@ -222,7 +225,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 player = GameObject.Find("Player").GetComponent<PlayerQuests>();
                 player.questList.Add(questName, questDescription);
             }
-            else if (currentLine.Contains("Sure. This is what we have in stock. "))
+            else if (currentLine.Contains("Sure. This is what we have in stock."))
             {
                 openShop = true;
             }
@@ -249,11 +252,15 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
+            choosingOption = true;
+            dialogueButton.SetActive(false);
         }
 
         for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
+            choosingOption = false;
+            dialogueButton.SetActive(true);
         }
     }
 
