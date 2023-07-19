@@ -3,29 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer;
 
 
 public class QuestSlot_UI : MonoBehaviour
 {
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI questDescriptionText;
+    public Image questNPCImage;
+    public string questNPCName;
+    public Scrollbar scrollbar;
     public GameObject questStatus;
 
     public void SetItem(QuestList.QuestSlot questSlot)
     {
-
         if (questSlot != null)
         {
+            questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, -330.06f);
+
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
-            QuestHandler(questSlot);
+            questNPCName = questSlot.questNPCName;
+            questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
+            questNPCImage.color = new Color(1, 1, 1, 1);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(questDescriptionText.rectTransform);
+            Canvas.ForceUpdateCanvases();
+            scrollbar.value = 1f;
+            float textLength = questDescriptionText.textBounds.size.y;
+            if (textLength <= 225)
+            {
+                questDescriptionText.rectTransform.offsetMin = new
+                Vector2(questDescriptionText.rectTransform.offsetMin.x, 0);
+            }
+            else
+            {
+                float panelLength = 550.06f;
+                questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, -330.06f + panelLength - textLength - 4);
+            }
         }
     }
 
     public void SetEmpty()
     {
+        questDescriptionText.rectTransform.offsetMin = new
+                    Vector2(questDescriptionText.rectTransform.offsetMin.x, 0f);
         questNameText.text = "";
         questDescriptionText.text = "";
+        questNPCName = "";
+        questNPCImage.sprite = null;
+        questNPCImage.color = new Color(1, 1, 1, 0);
     }
 
     // add quests completion requirement here

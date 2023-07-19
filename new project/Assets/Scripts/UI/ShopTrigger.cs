@@ -11,6 +11,8 @@ public class ShopTrigger : MonoBehaviour
     public GameObject shopAmountPanel;
     public GameObject slotBlocker;
 
+    public GameObject dialoguePanel;
+
     private Inventory_UI inventoryInCanvas;
     private Inventory_UI shopInCanvas;
     private ShopItems shopItems;
@@ -32,7 +34,7 @@ public class ShopTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().openShop && Input.GetKeyDown(KeyCode.Space))
+        if (DialogueManager.GetInstance() != null && DialogueManager.GetInstance().openShop && !dialoguePanel.activeSelf)
         {
             inventoryPanel.transform.position = inventoryNewPosition.transform.position;
             inventoryInCanvas.inventoryByName.Add(shopItems.shopName, shopItems.shopInventory);
@@ -45,7 +47,7 @@ public class ShopTrigger : MonoBehaviour
             playerMovement.enabled = false;
             DialogueManager.GetInstance().openShop = false;
         }
-        else if (shopPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        else if (shopPanel.activeSelf && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E)))
         {
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
             inventoryInCanvas.inventoryByName.Remove(shopItems.shopName);

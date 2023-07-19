@@ -64,9 +64,17 @@ public class QuestboardTrigger : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         scrollbar.value = 1f;
         float textLength = completedQuestText.textBounds.size.y;
-        float panelLength = 1325.748f;
-        completedQuestText.rectTransform.offsetMin = new
-            Vector2(completedQuestText.rectTransform.offsetMin.x, -795.7479f + panelLength - textLength - 4);
+        if (textLength <= 480)
+        {
+            completedQuestText.rectTransform.offsetMin = new
+            Vector2(completedQuestText.rectTransform.offsetMin.x, 0);
+        }
+        else
+        {
+            float panelLength = 1325.748f;
+            completedQuestText.rectTransform.offsetMin = new
+                Vector2(completedQuestText.rectTransform.offsetMin.x, -795.7479f + panelLength - textLength - 4);
+        }
     }
 
     public void CloseQuestboard()

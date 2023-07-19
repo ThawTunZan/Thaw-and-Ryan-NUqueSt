@@ -37,58 +37,76 @@ public class Quest_UI : MonoBehaviour
 
     void Update()
     {
-        Setup();
+        ActiveQuestSetup();
         if (!playerItems.disableToolbar && Input.GetKeyDown(KeyCode.Q))
         {
             activeQuests.gameObject.SetActive(false);
             questPanel.SetActive(true);
             playerItems.disableToolbar = true;
             playerMovement.enabled = false;
+            Setup();
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            activeQuests.gameObject.SetActive(true);
-            questPanel.SetActive(false);
-            playerItems.disableToolbar = false;
-            playerMovement.enabled = true;
+            HideUI();
         }
     }
 
+    public void HideUI()
+    {
+        activeQuests.gameObject.SetActive(true);
+        questPanel.SetActive(false);
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
+    }
+
     void Setup()
+    {
+        for (int i = 0; i < questSlots.Count; i++)
+        {
+            if (playerQuests.questList.questSlots[i].count == 1)
+            {
+                questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
+                if (playerQuests.questList.questSlots[i].done)
+                {
+                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
+                }
+            }
+            else
+            {
+                questSlots[i].SetEmpty();
+            }
+        }
+    }
+
+    void ActiveQuestSetup()
     {
         if (playerTutorial.tutorialProgress >= 3)
         {
             activeQuests.text = "Active Quests:\n";
         }
         string tempQuests = "";
-        if (questSlots.Count == playerQuests.questList.questSlots.Count)
+        for (int i = 0; i < questSlots.Count; i++)
         {
-            for (int i = 0; i < questSlots.Count; i++)
+            if (playerQuests.questList.questSlots[i].count == 1)
             {
-                if (playerQuests.questList.questSlots[i].count == 1)
+                questSlots[i].QuestHandler(playerQuests.questList.questSlots[i]);
+                tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
+                if (!playerQuests.questList.questSlots[i].done)
                 {
-                    questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
-                    tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
-                    if (!playerQuests.questList.questSlots[i].done)
-                    {
-                        tempQuests += "Not ";
-                    }
-                    else
-                    {
-                        if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
-                        {
-                            tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
-                            playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
-                            playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
-                        }
-                        questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
-                    }
-                    tempQuests += "Done\n";
+                    tempQuests += "Not ";
                 }
                 else
                 {
-                    questSlots[i].SetEmpty();
+                    if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
+                    {
+                        tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
+                        playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
+                        playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
+                    }
+                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
                 }
+                tempQuests += "Done\n";
             }
         }
         activeQuests.text += tempQuests;

@@ -72,11 +72,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void ChangeListState()
     {
-        string currScene = SceneManager.GetActiveScene().name;
-        EnemySpawner enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-        int enemyListIndex = enemySpawner.listOfEnemySceneNames.FindIndex(x => x == currScene);
-        string enemyNameInList = gameObject.name;
-        int enemyIndexInList = enemySpawner.listOfEnemyNames[enemyListIndex].FindIndex(x => x == enemyNameInList);
-        enemySpawner.listOfEnemyStates[enemyListIndex][enemyIndexInList] = 0;
+        if (GameObject.Find("EnemySpawner") != null && gameObject.transform.parent != null)
+        {
+            string currScene = SceneManager.GetActiveScene().name;
+            EnemySpawner enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+            int enemyListIndex = enemySpawner.listOfEnemySceneNames.FindIndex(x => x == currScene);
+            string enemyNameInList = gameObject.name;
+            int enemyIndexInList = enemySpawner.listOfEnemyNames[enemyListIndex].FindIndex(x => x == enemyNameInList);
+            enemySpawner.listOfEnemyStates[enemyListIndex][enemyIndexInList] = 0;
+        }
     }
 }

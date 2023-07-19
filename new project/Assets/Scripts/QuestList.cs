@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Ink.Runtime;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class QuestList
@@ -12,6 +13,7 @@ public class QuestList
     {
         public int count;
         public string questName;
+        public string questNPCName;
         public string questDescription;
         public bool done;
         public float gpaReward;
@@ -45,6 +47,10 @@ public class QuestList
                 requireItems.Add(new Dictionary<string, int> { { "Tomato", 2 } });
                 gpaReward = 10;
             }
+            if (quest_name == "MA1508E")
+            {
+                gpaReward = 20;
+            }
             if (quest_name == "HSA1000")
             {
                 placesToVisit.Add("Cave_1");
@@ -64,6 +70,10 @@ public class QuestList
             {
                 placesToVisit.Add("Village");
                 gpaReward = 10;
+            }
+            if (quest_name == "PC1201")
+            {
+                gpaReward = 20;
             }
             if (quest_name == "CS1010")
             {
@@ -99,6 +109,7 @@ public class QuestList
                 GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
                 gpaReward = 30;
             }
+            questNPCName = DialogueManager.GetInstance().localNPCName;
         }
     }
 

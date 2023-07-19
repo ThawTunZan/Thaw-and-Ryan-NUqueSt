@@ -104,7 +104,7 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
     {
         if (playerQuests.cs1231Progress >= cs1231Progress && hasQuest)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (playerQuests.questList.questSlots[i].questName == "CS1231")
                 {

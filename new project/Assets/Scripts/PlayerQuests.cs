@@ -26,7 +26,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
         {
-            questList = new QuestList(5);
+            questList = new QuestList(6);
             questList = GameManager.instance.questList;
 
             cs1010Progress = GameManager.instance.cs1010Progress;
@@ -113,7 +113,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     private bool SearchForQuest(string questName)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (questList.questSlots[i].questName == questName)
             {
@@ -154,7 +154,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        questList = new QuestList(5);
+        questList = new QuestList(6);
         questList = data.questList;
 
         cs1010Progress = data.cs1010Progress;

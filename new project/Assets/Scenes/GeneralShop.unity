@@ -8226,6 +8226,7 @@ MonoBehaviour:
   dropPanel: {fileID: 1218899266}
   shopAmountPanel: {fileID: 1962686401}
   slotBlocker: {fileID: 701968213}
+  dialoguePanel: {fileID: 2037974643}
 --- !u!1 &327534323
 GameObject:
   m_ObjectHideFlags: 0
@@ -18841,25 +18842,10 @@ MonoBehaviour:
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
-  dayChecker: 0
-  cave1RockNames: []
-  cave1aRockNames: []
-  cave1bRockNames: []
-  cave2aRockNames: []
-  cave3aRockNames: []
-  cave4aRockNames: []
-  dcave1RockNames: []
-  dcave1aRockNames: []
-  dcave2aRockNames: []
-  cave1RockStates: 
-  cave1aRockStates: 
-  cave1bRockStates: 
-  cave2aRockStates: 
-  cave3aRockStates: 
-  cave4aRockStates: 
-  dcave1RockStates: 
-  dcave1aRockStates: 
-  dcave2aRockStates: 
+  rockDayChecker: 0
+  listOfRockSceneNames: []
+  enemyDayChecker: 0
+  listOfEnemySceneNames: []
   hours: 0
   minutes: 0
   seconds: 0
@@ -31235,6 +31221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 2037974643}
   dialogueText: {fileID: 864598564}
+  dialogueButton: {fileID: 350681738}
   loadGlobalsJSON: {fileID: 4900000, guid: 61b25e01ed43776438c813282de8065d, type: 3}
   choices:
   - {fileID: 1584568625}

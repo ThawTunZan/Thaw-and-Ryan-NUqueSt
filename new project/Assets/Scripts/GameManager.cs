@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        instance.questList = new QuestList(5);
+        instance.questList = new QuestList(6);
 
         instance.inventory = new Inventory("Inventory", 21);
         instance.toolbar = new Inventory("Toolbar", 7);
