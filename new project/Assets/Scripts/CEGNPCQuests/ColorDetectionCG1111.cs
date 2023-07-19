@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColorDetectionCG1111 : MonoBehaviour
 {
-    public CompleteCg1111A questComplete;
+    public CompleteCEGQuest questComplete;
     public string colorName;
     public bool hasVisited;
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class ColorDetectionCG1111 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("robot") && SameColor(colorName) && !hasVisited)
+        if (collision.CompareTag("robot")  && !hasVisited)
         {
             questComplete.colorsDetected.Add(colorName);
             hasVisited = true;

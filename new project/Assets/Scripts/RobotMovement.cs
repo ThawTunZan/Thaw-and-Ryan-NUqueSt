@@ -9,8 +9,8 @@ using UnityEngine.InputSystem;
 public class RobotMovement : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 movementInput;
-    private SpriteRenderer spriteRenderer;
+    public Vector2 movementInput;
+    public SpriteRenderer spriteRenderer;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>(); //to check for collision
     public ContactFilter2D movementFilter;
     public float collisionOffset = 0.05f;
@@ -21,7 +21,7 @@ public class RobotMovement : MonoBehaviour
     public Sprite downFacingSprite;
     public Sprite upFacingSprite;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -57,7 +57,7 @@ public class RobotMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public virtual void Update()
     {
         //executed if there is a player keyboard input, the subsequent ifs are to slide along an obstacle
         if (movementInput != Vector2.zero)

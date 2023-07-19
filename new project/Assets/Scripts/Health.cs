@@ -59,7 +59,7 @@ public class Health : MonoBehaviour, IDataPersistence
 
     private void OnTriggerEnter2D(Collider2D collision)
     { 
-        if (collision.gameObject.CompareTag("Enemy") && !hasCollided && collision.gameObject.GetComponent<Animator>().GetBool("alive"))
+        if (collision.gameObject.CompareTag("Enemy") && !hasCollided)
         {
             health -= 10;
             healthBar.SetHealth(health);
