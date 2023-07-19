@@ -10398,9 +10398,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1773370766}
     - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720208136575357073, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: enemyObject
       value: 
       objectReference: {fileID: 477188954}
+    - target: {fileID: 5938833953888796748, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -10467,7 +10475,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 477188953}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477188954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a370b98f16165a445926e9f8fd3c8314, type: 3}
   m_Name: 
@@ -25617,25 +25625,10 @@ MonoBehaviour:
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
-  dayChecker: 0
-  cave1RockNames: []
-  cave1aRockNames: []
-  cave1bRockNames: []
-  cave2aRockNames: []
-  cave3aRockNames: []
-  cave4aRockNames: []
-  dcave1RockNames: []
-  dcave1aRockNames: []
-  dcave2aRockNames: []
-  cave1RockStates: 
-  cave1aRockStates: 
-  cave1bRockStates: 
-  cave2aRockStates: 
-  cave3aRockStates: 
-  cave4aRockStates: 
-  dcave1RockStates: 
-  dcave1aRockStates: 
-  dcave2aRockStates: 
+  rockDayChecker: 0
+  listOfRockSceneNames: []
+  enemyDayChecker: 0
+  listOfEnemySceneNames: []
   hours: 0
   minutes: 0
   seconds: 0
@@ -49257,7 +49250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexOfScene: 12
-  playerPosition: {x: 4.838, y: 2.797, z: 0}
+  playerPosition: {x: 1.966, y: 2.766, z: 0}
   storePlayerPosition: {fileID: 11400000, guid: 05bdb6af9153e774bad49685d1d06b5c, type: 2}
 --- !u!61 &1322385196
 BoxCollider2D:
@@ -49293,7 +49286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322385194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.139, y: 0, z: 0}
+  m_LocalPosition: {x: 6.137, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

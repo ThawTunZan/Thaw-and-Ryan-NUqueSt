@@ -42,6 +42,9 @@ VAR EveShopQuestStarted = false
 VAR EveShopQuestName = ""
 VAR EveShopQuestDesc = ""
 VAR EveShopValidTime = true
+VAR questDTK1234Done = false
+VAR questHSI1000Done = false
+VAR questHSS1000Done = false
 
 
 #Nerd
@@ -88,11 +91,6 @@ VAR CEGQuestStarted = false
 VAR CEGQuestName = ""
 VAR CEGQuestDesc = ""
 VAR CEGValidTime = true
-
-
-#Artist
-VAR questDTK1000Done = false
-VAR questEG2501Done = false
 
 
 

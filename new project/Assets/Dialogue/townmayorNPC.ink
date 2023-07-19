@@ -22,7 +22,7 @@ NUS Town Mayor: May I know your name?
 Me: I'm Noah.
 NUS Town Mayor: Nice to meet you, Noah. 
 NUS Town Mayor: If you have any questions, you can ask my secretary.
-NUS Town Mayor: She's in the living room. Take the stairs and head left.
+NUS Town Mayor: She's in the living room downstairs.
 NUS Town Mayor: I have to return to my work now. Goodbye.
 
 ~ tutorialMayorSpoken = true

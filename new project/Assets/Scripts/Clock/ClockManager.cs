@@ -174,7 +174,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         {
             timeText.color = Color.red;
             goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
-            if (!SFXManager.instance.hasPlayedWarning)
+            if (!SFXManager.instance.hasPlayedWarning && playerTutorial.tutorialProgress >= 3)
             {
                 SFXManager.instance.audioSource.clip = SFXManager.instance.audioClips[3];
                 SFXManager.instance.audioSource.Play();

@@ -155,7 +155,7 @@ public class Tutorial_UI : MonoBehaviour
             //removeItemPanel.SetActive(true);
             playerMovement.movespeed = originalSpeed;
             attackSwordDone = true;
-            slimeMovement.enabled = true;
+            //slimeMovement.enabled = true;
             panelText.text = "Get rid of the slime blocking the way";
         }
     }
