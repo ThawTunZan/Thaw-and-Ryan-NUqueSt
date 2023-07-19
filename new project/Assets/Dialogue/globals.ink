@@ -45,7 +45,7 @@ VAR EveShopValidTime = true
 VAR questDTK1234Done = false
 VAR questHSI1000Done = false
 VAR questHSS1000Done = false
-
+VAR HSI1000FlowersFound = 0
 
 #Nerd
 VAR questCS1010Done = false

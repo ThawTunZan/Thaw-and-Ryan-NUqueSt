@@ -116,6 +116,9 @@ public class QuestList
             }
             if (quest_name == "HSI1000")
             {
+                placesToVisit.Add("Desert");
+                placesToVisit.Add("Cave_2a");
+                placesToVisit.Add("NorthForest");
                 gpaReward = 30;
             }
             if (quest_name == "HSS1000")
