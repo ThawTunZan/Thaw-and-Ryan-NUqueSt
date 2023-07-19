@@ -19,7 +19,7 @@ Eve: Hi there! What can I get for you?
 === HSI1000Convo ===
 {(!EveShopQuestDone):
     Eve: 
-    -> start_quest("DTK1234", "Help me look for a unique flower in the desert, the caves and the forest!")
+    -> start_quest("HSI1000", "Help me look for a unique flower in the desert, the caves and the forest!")
     ->END
     }
     ~ QuestCompleted()

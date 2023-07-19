@@ -47,11 +47,16 @@ public class Quest_UI : MonoBehaviour
         }
         else if (playerItems.disableToolbar && questPanel.activeSelf && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
         {
-            activeQuests.gameObject.SetActive(true);
-            questPanel.SetActive(false);
-            playerItems.disableToolbar = false;
-            playerMovement.enabled = true;
+            HideUI();
         }
+    }
+
+    public void HideUI()
+    {
+        activeQuests.gameObject.SetActive(true);
+        questPanel.SetActive(false);
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
     }
 
     void Setup()

@@ -12,18 +12,25 @@ public class QuestSlot_UI : MonoBehaviour
     public TextMeshProUGUI questDescriptionText;
     public Image questNPCImage;
     public string questNPCName;
+    public Scrollbar scrollbar;
     public GameObject questStatus;
 
     public void SetItem(QuestList.QuestSlot questSlot)
     {
         if (questSlot != null)
         {
+            
+
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
             questNPCName = questSlot.questNPCName;
             questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
             questNPCImage.color = new Color(1, 1, 1, 1);
             QuestHandler(questSlot);
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(questDescriptionText.rectTransform);
+            Canvas.ForceUpdateCanvases();
+            scrollbar.value = 1f;
         }
     }
 
