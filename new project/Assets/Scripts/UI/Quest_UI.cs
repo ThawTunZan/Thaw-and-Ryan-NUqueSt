@@ -61,34 +61,31 @@ public class Quest_UI : MonoBehaviour
             activeQuests.text = "Active Quests:\n";
         }
         string tempQuests = "";
-        if (questSlots.Count == playerQuests.questList.questSlots.Count)
+        for (int i = 0; i < questSlots.Count; i++)
         {
-            for (int i = 0; i < questSlots.Count; i++)
+            if (playerQuests.questList.questSlots[i].count == 1)
             {
-                if (playerQuests.questList.questSlots[i].count == 1)
+                questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
+                tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
+                if (!playerQuests.questList.questSlots[i].done)
                 {
-                    questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
-                    tempQuests += playerQuests.questList.questSlots[i].questName + " - ";
-                    if (!playerQuests.questList.questSlots[i].done)
-                    {
-                        tempQuests += "Not ";
-                    }
-                    else
-                    {
-                        if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
-                        {
-                            tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
-                            playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
-                            playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
-                        }
-                        questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
-                    }
-                    tempQuests += "Done\n";
+                    tempQuests += "Not ";
                 }
                 else
                 {
-                    questSlots[i].SetEmpty();
+                    if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
+                    {
+                        tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
+                        playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
+                        playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
+                    }
+                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
                 }
+                tempQuests += "Done\n";
+            }
+            else
+            {
+                questSlots[i].SetEmpty();
             }
         }
         activeQuests.text += tempQuests;

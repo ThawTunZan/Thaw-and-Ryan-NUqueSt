@@ -66,7 +66,7 @@ public class GameData
        // gameScene = 3;
         maxHealth = 100;
 
-        questList = new QuestList(5);
+        questList = new QuestList(6);
 
         inventory = new Inventory("Inventory", 21);
         toolbar = new Inventory("Toolbar", 7);

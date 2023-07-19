@@ -36,7 +36,7 @@ public class ToCheckVisit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (playerQuests.questList.questSlots[i].questName == questName && playerQuests.questList.questSlots[i].done == false)
                 {

@@ -122,7 +122,7 @@ public class NQueensPuzzle : WallPuzzle
     {
         if (playerQuests.cs2040Progress > cs2040Progress && hasQuest)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (playerQuests.questList.questSlots[i].questName == "CS2040")
                 {

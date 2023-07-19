@@ -1,24 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer;
 
 
 public class QuestSlot_UI : MonoBehaviour
 {
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI questDescriptionText;
+    public Image questNPCImage;
     public string questNPCName;
     public GameObject questStatus;
 
     public void SetItem(QuestList.QuestSlot questSlot)
     {
-
         if (questSlot != null)
         {
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
             questNPCName = questSlot.questNPCName;
+            questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
+            questNPCImage.color = new Color(1, 1, 1, 1);
             QuestHandler(questSlot);
         }
     }
@@ -28,6 +32,8 @@ public class QuestSlot_UI : MonoBehaviour
         questNameText.text = "";
         questDescriptionText.text = "";
         questNPCName = "";
+        questNPCImage.sprite = null;
+        questNPCImage.color = new Color(1, 1, 1, 0);
     }
 
     // add quests completion requirement here

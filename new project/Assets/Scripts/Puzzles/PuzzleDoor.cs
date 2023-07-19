@@ -113,7 +113,7 @@ public class PuzzleDoor : MonoBehaviour
     {
         if (playerQuests.cs1010Progress > 2 && hasQuest)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (playerQuests.questList.questSlots[i].questName == "CS1010")
                 {
