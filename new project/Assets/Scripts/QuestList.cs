@@ -91,10 +91,6 @@ public class QuestList
             {
                 gpaReward = 50;
             }
-            if (quest_name == "PC1201")
-            {
-                gpaReward = 30;
-            }
             if (quest_name == "CG1111A")
             {
                 gpaReward = 30;

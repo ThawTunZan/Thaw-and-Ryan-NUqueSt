@@ -18,10 +18,10 @@ TeeHaw: Oh! Hi there!
 TeeHaw: OK!!! The final product is done!!!!
 TeeHaw: This will be the final request >.< !!!
 TeeHaw: The final test will be to check whether all the features of my robot are present!
-TeeHaw: We will be running similar tests as the last time BUTTTTT this time you will have to find out the color that my robot detects using the given RGB values!
-TeeHaw: It will be a maze obstacle where it will have to navigate through! Don't worry! You got this!
+TeeHaw: We will be running similar tests as the last time BUTTTTT this time you will not be able to see the maze, but only have the GPS in the robot!
+TeeHaw: Don't worry! You got this!
 TeeHaw: So do you think you can help me with the final test??
--> start_quest("CG2111A", "Test my final product at one of the levels in the cave of the desert west of this village!")
+-> start_quest("CG2111A", "Test my final product at the third level in the cave of the desert west of this village!")
 ->END
 }
 ~ QuestCompleted()

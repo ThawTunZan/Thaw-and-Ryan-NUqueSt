@@ -12,7 +12,6 @@ VAR validTime = true
 #Weaponsmith
 VAR questMA1511Done = false
 VAR questMA1512Done = false
-VAR questMA1513Done = false
 VAR questMA1508EDone = false
 VAR WeaponSmithQuestDone = false
 VAR WeaponSmithQuestStarted = false
@@ -61,10 +60,6 @@ VAR NerdValidTime = true
 
 #Geologist
 VAR questGEA1000Done = false
-VAR questGE1101E = false
-VAR questGEC1012 = false
-VAR PF1101 = false
-VAR DTK1000 = false
 VAR questHSA1000Done = false
 VAR questGESS1001Done = false
 VAR GeologistQuestDone = false
