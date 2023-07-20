@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Ink.Runtime;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class QuestList
@@ -15,8 +13,11 @@ public class QuestList
         public string questName;
         public string questNPCName;
         public string questDescription;
+        public string questSceneName;
         public bool done;
         public float gpaReward;
+        public string questItemRequired;
+        public int questItemAmount;
 
         // add more requirements here for different quests
         public int slimesRequired;
@@ -27,6 +28,7 @@ public class QuestList
         {
             questName = quest_name;
             questDescription = quest_description;
+            questSceneName = SceneManager.GetActiveScene().name;
             QuestHandler(quest_name);
             count++;
         }
@@ -108,6 +110,8 @@ public class QuestList
             if (quest_name == "DTK1234")
             {
                 GameObject.Find("Player").GetComponent<PlayerQuests>().dtk1234Collected[0] = 1;
+                questItemRequired = "Leather Piece";
+                questItemAmount = 3;
                 gpaReward = 10;
             }
             if (quest_name == "HSI1000")
