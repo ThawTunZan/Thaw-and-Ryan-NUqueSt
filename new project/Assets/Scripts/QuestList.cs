@@ -65,8 +65,9 @@ public class QuestList
             }
             if (quest_name == "GEA1000")
             {
-                requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
-                gpaReward = 20;
+                placesToVisit.Add("DCave_2a");
+                //requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
+                gpaReward = 30;
             }
             if (quest_name == "PC1101")
             {
@@ -126,10 +127,7 @@ public class QuestList
                 placesToVisit.Add("ArtistHouse");
                 gpaReward = 10;
             }
-            if (testing == false)
-            {
-                questNPCName = DialogueManager.GetInstance().localNPCName;
-            }
+            questNPCName = DialogueManager.GetInstance().localNPCName;
         }
     }
 
@@ -151,6 +149,35 @@ public class QuestList
             if (questSlot.count == 0)
             {
                 questSlot.AddItem(questName, questDescription);
+                return;
+            }
+        }
+    }
+
+    public void RemoveItemFromPlayer(string itemName, int amountToRemove)
+    {
+        if (itemName == "")
+        {
+            return;
+        }
+
+        Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
+        Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
+        for (int i = 0; i < 21; i++)
+        {
+            if (inventory.slots[i].itemName == itemName)
+            {
+                inventory.Remove(i, amountToRemove);
+                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
+                return;
+            }
+        }
+        for (int i = 0; i < 7; i++)
+        {
+            if (toolbar.slots[i].itemName == itemName)
+            {
+                toolbar.Remove(i, amountToRemove);
+                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
                 return;
             }
         }

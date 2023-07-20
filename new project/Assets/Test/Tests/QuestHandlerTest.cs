@@ -18,8 +18,8 @@ public class QuestHandlerTest
     {
         questList = new QuestList(6);
         questSlotTest = questList.questSlots[0];
-        questSlotTest.testing = true;
-        questList.questSlots[0].testing = true;
+        //questSlotTest.testing = true;
+        //questList.questSlots[0].testing = true;
     }
     // A Test behaves as an ordinary method
     [Test]
