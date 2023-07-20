@@ -105,7 +105,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "DCave_1") // For EG1311
         {
-            if (eg1311Progress == 0)
+            if (eg1311Progress == 0 || cg2111aProgress == 0)
             {
                 GameObject.Find("EG1311Collider").SetActive(false);
             }

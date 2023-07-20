@@ -1,64 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-[System.Serializable]
-[SerializeField]
-public class RobotMovement : MonoBehaviour
+public class CG2111ARobot : RobotMovement
 {
-    [SerializeField]
-    public Vector2 movementInput;
-    public SpriteRenderer spriteRenderer;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>(); //to check for collision
-    public ContactFilter2D movementFilter;
-    public float collisionOffset = 0.05f;
-    private Rigidbody2D rb;
-    private float movespeed = 0.3f;
+    public RectTransform gpsTracker;
+    private float scaleX;
+    private float scaleY;
 
-    public Sprite sideFacingSprite;
-    public Sprite downFacingSprite;
-    public Sprite upFacingSprite;
-    // Start is called before the first frame update
-    public virtual void Start()
+    public override void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
-    }
-                                        
-    void OnMove(InputValue movementValue)
-    {
-        movementInput = movementValue.Get<Vector2>();
+        base.Start();
+        scaleX = 368.8f / (-0.43f - (-1.97f));
+        scaleY = 336.2f / (1.08f - (-0.43f));
     }
 
-    protected bool TryMove(Vector2 direction)
+    public override void Update()
     {
-        if (direction != Vector2.zero)
-        {
-            int count = rb.Cast(
-            direction,
-            movementFilter,
-            castCollisions,
-            movespeed * Time.fixedDeltaTime + collisionOffset);
-            if (count == 0)
-            {
-                rb.MovePosition(rb.position + direction * movespeed * Time.fixedDeltaTime);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
+        Vector2 tempVect = new Vector2();
+        tempVect.x = scaleX * (gameObject.transform.position.x + 1.97f);
+        tempVect.y = scaleY * (gameObject.transform.position.y + 0.43f);
+        gpsTracker.anchoredPosition = tempVect;
 
-    public virtual void Update()
-    {
         //executed if there is a player keyboard input, the subsequent ifs are to slide along an obstacle
         if (movementInput != Vector2.zero)
         {
@@ -86,9 +49,9 @@ public class RobotMovement : MonoBehaviour
         }
         else if (movementInput.x > 0)
         {
-    
+
             spriteRenderer.flipX = false;
-    
+
         }
         else
         {

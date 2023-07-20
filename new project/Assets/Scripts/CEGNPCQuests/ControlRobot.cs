@@ -12,6 +12,7 @@ public class ControlRobot : MonoBehaviour
     private RobotMovement robotMovement;
     private GameObject robot;
     public GameObject questPanel;
+    public GameObject gpsPanel;
     public GameObject timerPanel;
     public float timer;
     public float givenTimer;
@@ -38,7 +39,7 @@ public class ControlRobot : MonoBehaviour
         }
         else if (questName == "CG2111A")
         {
-            timer = 30f;
+            timer = 45f;
         }
         TimerOn = false;
 
@@ -69,6 +70,7 @@ public class ControlRobot : MonoBehaviour
             }
         }
     }
+
     private void OpenPanels()
     {
         questPanel.SetActive(true);
@@ -83,6 +85,10 @@ public class ControlRobot : MonoBehaviour
         {
             virtualCamera.Follow = robot.transform;
         }
+        else
+        {
+            gpsPanel.SetActive(true);
+        }
         TimerOn = true;
         if (questName == "CG1111A" || questName == "CG2111A")
         {
@@ -95,6 +101,10 @@ public class ControlRobot : MonoBehaviour
 
     public void NoPressed()
     {
+        if (gpsPanel != null)
+        {
+            gpsPanel.SetActive(false);
+        }
         questPanel.SetActive(false);
         playerItems.disableToolbar = false;
         playerMovement.enabled = true;
@@ -115,11 +125,28 @@ public class ControlRobot : MonoBehaviour
         {
             robot.transform.position = new Vector2(-1.933f, -0.352f);
             GameObject player = GameObject.Find("Player");
+            playerItems.disableToolbar = false;
             playerMovement.enabled = true;
             robotMovement.enabled = false;
             virtualCamera.Follow = player.transform;
             TimerOn = false;
             timer = givenTimer;
+            if (gpsPanel != null)
+            {
+                gpsPanel.SetActive(false);
+            }
+            if (GameObject.Find("ColoredTiles") != null)
+            {
+                GameObject.Find("YellowTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("RedTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("BlueTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("PurpleTile").GetComponent<SpriteRenderer>().sprite = null;
+            }
+            if (GameObject.Find("ShootingBoard") != null)
+            {
+                GameObject.Find("ShootingBoard").GetComponent<SpriteRenderer>().sprite = null;
+            }
+            questComplete.colorsDetected.Clear();
             timerPanel.SetActive(false);
             //playerMovement.movespeed = 1f;
         }

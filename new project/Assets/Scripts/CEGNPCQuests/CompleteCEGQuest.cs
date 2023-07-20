@@ -13,6 +13,7 @@ public class CompleteCEGQuest : MonoBehaviour
     private RobotMovement robotMovement;
     private GameObject player;
     private bool allColorsDetected;
+    public GameObject gpsPanel;
     public GameObject timerPanel;
     public float timer;
 
@@ -89,13 +90,14 @@ public class CompleteCEGQuest : MonoBehaviour
                 else if (playerQuest.questList.questSlots[i].questName == "CG2111A" && allColorsDetected)
                 {
                     controlRobot.TimerOn = false;
-                    timer = 60f;
+                    timer = 45f;
                     TextMeshProUGUI timerText = timerPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
                     timerText.text = timer.ToString();
                     playerQuest.questList.questSlots[i].done = true;
                     playerItems.disableToolbar = false;
                     playerMovement.enabled = true;
                     robotMovement.enabled = false;
+                    gpsPanel.SetActive(false);
                     timerPanel.SetActive(false);
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].questStatus.SetActive(true);
