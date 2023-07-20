@@ -19,6 +19,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<int> dtk1234Collected = new List<int>() { 0, 0, 0, 0 };
+
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
 
@@ -34,21 +36,27 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs2030Progress = GameManager.instance.cs2030Progress;
             cs2040Progress = GameManager.instance.cs2040Progress;
             cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
+
             ma1511Progress = GameManager.instance.ma1511Progress;
+
+            eg1311Progress = GameManager.instance.eg1311Progress;
+            cg2111aProgress = GameManager.instance.cg2111aProgress;
+
+            dtk1234Collected = GameManager.instance.dtk1234Collected;
 
             completedQuestNames = GameManager.instance.completedQuestNames;
             completedQuestDescs = GameManager.instance.completedQuestDescs;
         }
-        string currScene = SceneManager.GetActiveScene().name;
-        CheckQuestProgress(currScene);
+        CheckQuestProgress();
     }
 
     /*
      * Certain scenes will look different if specific quests are completed. For example, in Cave_1a, both doors will be opened and
      * the wall puzzle will be solved whenever the player transits to that scene if they have already completed the CS1010 puzzle.
      */
-    private void CheckQuestProgress(string currScene)
+    private void CheckQuestProgress()
     {
+        string currScene = SceneManager.GetActiveScene().name;
         if (currScene == "Cave_1")
         {
             AllowEntryIfQuestStarted("CS1010", cs1010Progress, "CS1010Cover");
@@ -95,19 +103,23 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
                 GameObject.Find("MA1511Collider").SetActive(false);
             }
         }
-        else if (currScene == "ToDCave_1") // For EG1311
+        else if (currScene == "DCave_1") // For EG1311
         {
-            if (eg1311Progress == 0)
+            if (eg1311Progress == 0 || cg2111aProgress == 0)
             {
                 GameObject.Find("EG1311Collider").SetActive(false);
             }
         }
-        else if (currScene == "ToDCave_1a") // For CG2111A
+        else if (currScene == "DCave_1a") // For CG2111A
         {
             if (cg2111aProgress == 0)
             {
                 GameObject.Find("CG2111ACollider").SetActive(false);
             }
+        }
+        else if (currScene == "ArtistHouse") // For DTK1234
+        {
+            GameObject.Find("DTK1234Quest").GetComponent<DTK1234Quest>().ChangeActive(dtk1234Collected);
         }
     }
 
@@ -148,6 +160,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         GameManager.instance.ma1511Progress = ma1511Progress;
 
+        GameManager.instance.eg1311Progress = eg1311Progress;
+        GameManager.instance.cg2111aProgress = cg2111aProgress;
+
+        GameManager.instance.dtk1234Collected = dtk1234Collected;
+
         GameManager.instance.completedQuestNames = completedQuestNames;
         GameManager.instance.completedQuestDescs = completedQuestDescs;
     }
@@ -165,6 +182,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         ma1511Progress = data.ma1511Progress;
 
+        eg1311Progress = data.eg1311Progress;
+        cg2111aProgress = data.cg2111aProgress;
+
+        dtk1234Collected = data.dtk1234Collected;
+
         completedQuestNames = data.completedQuestNames;
         completedQuestDescs = data.completedQuestDescs;
     }
@@ -180,6 +202,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2040SeenBefore = cs2040SeenBefore;
 
         data.ma1511Progress = ma1511Progress;
+
+        data.eg1311Progress = eg1311Progress;
+        data.cg2111aProgress = cg2111aProgress;
+
+        data.dtk1234Collected = dtk1234Collected;
 
         data.completedQuestNames = completedQuestNames;
         data.completedQuestDescs = completedQuestDescs;

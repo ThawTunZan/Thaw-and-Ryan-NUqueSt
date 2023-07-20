@@ -52,7 +52,7 @@ Galileo: Oh hey there!
 
 === in_quest ===
 * [What am I supposed to do again?]
-{PhysicistQuestDesc}-> DONE
+Galileo: {PhysicistQuestDesc}-> DONE
 * [Leave]
   Galileo: Goodbye.-> DONE
 

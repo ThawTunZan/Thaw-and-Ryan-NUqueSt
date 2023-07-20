@@ -98,6 +98,10 @@ public class ChestItems : MonoBehaviour, IDataPersistence
             {
                 directory = "Weapons/";
             }
+            else if (slot.itemType == "General")
+            {
+                directory = "General/";
+            }
             slot.icon = Resources.Load<Sprite>(directory + itemName.Replace(" ", "_"));
         }
     }

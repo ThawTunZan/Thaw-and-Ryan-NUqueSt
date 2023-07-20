@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static Cinemachine.CinemachineFreeLook;
 
 public class CompleteCEGQuest : MonoBehaviour
 {
+    private PlayerItems playerItems;
     private PlayerQuests playerQuest;
     private PlayerMovement playerMovement;
     private CinemachineVirtualCamera virtualCamera;
     private RobotMovement robotMovement;
     private GameObject player;
     private bool allColorsDetected;
+    public GameObject gpsPanel;
     public GameObject timerPanel;
     public float timer;
 
@@ -20,10 +21,11 @@ public class CompleteCEGQuest : MonoBehaviour
     public bool shotLanded; 
 
     public List<string> colorsDetected;
-    // Start is called before the first frame update
-    public virtual void Start()
+
+    void Start()
     {
         shotLanded = false;
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerQuest = GameObject.Find("Player").GetComponent<PlayerQuests>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
@@ -46,7 +48,8 @@ public class CompleteCEGQuest : MonoBehaviour
             allColorsDetected = false;
         }
     }
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("robot"))
         {
@@ -59,13 +62,14 @@ public class CompleteCEGQuest : MonoBehaviour
                     TextMeshProUGUI timerText = timerPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
                     timerText.text = timer.ToString();
                     playerQuest.questList.questSlots[i].done = true;
+                    playerItems.disableToolbar = false;
                     playerMovement.enabled = true;
                     robotMovement.enabled = false;
                     virtualCamera.Follow = player.transform;
                     timerPanel.SetActive(false);
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].questStatus.SetActive(true);
-                    playerMovement.movespeed = 1f;
+                    //playerMovement.movespeed = 1f;
                 }
                 else if (playerQuest.questList.questSlots[i].questName == "EG1311" && shotLanded)
                 {
@@ -74,13 +78,30 @@ public class CompleteCEGQuest : MonoBehaviour
                     TextMeshProUGUI timerText = timerPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
                     timerText.text = timer.ToString();
                     playerQuest.questList.questSlots[i].done = true;
+                    playerItems.disableToolbar = false;
                     playerMovement.enabled = true;
                     robotMovement.enabled = false;
                     virtualCamera.Follow = player.transform;
                     timerPanel.SetActive(false);
                     Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                     quest_UI.questSlots[i].questStatus.SetActive(true);
-                    playerMovement.movespeed = 1f;
+                    //playerMovement.movespeed = 1f;
+                }
+                else if (playerQuest.questList.questSlots[i].questName == "CG2111A" && allColorsDetected)
+                {
+                    controlRobot.TimerOn = false;
+                    timer = 45f;
+                    TextMeshProUGUI timerText = timerPanel.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+                    timerText.text = timer.ToString();
+                    playerQuest.questList.questSlots[i].done = true;
+                    playerItems.disableToolbar = false;
+                    playerMovement.enabled = true;
+                    robotMovement.enabled = false;
+                    gpsPanel.SetActive(false);
+                    timerPanel.SetActive(false);
+                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
+                    quest_UI.questSlots[i].questStatus.SetActive(true);
+                    //playerMovement.movespeed = 1f;
                 }
             }
         }

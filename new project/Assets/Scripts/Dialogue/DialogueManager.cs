@@ -165,15 +165,23 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void QuestCompleted()
     {
-        for (int i = 0; i < 5; i += 1)
+        for (int i = 0; i < 6; i += 1)
         {
             if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
                 && player.questList.questSlots[i].questName != "")
             {
+                QuestSlot_UI questSlot = GameObject.Find("Quest").GetComponent<Quest_UI>().questSlots[i];
+                questSlot.RemoveItemFromPlayer(player.questList.questSlots[i].questItemRequired, 
+                    player.questList.questSlots[i].questItemAmount);
+                player.questList.questSlots[i].count = 0;
+                player.questList.questSlots[i].questNPCName = "";
                 player.questList.questSlots[i].questName = "";
                 player.questList.questSlots[i].questDescription = "";
+                player.questList.questSlots[i].questSceneName = "";
                 player.questList.questSlots[i].done = false;
-                player.questList.questSlots[i].count = 0;
+                player.questList.questSlots[i].gpaReward = 0;
+                player.questList.questSlots[i].questItemRequired = "";
+                player.questList.questSlots[i].questItemAmount = 0;
                 playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
                 Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
                 quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
@@ -266,6 +274,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             choosingOption = true;
             dialogueButton.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 

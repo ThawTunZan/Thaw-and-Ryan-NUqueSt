@@ -19,7 +19,7 @@ Sam: How can I help you?
 
 === in_quest ===
 * [What am I supposed to do again?]
-    {NerdQuestDesc}
+    Sam: {NerdQuestDesc}
     -> DONE
 * [Leave]
     Sam: Goodbye.
@@ -49,7 +49,7 @@ Sam: I should tell other villagers about how you are a great puzzle solver! Mayb
 Sam: Hey it's you again, my fav fellow quest enthusiast <3! 
 Sam: Yesterday, I was at on the fourth level of the cave looking for clues for more puzzles using my trusty magnifying glass and I discovered a strange house!
 Sam: This house had strange notes on the ground and I couldn't read it...
--> start_quest("CS2030", "Help me solve the maze in the fourth floor of the cave")
+-> start_quest("CS2030", "Help me solve the maze in the fourth floor of the cave!")
 -> END
 } 
 ~ QuestCompleted()
@@ -81,7 +81,7 @@ Sam: Thanks for the help! My brain is a bit too fuzzy for this... @_@
 Sam: Hey You must be the new kid in town! Have you explore the cave south of the village?
 Sam: There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics that works with something to do with AND Gates and For LOOPS... Hmmm
 Sam: Do you think you can help me solve it?
--> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south")
+-> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south!")
 ->END
 } #Quest completed response
 ~ QuestCompleted()

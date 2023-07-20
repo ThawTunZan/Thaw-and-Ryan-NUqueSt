@@ -304,7 +304,14 @@ public class Inventory_UI : MonoBehaviour
             itemNameText.text = clickedSlot.itemName;
             itemDescText.text = clickedSlot.itemDesc;
             itemDescScrollbar.interactable = true;
-            helpButton.interactable = true;
+            if (clickedSlot.itemType != "General")
+            {
+                helpButton.interactable = true;
+            }
+            else
+            {
+                helpButton.interactable = false;
+            }
             if (shopPanel.activeSelf)
             {
                 if (clickedSlot.inventoryName.Substring(0, 4) == "Shop")
@@ -323,13 +330,16 @@ public class Inventory_UI : MonoBehaviour
                 else
                 {
                     buyButton.interactable = false;
-                    sellButton.interactable = true;
-                    trashButton.interactable = true;
+                    if (clickedSlot.itemType != "General")
+                    {
+                        sellButton.interactable = true;
+                        trashButton.interactable = true;
+                    }
                 }
             }
             else
             {
-                if (SceneManager.GetActiveScene().name != "IntroTutorial")
+                if (SceneManager.GetActiveScene().name != "IntroTutorial" && clickedSlot.itemType != "General")
                 {
                     trashButton.interactable = true;
                 }

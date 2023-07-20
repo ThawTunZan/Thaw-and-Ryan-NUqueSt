@@ -7,17 +7,25 @@ public class ChangingLayerForTorch : MonoBehaviour
 {
     [SerializeField]
     SpriteRenderer torchRenderer;
-    // Start is called before the first frame update
+
     void Start()
     {
         torchRenderer = gameObject.GetComponentInParent<SpriteRenderer>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        torchRenderer.sortingOrder = 5;
+        if (collision.gameObject.tag == "Player")
+        {
+            torchRenderer.sortingOrder = 5;
+        }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        torchRenderer.sortingOrder = 7;
+        if (collision.gameObject.tag == "Player")
+        {
+            torchRenderer.sortingOrder = 15;
+        }
     }
 }

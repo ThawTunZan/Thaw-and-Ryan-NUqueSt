@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     public List<List<string>> listOfEnemyNames = new List<List<string>>();
     public List<List<int>> listOfEnemyStates = new List<List<int>>();
 
+    public List<int> dtk1234Collected = new List<int>() { 0, 0, 0, 0 };
+
     // for day and night system
     public float hours;
     public float minutes;

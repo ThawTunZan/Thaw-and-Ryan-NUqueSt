@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
-using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer;
-
 
 public class QuestSlot_UI : MonoBehaviour
 {
     public TextMeshProUGUI questNameText;
     public TextMeshProUGUI questDescriptionText;
     public Image questNPCImage;
-    public string questNPCName;
     public Scrollbar scrollbar;
     public GameObject questStatus;
 
@@ -24,8 +22,7 @@ public class QuestSlot_UI : MonoBehaviour
 
             questNameText.text = questSlot.questName;
             questDescriptionText.text = questSlot.questDescription;
-            questNPCName = questSlot.questNPCName;
-            questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questNPCName);
+            questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questSlot.questNPCName);
             questNPCImage.color = new Color(1, 1, 1, 1);
 
             questDescriptionText.text += "\n\nGPA Reward: " + questSlot.gpaReward;
@@ -54,7 +51,6 @@ public class QuestSlot_UI : MonoBehaviour
                     Vector2(questDescriptionText.rectTransform.offsetMin.x, 0f);
         questNameText.text = "";
         questDescriptionText.text = "";
-        questNPCName = "";
         questNPCImage.sprite = null;
         questNPCImage.color = new Color(1, 1, 1, 0);
     }
@@ -62,7 +58,7 @@ public class QuestSlot_UI : MonoBehaviour
     // add quests completion requirement here
     public void QuestHandler(QuestList.QuestSlot questSlot)
     {
-        PlayerQuests player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
         Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
         if (questSlot.done == true)
@@ -136,7 +132,8 @@ public class QuestSlot_UI : MonoBehaviour
                 }
             }
         }
-        if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101")
+        if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101" || questSlot.questName == "HSI1000"
+            || questSlot.questName == "HSS1000")
         {
             if (questSlot.placesToVisit.Count == 0)
             {
@@ -144,9 +141,71 @@ public class QuestSlot_UI : MonoBehaviour
                 questStatus.SetActive(true);
             }
         }
-        if (questSlot.questName == "CG1111A" && questSlot.done)
+        if (questSlot.questName == "DTK1234")
         {
-            questStatus.SetActive(true);
+            bool check = false;
+            for (int i = 0; i < 21; i++)
+            {
+                if (inventory.slots[i].itemName == questSlot.questItemRequired && inventory.slots[i].count >= questSlot.questItemAmount)
+                {
+                    if (questSlot.questName == "DTK1234")
+                    {
+                        playerQuests.dtk1234Collected[0] = 0;
+                    }
+                    questSlot.done = true;
+                    questStatus.SetActive(true);
+                    check = true;
+                    break;
+                }
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                if (toolbar.slots[i].itemName == questSlot.questItemRequired && toolbar.slots[i].count >= questSlot.questItemAmount)
+                {
+                    if (questSlot.questName == "DTK1234")
+                    {
+                        playerQuests.dtk1234Collected[0] = 0;
+                    }
+                    questSlot.done = true;
+                    questStatus.SetActive(true);
+                    check = true;
+                    break;
+                }
+            }
+            if (!check)
+            {
+                questSlot.done = false;
+                questStatus.SetActive(false);
+            }
+        }
+    }
+
+    public void RemoveItemFromPlayer(string itemName, int amountToRemove)
+    {
+        if (itemName == "")
+        {
+            return;
+        }
+
+        Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
+        Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
+        for (int i = 0; i < 21; i++)
+        {
+            if (inventory.slots[i].itemName == itemName)
+            {
+                inventory.Remove(i, amountToRemove);
+                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
+                return;
+            }
+        }
+        for (int i = 0; i < 7; i++)
+        {
+            if (toolbar.slots[i].itemName == itemName)
+            {
+                toolbar.Remove(i, amountToRemove);
+                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
+                return;
+            }
         }
     }
 }

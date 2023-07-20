@@ -7,24 +7,22 @@ public class ColorDetectionCG1111 : MonoBehaviour
     public CompleteCEGQuest questComplete;
     public string colorName;
     public bool hasVisited;
-    // Start is called before the first frame update
+
     void Start()
     {
         hasVisited = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("robot")  && !hasVisited)
+        if (collision.CompareTag("robot"))
         {
-            questComplete.colorsDetected.Add(colorName);
-            hasVisited = true;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Quest/villagePavement");
+            if (!hasVisited)
+            {
+                questComplete.colorsDetected.Add(colorName);
+                hasVisited = true;
+            }
         }
     }
 }

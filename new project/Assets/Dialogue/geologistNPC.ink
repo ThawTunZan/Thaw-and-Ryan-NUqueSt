@@ -43,7 +43,7 @@ Leo: Anyway, do you think you can help me with exploring the second level of the
 Leo: The place is a little bit too dangerous for me but I heard there is a corpse of a weird animal there! 
 Leo: It must have died from the S/U Monster
 Leo: Do you think you can help me find out what it is?
--> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave")
+-> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave.")
 -> END
 }
 ~ QuestCompleted()
@@ -79,7 +79,7 @@ Leo: Anyway, since you are such a reliable neighbour I will contact you when I n
     
 === in_quest ===
 * [What am I supposed to do again?]
-    {GeologistQuestDesc}
+    Leo: {GeologistQuestDesc}
     -> DONE
 * [Leave]
     Leo: Goodbye.

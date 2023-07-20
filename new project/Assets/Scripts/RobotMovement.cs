@@ -32,7 +32,7 @@ public class RobotMovement : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
 
-    private bool TryMove(Vector2 direction)
+    protected bool TryMove(Vector2 direction)
     {
         if (direction != Vector2.zero)
         {

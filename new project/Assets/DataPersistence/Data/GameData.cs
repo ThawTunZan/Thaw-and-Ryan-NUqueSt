@@ -48,6 +48,8 @@ public class GameData
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<int> dtk1234Collected = new List<int>() {0, 0, 0, 0};
+
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
 
