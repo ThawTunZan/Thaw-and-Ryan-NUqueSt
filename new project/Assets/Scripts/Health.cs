@@ -8,10 +8,10 @@ public class Health : MonoBehaviour, IDataPersistence
     public float maxHealth = 100;
     public float health;
     public HealthBar healthBar;
-    bool hasCollided;
+    public bool hasCollided;
     public PlayerPositionSO startingPosition;
 
-    private void Start()
+    public void Start()
     {
         healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         if (startingPosition.transittedScene)
@@ -37,10 +37,11 @@ public class Health : MonoBehaviour, IDataPersistence
             healthBar.SetMaxHealth(maxHealth);
         }
     }
-    private void Update()
+    public void Update()
     {
-        GameManager.instance.health = health;
-        healthBar.SetHealth(health);
+            GameManager.instance.health = health;
+            healthBar.SetHealth(health);
+        
     }
 
     public void LoadData(GameData data)
@@ -57,14 +58,13 @@ public class Health : MonoBehaviour, IDataPersistence
         data.maxHealth = maxHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     { 
         if (collision.gameObject.CompareTag("Enemy") && !hasCollided)
         {
             health -= 10;
             healthBar.SetHealth(health);
             hasCollided = true;
-            //print(health);
         }
         else if (collision.gameObject.CompareTag("rock"))
         {
@@ -91,6 +91,7 @@ public class Health : MonoBehaviour, IDataPersistence
         {
             health -= 10;
             healthBar.SetHealth(health);
+            hasCollided = true;
         }
     }
 

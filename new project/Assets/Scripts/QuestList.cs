@@ -17,6 +17,7 @@ public class QuestList
         public string questDescription;
         public bool done;
         public float gpaReward;
+        public bool testing;
 
         // add more requirements here for different quests
         public int slimesRequired;
@@ -91,10 +92,6 @@ public class QuestList
             {
                 gpaReward = 40;
             }
-            if (quest_name == "PC1201")
-            {
-                gpaReward = 30;
-            }
             if (quest_name == "CG1111A")
             {
                 gpaReward = 30;
@@ -109,7 +106,10 @@ public class QuestList
                 GameObject.Find("Player").GetComponent<PlayerQuests>().eg1311Progress = 0;
                 gpaReward = 30;
             }
-            questNPCName = DialogueManager.GetInstance().localNPCName;
+            if (testing == false)
+            {
+                questNPCName = DialogueManager.GetInstance().localNPCName;
+            }
         }
     }
 

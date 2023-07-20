@@ -21,7 +21,7 @@ public class CompleteCEGQuest : MonoBehaviour
 
     public List<string> colorsDetected;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         shotLanded = false;
         playerQuest = GameObject.Find("Player").GetComponent<PlayerQuests>();
@@ -35,7 +35,7 @@ public class CompleteCEGQuest : MonoBehaviour
 
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (colorsDetected.Count == 4)
         {
@@ -46,7 +46,7 @@ public class CompleteCEGQuest : MonoBehaviour
             allColorsDetected = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("robot"))
         {
