@@ -145,10 +145,10 @@ public class QuestSlot_UI : MonoBehaviour
                 questStatus.SetActive(true);
             }
         }
-        if (questSlot.questName == "CG1111A" && questSlot.done)
-        {
-            questStatus.SetActive(true);
-        }
+        //if (questSlot.questName == "CG1111A" && questSlot.done)
+        //{
+        //    questStatus.SetActive(true);
+        //}
         if (questSlot.questName == "DTK1234")
         {
             for (int i = 0; i < 21; i++)

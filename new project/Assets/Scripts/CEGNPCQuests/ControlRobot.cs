@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class ControlRobot : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
-    public CinemachineVirtualCamera virtualCamera;
-    public RobotMovement robotMovement;
-    public GameObject robot;
+    private PlayerItems playerItems;
+    private PlayerMovement playerMovement;
+    private CinemachineVirtualCamera virtualCamera;
+    private RobotMovement robotMovement;
+    private GameObject robot;
     public GameObject questPanel;
     public GameObject timerPanel;
     public float timer;
@@ -19,13 +20,14 @@ public class ControlRobot : MonoBehaviour
     public CompleteCEGQuest questComplete;
     private PlayerQuests playerQuest;
     public string questName;
-    // Start is called before the first frame update
+
     void Start()
     {
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         virtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         robot = GameObject.Find("Robot");
-        robotMovement = GameObject.Find("Robot").GetComponent <RobotMovement>();
+        robotMovement = GameObject.Find("Robot").GetComponent<RobotMovement>();
         if (questName == "CG1111A")
         {
             timer = 45f;
@@ -34,12 +36,15 @@ public class ControlRobot : MonoBehaviour
         {
             timer = 30f;
         }
+        else if (questName == "CG2111A")
+        {
+            timer = 30f;
+        }
         TimerOn = false;
 
         playerQuest = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (TimerOn)
@@ -55,8 +60,9 @@ public class ControlRobot : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 //if there is an active quest in the slot
-                if (playerQuest.questList.questSlots[i].questName == questName && collision.gameObject.CompareTag("Player"))
+                if (playerQuest.questList.questSlots[i].questName == questName && !playerQuest.questList.questSlots[i].done)
                 {
+                    playerItems.disableToolbar = true;
                     playerMovement.enabled = false;
                     OpenPanels();
                 }
@@ -73,21 +79,28 @@ public class ControlRobot : MonoBehaviour
         questPanel.SetActive(false);
         timerPanel.SetActive(true);
         robotMovement.enabled = true;
-        virtualCamera.Follow = robot.transform;
+        if (questName != "CG2111A")
+        {
+            virtualCamera.Follow = robot.transform;
+        }
         TimerOn = true;
         if (questName == "CG1111A" || questName == "CG2111A")
         {
             questComplete.colorsDetected.Clear();
         }
-        playerMovement.movespeed = 0;
+        playerItems.disableToolbar = true;
+        playerMovement.enabled = false;
+        //playerMovement.movespeed = 0;
     }
 
     public void NoPressed()
     {
         questPanel.SetActive(false);
+        playerItems.disableToolbar = false;
         playerMovement.enabled = true;
         robotMovement.enabled = false;
     }
+
     [SerializeField]
     private void StartCountDown()
     {
@@ -108,14 +121,15 @@ public class ControlRobot : MonoBehaviour
             TimerOn = false;
             timer = givenTimer;
             timerPanel.SetActive(false);
-            playerMovement.movespeed = 1f;
+            //playerMovement.movespeed = 1f;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        playerItems.disableToolbar = false;
         playerMovement.enabled = true;
         questPanel.SetActive(false);
-        playerMovement.movespeed = 1f;
+        //playerMovement.movespeed = 1f;
     }
 }

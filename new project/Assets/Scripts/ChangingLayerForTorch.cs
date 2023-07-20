@@ -18,6 +18,6 @@ public class ChangingLayerForTorch : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        torchRenderer.sortingOrder = 7;
+        torchRenderer.sortingOrder = 15;
     }
 }
