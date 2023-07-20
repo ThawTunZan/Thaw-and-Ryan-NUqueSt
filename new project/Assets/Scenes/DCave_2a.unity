@@ -5637,7 +5637,7 @@ GameObject:
   - component: {fileID: 248317372}
   - component: {fileID: 248317374}
   m_Layer: 0
-  m_Name: Red
+  m_Name: RedTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5739,7 +5739,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11460,7 +11460,7 @@ MonoBehaviour:
   gpsPanel: {fileID: 114116217}
   timerPanel: {fileID: 1105429493}
   timer: 0
-  givenTimer: 30
+  givenTimer: 45
   TimerOn: 0
   questComplete: {fileID: 945611096}
   questName: CG2111A
@@ -14530,8 +14530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670902673
 MonoBehaviour:
@@ -14643,7 +14643,7 @@ GameObject:
   - component: {fileID: 674005774}
   - component: {fileID: 674005776}
   m_Layer: 0
-  m_Name: Yellow
+  m_Name: YellowTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14745,7 +14745,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28068,10 +28068,10 @@ RectTransform:
   m_Father: {fileID: 1608534734}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: 425}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 425}
+  m_SizeDelta: {x: -1716, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1105763211
 PrefabInstance:
@@ -40526,7 +40526,7 @@ GameObject:
   - component: {fileID: 1451885169}
   - component: {fileID: 1451885171}
   m_Layer: 0
-  m_Name: Blue
+  m_Name: BlueTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40628,7 +40628,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -42272,7 +42272,7 @@ GameObject:
   - component: {fileID: 1507352241}
   - component: {fileID: 1507352243}
   m_Layer: 0
-  m_Name: Purple
+  m_Name: PurpleTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42374,7 +42374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -266,6 +266,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         {
             choosingOption = true;
             dialogueButton.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 

@@ -138,15 +138,20 @@ public class ControlRobot : MonoBehaviour
             if (GameObject.Find("ColoredTiles") != null)
             {
                 GameObject.Find("YellowTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("YellowTile").GetComponent<ColorDetectionCG1111>().hasVisited = false;
                 GameObject.Find("RedTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("RedTile").GetComponent<ColorDetectionCG1111>().hasVisited = false;
                 GameObject.Find("BlueTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("BlueTile").GetComponent<ColorDetectionCG1111>().hasVisited = false;
                 GameObject.Find("PurpleTile").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("PurpleTile").GetComponent<ColorDetectionCG1111>().hasVisited = false;
             }
             if (GameObject.Find("ShootingBoard") != null)
             {
-                GameObject.Find("ShootingBoard").GetComponent<SpriteRenderer>().sprite = null;
+                GameObject.Find("ShootingBoard").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Quest/notdoneBoard");
             }
             questComplete.colorsDetected.Clear();
+            questComplete.shotLanded = false;
             timerPanel.SetActive(false);
             //playerMovement.movespeed = 1f;
         }

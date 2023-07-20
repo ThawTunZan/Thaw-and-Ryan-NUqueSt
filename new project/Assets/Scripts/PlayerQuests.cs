@@ -202,6 +202,10 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2040SeenBefore = cs2040SeenBefore;
 
         data.ma1511Progress = ma1511Progress;
+
+        data.eg1311Progress = eg1311Progress;
+        data.cg2111aProgress = cg2111aProgress;
+
         data.dtk1234Collected = dtk1234Collected;
 
         data.completedQuestNames = completedQuestNames;

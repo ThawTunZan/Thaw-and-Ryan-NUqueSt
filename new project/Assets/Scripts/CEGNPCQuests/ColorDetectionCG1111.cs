@@ -15,11 +15,14 @@ public class ColorDetectionCG1111 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("robot")  && !hasVisited)
+        if (collision.CompareTag("robot"))
         {
-            questComplete.colorsDetected.Add(colorName);
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Quest/villagePavement");
-            hasVisited = true;
+            if (!hasVisited)
+            {
+                questComplete.colorsDetected.Add(colorName);
+                hasVisited = true;
+            }
         }
     }
 
