@@ -19,6 +19,8 @@ public class QuestList
         public string questItemRequired;
         public int questItemAmount;
 
+        public bool testing;
+
         // add more requirements here for different quests
         public int slimesRequired;
         [SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
@@ -127,7 +129,10 @@ public class QuestList
                 placesToVisit.Add("ArtistHouse");
                 gpaReward = 10;
             }
-            questNPCName = DialogueManager.GetInstance().localNPCName;
+            if (testing == false)
+            {
+                questNPCName = DialogueManager.GetInstance().localNPCName;
+            }
         }
     }
 

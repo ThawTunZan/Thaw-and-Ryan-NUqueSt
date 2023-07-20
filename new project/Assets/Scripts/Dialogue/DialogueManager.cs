@@ -128,11 +128,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         playerItems.disableToolbar = true;
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
         if (localNPCName != "")
         {
             CheckDate();
-            
+            currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
             for (int i = 0; i < 6; i++)
             {
                 if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
