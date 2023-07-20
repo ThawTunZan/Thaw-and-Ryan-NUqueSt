@@ -8,4 +8,4 @@ However, you are not an expert on flowers, and cannot identify the exact species
 
 ~ HSI1000FlowersFound += 1
 
-{HSI1000FlowersFound == 3: Me: Seems like that's all of them. Better report back to Eve.|Me: Better find more flowers.}
+{(HSI1000FlowersFound == 3): Me: Seems like that's all of them. Better report back to Eve.|Me: Better find more flowers.}

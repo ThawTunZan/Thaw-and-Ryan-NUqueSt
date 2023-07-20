@@ -38,6 +38,7 @@ George: HEW! Those slimes were KILLING me!. I tried using my Engineering Calculu
 George: Thanks for the help though! 
 ~questMA1511Done = true 
 ~WeaponSmithValidTime = false
+~WeaponSmithQuestDone = false
 ->END
 
 === MA1512Convo === 
@@ -50,6 +51,7 @@ George: Can you bring me the two iron ores in the first level of the cave in the
 George: Thanks for the iron ores! Now i can start on making weapons using my Laplace transformation and partial differential equations I learnt recently. 
 ~questMA1512Done = true 
 ~WeaponSmithValidTime = false
+~WeaponSmithQuestDone = false
 ->END
 
 === MA1508EConvo === 
@@ -62,7 +64,8 @@ George: Can you get rid of the slimes on the first level of the cave? They are h
 George: Damn there were sooooooo many slimes I was having trouble trying to get the vector space for the slimes' positions...
 George: Thanks a loooooooooooot for the help though! I can finally resume my work! ~questMA1508EDone = true ~validTime = false
 ~questMA1508EDone = true
-~WeaponSmithValidTime = true
+~WeaponSmithValidTime = false
+~WeaponSmithQuestDone = false
 ->END
 
 
