@@ -31,6 +31,7 @@ Eve: Hi there! What can I get for you?
     Eve: I will continue writing my poems while on shopkeeper duty.
      ~questHSS1000Done = true
      ~EveShopValidTime = false
+     ~EveShopQuestDone = false
     -> END
 
 === HSI1000Convo ===
@@ -50,6 +51,7 @@ Eve: Hi there! What can I get for you?
     Eve: Thank you very much!
      ~questHSI1000Done = true
      ~EveShopValidTime = false
+     ~EveShopQuestDone = false
     -> END
 
 === DTK1234Convo ===
@@ -68,6 +70,7 @@ Eve: Hi there! What can I get for you?
     Eve: In case you're wondering, I wanted to make a wallet.
      ~questDTK1234Done = true
      ~EveShopValidTime = false
+     ~EveShopQuestDone = false
     -> END
 
 === in_quest ===
