@@ -98,9 +98,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     {
         float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
-        if (GameManager.instance.day != currDay)
+        if (GameManager.instance.day != currDay && (questIsDone == "false" || questIsDone == "False"))
         {
-            dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
         if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
@@ -113,6 +112,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         else
         {
+            // day doesnt matter questIsDone is false
             print("is valid time");
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
             dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
@@ -128,11 +128,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         playerItems.disableToolbar = true;
         dialogueVariables.StartListening(currentStory);
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
         if (localNPCName != "")
         {
             CheckDate();
-            currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
-            for (int i = 0; i < 5; i++)
+            
+            for (int i = 0; i < 6; i++)
             {
                 if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
                     && player.questList.questSlots[i].questName != "")
