@@ -73,7 +73,7 @@ public class QuestSlot_UI : MonoBehaviour
                 questStatus.SetActive(true);
             }
         }
-        if (questSlot.questName == "MA1512" || questSlot.questName == "GEA1000")
+        if (questSlot.questName == "MA1512")
         {
             foreach (Dictionary<string, int> questDict in questSlot.requireItems)
             {
@@ -133,7 +133,7 @@ public class QuestSlot_UI : MonoBehaviour
             }
         }
         if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101" || questSlot.questName == "HSI1000"
-            || questSlot.questName == "HSS1000")
+            || questSlot.questName == "HSS1000" || questSlot.questName == "GEA1000")
         {
             if (questSlot.placesToVisit.Count == 0)
             {
@@ -176,35 +176,6 @@ public class QuestSlot_UI : MonoBehaviour
             {
                 questSlot.done = false;
                 questStatus.SetActive(false);
-            }
-        }
-    }
-
-    public void RemoveItemFromPlayer(string itemName, int amountToRemove)
-    {
-        if (itemName == "")
-        {
-            return;
-        }
-
-        Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
-        Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
-        for (int i = 0; i < 21; i++)
-        {
-            if (inventory.slots[i].itemName == itemName)
-            {
-                inventory.Remove(i, amountToRemove);
-                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
-                return;
-            }
-        }
-        for (int i = 0; i < 7; i++)
-        {
-            if (toolbar.slots[i].itemName == itemName)
-            {
-                toolbar.Remove(i, amountToRemove);
-                GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
-                return;
             }
         }
     }

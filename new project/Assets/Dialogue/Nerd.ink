@@ -33,7 +33,7 @@ Sam: HELLLLLLLLLLLO. The maze has been so fun to explore after you helped me sol
 Sam: After the maze I discovered something new! There seems to be a whole new floor in the cave with weird moveable rocks. 
 Sam: I suspect you have to form some kind of configuration. If I remember correctly, it was labelled as N-queens or something
 Sam: Do you think you can take a look for me?
--> start_quest("CS2040", "Go to fifth floor of cave and solve the N-queen puzzle!")
+-> start_quest("CS2040", "Go to fifth floor of cave and solve the N-queens puzzle!")
 ->END
 }
 ~ QuestCompleted()
@@ -49,12 +49,12 @@ Sam: I should tell other villagers about how you are a great puzzle solver! Mayb
 Sam: Hey it's you again, my fav fellow quest enthusiast <3! 
 Sam: Yesterday, I was at on the fourth level of the cave looking for clues for more puzzles using my trusty magnifying glass and I discovered a strange house!
 Sam: This house had strange notes on the ground and I couldn't read it...
--> start_quest("CS2030", "Help me solve the maze in the fourth floor of the cave!")
+-> start_quest("CS2030", "Help me solve the puzzle in the fourth floor of the forest cave!")
 -> END
 } 
 ~ QuestCompleted()
-Sam: SHEEEEESH how did you solve the maze?? I was completely lost inside yesterday. I thought it was a BOX!
-Sam: Anyway, thanks for solving the maze and telling me the correct route!
+Sam: SHEEEEESH how did you solve the puzzle?? I was completely stunned when I read the note. Not like I can read anyway!
+Sam: Anyway, thanks for solving the puzzle! Now, we can finally move on to the next depth!
 
 ~questCS2030Done = true 
 ~NerdValidTime = false
@@ -66,7 +66,7 @@ Sam: Bruhhhhhhhhhhhhhhhhhhhh. You did an amazing job with the puzzle previously,
 Sam: Anyway, theres a puzzle that I have so much trouble solving. It is such a brain teaser!
 Sam: I will need you to go to the third level of the cave and solve a puzzle for me!
 Sam: Do you think you can help me with it?
--> start_quest("CS1231", "Go to third floor of the cave and solve a puzzle!")
+-> start_quest("CS1231", "Go to third floor of the forest cave and solve the puzzle!")
 ->END
 } 
 ~ QuestCompleted()
@@ -79,7 +79,7 @@ Sam: Thanks for the help! My brain is a bit too fuzzy for this... @_@
 === CS1010Convo === 
 {(!NerdQuestDone):
 Sam: Hey You must be the new kid in town! Have you explore the cave south of the village?
-Sam: There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics that works with something to do with AND Gates and For LOOPS... Hmmm
+Sam: There seems to be a lot of puzzles inside it. Lately, I have trouble solving a puzzle. It's something to do with some lever mechanics that works with something to do with AND XOR Gates and For LOOPS... Hmmm
 Sam: Do you think you can help me solve it?
 -> start_quest("CS1010", "Help me solve the puzzle in the second floor of the cave down south!")
 ->END

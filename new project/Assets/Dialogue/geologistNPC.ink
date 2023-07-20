@@ -21,16 +21,17 @@ Leo: How can I help you?
 === GEA1000 ===
 {(!GeologistQuestDone):
 Leo: Hey! Looks like you are getting the hang of it!
-Leo: Do you think you can help me get a sample of a rock that on the first level of the cave?
+Leo: Do you think you can help me get a sample of a rock that on the third level of the desert cave?
 Leo: It seems like it is the only unique looking rock in that level!
 Leo: I really need to do some analysis on this rock cuz I have to do some hypothesis testing on it...
 Leo: What do you think? Are you down for it?
-->start_quest("GEA1000", "Help me go take a look at the unique rock on the first floor of cave and gea sample of it! Give me an iron ore!")
+->start_quest("GEA1000", "Help me go take a look at the unique rock on the third floor of the desert cave and get a sample of it!")
 -> END
 }
 ~ QuestCompleted()
-Leo: WOW! Thanks for the help! I can't believe it! This Rock looks amazing!.
+Leo: WOW! Thanks for the help! I can't believe it! This Rock looks interesting!
 Leo: I can't imagine what I would do without you! I would have died in the cave...
+Leo: We might be getting closer to something here!
      ~questGEA1000Done = true
      ~GeologistValidTime = false
 ->END
@@ -39,11 +40,11 @@ Leo: I can't imagine what I would do without you! I would have died in the cave.
 {(!GeologistQuestDone):
 Leo: Hey! Thanks for the help with the previous quest! 
 Leo: I wondered who made that tomestone... My guess is on this WHOLESOME community called RAG
-Leo: Anyway, do you think you can help me with exploring the second level of the cave? 
+Leo: Anyway, do you think you can help me with exploring the second level of the forest cave? 
 Leo: The place is a little bit too dangerous for me but I heard there is a corpse of a weird animal there! 
 Leo: It must have died from the S/U Monster
 Leo: Do you think you can help me find out what it is?
--> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the cave.")
+-> start_quest("GESS1001", "Inspect a suspicious corpse in the second level of the forest cave.")
 -> END
 }
 ~ QuestCompleted()

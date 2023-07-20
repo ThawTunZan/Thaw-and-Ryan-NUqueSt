@@ -171,8 +171,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
                 && player.questList.questSlots[i].questName != "")
             {
-                QuestSlot_UI questSlot = GameObject.Find("Quest").GetComponent<Quest_UI>().questSlots[i];
-                questSlot.RemoveItemFromPlayer(player.questList.questSlots[i].questItemRequired, 
+                player.questList.RemoveItemFromPlayer(player.questList.questSlots[i].questItemRequired, 
                     player.questList.questSlots[i].questItemAmount);
                 player.questList.questSlots[i].count = 0;
                 player.questList.questSlots[i].questNPCName = "";
