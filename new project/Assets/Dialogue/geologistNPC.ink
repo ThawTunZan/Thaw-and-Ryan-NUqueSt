@@ -34,6 +34,7 @@ Leo: I can't imagine what I would do without you! I would have died in the cave.
 Leo: We might be getting closer to something here!
      ~questGEA1000Done = true
      ~GeologistValidTime = false
+     ~GeologistQuestDone = false
 ->END
 
 === GESS1001Convo ===
@@ -53,6 +54,7 @@ Leo: I have a feeling the S/U Monster comes at the end of the week...
 Leo: Anyway, thx for the help! See you next time
      ~questGESS1001Done = true
      ~GeologistValidTime = false
+     ~GeologistQuestDone = false     
 ->END
 
 
@@ -76,6 +78,7 @@ Leo: WOW! For a first timer you are pretty good! Your assistance helped me in co
 Leo: Anyway, since you are such a reliable neighbour I will contact you when I need help again! You can do the same as well!
      ~questHSA1000Done = true
      ~GeologistValidTime = false
+     ~GeologistQuestDone = false
      ->END
     
 === in_quest ===

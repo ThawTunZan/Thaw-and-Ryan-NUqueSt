@@ -31,6 +31,7 @@ Galileo: Oh hey there!
     Galileo: WOW! It seems like you have knack for this! I shall give you the name Sir Issac Newton :) 
      ~questPC1201Done = true
      ~PhysicistValidTime = false
+     ~PhysicistQuestDone = false
 ->END
 
 
@@ -48,6 +49,7 @@ Galileo: Oh hey there!
     Galileo: WOW! I am actually right! There ARE FOUR moons around the planet POOPITER. The question now is what should i name it hmm.... Anyway, thx for the help!
      ~questPC1101Done = true
      ~PhysicistValidTime = false
+     ~PhysicistQuestDone = false
     -> END
 
 === in_quest ===

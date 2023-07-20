@@ -100,9 +100,10 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
         if (GameManager.instance.day != currDay && (questIsDone == "false" || questIsDone == "False"))
         {
+            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
-        if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
+        else if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
         {
 
         }
@@ -111,13 +112,17 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
-        else
+        else if (GameManager.instance.day == currDay && (questIsDone == "false" || questIsDone == "False"))
         {
-            // day doesnt matter questIsDone is false
-            print("is valid time");
-            dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
-            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
+            //.InkSetVariables(currentStory, localNPCName + "ValidTime", false);
         }
+       // else
+       // {
+            // different day and questIsDone is false
+        //    print("is valid time");
+        //    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
+       //     dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
+      //  }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)

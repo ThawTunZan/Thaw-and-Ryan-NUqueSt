@@ -41,6 +41,7 @@ Sam: WOW. The puzzle was the hardest one I have seen and you were able to solve 
 Sam: I should tell other villagers about how you are a great puzzle solver! Maybe the mystery of the S/U Monster will finally be solved!
 ~questCS2040Done = true
 ~NerdValidTime = false
+~NerdQuestDone = false
 ->END
 
 
@@ -58,6 +59,7 @@ Sam: Anyway, thanks for solving the puzzle! Now, we can finally move on to the n
 
 ~questCS2030Done = true 
 ~NerdValidTime = false
+~NerdQuestDone = false
 ->END
 
 === CS1231Convo === 
@@ -74,6 +76,7 @@ Sam: WOW! You breeze through those logic question like nothing!
 Sam: Thanks for the help! My brain is a bit too fuzzy for this... @_@
 ~questCS1231Done = true 
 ~NerdValidTime = false
+~NerdQuestDone = false
 ->END
 
 === CS1010Convo === 
@@ -88,6 +91,7 @@ Sam: Do you think you can help me solve it?
 Sam: Damnnn... For a first timer, you are pretty good at solving puzzles! Thanks for the help! If I discovered more puzzles I will let you know!
 ~questCS1010Done = true
 ~NerdValidTime = false
+~NerdQuestDone = false
 ->END
 
 

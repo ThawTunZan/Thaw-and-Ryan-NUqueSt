@@ -31,6 +31,7 @@ TeeHaw: Maybe I can even use it to investigate about the new SU Monster I have b
 TeeHaw: Anyway, Thanks for the help!
 ~questCG2111ADone = true
 ~CEGValidTime = false
+~CEGQuestDone = false
 ->END
 
 
@@ -48,6 +49,7 @@ TeeHaw: Anyway, Thanks for the help!
     TeeHaw: Thanks for the help!!! Once I finish building the final product you can come and find me! Till next time!
      ~questEG1311Done = true
      ~CEGValidTime = false
+     ~CEGQuestDone = false
 ->END
 
 
@@ -66,6 +68,7 @@ TeeHaw: Anyway, Thanks for the help!
     TeeHaw: Amazing! My prototype seems to be working! Thanks for the help! Maybe I can use this prototype to defend against the monsters outside of our village!
      ~questCG1111ADone = true
      ~CEGValidTime = false
+     ~CEGQuestDone = false
     -> END
 
 === in_quest ===
