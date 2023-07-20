@@ -114,15 +114,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         else if (GameManager.instance.day == currDay && (questIsDone == "false" || questIsDone == "False"))
         {
-            //.InkSetVariables(currentStory, localNPCName + "ValidTime", false);
         }
-       // else
-       // {
-            // different day and questIsDone is false
-        //    print("is valid time");
-        //    dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
-       //     dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
-      //  }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)

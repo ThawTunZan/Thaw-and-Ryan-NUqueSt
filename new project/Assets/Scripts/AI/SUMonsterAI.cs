@@ -183,10 +183,6 @@ public class SUMonsterAI : EnemyAI
         Instantiate(SUMonsterRock, enemy.transform.position, Quaternion.identity);
     }
 
-    private void SlamGround()
-    {
-    }
-
     private void Charge()
     {
         isChargeOnCooldown = true;
