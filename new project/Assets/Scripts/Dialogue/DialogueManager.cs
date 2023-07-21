@@ -174,17 +174,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                     player.questList.questSlots[i].questItemAmount);
                 playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
                 player.questList.questSlots[i].RemoveInfo();
-                //player.questList.questSlots[i].count = 0;
-                //player.questList.questSlots[i].questNPCName = "";
-                //player.questList.questSlots[i].questName = "";
-                //player.questList.questSlots[i].questDescription = "";
-                //player.questList.questSlots[i].questSceneName = "";
-                //player.questList.questSlots[i].done = false;
-                //player.questList.questSlots[i].gpaReward = 0;
-                //player.questList.questSlots[i].questItemRequired = "";
-                //player.questList.questSlots[i].questItemAmount = 0;
-                //Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                //quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
             }
         }
     }
