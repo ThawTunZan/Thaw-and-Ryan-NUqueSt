@@ -51,7 +51,7 @@ public class BGMManager : MonoBehaviour
         }
         else if (!isInside && !inCave)
         {
-            audioSource.clip = audioClips[1];
+            audioSource.clip = audioClips[3];
             if (!isPlaying1)
             {
                 audioSource.Play();
@@ -75,7 +75,7 @@ public class BGMManager : MonoBehaviour
         }
         else if (isInside)
         {
-            audioSource.clip = audioClips[3];
+            audioSource.clip = audioClips[1];
             if (!isPlaying3)
             {
                 audioSource.Play();
