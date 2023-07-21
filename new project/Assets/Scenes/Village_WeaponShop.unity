@@ -7237,7 +7237,7 @@ GameObject:
   - component: {fileID: 299651806}
   m_Layer: 0
   m_Name: MA1511Collider
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12604,6 +12604,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+--- !u!1 &563639760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3901531309981297422, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 563639759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &563639761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7640188727470514520, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 563639759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563639762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563639760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801e039899021e4408ca2ba909b1a726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: WeaponSmith
+  chestTrigger: {fileID: 563639761}
 --- !u!1 &565470113
 GameObject:
   m_ObjectHideFlags: 0
@@ -32176,7 +32200,7 @@ GameObject:
   - component: {fileID: 1280150024}
   m_Layer: 0
   m_Name: MA1512Collider
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
