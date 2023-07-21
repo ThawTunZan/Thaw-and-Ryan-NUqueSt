@@ -32,6 +32,7 @@ TeeHaw: Anyway, Thanks for the help!
 ~questCG2111ADone = true
 ~CEGValidTime = false
 ~CEGQuestDone = false
+~CEGAllDone = true
 ->END
 
 

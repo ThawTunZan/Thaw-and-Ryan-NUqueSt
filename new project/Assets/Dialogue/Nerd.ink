@@ -42,6 +42,7 @@ Sam: I should tell other villagers about how you are a great puzzle solver! Mayb
 ~questCS2040Done = true
 ~NerdValidTime = false
 ~NerdQuestDone = false
+~NerdAllDone = true
 ->END
 
 

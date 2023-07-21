@@ -18,6 +18,7 @@ VAR WeaponSmithQuestStarted = false
 VAR WeaponSmithQuestName = ""
 VAR WeaponSmithQuestDesc = ""
 VAR WeaponSmithValidTime = true
+VAR WeaponSmithAllDone = false
 
 #TownMayor
 VAR tutorialMayorSpoken = false
@@ -27,6 +28,7 @@ VAR TownMayorQuestStarted = false
 VAR TownMayorQuestName = ""
 VAR TownMayorQuestDesc = ""
 VAR TownMayorValidTime = true
+VAR TownMayorAllDone = false
 
 #AvaSecretary
 VAR AvaSecretaryQuestDone = false
@@ -34,6 +36,7 @@ VAR AvaSecretaryQuestStarted = false
 VAR AvaSecretaryQuestName = ""
 VAR AvaSecretaryQuestDesc = ""
 VAR AvaSecretaryValidTime = true
+VAR AvaSecretaryAllDone = false
 
 #EveShop
 VAR EveShopQuestDone = false
@@ -41,6 +44,7 @@ VAR EveShopQuestStarted = false
 VAR EveShopQuestName = ""
 VAR EveShopQuestDesc = ""
 VAR EveShopValidTime = true
+VAR EveShopAllDone = false
 VAR questDTK1234Done = false
 VAR questHSI1000Done = false
 VAR questHSS1000Done = false
@@ -56,6 +60,7 @@ VAR NerdQuestStarted = false
 VAR NerdQuestName = ""
 VAR NerdQuestDesc = ""
 VAR NerdValidTime = true
+VAR NerdAllDone = false
 
 
 #Geologist
@@ -67,6 +72,7 @@ VAR GeologistQuestStarted = false
 VAR GeologistQuestName = ""
 VAR GeologistQuestDesc = ""
 VAR GeologistValidTime = true
+VAR GeologistAllDone = false
 
 #Physicist
 VAR questPC1101Done = false
@@ -76,6 +82,7 @@ VAR PhysicistQuestStarted = false
 VAR PhysicistQuestName = ""
 VAR PhysicistQuestDesc = ""
 VAR PhysicistValidTime = true
+VAR PhysicistAllDone = false
 
 #CEG
 VAR questCG1111ADone = false
@@ -86,6 +93,7 @@ VAR CEGQuestStarted = false
 VAR CEGQuestName = ""
 VAR CEGQuestDesc = ""
 VAR CEGValidTime = true
+VAR CEGAllDone = false
 
 
 

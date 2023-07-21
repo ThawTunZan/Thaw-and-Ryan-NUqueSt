@@ -42,6 +42,7 @@ George: Come back tomorrow, and I'll give you another interesting question.
 ~questMA1511Done = true 
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false
+~WeaponSmithAllDone = true
 ->END
 
 === MA1512Convo === 

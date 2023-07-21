@@ -35,6 +35,7 @@ Leo: We might be getting closer to something here!
      ~questGEA1000Done = true
      ~GeologistValidTime = false
      ~GeologistQuestDone = false
+     ~GeologistAllDOne = true
 ->END
 
 === GESS1001Convo ===

@@ -32,6 +32,7 @@ Eve: Hi there! What can I get for you?
      ~questHSS1000Done = true
      ~EveShopValidTime = false
      ~EveShopQuestDone = false
+     ~EveShopAllDone = true
     -> END
 
 === HSI1000Convo ===

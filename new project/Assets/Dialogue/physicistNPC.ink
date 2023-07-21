@@ -32,6 +32,7 @@ Galileo: Oh hey there!
      ~questPC1201Done = true
      ~PhysicistValidTime = false
      ~PhysicistQuestDone = false
+     ~PhysicistAllDone = true
 ->END
 
 
