@@ -126,7 +126,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     {
         tick += Time.fixedDeltaTime;
 
-        if (tick >= 1)
+        if (tick >= 0.4)
         {
             tick = 0;
             seconds += 1;
