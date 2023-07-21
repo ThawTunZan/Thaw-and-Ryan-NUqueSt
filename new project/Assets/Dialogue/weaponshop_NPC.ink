@@ -29,13 +29,16 @@ George: How can I help you?
 
 === MA1511Convo ===
 {(!WeaponSmithQuestDone):
-George: Could you get rid of the slimes in my shop?
--> start_quest("MA1511", "Get rid of two slimes!")
+George: This may seem odd, but I actually love math a lot.
+George: One of my favourite topics is the infinite series.
+George: It is fun when it comes to visualising something that never ends.
+George: Would you like to solve an infinite series question?
+-> start_quest("MA1511", "Solve the infinite series question upstairs!")
 -> END
 } 
 ~ QuestCompleted()
-George: HEW! Those slimes were KILLING me!. I tried using my Engineering Calculus knowledge like Partial differentiation and power series to try calculating how heavy I have to hit the slimes but those slimes were TOUGH!
-George: Thanks for the help though! 
+George: Nice one!
+George: Come back tomorrow, and I'll give you another interesting question.
 ~questMA1511Done = true 
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false
@@ -43,12 +46,16 @@ George: Thanks for the help though!
 
 === MA1512Convo === 
 {(!WeaponSmithQuestDone):
-George: Can you bring me the two iron ores in the first level of the cave in the forest down south? I forgot to bring it back as I was running away from the slimes last night!
--> start_quest("MA1512", "Bring me my two iron ores!")
+George: Time for round 2!
+George: The question is in the room on the left.
+George: This time, the question will be on population modelling. Would you like to try it?
+-> start_quest("MA1512", "Solve the population question upstairs!")
 ->END
 }
 ~ QuestCompleted()
-George: Thanks for the iron ores! Now i can start on making weapons using my Laplace transformation and partial differential equations I learnt recently. 
+George: Amazing!
+George: I still have one more question after this.
+George: Come back next time and I'll ask you the question.
 ~questMA1512Done = true 
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false
@@ -56,13 +63,17 @@ George: Thanks for the iron ores! Now i can start on making weapons using my Lap
 
 === MA1508EConvo === 
 {(!WeaponSmithQuestDone):
-George: Can you get rid of the slimes on the first level of the cave? They are hindering my work!
--> start_quest ("MA1508E", "Get rid of two slimes on the first level of the cave!")
+George: Did you know that the slimes and other monsters you see use Linear Algebra subconciously while they are fighting you?
+George: It would seem unrelated, but it's actually true!
+George: The way they move, the way they think, its all Linear Algebra!
+George: In the desert cave, I have placed a linear algebra question on the wall. Would you like to solve it?
+-> start_quest ("MA1508E", "Solve the linear algebra question in the desert cave!")
 ->END
 }
 ~ QuestCompleted()
-George: Damn there were sooooooo many slimes I was having trouble trying to get the vector space for the slimes' positions...
-George: Thanks a loooooooooooot for the help though! I can finally resume my work! ~questMA1508EDone = true ~validTime = false
+George: I see that you have solved it!
+George: Who knew that linear algebra would actually turn out to be useful?
+George: Anyway, if I ever come up with more questions, I will let you know!
 ~questMA1508EDone = true
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false

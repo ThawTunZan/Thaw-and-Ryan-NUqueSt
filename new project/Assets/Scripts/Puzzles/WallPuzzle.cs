@@ -27,6 +27,8 @@ public class WallPuzzle : MonoBehaviour
     protected PlayerMovement playerMovement;
     protected PlayerQuests playerQuests;
 
+    protected bool hasQuest = true;
+
     protected virtual void Start()
     {
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
@@ -107,6 +109,7 @@ public class WallPuzzle : MonoBehaviour
             {
                 puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
                 puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 startBattle = true;
             }
         }
@@ -118,6 +121,8 @@ public class WallPuzzle : MonoBehaviour
         puzzleText.gameObject.SetActive(true);
         puzzleInput.gameObject.SetActive(true);
         puzzlePanel.SetActive(true);
+        playerItems.disableToolbar = true;
+        playerMovement.enabled = false;
     }
 
     public void HideUI()
@@ -134,6 +139,7 @@ public class WallPuzzle : MonoBehaviour
             puzzleTrigger.inBattle = true;
             inBattle = true;
             puzzleActivated.SetActive(false);
+            visualCue.SetActive(false);
             SpawnEnemy();
         }
     }

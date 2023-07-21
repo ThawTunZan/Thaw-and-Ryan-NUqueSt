@@ -35,9 +35,11 @@ public class GameData
     public string story;                        // quest progress for WeaponSmith NPC
     public string placeHolderStory;
 
-    // to indicate that a tutorial in a scene is done. Destroys tutorial UI and some colliders if bool is true.
+    // Used in PlayerTutorial. The values will go from 0 to 3. At 3, the tutorial UI no longer appears in any scene.
     public int tutorialProgress;
 
+    // Used in PlayerQuest. If a quest has begun, the progress changes from -1 to 0, and certain GameObjects in the scene change.
+    // Some quests can range up to an int value of 7 while others 1.
     public int cs1010Progress;
     public int cs1231Progress;
     public int cs2030Progress;
@@ -45,6 +47,9 @@ public class GameData
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
     public int ma1511Progress;
+    public int ma1512Progress;
+    public int ma1508EProgress;
+
     public int eg1311Progress;
     public int cg2111aProgress;
 
@@ -95,7 +100,11 @@ public class GameData
         cs1231Progress = -1;
         cs2030Progress = -1;
         cs2040Progress = -1;
+
         ma1511Progress = -1;
+        ma1512Progress = -1;
+        ma1508EProgress = -1;
+
         eg1311Progress = -1;
         cg2111aProgress = -1;
 

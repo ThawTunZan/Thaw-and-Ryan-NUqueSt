@@ -23,7 +23,7 @@ public class QuestList
 
         // add more requirements here for different quests
         public int slimesRequired;
-        [SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
+        //[SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
         public List<string> placesToVisit = new List<string>();
 
         public void AddItem(string quest_name, string quest_description)
@@ -42,13 +42,12 @@ public class QuestList
             {
                 GameObject.Find("Player").GetComponent<PlayerQuests>().ma1511Progress = 0;
                 GameObject.Find("MA1511Collider").SetActive(false);
-                slimesRequired = 2;
                 gpaReward = 10;
             }
             if (quest_name == "MA1512")
             {
-                //requireItems = new List<Dictionary<string, int>>();
-                requireItems.Add(new Dictionary<string, int> { { "Tomato", 2 } });
+                GameObject.Find("Player").GetComponent<PlayerQuests>().ma1512Progress = 0;
+                GameObject.Find("MA1512Collider").SetActive(false);
                 gpaReward = 10;
             }
             if (quest_name == "MA1508E")
@@ -68,7 +67,6 @@ public class QuestList
             if (quest_name == "GEA1000")
             {
                 placesToVisit.Add("DCave_2a");
-                //requireItems.Add(new Dictionary<string, int> { { "Iron Ore", 1 } });
                 gpaReward = 30;
             }
             if (quest_name == "PC1101")
@@ -133,6 +131,19 @@ public class QuestList
             {
                 questNPCName = DialogueManager.GetInstance().localNPCName;
             }
+        }
+
+        public void RemoveInfo()
+        {
+            count = 0;
+            questNPCName = "";
+            questName = "";
+            questDescription = "";
+            questSceneName = "";
+            done = false;
+            gpaReward = 0;
+            questItemRequired = "";
+            questItemAmount = 0;
         }
     }
 
