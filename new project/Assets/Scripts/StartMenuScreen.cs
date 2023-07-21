@@ -17,4 +17,9 @@ public class StartMenuScreen : MonoBehaviour
         startMenu.SetActive(false);
         loginMenu.SetActive(false);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

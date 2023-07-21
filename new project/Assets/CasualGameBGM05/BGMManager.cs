@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BGMManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BGMManager : MonoBehaviour
     [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
 
     public static BGMManager instance;
+
+    public Slider slider;
 
     private bool isPlaying0 = false;
     private bool isPlaying1 = false;
@@ -86,4 +89,6 @@ public class BGMManager : MonoBehaviour
             }
         }
     }
+
+    
 }

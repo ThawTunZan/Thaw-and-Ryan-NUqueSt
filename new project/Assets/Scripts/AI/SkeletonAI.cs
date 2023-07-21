@@ -8,7 +8,7 @@ public class SkeletonAI : EnemyAI
     public bool isAttacking;
     public bool hasAttacked;
     public float timer;
-
+    public Vector3 posToChase;
     public override void Start()
     {
         
@@ -56,8 +56,18 @@ public class SkeletonAI : EnemyAI
                 enemySpriteRenderer.flipX = false;
             }
             Vector3 dirToPlayer = new Vector3(player.transform.position.x - enemy.transform.position.x, player.transform.position.y - enemy.transform.position.y, 0);
-            enemy.MovePosition(enemy.transform.position + dirToPlayer * movespeed * 2 * Time.fixedDeltaTime);
-            skeletonAnimation.SetBool("isMoving", true);
+            LayerMask layersToAvoid = LayerMask.GetMask("Obstacles");
+            RaycastHit2D hitObstacle = Physics2D.Raycast(transform.position, dirToPlayer, 0.25f, layersToAvoid);
+            if (!hitObstacle.collider)
+            {
+                enemy.MovePosition(enemy.transform.position + dirToPlayer * movespeed * 2 * Time.fixedDeltaTime);
+                skeletonAnimation.SetBool("isMoving", true);
+            }
+            else
+            {
+                followPlayer();
+            }
+            
         }
         else if (animator.GetBool("alive") && !isAttacking)
         {

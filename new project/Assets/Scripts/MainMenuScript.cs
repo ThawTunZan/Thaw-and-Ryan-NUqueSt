@@ -4,13 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class MainMenuScript : MonoBehaviour
 {
     public GameObject settingsPanel;
     public GameObject mmPanel;
+    //public GameObject buttonsMM;
     public AudioMixer volumeMixer;
     public GameObject PWResetMenu;
+    public AudioSource audioSource;
+    public Slider audioVolume;
 
   
     public void OpenSettings()
@@ -40,9 +44,9 @@ public class MainMenuScript : MonoBehaviour
             PWResetMenu.SetActive(false);
         }
     }
-    public void setVolume(float MasterVolume)
+    public void setVolume()
     {
-        volumeMixer.SetFloat("MasterVolume", MasterVolume);
+        audioSource.volume = audioVolume.value;
     }
 
     public void ExitGame()
