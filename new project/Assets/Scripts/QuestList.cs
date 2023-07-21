@@ -16,17 +16,16 @@ public class QuestList
         public string questSceneName;
         public bool done;
         public float gpaReward;
-        public string questItemRequired;
-        public int questItemAmount;
 
         public bool testing;
 
         // add more requirements here for different quests
         public int slimesRequired;
-        //[SerializeField]public List<Dictionary<string, int>> requireItems = new List<Dictionary<string, int>>();
+        public string questItemRequired;
+        public int questItemAmount;
         public List<string> placesToVisit = new List<string>();
 
-        public void AddItem(string quest_name, string quest_description)
+        public void AddQuest(string quest_name, string quest_description)
         {
             questName = quest_name;
             questDescription = quest_description;
@@ -52,6 +51,7 @@ public class QuestList
             }
             if (quest_name == "MA1508E")
             {
+                GameObject.Find("Player").GetComponent<PlayerQuests>().ma1508EProgress = 0;
                 gpaReward = 20;
             }
             if (quest_name == "HSA1000")
@@ -164,7 +164,7 @@ public class QuestList
         {
             if (questSlot.count == 0)
             {
-                questSlot.AddItem(questName, questDescription);
+                questSlot.AddQuest(questName, questDescription);
                 return;
             }
         }

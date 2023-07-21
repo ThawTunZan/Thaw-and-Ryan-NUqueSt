@@ -132,18 +132,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
     }
 
-    private bool SearchForQuest(string questName)
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            if (questList.questSlots[i].questName == questName)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)
     {
         if (SearchForQuest(questName) && questProgress == -1)
@@ -155,6 +143,18 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             GameObject collider = GameObject.Find(colliderName);
             collider.SetActive(false);
         }
+    }
+
+    private bool SearchForQuest(string questName)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (questList.questSlots[i].questName == questName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void Update()

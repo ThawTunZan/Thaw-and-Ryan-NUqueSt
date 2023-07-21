@@ -6715,6 +6715,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1787910001522237944, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
+      propertyPath: m_Name
+      value: Correct (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861617424822052387, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
+      propertyPath: m_Name
+      value: VisualCue (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 5136085260962708572, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
       propertyPath: m_Name
       value: WallPuzzle (1)
@@ -6766,6 +6774,10 @@ PrefabInstance:
     - target: {fileID: 5136085261200569643, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
       propertyPath: m_Name
       value: WallPuzzleTrigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119169538278798905, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
+      propertyPath: m_Name
+      value: Active (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 139e4a23ae267b246b737b10f614c326, type: 3}
@@ -6892,7 +6904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: Enter an integer or 0 or 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18982,6 +18994,7 @@ MonoBehaviour:
   cs2040SeenBefore: []
   ma1511Progress: 0
   ma1512Progress: 0
+  ma1508EProgress: 0
   eg1311Progress: 0
   cg2111aProgress: 0
   completedQuestNames: []
@@ -32420,7 +32433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPuzzleTrigger: {fileID: 262193882}
-  wallPuzzleActivate: {fileID: 1871496769}
+  wallPuzzleActivate: {fileID: 262193885}
   lockedWall: {fileID: 1280150022}
   questName: MA1512
   questProgress: 1

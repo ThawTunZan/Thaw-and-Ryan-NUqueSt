@@ -25,27 +25,27 @@ public class DotProductPuzzle : WallPuzzle
 
     protected override void ChangePuzzleText()
     {
-        puzzleText.text = "(" + currQ + "/" + totalQ + ") Solve the infinite sum question or die!" +
+        puzzleText.text = "(" + currQ + "/" + totalQ + ") Solve the dot product question or die!" +
             "\nEvery wrong answer has consequences..." +
-            "\n\nx = 1 + 1/2 + 1/4 + 1/8 + 1/16 + ..." +
-            "\nThis sequence continues infinitely, with the denominator doubling per term." +
-            "\n\nWhat is the value of x?";
+            "\n\nUnit vector A is perpendicular to unit vector B," +
+            "\nmeaning that both vectors are of length 1 and have a 90 degree angle between them." +
+            "\n\nWhat is the value of the dot product of vector A and B?";
     }
 
     protected override int GetPuzzleAnswer()
     {
-        return 2;
+        return 0;
     }
 
     protected override void SpawnEnemy()
     {
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Skeleton"), new Vector2(1.006379f, 0.7816986f), Quaternion.identity);
-        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2(1.006379f, 0.7816986f), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Skeleton"), new Vector2(-1.819199f, 1.480461f), Quaternion.identity);
+        Instantiate(EnemySpawner.instance.GetEnemyByName("Slime"), new Vector2(-0.5559641f, 1.46235f), Quaternion.identity);
     }
 
     protected override void CheckInBattle()
     {
-        if (GameObject.Find("Slime(Clone)") == null && GameObject.Find("Skeleton(Clone)"))
+        if (GameObject.Find("Slime(Clone)") == null && GameObject.Find("Skeleton(Clone)") == null)
         {
             inBattle = false;
             startBattle = false;

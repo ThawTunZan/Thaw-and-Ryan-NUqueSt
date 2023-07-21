@@ -7256,7 +7256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7717ffea0cec2ae4b824f53f33aece50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
+  enemies:
+  - {fileID: 9082491253928029058, guid: b52fb0b66493181488cab5b06bb1c593, type: 3}
+  - {fileID: 2997064449886215069, guid: 3028470ad4e74644cb69ed815b91fc7c, type: 3}
   listOfEnemySceneNames: []
 --- !u!4 &254874807
 Transform:
@@ -8542,7 +8544,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.4089013, y: -0.85976976}
+  m_Offset: {x: 1.4089013, y: -0.905047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8553,7 +8555,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1776588, y: 0.22748482}
+  m_Size: {x: 1.1776588, y: 0.3180393}
   m_EdgeRadius: 0
 --- !u!4 &301958387
 Transform:
@@ -9399,7 +9401,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -6
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -19161,7 +19163,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

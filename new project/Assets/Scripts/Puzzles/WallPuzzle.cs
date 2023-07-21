@@ -103,6 +103,7 @@ public class WallPuzzle : MonoBehaviour
             {
                 puzzleText.text = "Correct!\n\nYou are now freed from this room.";
                 puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 ChangeQuestProgress();
             }
             else
@@ -132,6 +133,7 @@ public class WallPuzzle : MonoBehaviour
         puzzleText.gameObject.SetActive(false);
         puzzleInput.gameObject.SetActive(false);
         puzzleClose.SetActive(false);
+        visualCue.SetActive(false);
         playerItems.disableToolbar = false;
         playerMovement.enabled = true;
         if (startBattle)
@@ -139,7 +141,6 @@ public class WallPuzzle : MonoBehaviour
             puzzleTrigger.inBattle = true;
             inBattle = true;
             puzzleActivated.SetActive(false);
-            visualCue.SetActive(false);
             SpawnEnemy();
         }
     }
