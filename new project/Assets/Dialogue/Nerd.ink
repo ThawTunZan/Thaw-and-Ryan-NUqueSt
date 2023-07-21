@@ -9,13 +9,31 @@ Sam: How can I help you?
         Sam: We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:Sam: I do not require assistance for now. |{(!NerdValidTime): Sam: Thanks for the help. Maybe come another day! |{NerdQuestStarted:Sam: I have already given you a quest. -> in_quest|{(!questCS1010Done): -> CS1010Convo|{(!questCS1231Done): -> CS1231Convo|{(!questCS2030Done) : ->CS2030Convo |{(!questCS2040Done): ->CS2040Convo}}}}}}}
+        {(!NerdValidTime): Sam: Thanks for the help. Maybe come another day! |{NerdAllDone: -> SamScrollConvo|{NerdQuestStarted:Sam: I have already given you a quest. -> in_quest|{(!questCS1010Done): -> CS1010Convo|{(!questCS1231Done): -> CS1231Convo|{(!questCS2030Done) : ->CS2030Convo |{(!questCS2040Done): ->CS2040Convo}}}}}}}
         -> DONE
     * [Leave]
         Sam: Goodbye.
         -> DONE
 
 -> END
+
+=== SamScrollConvo ===
+{(!NerdScrollConvo):
+Sam: Wazzzzup!!!
+Sam: I was quite sad when there were no more puzzles left in the forest cave.
+Sam: However, when I went to the back to the forest to search for puzzles, I came across a scroll left inside a robot!
+Sam: It was like a hidden treasure!
+Sam: Anyway, I'm not too interested in this hardware stuff.
+Sam: So I'm gonna give this scroll to you.
+Sam: I carefully laid the scroll inside the chest in my house!
+~NerdScrollConvo = true
+-> END
+}
+Sam: Sorry man! I cannot find anymore coding puzzles to do!
+Sam: Maybe I should start making some of my own.
+Sam: Anyway, you can go help someone else!
+-> END
+
 
 === in_quest ===
 * [What am I supposed to do again?]

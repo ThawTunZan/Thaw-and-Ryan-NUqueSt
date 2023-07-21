@@ -9,13 +9,28 @@ George: How can I help you?
         George: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:George: I do not require assistance for now. |{(!WeaponSmithValidTime): George: Thanks for the help. Maybe come another day! |{WeaponSmithQuestStarted:George: I have already given you a quest. -> in_quest|{(!questMA1511Done): -> MA1511Convo|{(!questMA1512Done): -> MA1512Convo|{(!questMA1508EDone) : ->MA1508EConvo}}}}}}
+        {(!WeaponSmithValidTime): George: Thanks for the help. Maybe come another day!|{WeaponSmithAllDone: -> GeorgeScrollConvo|{WeaponSmithQuestStarted:George: I have already given you a quest. -> in_quest|{(!questMA1511Done): -> MA1511Convo|{(!questMA1512Done): -> MA1512Convo|{(!questMA1508EDone): ->MA1508EConvo}}}}}}
         -> DONE
     * [Leave]
         George: Goodbye.
         -> DONE
 
 -> END
+
+=== GeorgeScrollConvo ===
+{(!WeaponSmithScrollConvo):
+George: As an extra reward for answering all those math questions, I'll be handing you a scroll.
+George: This scroll was found by my brother deep in the caves.
+George: It seems this scroll may be important, and I do not want to be tempted to use it as rough paper to write math stuff.
+George: So, I'll be giving it to you.
+George: The scroll is inside the chest in this house.
+~WeaponSmithScrollConvo = true
+-> END
+}
+George: It would seem that I cannot think of another math question for you.
+George: Perhaps other villagers would need assistance!
+-> END
+
 
 === in_quest ===
 * [What am I supposed to do again?]
@@ -42,7 +57,6 @@ George: Come back tomorrow, and I'll give you another interesting question.
 ~questMA1511Done = true 
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false
-~WeaponSmithAllDone = true
 ->END
 
 === MA1512Convo === 
@@ -78,6 +92,7 @@ George: Anyway, if I ever come up with more questions, I will let you know!
 ~questMA1508EDone = true
 ~WeaponSmithValidTime = false
 ~WeaponSmithQuestDone = false
+~WeaponSmithAllDone = true
 ->END
 
 
