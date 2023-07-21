@@ -15,6 +15,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public List<Vector2Int> cs2040SeenBefore = new List<Vector2Int>();
 
     public int ma1511Progress;
+    public int ma1512Progress;
+    public int ma1508EProgress;
 
     public int eg1311Progress;
     public int cg2111aProgress;
@@ -23,6 +25,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
+
+    public List<string> questScrollNames = new List<string>();
 
     private void Start()
     {
@@ -38,6 +42,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             cs2040SeenBefore = GameManager.instance.cs2040SeenBefore;
 
             ma1511Progress = GameManager.instance.ma1511Progress;
+            ma1512Progress = GameManager.instance.ma1512Progress;
+            ma1508EProgress = GameManager.instance.ma1508EProgress;
 
             eg1311Progress = GameManager.instance.eg1311Progress;
             cg2111aProgress = GameManager.instance.cg2111aProgress;
@@ -46,6 +52,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
             completedQuestNames = GameManager.instance.completedQuestNames;
             completedQuestDescs = GameManager.instance.completedQuestDescs;
+
+            questScrollNames = GameManager.instance.questScrollNames;
         }
         CheckQuestProgress();
     }
@@ -88,19 +96,19 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             NQueensPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<NQueensPuzzle>();
             puzzle1.CheckQuestProgress(cs2040Progress);
         }
-        else if (currScene == "Village_WeaponShop") // For MA1511
+        else if (currScene == "Village_WeaponShop") // For MA1511 and MA1512
         {
-            if (ma1511Progress >= 2)
-            {
-                GameObject.Find("Slime (1)").SetActive(false);
-            }
-            if (ma1511Progress >= 1)
-            {
-                GameObject.Find("Slime").SetActive(false);
-            }
             if (ma1511Progress >= 0)
             {
                 GameObject.Find("MA1511Collider").SetActive(false);
+                InfiniteSumPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<InfiniteSumPuzzle>();
+                puzzle1.CheckQuestProgress(ma1511Progress);
+            }
+            if (ma1512Progress >= 0)
+            {
+                GameObject.Find("MA1512Collider").SetActive(false);
+                PopulationPuzzle puzzle2 = GameObject.Find("WallPuzzleTrigger (1)").GetComponent<PopulationPuzzle>();
+                puzzle2.CheckQuestProgress(ma1512Progress);
             }
         }
         else if (currScene == "DCave_1") // For EG1311
@@ -108,6 +116,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             if (eg1311Progress == 0 || cg2111aProgress == 0)
             {
                 GameObject.Find("EG1311Collider").SetActive(false);
+            }
+            if (ma1508EProgress >= 0)
+            {
+                DotProductPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<DotProductPuzzle>();
+                puzzle1.CheckQuestProgress(ma1508EProgress);
             }
         }
         else if (currScene == "DCave_1a") // For CG2111A
@@ -123,18 +136,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
     }
 
-    private bool SearchForQuest(string questName)
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            if (questList.questSlots[i].questName == questName)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)
     {
         if (SearchForQuest(questName) && questProgress == -1)
@@ -148,6 +149,18 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
     }
 
+    private bool SearchForQuest(string questName)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (questList.questSlots[i].questName == questName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void Update()
     {
         GameManager.instance.questList = questList;
@@ -159,6 +172,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.cs2040SeenBefore = cs2040SeenBefore;
 
         GameManager.instance.ma1511Progress = ma1511Progress;
+        GameManager.instance.ma1512Progress = ma1512Progress;
+        GameManager.instance.ma1508EProgress = ma1508EProgress;
 
         GameManager.instance.eg1311Progress = eg1311Progress;
         GameManager.instance.cg2111aProgress = cg2111aProgress;
@@ -167,6 +182,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         GameManager.instance.completedQuestNames = completedQuestNames;
         GameManager.instance.completedQuestDescs = completedQuestDescs;
+
+        GameManager.instance.questScrollNames = questScrollNames;
     }
 
     public void LoadData(GameData data)
@@ -181,6 +198,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         cs2040SeenBefore = data.cs2040SeenBefore;
 
         ma1511Progress = data.ma1511Progress;
+        ma1512Progress = data.ma1512Progress;
+        ma1508EProgress = data.ma1508EProgress;
 
         eg1311Progress = data.eg1311Progress;
         cg2111aProgress = data.cg2111aProgress;
@@ -189,6 +208,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         completedQuestNames = data.completedQuestNames;
         completedQuestDescs = data.completedQuestDescs;
+
+        questScrollNames = data.questScrollNames;
     }
 
     public void SaveData(GameData data)
@@ -202,6 +223,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.cs2040SeenBefore = cs2040SeenBefore;
 
         data.ma1511Progress = ma1511Progress;
+        data.ma1512Progress = ma1512Progress;
+        data.ma1508EProgress = ma1508EProgress;
 
         data.eg1311Progress = eg1311Progress;
         data.cg2111aProgress = cg2111aProgress;
@@ -210,5 +233,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         data.completedQuestNames = completedQuestNames;
         data.completedQuestDescs = completedQuestDescs;
+
+        data.questScrollNames = questScrollNames;
     }
 }

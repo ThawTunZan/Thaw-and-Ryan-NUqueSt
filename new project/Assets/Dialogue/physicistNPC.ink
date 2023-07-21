@@ -10,11 +10,26 @@ Galileo: Oh hey there!
 * [I want to buy something.]
       Galileo: We are currently out of stock.-> DONE
 * [Do you have any quests?]
-      {allQuestDone:Galileo: I do not require assistance for now.|{(!PhysicistValidTime): Galileo: Thanks for the help! Maybe come another time. |{PhysicistQuestStarted:Galileo: I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
+      {(!PhysicistValidTime): Galileo: Thanks for the help! Maybe come another time.|{PhysicistAllDone: -> GalileoScrollConvo |{PhysicistQuestStarted:Galileo: I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
 * [Leave]
       Galileo: Goodbye.-> DONE
 -> END
 
+=== GalileoScrollConvo ===
+{(!PhysicistScrollConvo):
+Galileo: There you are!
+Galileo: I have been standing under every tree to confirm my theory on gravity, when suddenly, a scroll fell from the tree!
+Galileo: Can you believe it?! A scroll!
+Galileo: Who knows what knowledge this scroll could have!
+Galileo: I'm leaving this scroll in your hands.
+Galileo: Take it, and figure out what to do with it!
+Galileo: The mysterious scroll is inside the brown chest in my house.
+~PhysicistScrollConvo = true
+-> END
+}
+Galileo: Alas, I have not any more quests for you.
+Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
+-> END
 
 === PC1201Convo ===
 {(!PhysicistQuestDone):
@@ -32,6 +47,7 @@ Galileo: Oh hey there!
      ~questPC1201Done = true
      ~PhysicistValidTime = false
      ~PhysicistQuestDone = false
+     ~PhysicistAllDone = true
 ->END
 
 

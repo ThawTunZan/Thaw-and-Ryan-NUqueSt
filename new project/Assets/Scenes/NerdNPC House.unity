@@ -3103,7 +3103,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170493440
 GameObject:
@@ -3920,7 +3920,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &194243595
 GameObject:
@@ -9753,7 +9753,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517561813
 GameObject:
@@ -14916,6 +14916,18 @@ MonoBehaviour:
     slots: []
   chest2:
     slots: []
+  chest3:
+    slots: []
+  chest4:
+    slots: []
+  chest5:
+    slots: []
+  chest6:
+    slots: []
+  chest7:
+    slots: []
+  chest8:
+    slots: []
   chestList: []
   hasAddedToChest: 0
   shop0:
@@ -14931,14 +14943,18 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  ma1512Progress: 0
+  ma1508EProgress: 0
   eg1311Progress: 0
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
+  questScrollNames: []
   rockDayChecker: 0
   listOfRockSceneNames: []
   enemyDayChecker: 0
   listOfEnemySceneNames: []
+  dtk1234Collected: 00000000000000000000000000000000
   hours: 0
   minutes: 0
   seconds: 0
@@ -14960,7 +14976,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &753723207
 GameObject:
@@ -19777,7 +19793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957419700
 GameObject:
@@ -39670,7 +39686,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554707746
 GameObject:
@@ -39722,7 +39738,7 @@ Transform:
   - {fileID: 1884851227}
   - {fileID: 1324899799}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561825071
 GameObject:
@@ -40515,7 +40531,7 @@ Transform:
   - {fileID: 1304318603}
   - {fileID: 1132205052}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623285253
 GameObject:
@@ -49589,7 +49605,7 @@ Transform:
   m_Children:
   - {fileID: 1384978839}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882660550
 GameObject:
@@ -54785,7 +54801,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2080151466
 GameObject:
@@ -55716,6 +55732,115 @@ MonoBehaviour:
   itemPickaxeDamage: 0
   itemHoeRange: 0
   highlight: {fileID: 0}
+--- !u!1001 &2110840944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 789564238414652854, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: chestName
+      value: Chest8
+      objectReference: {fileID: 0}
+    - target: {fileID: 789564238414652854, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: ab4ea3fc5a1e4e84c898afd08a47d065, type: 2}
+    - target: {fileID: 3901531309981297422, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_Name
+      value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: dropPanel
+      value: 
+      objectReference: {fileID: 810456310}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: helpPanel
+      value: 
+      objectReference: {fileID: 67146762}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: chestPanel
+      value: 
+      objectReference: {fileID: 628983096}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: slotBlocker
+      value: 
+      objectReference: {fileID: 1193331575}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 544573886}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.23535639
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7783338
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+--- !u!1 &2110840945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3901531309981297422, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 2110840944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2110840946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7640188727470514520, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 2110840944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2110840947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110840945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801e039899021e4408ca2ba909b1a726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Nerd
+  chestTrigger: {fileID: 2110840946}
 --- !u!1 &2113687363
 GameObject:
   m_ObjectHideFlags: 0

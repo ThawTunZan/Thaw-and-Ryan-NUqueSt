@@ -66,11 +66,7 @@ public class Quest_UI : MonoBehaviour
         {
             if (playerQuests.questList.questSlots[i].count == 1)
             {
-                questSlots[i].SetItem(playerQuests.questList.questSlots[i]);
-                if (playerQuests.questList.questSlots[i].done)
-                {
-                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
-                }
+                questSlots[i].SetQuest(playerQuests.questList.questSlots[i]);
             }
             else
             {
@@ -96,15 +92,11 @@ public class Quest_UI : MonoBehaviour
                 {
                     tempQuests += "Not ";
                 }
-                else
+                else if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
                 {
-                    if (!tempDict.ContainsKey(playerQuests.questList.questSlots[i].questName))
-                    {
-                        tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
-                        playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
-                        playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
-                    }
-                    questSlots[i].questDescriptionText.text = "Report back to the villager that gave the quest!";
+                    tempDict.Add(playerQuests.questList.questSlots[i].questName, 0);
+                    playerQuests.completedQuestNames.Add(playerQuests.questList.questSlots[i].questName);
+                    playerQuests.completedQuestDescs.Add(playerQuests.questList.questSlots[i].questDescription);
                 }
                 tempQuests += "Done\n";
             }

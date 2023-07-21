@@ -9,6 +9,7 @@ using Choice = Ink.Runtime.Choice;
 using UnityEngine.EventSystems;
 using UnityEditor;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 //using Ink.UnityIntegration;
 
 public class DialogueManager : MonoBehaviour, IDataPersistence
@@ -103,7 +104,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
-        else if (GameManager.instance.day == currDay && (questIsDone == "True" ||questIsDone == "true"))
+        else if (GameManager.instance.day == currDay && (questIsDone == "True" || questIsDone == "true"))
         {
 
         }
@@ -114,6 +115,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
         else if (GameManager.instance.day == currDay && (questIsDone == "false" || questIsDone == "False"))
         {
+            
         }
     }
 
@@ -163,25 +165,15 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
 
     public void QuestCompleted()
     {
-        for (int i = 0; i < 6; i += 1)
+        for (int i = 0; i < 6; i++)
         {
             if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
                 && player.questList.questSlots[i].questName != "")
             {
                 player.questList.RemoveItemFromPlayer(player.questList.questSlots[i].questItemRequired, 
                     player.questList.questSlots[i].questItemAmount);
-                player.questList.questSlots[i].count = 0;
-                player.questList.questSlots[i].questNPCName = "";
-                player.questList.questSlots[i].questName = "";
-                player.questList.questSlots[i].questDescription = "";
-                player.questList.questSlots[i].questSceneName = "";
-                player.questList.questSlots[i].done = false;
-                player.questList.questSlots[i].gpaReward = 0;
-                player.questList.questSlots[i].questItemRequired = "";
-                player.questList.questSlots[i].questItemAmount = 0;
                 playerMoney.money += (int)player.questList.questSlots[i].gpaReward;
-                Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                quest_UI.questSlots[i].GetComponent<QuestSlot_UI>().questStatus.SetActive(false);
+                player.questList.questSlots[i].RemoveInfo();
             }
         }
     }
@@ -202,7 +194,6 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     private bool QuestIsDone(int x)
     {
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        // if there are no required items needed to pass to NPC return true
         if (player.questList.questSlots[x].done && player.questList.questSlots[x].questName != "")
         {
             return true;
@@ -233,6 +224,11 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             else if (currentLine.Contains("Sure. This is what we have in stock."))
             {
                 openShop = true;
+            }
+            else if (currentLine.Contains("scroll") && currentLine.Contains("chest") && currentLine.Contains("house") && localNPCName != "")
+            {
+                player = GameObject.Find("Player").GetComponent<PlayerQuests>();
+                player.questScrollNames.Add(localNPCName);
             }
             DisplayChoices();
         }

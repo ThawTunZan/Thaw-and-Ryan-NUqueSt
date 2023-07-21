@@ -11,8 +11,6 @@ public class NQueensPuzzle : WallPuzzle
     public int currQ;
     private int totalQ = 4;
 
-    bool hasQuest;
-
     [SerializeField] private GameObject puzzleDoor1;
 
     protected override void Start()
@@ -101,6 +99,8 @@ public class NQueensPuzzle : WallPuzzle
             else if (currQ == totalQ)
             {
                 puzzleText.text = "Correct!\n\nYou are now freed from this room.";
+                puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 ChangeQuestProgress();
             }
             else
@@ -114,21 +114,21 @@ public class NQueensPuzzle : WallPuzzle
         else
         {
             puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
+            puzzleClose.SetActive(true);
+            puzzleInput.gameObject.SetActive(false);
             startBattle = true;
         }
     }
 
     private void UpdateQuestProgress()
     {
-        if (playerQuests.cs2040Progress > cs2040Progress && hasQuest)
+        if (playerQuests.cs2040Progress >= cs2040Progress && hasQuest)
         {
             for (int i = 0; i < 6; i++)
             {
                 if (playerQuests.questList.questSlots[i].questName == "CS2040")
                 {
                     playerQuests.questList.questSlots[i].done = true;
-                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }

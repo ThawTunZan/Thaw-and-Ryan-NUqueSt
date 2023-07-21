@@ -27,6 +27,8 @@ public class WallPuzzle : MonoBehaviour
     protected PlayerMovement playerMovement;
     protected PlayerQuests playerQuests;
 
+    protected bool hasQuest = true;
+
     protected virtual void Start()
     {
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
@@ -101,12 +103,14 @@ public class WallPuzzle : MonoBehaviour
             {
                 puzzleText.text = "Correct!\n\nYou are now freed from this room.";
                 puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 ChangeQuestProgress();
             }
             else
             {
                 puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
                 puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 startBattle = true;
             }
         }
@@ -118,6 +122,8 @@ public class WallPuzzle : MonoBehaviour
         puzzleText.gameObject.SetActive(true);
         puzzleInput.gameObject.SetActive(true);
         puzzlePanel.SetActive(true);
+        playerItems.disableToolbar = true;
+        playerMovement.enabled = false;
     }
 
     public void HideUI()
@@ -127,6 +133,7 @@ public class WallPuzzle : MonoBehaviour
         puzzleText.gameObject.SetActive(false);
         puzzleInput.gameObject.SetActive(false);
         puzzleClose.SetActive(false);
+        visualCue.SetActive(false);
         playerItems.disableToolbar = false;
         playerMovement.enabled = true;
         if (startBattle)

@@ -12,8 +12,6 @@ public class ClassInheritancePuzzle : WallPuzzle
     private int currQ = 1;
     private int totalQ = 2;
 
-    bool hasQuest = true;
-
     [SerializeField] private GameObject puzzleDoor1;
     [SerializeField] private GameObject puzzleDoor2;
 
@@ -135,6 +133,8 @@ public class ClassInheritancePuzzle : WallPuzzle
                 if (currQ == totalQ)
                 {
                     puzzleText.text = "Correct!\n\nYou are now freed from this room.";
+                    puzzleClose.SetActive(true);
+                    puzzleInput.gameObject.SetActive(false);
                     ChangeQuestProgress();
                 }
                 else
@@ -153,6 +153,8 @@ public class ClassInheritancePuzzle : WallPuzzle
             else
             {
                 puzzleText.text = "Oh no, that is wrong...\n\nThere is a surprise waiting for you :)";
+                puzzleClose.SetActive(true);
+                puzzleInput.gameObject.SetActive(false);
                 startBattle = true;
             }
         }
@@ -167,8 +169,6 @@ public class ClassInheritancePuzzle : WallPuzzle
                 if (playerQuests.questList.questSlots[i].questName == "CS2030")
                 {
                     playerQuests.questList.questSlots[i].done = true;
-                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }

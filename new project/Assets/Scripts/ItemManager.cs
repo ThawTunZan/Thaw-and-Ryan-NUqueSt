@@ -7,7 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     /*
      * This script is used to check which prefab is associated with which item type.
-     * Without this script, the item cannot be dropped.
+     * GetItemByName function is the main use of this script, which returns an Item given the string itemName.
      */
 
     public Item[] items;

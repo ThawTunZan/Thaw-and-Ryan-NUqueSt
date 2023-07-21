@@ -42,6 +42,18 @@ public class WallPuzzleTrigger : MonoBehaviour
         {
             ActivatePuzzle();
         }
+        else if (questName == "MA1511" && GameManager.instance.ma1511Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "MA1512" && GameManager.instance.ma1512Progress < questProgress)
+        {
+            ActivatePuzzle();
+        }
+        else if (questName == "MA1508E" && GameManager.instance.ma1508EProgress < questProgress)
+        {
+            ActivatePuzzle();
+        }
     }
 
     private void ActivatePuzzle()

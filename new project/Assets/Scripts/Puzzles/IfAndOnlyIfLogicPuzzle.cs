@@ -9,8 +9,6 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
     private int randX;
     public int puzzleAnswer;
 
-    private bool hasQuest = true;
-
     [SerializeField] private GameObject puzzleDoor1;
     [SerializeField] private GameObject puzzleDoor2;
 
@@ -109,8 +107,6 @@ public class IfAndOnlyIfLogicPuzzle : WallPuzzle
                 if (playerQuests.questList.questSlots[i].questName == "CS1231")
                 {
                     playerQuests.questList.questSlots[i].done = true;
-                    Quest_UI quest_UI = GameObject.Find("Quest").GetComponent<Quest_UI>();
-                    quest_UI.questSlots[i].questStatus.SetActive(true);
                     hasQuest = false;
                     break;
                 }

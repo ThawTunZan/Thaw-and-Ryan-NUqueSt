@@ -6386,7 +6386,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &312036338
 GameObject:
@@ -8538,7 +8538,7 @@ Transform:
   m_Children:
   - {fileID: 886829192}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &383506194
 GameObject:
@@ -10247,6 +10247,115 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491064190}
   m_CullTransparentMesh: 1
+--- !u!1001 &494618019
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 789564238414652854, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: chestName
+      value: Chest4
+      objectReference: {fileID: 0}
+    - target: {fileID: 789564238414652854, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: startingPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d704b98c85c0b646870f88d8f4e45d5, type: 2}
+    - target: {fileID: 3901531309981297422, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_Name
+      value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: dropPanel
+      value: 
+      objectReference: {fileID: 811897056}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: helpPanel
+      value: 
+      objectReference: {fileID: 1211699288}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: chestPanel
+      value: 
+      objectReference: {fileID: 1215287930}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: slotBlocker
+      value: 
+      objectReference: {fileID: 551739305}
+    - target: {fileID: 6449370896075527577, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 25219724}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.686
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.046
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158181653493741978, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+--- !u!1 &494618020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3901531309981297422, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 494618019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &494618021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494618020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801e039899021e4408ca2ba909b1a726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: EveShop
+  chestTrigger: {fileID: 494618022}
+--- !u!1 &494618022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7640188727470514520, guid: 387a2838359db9348b4eb83836bf06a3, type: 3}
+  m_PrefabInstance: {fileID: 494618019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &499623449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11170,7 +11279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4343043575726336896, guid: 016eaa67f32ec354eb5811521fd392d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16974,7 +17083,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762202646
 GameObject:
@@ -24321,7 +24430,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088954150
 GameObject:
@@ -26565,7 +26674,7 @@ Transform:
   - {fileID: 303850768}
   - {fileID: 751544904}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1195219227
 MonoBehaviour:
@@ -29185,7 +29294,7 @@ Transform:
   - {fileID: 2004808154}
   - {fileID: 1088954151}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1295737479
 GameObject:
@@ -33834,7 +33943,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1465754752
 GameObject:
@@ -35298,6 +35407,18 @@ MonoBehaviour:
     slots: []
   chest2:
     slots: []
+  chest3:
+    slots: []
+  chest4:
+    slots: []
+  chest5:
+    slots: []
+  chest6:
+    slots: []
+  chest7:
+    slots: []
+  chest8:
+    slots: []
   chestList: []
   hasAddedToChest: 0
   shop0:
@@ -35313,10 +35434,13 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  ma1512Progress: 0
+  ma1508EProgress: 0
   eg1311Progress: 0
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
+  questScrollNames: []
   rockDayChecker: 0
   listOfRockSceneNames: []
   enemyDayChecker: 0
@@ -35343,7 +35467,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536442364
 GameObject:
@@ -40834,7 +40958,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1747089072
 GameObject:
@@ -43160,7 +43284,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1831926190
 PrefabInstance:

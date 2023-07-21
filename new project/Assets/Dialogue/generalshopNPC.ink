@@ -8,12 +8,26 @@ Eve: Hi there! What can I get for you?
         Eve: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:Eve: I do not require assistance for now.|{(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo|{(!questHSI1000Done): -> HSI1000Convo|{(!questHSS1000Done): ->HSS1000Convo}}}}}}-> DONE
+        {(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopAllDone: -> EveScrollConvo|{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo|{(!questHSI1000Done): -> HSI1000Convo|{(!questHSS1000Done): ->HSS1000Convo}}}}}}-> DONE
         -> DONE
     * [Leave]
         Eve: Goodbye.
         -> DONE
 
+-> END
+
+=== EveScrollConvo ===
+{(!EveShopScrollConvo):
+Eve: This isn't really a quest, but I found a scroll while I was in the forest looking for inspiration.
+Eve: I don't have a use for it so I'd like to give it to you.
+Eve: Maybe you could find a use for it somewhere?
+Eve: The scroll is inside the chest in my house.
+~EveShopScrollConvo = true
+-> END
+}
+Eve: You've been really helpful to me!
+Eve: I don't think I will need help for a while now.
+Eve: You should ask someone else for a quest!
 -> END
 
 === HSS1000Convo ===
@@ -32,6 +46,7 @@ Eve: Hi there! What can I get for you?
      ~questHSS1000Done = true
      ~EveShopValidTime = false
      ~EveShopQuestDone = false
+     ~EveShopAllDone = true
     -> END
 
 === HSI1000Convo ===

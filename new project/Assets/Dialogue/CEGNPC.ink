@@ -8,9 +8,27 @@ TeeHaw: Oh! Hi there!
 * [What's up?]
       TeeHaw: Nothing much! Just wondering what I should do for my next project!-> DONE
 * [Do you have any quests?]
-{allQuestDone:TeeHaw: I do not require assistance for now.|{(!CEGValidTime): TeeHaw: Thanks for the help! Maybe come another time. |{CEGQuestStarted:TeeHaw: I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
+{(!CEGValidTime): TeeHaw: Thanks for the help! Maybe come another time. |{CEGAllDone: -> TeeHawScrollConvo |{CEGQuestStarted:TeeHaw: I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
 * [Leave]
   TeeHaw: Goodbye.-> DONE
+-> END
+
+=== TeeHawScrollConvo ===
+{(!CEGScrollConvo):
+TeeHaw: My robot discovered something!!!
+TeeHaw: I deployed it in the forest south of this village to investigate some loud noise!
+TeeHaw: Then when my robot came back, it retrieved two scrolls!!
+TeeHaw: But I was controlling it from my house, and when I went to take the scrolls, one of it was missing...
+TeeHaw: Maybe the sensor had detected the same scroll twice, but regardless!
+TeeHaw: This discovery was only possible because of you! So, I want you to have this scroll!!
+TeeHaw: Check the chest inside my house for the scroll!
+~CEGScrollConvo = true
+-> END
+}
+TeeHaw: My robot is working really well!!
+TeeHaw: I don't think I need to test any more features after this...
+TeeHaw: Thank you for your help! 
+TeeHaw: Maybe ask my partner Galileo, or somebody else for quests!
 -> END
 
 === CG2111AConvo ===
@@ -32,6 +50,7 @@ TeeHaw: Anyway, Thanks for the help!
 ~questCG2111ADone = true
 ~CEGValidTime = false
 ~CEGQuestDone = false
+~CEGAllDone = true
 ->END
 
 

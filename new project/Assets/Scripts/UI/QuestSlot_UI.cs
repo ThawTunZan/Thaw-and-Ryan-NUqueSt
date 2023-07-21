@@ -13,7 +13,7 @@ public class QuestSlot_UI : MonoBehaviour
     public Scrollbar scrollbar;
     public GameObject questStatus;
 
-    public void SetItem(QuestList.QuestSlot questSlot)
+    public void SetQuest(QuestList.QuestSlot questSlot)
     {
         if (questSlot != null)
         {
@@ -24,6 +24,12 @@ public class QuestSlot_UI : MonoBehaviour
             questDescriptionText.text = questSlot.questDescription;
             questNPCImage.sprite = Resources.Load<Sprite>("Quest/" + questSlot.questNPCName);
             questNPCImage.color = new Color(1, 1, 1, 1);
+
+            if (questSlot.done)
+            {
+                questStatus.SetActive(true);
+                questDescriptionText.text = "Report back to the villager that gave the quest!";
+            }
 
             questDescriptionText.text += "\n\nGPA Reward: " + questSlot.gpaReward;
 
@@ -53,96 +59,24 @@ public class QuestSlot_UI : MonoBehaviour
         questDescriptionText.text = "";
         questNPCImage.sprite = null;
         questNPCImage.color = new Color(1, 1, 1, 0);
+        questStatus.SetActive(false);
     }
 
     // add quests completion requirement here
     public void QuestHandler(QuestList.QuestSlot questSlot)
     {
-        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-        Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
-        Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
-        if (questSlot.done == true)
-        {
-            questStatus.SetActive(true);
-        }
-        if (questSlot.questName == "MA1511")
-        {
-            if (questSlot.slimesRequired <= 0)
-            {
-                questSlot.done = true;
-                questStatus.SetActive(true);
-            }
-        }
-        if (questSlot.questName == "MA1512")
-        {
-            foreach (Dictionary<string, int> questDict in questSlot.requireItems)
-            {
-                //to check inventory
-                foreach (Inventory.Slot slot in inventory.slots)
-                {
-                    if (questDict.ContainsKey(""))
-                    {
-                        break;
-                    }
-                    //check if same item 
-                    if (questDict.ContainsKey(slot.itemName) && questDict[slot.itemName] < slot.count)
-                    {
-                        slot.count -= questDict[slot.itemName];
-                        questSlot.requireItems.Remove(questDict);
-                        break;
-                    }
-                    else if (questDict.ContainsKey(slot.itemName) && questDict[slot.itemName] == slot.count)
-                    {
-                        questSlot.requireItems.Remove(questDict);
-                        slot.icon = null;
-                        slot.itemName = "";
-                        //remove the item
-                        break;
-                    }
-                }
-                //to check toolbar
-                foreach (Inventory.Slot slot in toolbar.slots)
-                {
-                    if (questDict.ContainsKey(""))
-                    {
-                        break;
-                    }
-                    //check for same item
-                    if (questDict.ContainsKey(slot.itemName) && questDict[slot.itemName] < slot.count)
-                    {
-                        slot.count -= questDict[slot.itemName];
-                        questSlot.requireItems.Remove(questDict);
-                        //remove the item, add ltr
-                        break;
-                    }
-                    else if (questDict.ContainsKey(slot.itemName) && questDict[slot.itemName] == slot.count)
-                    {
-                        questSlot.requireItems.Remove(questDict);
-                        slot.icon = null;
-                        slot.itemName = "";
-                        //remove the item, add ltr
-                        break;
-                    }
-                }
-                if (questSlot.requireItems.Count == 0)
-                {
-                    print("requirements fulfilled");
-                    questSlot.done = true;
-                    questStatus.SetActive(true);
-                }
-            }
-        }
         if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101" || questSlot.questName == "HSI1000"
             || questSlot.questName == "HSS1000" || questSlot.questName == "GEA1000")
         {
             if (questSlot.placesToVisit.Count == 0)
             {
                 questSlot.done = true;
-                questStatus.SetActive(true);
             }
         }
         if (questSlot.questName == "DTK1234")
         {
+            Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
+            Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
             bool check = false;
             for (int i = 0; i < 21; i++)
             {
@@ -150,10 +84,10 @@ public class QuestSlot_UI : MonoBehaviour
                 {
                     if (questSlot.questName == "DTK1234")
                     {
+                        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
                         playerQuests.dtk1234Collected[0] = 0;
                     }
                     questSlot.done = true;
-                    questStatus.SetActive(true);
                     check = true;
                     break;
                 }
@@ -164,10 +98,10 @@ public class QuestSlot_UI : MonoBehaviour
                 {
                     if (questSlot.questName == "DTK1234")
                     {
+                        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
                         playerQuests.dtk1234Collected[0] = 0;
                     }
                     questSlot.done = true;
-                    questStatus.SetActive(true);
                     check = true;
                     break;
                 }
@@ -175,7 +109,6 @@ public class QuestSlot_UI : MonoBehaviour
             if (!check)
             {
                 questSlot.done = false;
-                questStatus.SetActive(false);
             }
         }
     }

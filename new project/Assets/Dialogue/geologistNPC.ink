@@ -10,12 +10,26 @@ Leo: How can I help you?
         Leo: We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {allQuestDone:Leo: I do not require assistance for now.|{(!GeologistValidTime): Leo: Thanks for the help! Maybe come another time. |{GeologistQuestStarted:Leo: I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo |{(!questGESS1001Done): -> GESS1001Convo |{(!questGEA1000Done): ->GEA1000}}}}}}
+        {(!GeologistValidTime): Leo: Thanks for the help! Maybe come another time. |{GeologistAllDone: -> LeoScrollConvo|{GeologistQuestStarted:Leo: I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo |{(!questGESS1001Done): -> GESS1001Convo |{(!questGEA1000Done): ->GEA1000}}}}}}
         -> DONE
     * [Leave]
         Leo: Goodbye.
         -> DONE
 
+-> END
+
+=== LeoScrollConvo ===
+{(!GeologistScrollConvo):
+Leo: The samples you've given me have led me to find two scrolls in the depths of the forest cave.
+Leo: I have entrusted one to my brother.
+Leo: I am a rock expert, not a scroll expert.
+Leo: So, I'll be giving this scroll to you.
+Leo: I've left the scroll inside the chest in my house.
+~GeologistScrollConvo = true
+-> END
+}
+Leo: I don't have anymore quests for you.
+Leo: You should ask someone else!
 -> END
 
 === GEA1000 ===
@@ -35,6 +49,7 @@ Leo: We might be getting closer to something here!
      ~questGEA1000Done = true
      ~GeologistValidTime = false
      ~GeologistQuestDone = false
+     ~GeologistAllDone = true
 ->END
 
 === GESS1001Convo ===
