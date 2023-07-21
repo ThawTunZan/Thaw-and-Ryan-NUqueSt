@@ -1744,7 +1744,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2127,8 +2127,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 19236601, guid: fb44fa116422be741a2280eda6debf35, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 1540650719, guid: fb44fa116422be741a2280eda6debf35, type: 3}
   - m_RefCount: 1
@@ -2145,8 +2145,8 @@ Tilemap:
     m_Data: {fileID: 1479180790, guid: fb44fa116422be741a2280eda6debf35, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 286724699, guid: fb44fa116422be741a2280eda6debf35, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 19236601, guid: fb44fa116422be741a2280eda6debf35, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -1695083705, guid: e84ea9add7b810943abdd57e16d4bbc4, type: 3}
   - m_RefCount: 3
@@ -8627,9 +8627,9 @@ GameObject:
   m_Component:
   - component: {fileID: 330968600}
   - component: {fileID: 330968601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ToPreventEscape
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89390,9 +89390,9 @@ GameObject:
   - component: {fileID: 1487581644}
   - component: {fileID: 1487581643}
   - component: {fileID: 1487581642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HiddenColliders
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94772,9 +94772,9 @@ GameObject:
   - component: {fileID: 1750105295}
   - component: {fileID: 1750105294}
   - component: {fileID: 1750105296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wALLS
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111492,6 +111492,36 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -50, y: -19, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 43
+      m_TileSpriteIndex: 42
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -49, y: -19, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 44
+      m_TileSpriteIndex: 43
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -48, y: -19, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 45
+      m_TileSpriteIndex: 44
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -6, y: -19, z: 0}
     second:
       serializedVersion: 2
@@ -120197,6 +120227,36 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 25
       m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -51, y: 4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 43
+      m_TileSpriteIndex: 42
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -50, y: 4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 44
+      m_TileSpriteIndex: 43
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -49, y: 4, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 45
+      m_TileSpriteIndex: 44
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -137560,6 +137620,12 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 839595a0d90f98a4585f94ce242982e1, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7f4954ded5c218f43a0fdc5c6fb76d5a, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 8dad1a4f0715b8d4da9e786f33299432, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: f4e92b03d28226d47bac8bf91223cc5e, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 343d445d53609e448be2996644621c53, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 261
     m_Data: {fileID: -1927725638, guid: 445079f6d275219478a92243f469c082, type: 3}
@@ -137645,8 +137711,14 @@ Tilemap:
     m_Data: {fileID: 1825384470, guid: ccd90070d74a1644eacae42e00c6e464, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -240100839, guid: 5eee307303ccce24ca126fca0d9f47be, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: 1770294302, guid: f6ad3d986433c554aa5f3f2d96da0290, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: 384471763, guid: f6ad3d986433c554aa5f3f2d96da0290, type: 3}
+  - m_RefCount: 2
+    m_Data: {fileID: -285073502, guid: f6ad3d986433c554aa5f3f2d96da0290, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 4262
+  - m_RefCount: 4268
     m_Data:
       e00: 1
       e01: 0
@@ -137665,7 +137737,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4262
+  - m_RefCount: 4268
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -137886,6 +137958,18 @@ MonoBehaviour:
     slots: []
   chest2:
     slots: []
+  chest3:
+    slots: []
+  chest4:
+    slots: []
+  chest5:
+    slots: []
+  chest6:
+    slots: []
+  chest7:
+    slots: []
+  chest8:
+    slots: []
   chestList: []
   hasAddedToChest: 0
   shop0:
@@ -137907,6 +137991,7 @@ MonoBehaviour:
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
+  questScrollNames: []
   rockDayChecker: 0
   listOfRockSceneNames: []
   enemyDayChecker: 0
