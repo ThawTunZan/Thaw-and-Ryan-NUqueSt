@@ -20,7 +20,7 @@ TeeHaw: I deployed it in the forest south of this village to investigate some lo
 TeeHaw: Then when my robot came back, it retrieved two scrolls!!
 TeeHaw: But I was controlling it from my house, and when I went to take the scrolls, one of it was missing...
 TeeHaw: Maybe the sensor had detected the same scroll twice, but regardless!
-TeeHaw: This discovery was only possible because of you! So, I want you to have this scrol!!
+TeeHaw: This discovery was only possible because of you! So, I want you to have this scroll!!
 TeeHaw: Check the chest inside my house for the scroll!
 ~CEGScrollConvo = true
 -> END

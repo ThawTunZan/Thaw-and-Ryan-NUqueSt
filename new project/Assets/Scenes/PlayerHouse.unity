@@ -9431,6 +9431,18 @@ MonoBehaviour:
     slots: []
   chest2:
     slots: []
+  chest3:
+    slots: []
+  chest4:
+    slots: []
+  chest5:
+    slots: []
+  chest6:
+    slots: []
+  chest7:
+    slots: []
+  chest8:
+    slots: []
   chestList: []
   hasAddedToChest: 0
   shop0:
@@ -9446,14 +9458,18 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  ma1512Progress: 0
+  ma1508EProgress: 0
   eg1311Progress: 0
   cg2111aProgress: 0
   completedQuestNames: []
   completedQuestDescs: []
+  questScrollNames: []
   rockDayChecker: 0
   listOfRockSceneNames: []
   enemyDayChecker: 0
   listOfEnemySceneNames: []
+  dtk1234Collected: 00000000000000000000000000000000
   hours: 0
   minutes: 0
   seconds: 0
@@ -35158,6 +35174,12 @@ GameObject:
   - component: {fileID: 1708936101}
   - component: {fileID: 1708936102}
   - component: {fileID: 1708936100}
+  - component: {fileID: 1708936108}
+  - component: {fileID: 1708936107}
+  - component: {fileID: 1708936106}
+  - component: {fileID: 1708936105}
+  - component: {fileID: 1708936104}
+  - component: {fileID: 1708936103}
   m_Layer: 0
   m_Name: ForChestAdding
   m_TagString: Untagged
@@ -35209,6 +35231,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestName: Chest1
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest8
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest7
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest6
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest5
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest4
+  chestInventory:
+    slots: []
+  startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
+--- !u!114 &1708936108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708936099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ff65810761c5243a077b87b17d579b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestName: Chest3
   chestInventory:
     slots: []
   startingPosition: {fileID: 11400000, guid: 903e7f7cb99d54945ad949aa9649e702, type: 2}
