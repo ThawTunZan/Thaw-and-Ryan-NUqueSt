@@ -19,8 +19,6 @@ public class BGMManager : MonoBehaviour
     private bool isPlaying3 = false;
     private bool isPlaying4 = false;
 
-    private float tempVolume;
-
     private void Awake()
     {
         if (instance != null)

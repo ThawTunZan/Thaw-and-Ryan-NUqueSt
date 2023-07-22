@@ -162,6 +162,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             {
                 GameObject.Find("ToVillage").SetActive(false);
                 GameObject.Find("ForceSleep").SetActive(false);
+                Invoke(nameof(StartDialogue), 1f);
             }
             else if (endingProgress == 1)
             {
@@ -173,6 +174,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
                 GameObject.Find("EndingStuff").SetActive(false);
             }
         }
+    }
+
+    private void StartDialogue()
+    {
+        DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find("EndingStuff").GetComponent<DialogueFileHolder>().inkJSON);
     }
 
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)
