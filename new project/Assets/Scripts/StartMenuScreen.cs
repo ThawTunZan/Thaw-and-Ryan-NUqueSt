@@ -29,7 +29,6 @@ public class StartMenuScreen : MonoBehaviour
         loginMenu.SetActive(false);
     }
 
-
     public void HideAllButtons()
     {
         startRegisterObj.SetActive(false);
@@ -58,8 +57,9 @@ public class StartMenuScreen : MonoBehaviour
         Application.Quit();
     }
 
-    public void setVolume()
+    public void SetVolume()
     {
-        audioSource.volume = audioVolume.value;
+        BGMManager.instance.gameObject.GetComponent<AudioSource>().volume = audioVolume.value;
+        SFXManager.instance.gameObject.GetComponent<AudioSource>().volume = audioVolume.value;
     }
 }

@@ -15,24 +15,27 @@ public class MainMenuScript : MonoBehaviour
     public GameObject PWResetMenu;
     public AudioSource audioSource;
     public Slider audioVolume;
-
   
     public void OpenSettings()
     {
         settingsPanel.SetActive(true);
     }
+
     public void CloseSettings()
     {
         settingsPanel.SetActive(false);
     }
-    public void disableMainMenu()
+
+    public void DisableMainMenu()
     {
         mmPanel.SetActive(false);
     }
-    public void enableMainMenu()
+
+    public void EnableMainMenu()
     {
         mmPanel.SetActive(true);
     }
+
     public void OpenResetPWMenu()
     {
         if (!PWResetMenu.activeSelf)
@@ -44,9 +47,11 @@ public class MainMenuScript : MonoBehaviour
             PWResetMenu.SetActive(false);
         }
     }
-    public void setVolume()
+
+    public void SetVolume()
     {
-        audioSource.volume = audioVolume.value;
+        BGMManager.instance.gameObject.GetComponent<AudioSource>().volume = audioVolume.value;
+        SFXManager.instance.gameObject.GetComponent<AudioSource>().volume = audioVolume.value;
     }
 
     public void ExitGame()
