@@ -27,6 +27,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public List<string> completedQuestDescs = new List<string>();
 
     public List<string> questScrollNames = new List<string>();
+    public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
     private void Start()
     {
@@ -54,6 +55,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             completedQuestDescs = GameManager.instance.completedQuestDescs;
 
             questScrollNames = GameManager.instance.questScrollNames;
+            questScrollInserted = GameManager.instance.questScrollInserted;
         }
         CheckQuestProgress();
     }
@@ -185,6 +187,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         GameManager.instance.completedQuestDescs = completedQuestDescs;
 
         GameManager.instance.questScrollNames = questScrollNames;
+        GameManager.instance.questScrollInserted = questScrollInserted;
     }
 
     public void LoadData(GameData data)
@@ -211,6 +214,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         completedQuestDescs = data.completedQuestDescs;
 
         questScrollNames = data.questScrollNames;
+        questScrollInserted = data.questScrollInserted;
     }
 
     public void SaveData(GameData data)
@@ -236,5 +240,6 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         data.completedQuestDescs = completedQuestDescs;
 
         data.questScrollNames = questScrollNames;
+        data.questScrollInserted = questScrollInserted;
     }
 }

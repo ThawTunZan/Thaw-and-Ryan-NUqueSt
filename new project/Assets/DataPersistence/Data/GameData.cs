@@ -65,6 +65,7 @@ public class GameData
     public List<string> completedQuestDescs = new List<string>();
 
     public List<string> questScrollNames = new List<string>();
+    public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
     public float hours;
 

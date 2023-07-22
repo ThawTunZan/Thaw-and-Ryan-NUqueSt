@@ -50,10 +50,13 @@ public class GameManager : MonoBehaviour
     public int eg1311Progress;
     public int cg2111aProgress;
 
+    public List<int> dtk1234Collected = new List<int>() { 0, 0, 0, 0 };
+
     public List<string> completedQuestNames = new List<string>();
     public List<string> completedQuestDescs = new List<string>();
 
     public List<string> questScrollNames = new List<string>();
+    public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
     public float rockDayChecker;
     public List<string> listOfRockSceneNames = new List<string>();
@@ -64,8 +67,6 @@ public class GameManager : MonoBehaviour
     public List<string> listOfEnemySceneNames = new List<string>();
     public List<List<string>> listOfEnemyNames = new List<List<string>>();
     public List<List<int>> listOfEnemyStates = new List<List<int>>();
-
-    public List<int> dtk1234Collected = new List<int>() { 0, 0, 0, 0 };
 
     // for day and night system
     public float hours;

@@ -31,13 +31,13 @@ public class GameButtons : MonoBehaviour
         DatabaseManager.instance.DeleteUserData();
         DataPersistenceManager.instance.NewGame();
         SceneManager.LoadSceneAsync("IntroTutorial");
-        //SceneManager.LoadSceneAsync("Village");
     }
 
     public void ContinueGame()
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("PlayerHouse");
+        //SceneManager.LoadSceneAsync("PlayerHouse");
+        SceneManager.LoadSceneAsync("Cave_5a");
     }
 
     //disable so that player cant click continue button if there is no saved data

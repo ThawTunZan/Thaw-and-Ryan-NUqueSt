@@ -38,8 +38,8 @@ public class BGMManager : MonoBehaviour
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
             || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse");
         bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a"
-            || sceneName == "Cave_4a" || sceneName == "Cave_1b" || sceneName == "DCave_1" || sceneName == "DCave_1a"
-            || sceneName == "DCave_2a");
+            || sceneName == "Cave_4a" || sceneName == "Cave_5a" || sceneName == "Cave_1b" || sceneName == "DCave_1" 
+            || sceneName == "DCave_1a" || sceneName == "DCave_2a");
         if (sceneName == "SampleScene 1")
         {
             audioSource.clip = audioClips[0];
