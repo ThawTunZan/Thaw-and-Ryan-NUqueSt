@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     public List<string> questScrollNames = new List<string>();
     public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
+    public int endingProgress;
+
     public float rockDayChecker;
     public List<string> listOfRockSceneNames = new List<string>();
     public List<List<string>> listOfRockNames = new List<List<string>>();

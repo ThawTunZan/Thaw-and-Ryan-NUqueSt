@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SUMonsterHealth : EnemyHealth
 {
     public HealthBar healthBar;
+
+    [SerializeField] private TextAsset inkJSON;
+
     public override void Start()
     {
         base.Start();
@@ -45,5 +49,16 @@ public class SUMonsterHealth : EnemyHealth
     private void Update()
     {
         healthBar.SetHealth(Health);
+    }
+
+    public override void SlimeDeath()
+    {
+        if (SceneManager.GetActiveScene().name == "Arena")
+        {
+            GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress = 1;
+            GameObject.Find("Blocking").SetActive(false);
+            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        }
+        Destroy(this.gameObject);
     }
 }

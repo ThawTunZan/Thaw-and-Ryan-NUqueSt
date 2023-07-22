@@ -29,6 +29,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     public List<string> questScrollNames = new List<string>();
     public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
+    public int endingProgress;
+
     private void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -56,6 +58,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
             questScrollNames = GameManager.instance.questScrollNames;
             questScrollInserted = GameManager.instance.questScrollInserted;
+
+            endingProgress = GameManager.instance.endingProgress;
         }
         CheckQuestProgress();
     }
@@ -137,6 +141,48 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         {
             GameObject.Find("DTK1234Quest").GetComponent<DTK1234Quest>().ChangeActive(dtk1234Collected);
         }
+        else if (currScene == "Cave_5a")
+        {
+            for (int i = 0; i < questScrollInserted.Count; i++)
+            {
+                if (questScrollInserted[i] == 0)
+                {
+                    GameObject.Find("ScrollPortal").SetActive(false);
+                    break;
+                }
+            }
+        }
+        else if (currScene == "Arena")
+        {
+            if (endingProgress >= 1)
+            {
+                GameObject.Find("Blocking").SetActive(false);
+            }
+        }
+        else if (currScene == "Game")
+        {
+            if (endingProgress >= 1)
+            {
+                GameObject.Find("BlockEastPath").SetActive(false);
+            }
+        }
+        else if (currScene == "FarmHouse")
+        {
+            if (endingProgress >= 2)
+            {
+                GameObject.Find("ToVillage").SetActive(false);
+                GameObject.Find("ForceSleep").SetActive(false);
+            }
+            else if (endingProgress == 1)
+            {
+                GameObject.Find("EndingStuff").SetActive(false);
+            }
+            else if (endingProgress == 0)
+            {
+                GameObject.Find("ForceSleep").SetActive(false);
+                GameObject.Find("EndingStuff").SetActive(false);
+            }
+        }
     }
 
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)
@@ -188,6 +234,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         GameManager.instance.questScrollNames = questScrollNames;
         GameManager.instance.questScrollInserted = questScrollInserted;
+
+        GameManager.instance.endingProgress = endingProgress;
     }
 
     public void LoadData(GameData data)
@@ -215,6 +263,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         questScrollNames = data.questScrollNames;
         questScrollInserted = data.questScrollInserted;
+
+        endingProgress = data.endingProgress;
     }
 
     public void SaveData(GameData data)
@@ -241,5 +291,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
         data.questScrollNames = questScrollNames;
         data.questScrollInserted = questScrollInserted;
+
+        data.endingProgress = endingProgress;
     }
 }

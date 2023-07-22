@@ -67,6 +67,8 @@ public class GameData
     public List<string> questScrollNames = new List<string>();
     public List<int> questScrollInserted = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
+    public int endingProgress;
+
     public float hours;
 
     public float day;

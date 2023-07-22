@@ -56,6 +56,11 @@ public class BedSleep : MonoBehaviour
         {
             playerTutorial.tutorialProgress = 2;
         }
+        PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+        if (playerQuests.endingProgress == 1)
+        {
+            playerQuests.endingProgress = 2;
+        }
         DataPersistenceManager.instance.SaveGame();
         GameManager.instance.health = 100;
         GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
