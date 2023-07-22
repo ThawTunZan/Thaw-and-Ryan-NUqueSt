@@ -10,9 +10,15 @@ Galileo: Oh hey there!
 * [I want to buy something.]
       Galileo: We are currently out of stock.-> DONE
 * [Do you have any quests?]
-      {(!PhysicistValidTime): Galileo: Thanks for the help! Maybe come another time.|{PhysicistAllDone: -> GalileoScrollConvo |{PhysicistQuestStarted:Galileo: I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
+      {(!PhysicistValidTime): -> NotValidTime |{PhysicistAllDone: -> GalileoScrollConvo |{PhysicistQuestStarted:Galileo: I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
 * [Leave]
       Galileo: Goodbye.-> DONE
+-> END
+
+=== NotValidTime ===
+Galileo: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === GalileoScrollConvo ===

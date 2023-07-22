@@ -10,12 +10,18 @@ Leo: How can I help you?
         Leo: We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {(!GeologistValidTime): Leo: Thanks for the help! Maybe come another time. |{GeologistAllDone: -> LeoScrollConvo|{GeologistQuestStarted:Leo: I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo |{(!questGESS1001Done): -> GESS1001Convo |{(!questGEA1000Done): ->GEA1000}}}}}}
+        {(!GeologistValidTime): -> NotValidTime |{GeologistAllDone: -> LeoScrollConvo|{GeologistQuestStarted:Leo: I have already given you a quest. -> in_quest|{(!questHSA1000Done): -> HSA1000Convo |{(!questGESS1001Done): -> GESS1001Convo |{(!questGEA1000Done): ->GEA1000}}}}}}
         -> DONE
     * [Leave]
         Leo: Goodbye.
         -> DONE
 
+-> END
+
+=== NotValidTime ===
+Leo: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === LeoScrollConvo ===

@@ -9,12 +9,18 @@ Sam: How can I help you?
         Sam: We are currently out of stock.
         -> DONE
     * [Do you have any quests?]
-        {(!NerdValidTime): Sam: Thanks for the help. Maybe come another day! |{NerdAllDone: -> SamScrollConvo|{NerdQuestStarted:Sam: I have already given you a quest. -> in_quest|{(!questCS1010Done): -> CS1010Convo|{(!questCS1231Done): -> CS1231Convo|{(!questCS2030Done) : ->CS2030Convo |{(!questCS2040Done): ->CS2040Convo}}}}}}}
+        {(!NerdValidTime): -> NotValidTime |{NerdAllDone: -> SamScrollConvo|{NerdQuestStarted:Sam: I have already given you a quest. -> in_quest|{(!questCS1010Done): -> CS1010Convo|{(!questCS1231Done): -> CS1231Convo|{(!questCS2030Done) : ->CS2030Convo |{(!questCS2040Done): ->CS2040Convo}}}}}}}
         -> DONE
     * [Leave]
         Sam: Goodbye.
         -> DONE
 
+-> END
+
+=== NotValidTime ===
+Sam: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === SamScrollConvo ===

@@ -8,12 +8,18 @@ Eve: Hi there! What can I get for you?
         Eve: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {(!EveShopValidTime): Eve: Thanks for the help! Maybe come another time. |{EveShopAllDone: -> EveScrollConvo|{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo|{(!questHSI1000Done): -> HSI1000Convo|{(!questHSS1000Done): ->HSS1000Convo}}}}}}-> DONE
+        {(!EveShopValidTime): -> NotValidTime |{EveShopAllDone: -> EveScrollConvo|{EveShopQuestStarted:Eve: I have already given you a quest. -> in_quest|{(!questDTK1234Done): -> DTK1234Convo|{(!questHSI1000Done): -> HSI1000Convo|{(!questHSS1000Done): ->HSS1000Convo}}}}}}-> DONE
         -> DONE
     * [Leave]
         Eve: Goodbye.
         -> DONE
 
+-> END
+
+=== NotValidTime ===
+Eve: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === EveScrollConvo ===

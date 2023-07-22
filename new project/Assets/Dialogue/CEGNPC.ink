@@ -8,9 +8,15 @@ TeeHaw: Oh! Hi there!
 * [What's up?]
       TeeHaw: Nothing much! Just wondering what I should do for my next project!-> DONE
 * [Do you have any quests?]
-{(!CEGValidTime): TeeHaw: Thanks for the help! Maybe come another time. |{CEGAllDone: -> TeeHawScrollConvo |{CEGQuestStarted:TeeHaw: I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
+{(!CEGValidTime): -> NotValidTime |{CEGAllDone: -> TeeHawScrollConvo |{CEGQuestStarted:TeeHaw: I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
 * [Leave]
   TeeHaw: Goodbye.-> DONE
+-> END
+
+=== NotValidTime ===
+TeeHaw: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === TeeHawScrollConvo ===

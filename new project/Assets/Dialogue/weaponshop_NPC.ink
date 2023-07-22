@@ -9,12 +9,18 @@ George: How can I help you?
         George: Sure. This is what we have in stock.
         -> DONE
     * [Do you have any quests?]
-        {(!WeaponSmithValidTime): George: Thanks for the help. Maybe come another day!|{WeaponSmithAllDone: -> GeorgeScrollConvo|{WeaponSmithQuestStarted:George: I have already given you a quest. -> in_quest|{(!questMA1511Done): -> MA1511Convo|{(!questMA1512Done): -> MA1512Convo|{(!questMA1508EDone): ->MA1508EConvo}}}}}}
+        {(!WeaponSmithValidTime): -> NotValidTime |{WeaponSmithAllDone: -> GeorgeScrollConvo|{WeaponSmithQuestStarted:George: I have already given you a quest. -> in_quest|{(!questMA1511Done): -> MA1511Convo|{(!questMA1512Done): -> MA1512Convo|{(!questMA1508EDone): ->MA1508EConvo}}}}}}
         -> DONE
     * [Leave]
         George: Goodbye.
         -> DONE
 
+-> END
+
+=== NotValidTime ===
+George: Thanks for the help! Maybe come another time.
+(You can only accept one quest from each villager per day.)
+(Help as many villagers as you can before the day ends!)
 -> END
 
 === GeorgeScrollConvo ===
