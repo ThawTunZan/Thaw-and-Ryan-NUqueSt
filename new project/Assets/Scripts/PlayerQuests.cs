@@ -119,6 +119,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             }
             if (ma1508EProgress >= 0)
             {
+                GameObject.Find("LockedWall").SetActive(false);
                 DotProductPuzzle puzzle1 = GameObject.Find("WallPuzzleTrigger").GetComponent<DotProductPuzzle>();
                 puzzle1.CheckQuestProgress(ma1508EProgress);
             }

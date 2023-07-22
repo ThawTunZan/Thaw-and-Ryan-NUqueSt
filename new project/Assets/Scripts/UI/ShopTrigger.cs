@@ -47,7 +47,7 @@ public class ShopTrigger : MonoBehaviour
             playerMovement.enabled = false;
             DialogueManager.GetInstance().openShop = false;
         }
-        else if (shopPanel.activeSelf && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Tab)))
+        else if (shopPanel.activeSelf && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E)))
         {
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
             inventoryInCanvas.inventoryByName.Remove(shopItems.shopName);

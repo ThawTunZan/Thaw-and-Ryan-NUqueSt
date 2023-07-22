@@ -56,7 +56,7 @@ public class ChestTrigger : MonoBehaviour
             playerMovement.enabled = false;
         }
         else if (playerItems.disableToolbar && chestPanel.activeSelf
-            && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)))
+            && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             inventoryPanel.transform.position = inventoryOriginPosition.transform.position;
             inventoryInCanvas.inventoryByName.Remove(chestItems.chestName);
