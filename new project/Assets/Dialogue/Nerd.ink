@@ -5,8 +5,8 @@ EXTERNAL QuestCompleted()
 === main ===
 Sam: Hi! I'm Sam, I am a fan of PUZZLES!
 Sam: How can I help you?
-    * [I want to buy something.]
-        Sam: We are currently out of stock.
+    * [What's up?]
+        -> NormalConvo
         -> DONE
     * [Do you have any quests?]
         {(!NerdValidTime): -> NotValidTime |{NerdAllDone: -> SamScrollConvo|{NerdQuestStarted:Sam: I have already given you a quest. -> in_quest|{(!questCS1010Done): -> CS1010Convo|{(!questCS1231Done): -> CS1231Convo|{(!questCS2030Done) : ->CS2030Convo |{(!questCS2040Done): ->CS2040Convo}}}}}}}
@@ -16,6 +16,13 @@ Sam: How can I help you?
         -> DONE
 
 -> END
+
+=== NormalConvo ===
+Sam: Nothing much!
+Sam: I'm just reading books on coding.
+Sam: If you're wondering about why I cover the hole, it'z cuz there's many monsters down there!
+Sam: Only if you accept my quest, then I'll remove the cover!
+-> DONE
 
 === NotValidTime ===
 Sam: Thanks for the help! Maybe come another time.

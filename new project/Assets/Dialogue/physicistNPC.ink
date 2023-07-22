@@ -6,14 +6,20 @@ EXTERNAL QuestCompleted()
 === main ===
 Galileo: Hmmm this light seems strange, I wonder what it will do in this...
 Galileo: Oh hey there!
-    
-* [I want to buy something.]
-      Galileo: We are currently out of stock.-> DONE
+* [What's up?]
+     -> NormalConvo
+     -> DONE
 * [Do you have any quests?]
       {(!PhysicistValidTime): -> NotValidTime |{PhysicistAllDone: -> GalileoScrollConvo |{PhysicistQuestStarted:Galileo: I have already given you a quest. -> in_quest|{(!questPC1101Done): -> PC1101Convo |{(!questPC1201Done): -> PC1201Convo}}}}}-> DONE
 * [Leave]
       Galileo: Goodbye.-> DONE
 -> END
+
+=== NormalConvo ===
+Galileo: I'm on the verge of discovering something spectacular!
+Galileo: Just wait till you see!
+Galileo: I will prove Aristotle wrong!!!
+-> DONE
 
 === NotValidTime ===
 Galileo: Thanks for the help! Maybe come another time.
@@ -49,7 +55,7 @@ Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
     -> END
     }
     ~ QuestCompleted()
-    Galileo: WOW! It seems like you have knack for this! I shall give you the name Sir Issac Newton :) 
+    Galileo: WOW! It seems like you have knack for this! I shall give you the name Sir Issac Newton!
      ~questPC1201Done = true
      ~PhysicistValidTime = false
      ~PhysicistQuestDone = false
@@ -60,7 +66,8 @@ Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
 === PC1101Convo ===
 {(!PhysicistQuestDone):
     Galileo: You must be the new person in town! My name is Galileo!
-    Galileo: You see as a physicist myself, I am restless when it comes to discovering new things! I have a fascination in astronomy. Lately, I have been seeing dim lights around one of the planet in our galaxy of this world!
+    Galileo: You see as a physicist myself, I am restless when it comes to discovering new things!
+    Galileo: Lately, I have been seeing dim lights around one of the planet in our galaxy of this world!
     Galileo: I have a good feeling this may be something BIG. Maybe it could be moons, in fact FOUR MOONS!!!! 
     Galileo: Sadly, my eyes are failing me this past few days as I have been looking at too many papers... As a result, I've gotten sore eyes...
     Galileo: So what do you say? Do you think you can help me go take a look into my telescope outside my house and find out if there are in fact four moons beside the planet Poopiter?
@@ -68,7 +75,8 @@ Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
     ->END
     }
     ~ QuestCompleted()
-    Galileo: WOW! I am actually right! There ARE FOUR moons around the planet POOPITER. The question now is what should i name it hmm.... Anyway, thx for the help!
+    Galileo: Marvelous!! I was right! There ARE four moons around the planet POOPITER. What should I name them...
+    Galileo: Anyway, much appreciated for the help!
      ~questPC1101Done = true
      ~PhysicistValidTime = false
      ~PhysicistQuestDone = false

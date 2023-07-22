@@ -6,12 +6,20 @@ EXTERNAL QuestCompleted()
 TeeHaw: Hmmm... How much ram will be needed to run this in my computer...
 TeeHaw: Oh! Hi there!
 * [What's up?]
-      TeeHaw: Nothing much! Just wondering what I should do for my next project!-> DONE
+    -> NormalConvo
+    -> DONE
 * [Do you have any quests?]
 {(!CEGValidTime): -> NotValidTime |{CEGAllDone: -> TeeHawScrollConvo |{CEGQuestStarted:TeeHaw: I have already given you a quest. -> in_quest|{(!questCG1111ADone): -> CG1111AConvo |{(!questEG1311Done): -> EG1311Convo |{(!questCG2111ADone): -> CG2111AConvo}}}}}}-> DONE
 * [Leave]
   TeeHaw: Goodbye.-> DONE
 -> END
+
+=== NormalConvo ===
+TeeHaw: Nothing much! Just wondering what I should do for my next project!
+TeeHaw: In case you've read my note in the desert cave, I cover the hole to seal the monsters away!
+TeeHaw: It's very scary down there!
+TeeHaw: However, if you accept my quest, I will remove the cover!
+-> DONE
 
 === NotValidTime ===
 TeeHaw: Thanks for the help! Maybe come another time.
