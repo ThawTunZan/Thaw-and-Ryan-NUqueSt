@@ -13,8 +13,6 @@ public class BGMManager : MonoBehaviour
 
     public static BGMManager instance;
 
-    public Slider slider;
-
     private bool isPlaying0 = false;
     private bool isPlaying1 = false;
     private bool isPlaying2 = false;

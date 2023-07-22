@@ -9,8 +9,12 @@ public class Scroll_UI : MonoBehaviour
     [SerializeField] private GameObject hasScrollPanel;
     [SerializeField] private GameObject insertScrollPanel;
 
+    [SerializeField] private GameObject scrollPortal;
+    private bool isActive;
+
     private PlayerItems playerItems;
     private PlayerMovement playerMovement;
+    private PlayerQuests playerQuests;
 
     private int invIndex = -1;
     private int scrollIndex = -1;
@@ -22,10 +26,27 @@ public class Scroll_UI : MonoBehaviour
     {
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
 
     void Update()
     {
+        if (!isActive)
+        {
+            for (int i = 0; i < playerQuests.questScrollInserted.Count; i++)
+            {
+                if (playerQuests.questScrollInserted[i] == 0)
+                {
+                    scrollPortal.SetActive(false);
+                    break;
+                }
+                if (i == playerQuests.questScrollInserted.Count - 1)
+                {
+                    scrollPortal.SetActive(true);
+                    isActive = true;
+                }
+            }
+        }
         if (scrollPanel.activeSelf && !insertScrollPanel.activeSelf)
         {
             for (int i = 0; i < 21; i++)
@@ -71,7 +92,7 @@ public class Scroll_UI : MonoBehaviour
         stoneScroll.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Quest/StoneHasScroll");
         hasInserted = true;
         stoneScroll.transform.Find("VisualCue").gameObject.SetActive(false);
-        GameObject.Find("Player").GetComponent<PlayerQuests>().questScrollInserted[stoneIndex] = 1;
+        playerQuests.questScrollInserted[stoneIndex] = 1;
         noScrollPanel.SetActive(false);
         hasScrollPanel.SetActive(false);
         insertScrollPanel.SetActive(true);

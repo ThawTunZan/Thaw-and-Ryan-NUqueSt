@@ -13,8 +13,8 @@ public class SUMonsterHealth : EnemyHealth
     {
         base.Start();
         healthBar = GameObject.Find("SUMonsterHealthBar").GetComponent<HealthBar>();
-        healthBar.SetMaxHealth(10);
-        healthBar.SetHealth(10);
+        healthBar.SetMaxHealth(_health);
+        healthBar.SetHealth(_health);
     }
 
     public override float Health {
@@ -30,7 +30,7 @@ public class SUMonsterHealth : EnemyHealth
             {
                 animator.SetBool("alive", false);
                 ChangeListState();
-                Invoke(nameof(SlimeDeath), 1f);
+                Invoke(nameof(SlimeDeath), 2f);
             }
         }
         get
@@ -55,6 +55,7 @@ public class SUMonsterHealth : EnemyHealth
     {
         if (SceneManager.GetActiveScene().name == "Arena")
         {
+            GameObject.Find("SUMonsterHealthBar").SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress = 1;
             GameObject.Find("Blocking").SetActive(false);
             DialogueManager.GetInstance().EnterDialogueMode(inkJSON);

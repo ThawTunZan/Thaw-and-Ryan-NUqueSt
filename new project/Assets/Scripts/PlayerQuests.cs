@@ -141,22 +141,12 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         {
             GameObject.Find("DTK1234Quest").GetComponent<DTK1234Quest>().ChangeActive(dtk1234Collected);
         }
-        else if (currScene == "Cave_5a")
-        {
-            for (int i = 0; i < questScrollInserted.Count; i++)
-            {
-                if (questScrollInserted[i] == 0)
-                {
-                    GameObject.Find("ScrollPortal").SetActive(false);
-                    break;
-                }
-            }
-        }
         else if (currScene == "Arena")
         {
             if (endingProgress >= 1)
             {
                 GameObject.Find("Blocking").SetActive(false);
+                GameObject.Find("SUMonsterHealthBar").SetActive(false);
             }
         }
         else if (currScene == "Game")

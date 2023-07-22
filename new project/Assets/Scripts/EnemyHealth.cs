@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
             return _health; 
         }
     }
-    public float _health = 3;
+    public float _health;
 
     public virtual void OnHit(float damage)
     {

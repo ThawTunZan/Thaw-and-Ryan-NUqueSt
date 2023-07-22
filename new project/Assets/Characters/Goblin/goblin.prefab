@@ -184,6 +184,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   skeletonCount: 0
+  isAttacking: 0
 --- !u!1839735485 &3045464743074517652
 Tilemap:
   m_ObjectHideFlags: 0
@@ -252,7 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   player: {fileID: 0}
-  _health: 2
+  isBeingHit: 0
+  _health: 5
 --- !u!70 &129631368693871822
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
