@@ -30,7 +30,7 @@ public class SUMonsterHealth : EnemyHealth
             {
                 animator.SetBool("alive", false);
                 ChangeListState();
-                Invoke(nameof(SlimeDeath), 2f);
+                Invoke(nameof(SlimeDeath), 3f);
             }
         }
         get

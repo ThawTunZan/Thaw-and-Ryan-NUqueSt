@@ -17,6 +17,9 @@ public class BGMManager : MonoBehaviour
     private bool isPlaying1 = false;
     private bool isPlaying2 = false;
     private bool isPlaying3 = false;
+    private bool isPlaying4 = false;
+
+    private float tempVolume;
 
     private void Awake()
     {
@@ -48,6 +51,37 @@ public class BGMManager : MonoBehaviour
                 isPlaying1 = false;
                 isPlaying2 = false;
                 isPlaying3 = false;
+                isPlaying4 = false;
+            }
+        }
+        else if (sceneName == "Arena")
+        {
+            PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+            if (playerQuests.endingProgress == 0)
+            {
+                audioSource.clip = audioClips[4];
+                if (!isPlaying4)
+                {
+                    audioSource.Play();
+                    isPlaying0 = false;
+                    isPlaying1 = false;
+                    isPlaying2 = false;
+                    isPlaying3 = false;
+                    isPlaying4 = true;
+                }
+            }
+            else
+            {
+                audioSource.clip = audioClips[3];
+                if (!isPlaying1)
+                {
+                    audioSource.Play();
+                    isPlaying0 = false;
+                    isPlaying1 = true;
+                    isPlaying2 = false;
+                    isPlaying3 = false;
+                    isPlaying4 = false;
+                }
             }
         }
         else if (!isInside && !inCave)
@@ -60,6 +94,7 @@ public class BGMManager : MonoBehaviour
                 isPlaying1 = true;
                 isPlaying2 = false;
                 isPlaying3 = false;
+                isPlaying4 = false;
             }
         }
         else if (inCave)
@@ -72,6 +107,7 @@ public class BGMManager : MonoBehaviour
                 isPlaying1 = false;
                 isPlaying2 = true;
                 isPlaying3 = false;
+                isPlaying4 = false;
             }
         }
         else if (isInside)
@@ -84,9 +120,8 @@ public class BGMManager : MonoBehaviour
                 isPlaying1 = false;
                 isPlaying2 = false;
                 isPlaying3 = true;
+                isPlaying4 = false;
             }
         }
-    }
-
-    
+    } 
 }
