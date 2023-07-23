@@ -40,7 +40,7 @@ public class PlayerFainted : MonoBehaviour
         volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
         if (clockManager.hours > 23 || volumeHealthSlider <= 0)
         {
-            GoBackHome();
+             GoBackHome();
         }
     }
 
@@ -63,13 +63,45 @@ public class PlayerFainted : MonoBehaviour
         yield return new WaitForSeconds(2);
         GameManager.instance.day += 1;
         clockManager.days += 1;
-        healthScript.health = 50;
-        GameManager.instance.health = 50;
+        if (SceneManager.GetActiveScene().name == "DefendVillage")
+        {
+            PlayerItems playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+            for (int i = 0; i < playerItems.inventory.slots.Count; i++)
+            {
+                if (playerItems.inventory.slots[i].itemName != null)
+                {
+                    playerItems.inventory.Remove(i, playerItems.inventory.slots[i].count);
+                }
+            }
+            for (int i = 0; i < playerItems.toolbar.slots.Count; i++)
+            {
+                if (playerItems.toolbar.slots[i].itemName != null)
+                {
+                    playerItems.toolbar.Remove(i, playerItems.toolbar.slots[i].count);
+                }
+            }
+            playerItems.inventory.slots[0].AddItem(ItemManager.instance.GetItemByName("CPU_Piece"));
+            healthScript.health = 100;
+            GameManager.instance.health = 100;
+            PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+            playerQuests.endingProgress = 6;
+        }
+        else
+        {
+            healthScript.health = 50;
+            GameManager.instance.health = 50;
+        }
         DataPersistenceManager.instance.SaveGame();
         playerPositionSO.playerDead = true;
         playerPositionSO.InitialValue = new Vector2((float)-0.072, (float)-0.264);
 
-
-        SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
+        if (SceneManager.GetActiveScene().name == "DefendVillage")
+        {
+            SceneManager.LoadScene("DefendNorthForest", LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
+        }
     }
 }

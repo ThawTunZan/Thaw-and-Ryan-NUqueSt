@@ -39,6 +39,8 @@ public class Tutorial_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerItems.inventory.slots[0].AddItem(ItemManager.instance.GetItemByName("CPU_Piece"));
+
         originalSpeed = playerMovement.movespeed;
         slimeMovement.enabled = false;
     }

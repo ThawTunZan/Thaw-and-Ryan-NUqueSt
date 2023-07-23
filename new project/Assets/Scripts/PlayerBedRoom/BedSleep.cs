@@ -61,14 +61,21 @@ public class BedSleep : MonoBehaviour
         {
             playerQuests.endingProgress = 2;
         }
-        DataPersistenceManager.instance.SaveGame();
-        GameManager.instance.health = 100;
-        GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
-        GameManager.instance.toolbar = DataPersistenceManager.instance.gameData.toolbar;
-        GameManager.instance.day += 1;
+        if (playerQuests.endingProgress != 5)
+        {
+            DataPersistenceManager.instance.SaveGame();
+            GameManager.instance.health = 100;
+            GameManager.instance.inventory = DataPersistenceManager.instance.gameData.inventory;
+            GameManager.instance.toolbar = DataPersistenceManager.instance.gameData.toolbar;
+            GameManager.instance.day += 1;
 
 
-        GoToSleep();
+            GoToSleep();
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync("EndingCredits");
+        }
     }
     
     private void LoadGameData()

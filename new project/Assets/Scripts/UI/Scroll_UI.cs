@@ -96,6 +96,7 @@ public class Scroll_UI : MonoBehaviour
         noScrollPanel.SetActive(false);
         hasScrollPanel.SetActive(false);
         insertScrollPanel.SetActive(true);
+        GameObject.Find("Inventory").GetComponent<Inventory_UI>().Refresh();
     }
 
     public void CloseUI()

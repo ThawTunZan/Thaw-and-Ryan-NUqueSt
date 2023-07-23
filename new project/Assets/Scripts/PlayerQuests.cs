@@ -158,20 +158,38 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "FarmHouse")
         {
-            if (endingProgress >= 2)
+            if (endingProgress == 2)
             {
                 GameObject.Find("ToVillage").SetActive(false);
+                GameObject.Find("EndingStuff").SetActive(true);
                 GameObject.Find("ForceSleep").SetActive(false);
-                Invoke(nameof(StartDialogue), 1f);
+                Invoke(nameof(StartDialogue), 2f);
             }
             else if (endingProgress == 1)
             {
+                GameObject.Find("ToVillage").SetActive(false);
                 GameObject.Find("EndingStuff").SetActive(false);
+                GameObject.Find("ForceSleep").SetActive(true);
             }
             else if (endingProgress == 0)
             {
-                GameObject.Find("ForceSleep").SetActive(false);
+                GameObject.Find("ToVillage").SetActive(true);
                 GameObject.Find("EndingStuff").SetActive(false);
+                GameObject.Find("ForceSleep").SetActive(false);
+            }
+            else if (endingProgress == 5)
+            {
+                GameObject.Find("ToVillage").SetActive(false);
+                GameObject.Find("EndingStuff").SetActive(true);
+                GameObject.Find("ForceSleep").SetActive(false);
+            }
+        }
+        else if (currScene == "DefendVillage")
+        {
+            if (endingProgress == 2)
+            {
+                Invoke(nameof(StartDialogue2), 1f);
+                endingProgress = 3;
             }
         }
     }
@@ -179,6 +197,11 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
     private void StartDialogue()
     {
         DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find("EndingStuff").GetComponent<DialogueFileHolder>().inkJSON);
+    }
+
+    private void StartDialogue2()
+    {
+        DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find("DefendVillage").GetComponent<DialogueFileHolder>().inkJSON);
     }
 
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)

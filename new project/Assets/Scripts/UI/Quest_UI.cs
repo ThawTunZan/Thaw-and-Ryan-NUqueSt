@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using TMPro;
 
 public class Quest_UI : MonoBehaviour
@@ -77,7 +76,12 @@ public class Quest_UI : MonoBehaviour
 
     void ActiveQuestSetup()
     {
-        if (playerTutorial.tutorialProgress >= 3)
+        if (playerQuests.endingProgress == 2 || playerQuests.endingProgress == 5 || playerQuests.endingProgress == 6)
+        {
+            activeQuests.text = "";
+            return;
+        }
+        else if (playerTutorial.tutorialProgress >= 3)
         {
             activeQuests.text = "Active Quests:\n";
         }

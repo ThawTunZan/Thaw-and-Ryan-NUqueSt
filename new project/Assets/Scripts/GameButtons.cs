@@ -36,7 +36,14 @@ public class GameButtons : MonoBehaviour
     public void ContinueGame()
     {
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("PlayerHouse");
+        if (DataPersistenceManager.instance.gameData.endingProgress == 6)
+        {
+            SceneManager.LoadSceneAsync("DefendNorthForest");
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync("PlayerHouse");
+        }
     }
 
     //disable so that player cant click continue button if there is no saved data

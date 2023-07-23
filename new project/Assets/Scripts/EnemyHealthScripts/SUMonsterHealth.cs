@@ -51,6 +51,7 @@ public class SUMonsterHealth : EnemyHealth
         healthBar.SetHealth(Health);
     }
 
+    // In the arena, hides the healthbar, makes endingProgress = 1, hides the boxes blocking the path if monster dies, then plays dialogue
     public override void SlimeDeath()
     {
         if (SceneManager.GetActiveScene().name == "Arena")
