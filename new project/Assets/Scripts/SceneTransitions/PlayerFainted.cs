@@ -19,6 +19,7 @@ public class PlayerFainted : MonoBehaviour
     public PlayerPositionSO playerPositionSO;
 
     private PlayerMovement playerMovement;
+    public PlayerEnergy playerEnergy;
     
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class PlayerFainted : MonoBehaviour
         healthScript = playerHitBox.GetComponent<Health>();
 
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerEnergy = GameObject.Find("Player").GetComponent<PlayerEnergy>();
     }
 
     // Update is called once per frame
@@ -89,11 +91,15 @@ public class PlayerFainted : MonoBehaviour
             {
                 healthScript.health = 50;
                 GameManager.instance.health = 50;
+                playerEnergy.energy = 50;
+                GameManager.instance.energy = 50;
             }
             else
             {
                 healthScript.health /= 2;
                 GameManager.instance.health /= 2;
+                playerEnergy.energy = 50;
+                GameManager.instance.energy = 50;
             }
         }
         DataPersistenceManager.instance.SaveGame();

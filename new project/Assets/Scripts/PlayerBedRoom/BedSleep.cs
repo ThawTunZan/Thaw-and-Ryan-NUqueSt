@@ -20,6 +20,7 @@ public class BedSleep : MonoBehaviour
     public PlayerHouseTutorial_UI tutorialUI;
     public PlayerItems playerItems;
     public PlayerMovement playerMovement;
+    public PlayerEnergy playerEnergy;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class BedSleep : MonoBehaviour
         clockManager = globalVolume.GetComponent<ClockManager>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        playerEnergy = GameObject.Find("Player").GetComponent<PlayerEnergy>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -103,8 +105,11 @@ public class BedSleep : MonoBehaviour
         clockManager.hours = 8;
         clockManager.minutes = 0;
         clockManager.seconds = 0;
+        playerEnergy.energy = 100;
+        
         GameManager.instance.hours = 8;
         GameManager.instance.minutes = 0;
         GameManager.instance.seconds = 0;
+        GameManager.instance.energy = 100;
     }
 }

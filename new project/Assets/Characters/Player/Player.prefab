@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 5988033192254954714}
   - component: {fileID: 1186009404830605522}
   - component: {fileID: 4918426996684050738}
+  - component: {fileID: 2747676089621772403}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -433,6 +434,7 @@ MonoBehaviour:
   itemType: 
   itemRarity: 
   facingDir: 
+  playerEnergy: {fileID: 0}
 --- !u!114 &1127771672293020546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,10 +474,16 @@ MonoBehaviour:
   cs2040Progress: 0
   cs2040SeenBefore: []
   ma1511Progress: 0
+  ma1512Progress: 0
+  ma1508EProgress: 0
   eg1311Progress: 0
   cg2111aProgress: 0
+  dtk1234Collected: 00000000000000000000000000000000
   completedQuestNames: []
   completedQuestDescs: []
+  questScrollNames: []
+  questScrollInserted: 000000000000000000000000000000000000000000000000
+  endingProgress: 0
 --- !u!114 &5988033192254954714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +528,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   startingPosition: {fileID: 0}
+--- !u!114 &2747676089621772403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568565333973212876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3e5c48831f5d4d894661638b9ddb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  energy: 0
+  energyBar: {fileID: 0}
+  startingPosition: {fileID: 0}
+  hasAttacked: 0
+  timer: 0
+  timerRegen: 0
 --- !u!1 &3747749977762609161
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +731,7 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   healthBar: {fileID: 0}
+  hasCollided: 0
   startingPosition: {fileID: 0}
 --- !u!61 &735163605954807766
 BoxCollider2D:
