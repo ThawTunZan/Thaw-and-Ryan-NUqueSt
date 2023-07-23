@@ -50,7 +50,8 @@ TeeHaw: Maybe ask my partner Galileo, or somebody else for quests!
 TeeHaw: OK!!! The final product is done!!!!
 TeeHaw: This will be the final request >.< !!!
 TeeHaw: The final test will be to check whether all the features of my robot are present!
-TeeHaw: We will be running similar tests as the last time BUTTTTT this time you will not be able to see the maze, but only have the GPS in the robot!
+TeeHaw: We will be running similar tests as the last time BUTTTTT this time you will not be able to see the maze!
+TeeHaw: Instead, you will rely on a GPS!
 TeeHaw: Don't worry! You got this!
 TeeHaw: So do you think you can help me with the final test??
 -> start_quest("CG2111A", "Test my final product at the third level in the cave of the desert west of this village!")

@@ -45,17 +45,21 @@ Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
 
 === PC1201Convo ===
 {(!PhysicistQuestDone):
-    Galileo: Heyyy. Thanks for helping me discover the 4 moons around POOPiter! Now, I got a new quest for you!
+    Galileo: Heyyy. Thanks for helping me discover the 4 moons around POOPiter! 
+    Galileo: Now, I got a new quest for you!
     Galileo: Do you think you can help me with it?
-    Galileo: Ever since the discovery of the 4 moons I have been wondering about GRAVITY but I feel like I should familiarise with the gravity on our planet here first!
-    Galileo: Since you came recently, the gravity here must feel a bit off for you! Do you think you could help me with measuring the acceleration due to gravity here? 
+    Galileo: Ever since the discovery of the 4 moons I have been wondering about GRAVITY!
+    Galileo: But, I feel like I should familiarise with the gravity on our planet here first!
+    Galileo: Since you came recently, the gravity here must feel a bit off for you! 
+    Galileo: Do you think you could help me with measuring the acceleration due to gravity here? 
     Galileo: You can do that by observing the rate at which the apple falls from one of the trees in the forest west of this village!
     Galileo: So...what do you say? You think you can help me with it?
     -> start_quest("PC1201", "Find the acceleration due to gravity on this planet by observing one of the trees in the West Forest!")
     -> END
     }
     ~ QuestCompleted()
-    Galileo: WOW! It seems like you have knack for this! I shall give you the name Sir Issac Newton!
+    Galileo: WOW! It seems like you have knack for this! 
+    Galileo: I shall give you the name Sir Issac Newton!
      ~questPC1201Done = true
      ~PhysicistValidTime = false
      ~PhysicistQuestDone = false
@@ -70,12 +74,16 @@ Galileo: Perhaps you should ask my partner TeeHaw, or someone else!
     Galileo: Lately, I have been seeing dim lights around one of the planet in our galaxy of this world!
     Galileo: I have a good feeling this may be something BIG. Maybe it could be moons, in fact FOUR MOONS!!!! 
     Galileo: Sadly, my eyes are failing me this past few days as I have been looking at too many papers... As a result, I've gotten sore eyes...
-    Galileo: So what do you say? Do you think you can help me go take a look into my telescope outside my house and find out if there are in fact four moons beside the planet Poopiter?
+    Galileo: So what do you say? 
+    Galileo: Do you think you can help me go take a look into my telescope outside my house?
+    Galileo: Help me find out if there are in fact four moons beside the planet Poopiter!
     -> start_quest("PC1101", "Find out if there are moons around the planet Poopiter!")
     ->END
     }
     ~ QuestCompleted()
-    Galileo: Marvelous!! I was right! There ARE four moons around the planet POOPITER. What should I name them...
+    Galileo: Marvelous!! I was right! 
+    Galileo: There ARE four moons around the planet POOPITER.
+    Galileo: What should I name them...
     Galileo: Anyway, much appreciated for the help!
      ~questPC1101Done = true
      ~PhysicistValidTime = false

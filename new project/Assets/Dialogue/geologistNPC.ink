@@ -70,7 +70,8 @@ Leo: Do you think you can help me find out what it is?
 -> END
 }
 ~ QuestCompleted()
-Leo: Bruhhh... The details you showed me made me shiver... The possibility of the S/U monster existing seems high...
+Leo: Bruhhh... The details you showed me made me shiver... 
+Leo: The possibility of the S/U monster existing seems high...
 Leo: I have a feeling the S/U Monster comes at the end of the week...
 Leo: Anyway, thx for the help! See you next time
      ~questGESS1001Done = true
@@ -95,8 +96,11 @@ Leo: So what do you think? Are you up for the task?
 -> END
 }
 ~ QuestCompleted()
-Leo: WOW! For a first timer you are pretty good! Your assistance helped me in confirming that ZEROGPA is a deadly disease. It is also the cause of the death of our lovely dead companion.
-Leo: Anyway, since you are such a reliable neighbour I will contact you when I need help again! You can do the same as well!
+Leo: WOW! For a first timer you are pretty good! 
+Leo: Your assistance helped me in confirming that ZEROGPA is a deadly disease. 
+Leo: It is also the cause of the death of our lovely dead companion.
+Leo: Anyway, since you are such a reliable neighbour I will contact you when I need help again! 
+Leo: You can do the same as well!
      ~questHSA1000Done = true
      ~GeologistValidTime = false
      ~GeologistQuestDone = false
