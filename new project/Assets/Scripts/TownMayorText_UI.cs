@@ -33,7 +33,7 @@ public class TownMayorText_UI : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            curr++
+            curr++;
         }
         if (curr == 0)
         {
