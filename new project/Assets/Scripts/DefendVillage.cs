@@ -36,22 +36,22 @@ public class DefendVillage : MonoBehaviour
     {
         if (playerQuests.endingProgress == 3)
         {
-            if (!wave0 && GameManager.instance.hours == 17)
+            if (!wave0 && GameManager.instance.hours == 16)
             {
                 SpawnWave0();
                 wave0 = true;
             }
-            else if (!wave1 && GameManager.instance.hours == 18)
+            else if (!wave1 && GameManager.instance.hours == 17)
             {
                 SpawnWave1();
                 wave1 = true;
             }
-            else if (!wave2 && GameManager.instance.hours == 19)
+            else if (!wave2 && GameManager.instance.hours == 18)
             {
                 SpawnWave2();
                 wave2 = true;
             }
-            else if (!wave3 && GameManager.instance.hours == 20)
+            else if (!wave3 && GameManager.instance.hours == 19)
             {
                 bossHealthBar.SetActive(true);
                 Invoke(nameof(SpawnWave3), 0.1f);

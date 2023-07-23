@@ -158,7 +158,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "FarmHouse")
         {
-            if (endingProgress >= 2)
+            if (endingProgress == 2)
             {
                 GameObject.Find("ToVillage").SetActive(false);
                 GameObject.Find("EndingStuff").SetActive(true);
