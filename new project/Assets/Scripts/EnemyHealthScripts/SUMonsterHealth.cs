@@ -61,11 +61,6 @@ public class SUMonsterHealth : EnemyHealth
             GameObject.Find("Blocking").SetActive(false);
             DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
         }
-        else if (SceneManager.GetActiveScene().name == "DefendVillage")
-        {
-            GameObject.Find("SUMonsterHealthBar").SetActive(false);
-            GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress = 5;
-        }
         Destroy(this.gameObject);
     }
 }

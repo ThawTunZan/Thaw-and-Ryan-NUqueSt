@@ -34,7 +34,8 @@ public class BGMManager : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         bool isInside = (sceneName == "GeneralShop" || sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop"
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
-            || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse");
+            || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse"
+            || sceneName == "DefendTownCentre");
         bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a"
             || sceneName == "Cave_4a" || sceneName == "Cave_5a" || sceneName == "Cave_1b" || sceneName == "DCave_1" 
             || sceneName == "DCave_1a" || sceneName == "DCave_2a");
@@ -57,7 +58,7 @@ public class BGMManager : MonoBehaviour
         else if (sceneName == "DefendVillage")
         {
             PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-            if (playerQuests.endingProgress == 3)
+            if (playerQuests.endingProgress == 3 || playerQuests.endingProgress == 4)
             {
                 ChangeAudio(5);
             }

@@ -116,6 +116,23 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             timeText.text = "";
             goToSleepText.text = "";
         }
+        // Once battle is over, the UIs cant be seen anymore except for health.
+        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 5)
+        {
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
+        // If player loses, repeat at tutorial.
+        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 6)
+        {
+            hours = 22;
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
         // Time only moves when the player finishes tutorial or goes to DefendVillage scene.
         // Also the day and time text will appear.
         else if (playerTutorial.tutorialProgress >= 3)
@@ -166,7 +183,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         string sceneName = currentScene.name;
         bool isInside = (sceneName == "GeneralShop" || sceneName == "PlayerHouse" || sceneName == "Village_WeaponShop"
             || sceneName == "GeologistHouse" || sceneName == "ScientistHouse" || sceneName == "TownMayorHouse"
-            || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse");
+            || sceneName == "NerdNPC House" || sceneName == "TownCentre" || sceneName == "ArtistHouse" || sceneName == "BusinessHouse"
+            || sceneName == "DefendTownCentre");
         bool inCave = (sceneName == "Cave_1" || sceneName == "Cave_1a" || sceneName == "Cave_2a" || sceneName == "Cave_3a" 
             || sceneName == "Cave_4a" || sceneName == "Cave_5a" || sceneName == "Cave_1b" || sceneName == "DCave_1" 
             || sceneName == "DCave_1a" || sceneName == "DCave_2a");
@@ -184,9 +202,18 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         else if (hours >= 22)
         {
+            PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
             timeText.color = Color.red;
-            goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
-            if (!SFXManager.instance.hasPlayedWarning && playerTutorial.tutorialProgress >= 3)
+            if (playerQuests.endingProgress == 4)
+            {
+                goToSleepText.text = "KEEP FIGHTING OR DIE!!!";
+            }
+            else
+            {
+                goToSleepText.text = "GO BACK HOME TO SLEEP!!!";
+            }
+            if (!SFXManager.instance.hasPlayedWarning && playerTutorial.tutorialProgress >= 3
+                && GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress != 6)
             {
                 SFXManager.instance.audioSource.clip = SFXManager.instance.audioClips[3];
                 SFXManager.instance.audioSource.Play();

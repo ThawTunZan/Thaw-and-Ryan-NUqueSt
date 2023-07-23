@@ -111,7 +111,10 @@ public class DefendVillage : MonoBehaviour
 
     private void DefendSuccess()
     {
+        bossHealthBar.SetActive(false);
         townCollider.SetActive(false);
+        GameObject.Find("RemoveIfSuccess").SetActive(false);
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        playerQuests.endingProgress = 5;
     }
 }

@@ -24,9 +24,12 @@ public class PlayerMoney : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2)
+        if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2
+            || GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 5
+            || GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 6)
         {
             moneyText.text = "";
+            return;
         }
         else if (playerTutorial.tutorialProgress >= 3)
         {
