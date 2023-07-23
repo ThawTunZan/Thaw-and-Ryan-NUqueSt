@@ -27,7 +27,7 @@ public class TownMayorText_UI : MonoBehaviour
 
     private void Update()
     {
-        if (playerTutorial.tutorialProgress == 1)
+        if (playerTutorial.tutorialProgress >= 1)
         {
             gameObject.SetActive(false);
         }

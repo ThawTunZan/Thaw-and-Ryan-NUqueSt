@@ -113,14 +113,16 @@ public class Inventory
         }
     }
 
-    public void Add(Item item)
+    // To fix the collectable edge bug, made this function return bool instead of void.
+    // If the item has been added to the inventory, then it returns true. If not, then returns false.
+    public bool Add(Item item)
     {
         foreach(Slot slot in slots)
         {
             if(slot.itemName == item.data.itemName && slot.CanAddItem(item.data.itemName))
             {
                 slot.AddItem(item);
-                return;
+                return true;
             }
         }
 
@@ -129,9 +131,11 @@ public class Inventory
             if(slot.itemName == "")
             {
                 slot.AddItem(item);
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void Add(Item item, int numToAdd)
