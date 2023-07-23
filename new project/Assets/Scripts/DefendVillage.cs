@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DefendVillage : MonoBehaviour
 {
-    private EnemySpawner enemySpawner;
-
     [SerializeField] private GameObject bossHealthBar;
+    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private GameObject townCollider;
+
+    private EnemySpawner enemySpawner;
+    private PlayerQuests playerQuests;
 
     // bools below is used to make sure the wave spawns only once
     private bool wave0;
@@ -14,54 +17,99 @@ public class DefendVillage : MonoBehaviour
     private bool wave2;
     private bool wave3;
 
+    private Vector2 leftPos1 = new Vector2(-8.927f, -3.237f);
+    private Vector2 leftPos2 = new Vector2(-8.924f, -3.623f);
+    private Vector2 topPos1 = new Vector2(-7.336539f, -1.642322f);
+    private Vector2 topPos2 = new Vector2(-6.912613f, -1.642322f);
+    private Vector2 botPos1 = new Vector2(-2.530537f, -7.947671f);
+    private Vector2 botPos2 = new Vector2(-2.087f, -7.942f);
+    
     void Start()
     {
         enemySpawner = EnemySpawner.instance;
+        playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
     }
 
     // Spawns a new wave for every hour, regardless of whether the player has killed the enemies
     void Update()
     {
-        if (GameManager.instance.hours == 17 && !wave0)
+        if (playerQuests.endingProgress == 3)
         {
-            SpawnWave0();
-            wave0 = true;
+            if (!wave0 && GameManager.instance.hours == 17)
+            {
+                SpawnWave0();
+                wave0 = true;
+            }
+            else if (!wave1 && GameManager.instance.hours == 18)
+            {
+                SpawnWave1();
+                wave1 = true;
+            }
+            else if (!wave2 && GameManager.instance.hours == 19)
+            {
+                SpawnWave2();
+                wave2 = true;
+            }
+            else if (!wave3 && GameManager.instance.hours == 20)
+            {
+                bossHealthBar.SetActive(true);
+                Invoke(nameof(SpawnWave3), 0.1f);
+                wave3 = true;
+                playerQuests.endingProgress = 4;
+            }
         }
-        if (GameManager.instance.hours == 18 && !wave1)
+        else if (playerQuests.endingProgress == 4)
         {
-            SpawnWave1();
-            wave1 = true;
-        }
-        else if (GameManager.instance.hours == 19 && !wave2)
-        {
-            SpawnWave2();
-            wave2 = true;
-        }
-        else if (GameManager.instance.hours == 20 && !wave3)
-        {
-            bossHealthBar.SetActive(true);
-            Invoke(nameof(SpawnWave3), 0.1f);
-            wave3 = true;
+            if (GameObject.Find("Slime(Clone)") == null && GameObject.Find("Skeleton(Clone)") == null
+                && GameObject.Find("goblin(Clone)") == null && GameObject.Find("01(Clone)") == null)
+            {
+                Invoke(nameof(DefendSuccess), 2f);
+            }
         }
     }
 
     private void SpawnWave0()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Slime"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), leftPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), leftPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), topPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), topPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), leftPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos1, Quaternion.identity);
     }
 
     private void SpawnWave1()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Goblin"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), botPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), botPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), leftPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), leftPos2, Quaternion.identity);
     }
 
     private void SpawnWave2()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), botPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), leftPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), leftPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), leftPos2, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), botPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), botPos2, Quaternion.identity);
     }
 
     private void SpawnWave3()
     {
-        Instantiate(enemySpawner.GetEnemyByName("01"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), botPos1, Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("01"), leftPos1, Quaternion.identity);
+    }
+
+    private void DefendSuccess()
+    {
+        townCollider.SetActive(false);
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
     }
 }
