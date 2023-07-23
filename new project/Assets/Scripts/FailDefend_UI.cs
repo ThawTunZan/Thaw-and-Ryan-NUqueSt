@@ -10,10 +10,23 @@ public class FailDefend_UI : MonoBehaviour
     [SerializeField] private GameObject text;
     [SerializeField] private GameObject button;
 
+    private PlayerMovement playerMovement;
+    private PlayerItems playerItems;
+
+    public void Start()
+    {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        playerItems.disableToolbar = true;
+        playerMovement.enabled = false;
+    }
+
     public void ContinueButton()
     {
         background.SetActive(false);
         text.SetActive(false);
         button.SetActive(false);
+        playerItems.disableToolbar = false;
+        playerMovement.enabled = true;
     }
 }

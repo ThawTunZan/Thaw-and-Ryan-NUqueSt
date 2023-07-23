@@ -10,15 +10,22 @@ public class TownMayorText_UI : MonoBehaviour
     [SerializeField] private GameObject button;
 
     private PlayerTutorial playerTutorial;
+    private PlayerMovement playerMovement;
+    private PlayerItems playerItems;
 
     private int curr;
+    private bool done;
 
     private void Start()
     {
         playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
+        playerItems.disableToolbar = true;
+        playerMovement.enabled = false;
     }
 
-    public void Update()
+    private void Update()
     {
         if (playerTutorial.tutorialProgress == 1)
         {
@@ -32,11 +39,14 @@ public class TownMayorText_UI : MonoBehaviour
         {
             text.text = "Your head hurts. You get up anyway.";
         }
-        else
+        else if (!done)
         {
             background.SetActive(false);
             text.gameObject.SetActive(false);
             button.SetActive(false);
+            playerItems.disableToolbar = false;
+            playerMovement.enabled = true;
+            done = true;
         }
     }
 
