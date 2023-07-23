@@ -85,8 +85,16 @@ public class PlayerFainted : MonoBehaviour
         }
         else
         {
-            healthScript.health /= 2;
-            GameManager.instance.health /= 2;
+            if (volumeHealthSlider <= 0)
+            {
+                healthScript.health = 50;
+                GameManager.instance.health = 50;
+            }
+            else
+            {
+                healthScript.health /= 2;
+                GameManager.instance.health /= 2;
+            }
         }
         DataPersistenceManager.instance.SaveGame();
         playerPositionSO.playerDead = true;
