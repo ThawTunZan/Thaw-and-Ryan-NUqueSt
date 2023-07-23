@@ -35,13 +35,14 @@ public class GameButtons : MonoBehaviour
 
     public void ContinueGame()
     {
-        DisableMenuButtons();
         if (DataPersistenceManager.instance.gameData.endingProgress == 6)
         {
+            DisableMenuButtons();
             SceneManager.LoadSceneAsync("DefendNorthForest");
         }
         else
         {
+            DisableMenuButtons();
             SceneManager.LoadSceneAsync("PlayerHouse");
         }
     }

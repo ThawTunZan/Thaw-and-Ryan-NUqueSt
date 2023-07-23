@@ -31,9 +31,17 @@ public class PlayerPlants : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < seedPositions.Count; i++)
         {
-            if (GameManager.instance.hours == 8f && GameManager.instance.minutes == 0f && seedNextGrowths[3 * i] != GameManager.instance.day)
+            if (seedNextGrowths[3 * i] != GameManager.instance.day)
             {
-                float tempHours = 32f;
+                float tempHours = 0f;
+                if (GameManager.instance.hours == 8f && GameManager.instance.minutes == 0f)
+                {
+                    tempHours = 32f;
+                }
+                else if (GameManager.instance.hours == 16f && GameManager.instance.minutes == 0f)
+                {
+                    tempHours = 40f;
+                }
                 if (tempHours >= seedNextGrowths[3 * i + 1])
                 {
                     char seedStage = seedNames[i][seedNames[i].Length - 1];

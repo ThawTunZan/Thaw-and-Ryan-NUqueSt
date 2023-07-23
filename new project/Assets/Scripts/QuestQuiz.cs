@@ -29,7 +29,7 @@ public class QuestQuiz : MonoBehaviour
         questionPanel.SetActive(false);
         correctAnsPanel.SetActive(true);
         wrongAnsPanel.SetActive(false);
-        for (int i = 0; i < 5; i += 1)
+        for (int i = 0; i < 6; i += 1)
         {
             if (playerQuest.questList.questSlots[i].questName == "PC1201")
             {
@@ -61,7 +61,7 @@ public class QuestQuiz : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        for (int i = 0; i < 5; i += 1)
+        for (int i = 0; i < 6; i += 1)
         {
             if (collision.CompareTag("Player") && playerQuest.questList.questSlots[i].questName == "PC1201" && playerQuest.questList.questSlots[i].done == false)
             {
@@ -72,6 +72,9 @@ public class QuestQuiz : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        CloseAllPanels();
+        if (collision.gameObject.tag == "Player")
+        {
+            CloseAllPanels();
+        }
     }
 }

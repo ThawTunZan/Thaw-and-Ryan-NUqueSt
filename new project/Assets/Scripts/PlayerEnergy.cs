@@ -49,14 +49,14 @@ public class PlayerEnergy : MonoBehaviour
             timer += Time.fixedDeltaTime;
             timerRegen = 0;
         }
-        if (timer > 15f && hasAttacked)
+        if (timer > 2f && hasAttacked)
         {
             hasAttacked = false;
             timer = 0;
         }
         if (!hasAttacked && energy <= 100)
         {
-            energy += Time.fixedDeltaTime * 1.6f;
+            energy += Time.fixedDeltaTime * 6f;
         }
     }
 }
