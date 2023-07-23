@@ -39,7 +39,7 @@ public class Tutorial_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerItems.inventory.slots[0].AddItem(ItemManager.instance.GetItemByName("CPU_Piece"));
+        playerItems.inventory.slots[0].AddItem(ItemManager.instance.GetItemByName("CPU Piece"));
 
         originalSpeed = playerMovement.movespeed;
         slimeMovement.enabled = false;
@@ -109,12 +109,15 @@ public class Tutorial_UI : MonoBehaviour
 
     void PickSwordCheck()
     {
-        if (!playerItems.inventory.slots[0].IsEmpty)
+        for (int i = 0; i < 21; i++)
         {
-            Destroy(pickSwordFirst);
-            playerMovement.movespeed = 0;
-            pickSwordDone = true;
-            panelText.text = "Press TAB to open up your inventory";
+            if (playerItems.inventory.slots[i].itemName == "Stone Sword")
+            {
+                Destroy(pickSwordFirst);
+                playerMovement.movespeed = 0;
+                pickSwordDone = true;
+                panelText.text = "Press TAB to open up your inventory";
+            }
         }
     }
 
