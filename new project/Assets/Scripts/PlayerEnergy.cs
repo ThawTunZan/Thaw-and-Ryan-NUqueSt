@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerEnergy : MonoBehaviour
 {
     public float maxEnergy = 100;
-    public float energy;
+    public float energy = 100;
     public EnergyBar energyBar;
     public PlayerPositionSO startingPosition;
     public bool hasAttacked;
