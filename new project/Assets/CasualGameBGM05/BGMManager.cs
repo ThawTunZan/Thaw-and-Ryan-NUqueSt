@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,11 +14,9 @@ public class BGMManager : MonoBehaviour
 
     public static BGMManager instance;
 
-    private bool isPlaying0 = false;
-    private bool isPlaying1 = false;
-    private bool isPlaying2 = false;
-    private bool isPlaying3 = false;
-    private bool isPlaying4 = false;
+    // In update, when the Play() method of AudioSource is called, it will keep playing the start of the song.
+    // The bools below make sure the method is called only once.
+    private List<bool> isPlayingList = new List<bool>() { false, false, false, false, false, false };
 
     private void Awake()
     {
@@ -41,85 +40,68 @@ public class BGMManager : MonoBehaviour
             || sceneName == "DCave_1a" || sceneName == "DCave_2a");
         if (sceneName == "SampleScene 1")
         {
-            audioSource.clip = audioClips[0];
-            if (!isPlaying0)
-            {
-                audioSource.Play();
-                isPlaying0 = true;
-                isPlaying1 = false;
-                isPlaying2 = false;
-                isPlaying3 = false;
-                isPlaying4 = false;
-            }
+            ChangeAudio(0);
         }
         else if (sceneName == "Arena")
         {
             PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
             if (playerQuests.endingProgress == 0)
             {
-                audioSource.clip = audioClips[4];
-                if (!isPlaying4)
-                {
-                    audioSource.Play();
-                    isPlaying0 = false;
-                    isPlaying1 = false;
-                    isPlaying2 = false;
-                    isPlaying3 = false;
-                    isPlaying4 = true;
-                }
+                ChangeAudio(4);
             }
             else
             {
-                audioSource.clip = audioClips[3];
-                if (!isPlaying1)
-                {
-                    audioSource.Play();
-                    isPlaying0 = false;
-                    isPlaying1 = true;
-                    isPlaying2 = false;
-                    isPlaying3 = false;
-                    isPlaying4 = false;
-                }
+                ChangeAudio(3);
+            }
+        }
+        else if (sceneName == "DefendVillage")
+        {
+            PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
+            if (playerQuests.endingProgress == 3)
+            {
+                ChangeAudio(5);
+            }
+            else
+            {
+                ChangeAudio(3);
             }
         }
         else if (!isInside && !inCave)
         {
-            audioSource.clip = audioClips[3];
-            if (!isPlaying1)
-            {
-                audioSource.Play();
-                isPlaying0 = false;
-                isPlaying1 = true;
-                isPlaying2 = false;
-                isPlaying3 = false;
-                isPlaying4 = false;
-            }
+            ChangeAudio(3);
         }
         else if (inCave)
         {
-            audioSource.clip = audioClips[2];
-            if (!isPlaying2)
-            {
-                audioSource.Play();
-                isPlaying0 = false;
-                isPlaying1 = false;
-                isPlaying2 = true;
-                isPlaying3 = false;
-                isPlaying4 = false;
-            }
+            ChangeAudio(2);
         }
         else if (isInside)
         {
-            audioSource.clip = audioClips[1];
-            if (!isPlaying3)
-            {
-                audioSource.Play();
-                isPlaying0 = false;
-                isPlaying1 = false;
-                isPlaying2 = false;
-                isPlaying3 = true;
-                isPlaying4 = false;
-            }
+            ChangeAudio(1);
         }
     } 
+
+    private void ChangeAudio(int index)
+    {
+        audioSource.clip = audioClips[index];
+        if (!isPlayingList[index])
+        {
+            audioSource.Play();
+            MakeBoolTrue(index);
+        }
+    }
+
+    private void MakeBoolTrue(int index)
+    {
+        for (int i = 0; i < isPlayingList.Count; i++)
+        {
+            if (i == index)
+            {
+                isPlayingList[i] = true;
+            }
+            else
+            {
+                isPlayingList[i] = false;
+            }
+        }
+    }
 }

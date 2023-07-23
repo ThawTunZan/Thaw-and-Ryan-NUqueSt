@@ -6,6 +6,8 @@ public class DefendVillage : MonoBehaviour
 {
     private EnemySpawner enemySpawner;
 
+    [SerializeField] private GameObject bossHealthBar;
+
     // bools below is used to make sure the wave spawns only once
     private bool wave0;
     private bool wave1;
@@ -37,28 +39,29 @@ public class DefendVillage : MonoBehaviour
         }
         else if (GameManager.instance.hours == 20 && !wave3)
         {
-            SpawnWave3();
+            bossHealthBar.SetActive(true);
+            Invoke(nameof(SpawnWave3), 0.1f);
             wave3 = true;
         }
     }
 
     private void SpawnWave0()
     {
-        Instantiate(enemySpawner.GetEnemyByName("01"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Slime"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
     }
 
     private void SpawnWave1()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Slime"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Goblin"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
     }
 
     private void SpawnWave2()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Goblin"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("Skeleton"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
     }
 
     private void SpawnWave3()
     {
-        Instantiate(enemySpawner.GetEnemyByName("Goblin"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
+        Instantiate(enemySpawner.GetEnemyByName("01"), new Vector2(-0.009534121f, -0.7193651f), Quaternion.identity);
     }
 }
