@@ -51,8 +51,6 @@ public class PlayerFainted : MonoBehaviour
 
     IEnumerator WaitAnimation()
     {
-       // yield return new WaitForSeconds(2);
-
         playerAnimation.SetTrigger("Fainted");
         playerMovement.enabled = false;
 
@@ -87,8 +85,8 @@ public class PlayerFainted : MonoBehaviour
         }
         else
         {
-            healthScript.health = 50;
-            GameManager.instance.health = 50;
+            healthScript.health /= 2;
+            GameManager.instance.health /= 2;
         }
         DataPersistenceManager.instance.SaveGame();
         playerPositionSO.playerDead = true;

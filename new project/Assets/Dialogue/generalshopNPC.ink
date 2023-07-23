@@ -51,8 +51,8 @@ Eve: You should ask someone else for a quest!
     Eve: I will continue writing my poems while on shopkeeper duty.
      ~questHSS1000Done = true
      ~EveShopValidTime = false
-     ~EveShopQuestDone = false
      ~EveShopAllDone = true
+     ~EveShopQuestDone = false
     -> END
 
 === HSI1000Convo ===

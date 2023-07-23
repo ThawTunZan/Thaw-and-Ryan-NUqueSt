@@ -47,7 +47,6 @@ public class DataPersistenceManager : MonoBehaviour
         
         if (!sceneTransitted)
         {
-            print("game is being LOADED on scene loaded");
             LoadGame();
         }
     }
@@ -113,5 +112,4 @@ public class DataPersistenceManager : MonoBehaviour
         }
         return false;
     }
-    
 }

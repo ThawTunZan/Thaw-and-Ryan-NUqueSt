@@ -35,6 +35,13 @@ public class EnemyAI : MonoBehaviour
 
     public int skeletonCount;
 
+    /*
+     * @brief Finding the radius.
+     * 
+     * To find the radius which is essentially a distance based on the x and y values.
+     * @param x, y They are the distance in the x and y component in a Vector 2.
+     * @return r The radius/dist.
+     */
     public double FindRadius(double x,double y)
     {
         double r = math.sqrt((x*x) + (y*y));
@@ -97,7 +104,7 @@ public class EnemyAI : MonoBehaviour
 
         if (hitUp.collider)
         {
-            avoidanceMap[0] = 5;//1 - ((hitUp.distance - 0.075) / 0.5);
+            avoidanceMap[0] = 5;
 
         }
         else
@@ -106,7 +113,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitRight.collider)
         {
-            avoidanceMap[2] = 5;//1 - ((hitRight.distance - 0.075) / 0.5);
+            avoidanceMap[2] = 5;
         }
         else
         {
@@ -114,7 +121,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitDown.collider)
         {
-            avoidanceMap[4] = 5;// 1 - ((hitDown.distance - 0.075) / 0.5);
+            avoidanceMap[4] = 5;
         }
         else
         {
@@ -122,7 +129,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitLeft.collider)
         {
-            avoidanceMap[6] = 5;//1 - ((hitLeft.distance - 0.075) / 0.5);
+            avoidanceMap[6] = 5;
         }
         else
         {
@@ -130,7 +137,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitNE.collider)
         {
-            avoidanceMap[1] = 5;//1 - ((hitNE.distance - 0.075) / 0.5);
+            avoidanceMap[1] = 5;
         }
         else
         {
@@ -138,7 +145,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitSE.collider)
         {
-            avoidanceMap[3] = 5;//1 - ((hitSE.distance - 0.075) / 0.5);
+            avoidanceMap[3] = 5;
         }
         else
         {
@@ -146,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitSW.collider)
         {
-            avoidanceMap[5] = 5;//1 - ((hitSW.distance - 0.075) / 0.5);
+            avoidanceMap[5] = 5;
         }
         else
         {
@@ -154,7 +161,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (hitNW.collider)
         {
-            avoidanceMap[7] = 5;//1 - ((hitNW.distance - 0.075) / 0.5);
+            avoidanceMap[7] = 5;
         }
         else
         {
@@ -162,6 +169,9 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /*
+     * @brief subtract the value from each index of AvoidanceMap from value of the same index in InterestMap 
+     */
     public virtual Vector3 weighTheMaps(double x_diff, double y_diff, double radius)
     {
         double xToPlayer = player.transform.position.x - enemy.transform.position.x;

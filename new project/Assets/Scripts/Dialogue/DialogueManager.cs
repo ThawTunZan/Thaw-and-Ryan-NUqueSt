@@ -95,27 +95,36 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         }
     }
     
+    /*
+     * @brief To change ink variables based on the day setting and whether a quest is done.
+     */
     public void CheckDate()
     {
-        float currDay = float.Parse(currentStory.variablesState["currDay"].ToString());
+        float currDay = float.Parse(currentStory.variablesState[localNPCName + "Day"].ToString());
         string questIsDone = currentStory.variablesState[localNPCName + "QuestDone"].ToString();
+        
+        // happens if player did not finish a quest across multiple days
         if (GameManager.instance.day != currDay && (questIsDone == "false" || questIsDone == "False"))
         {
-            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
+            dialogueVariables.InkSetVariables(currentStory, localNPCName + "Day", GameManager.instance.day);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
         }
+        // happens if u finished a quest and its on the same day
+        // the reason for not setting valid time to false is because it will be done when you hand over the quest
         else if (GameManager.instance.day == currDay && (questIsDone == "True" || questIsDone == "true"))
         {
-
         }
+        // happens when it is different day and you did not hand over the quest previously
         else if (GameManager.instance.day != currDay && (questIsDone == "True" || questIsDone == "true"))
         {
-            dialogueVariables.InkSetVariables(currentStory, "currDay", GameManager.instance.day);
+            dialogueVariables.InkSetVariables(currentStory, localNPCName + "Day", GameManager.instance.day);
             dialogueVariables.InkSetVariables(currentStory, localNPCName + "ValidTime", true);
+            dialogueVariables.InkSetVariables(currentStory, localNPCName + "QuestDone", false);
         }
+        // happens if it is the same day and you have not finished a quest 
+        // if you have not started on a quest, questIsDone will be true
         else if (GameManager.instance.day == currDay && (questIsDone == "false" || questIsDone == "False"))
         {
-            
         }
     }
 
@@ -134,6 +143,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
             currentStory.BindExternalFunction("QuestCompleted", QuestCompleted);
             for (int i = 0; i < 6; i++)
             {
+                // if the active quest of the NPC you are talking to is the same as any of the ones present in the quest UI
                 if (player.questList.questSlots[i].questName == currentStory.variablesState[localNPCName + "QuestName"].ToString()
                     && player.questList.questSlots[i].questName != "")
                 {
@@ -163,6 +173,12 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         ContinueStory();
     }
 
+    /*
+     * @brief to remove the quest from the quest UI.
+     * 
+     * If the active quest of the NPC you are talking to has the same name is one of the quest in the quest UI, remove the quest from the questUI and handle the logic.
+     * for what will happen when a quest is completed. For example, the GPA is reward to player.
+     */
     public void QuestCompleted()
     {
         for (int i = 0; i < 6; i++)
@@ -188,9 +204,16 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
         dialogueText.text = "";
         playerItems.disableToolbar = false;
         playerMovement.enabled = true;
+
+        // save the variable states in a place holder string when you leave the dialogue
         DataPersistenceManager.instance.gameData.placeHolderStory = dialogueVariables.saveVariables();
     }
 
+    /*
+     * @brief to check if a quest is done.
+     * @param x It is the index of a slot in the quest UI.
+     * @return Returns true if the quest is completed.
+     */
     private bool QuestIsDone(int x)
     {
         player = GameObject.Find("Player").GetComponent<PlayerQuests>();

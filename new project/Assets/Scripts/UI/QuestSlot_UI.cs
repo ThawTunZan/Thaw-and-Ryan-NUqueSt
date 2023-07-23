@@ -78,6 +78,7 @@ public class QuestSlot_UI : MonoBehaviour
             Inventory inventory = GameObject.Find("Player").GetComponent<PlayerItems>().inventory;
             Inventory toolbar = GameObject.Find("Player").GetComponent<PlayerItems>().toolbar;
             bool check = false;
+            // for inventory
             for (int i = 0; i < 21; i++)
             {
                 if (inventory.slots[i].itemName == questSlot.questItemRequired && inventory.slots[i].count >= questSlot.questItemAmount)
@@ -92,6 +93,7 @@ public class QuestSlot_UI : MonoBehaviour
                     break;
                 }
             }
+            // for toolbar
             for (int i = 0; i < 7; i++)
             {
                 if (toolbar.slots[i].itemName == questSlot.questItemRequired && toolbar.slots[i].count >= questSlot.questItemAmount)

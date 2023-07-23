@@ -20,6 +20,7 @@ VAR WeaponSmithQuestDesc = ""
 VAR WeaponSmithValidTime = true
 VAR WeaponSmithAllDone = false
 VAR WeaponSmithScrollConvo = false
+VAR WeaponSmithDay = 0
 
 #TownMayor
 VAR tutorialMayorSpoken = false
@@ -29,6 +30,8 @@ VAR TownMayorQuestStarted = false
 VAR TownMayorQuestName = ""
 VAR TownMayorQuestDesc = ""
 VAR TownMayorValidTime = true
+VAR TownMayorDay = 0
+
 
 #AvaSecretary
 VAR AvaSecretaryQuestDone = false
@@ -36,6 +39,7 @@ VAR AvaSecretaryQuestStarted = false
 VAR AvaSecretaryQuestName = ""
 VAR AvaSecretaryQuestDesc = ""
 VAR AvaSecretaryValidTime = true
+VAR AvaSecretaryDay = 0
 
 #EveShop
 VAR EveShopQuestDone = false
@@ -49,6 +53,7 @@ VAR questDTK1234Done = false
 VAR questHSI1000Done = false
 VAR questHSS1000Done = false
 VAR HSI1000FlowersFound = 0
+VAR EveShopDay = 0
 
 #Nerd
 VAR questCS1010Done = false
@@ -62,6 +67,7 @@ VAR NerdQuestDesc = ""
 VAR NerdValidTime = true
 VAR NerdAllDone = false
 VAR NerdScrollConvo = false
+VAR NerdDay = 0
 
 
 #Geologist
@@ -75,6 +81,7 @@ VAR GeologistQuestDesc = ""
 VAR GeologistValidTime = true
 VAR GeologistAllDone = false
 VAR GeologistScrollConvo = false
+VAR GeologistDay = 0
 
 #Physicist
 VAR questPC1101Done = false
@@ -86,6 +93,7 @@ VAR PhysicistQuestDesc = ""
 VAR PhysicistValidTime = true
 VAR PhysicistAllDone = false
 VAR PhysicistScrollConvo = false
+VAR PhysicistDay = 0
 
 #CEG
 VAR questCG1111ADone = false
@@ -98,6 +106,7 @@ VAR CEGQuestDesc = ""
 VAR CEGValidTime = true
 VAR CEGAllDone = false
 VAR CEGScrollConvo = false
+VAR CEGDay = 0
 
 
 

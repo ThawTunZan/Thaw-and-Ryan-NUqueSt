@@ -164,7 +164,7 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * This function is called when a player clicks on the trash button in the item description panel. It opens up a panel confirming
+     * @brief This function is called when a player clicks on the trash button in the item description panel. It opens up a panel confirming
      * whether the player wants to trash the item or not.
      */
     public void RemoveAmountUI()
@@ -182,7 +182,7 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /*
-     * This function is called when player clicks OK on the trash panel. It handles the item to remove.
+     * @brief This function is called when player clicks OK on the trash panel. It handles the item to remove.
      */
     public void Remove()
     {
@@ -201,7 +201,7 @@ public class Inventory_UI : MonoBehaviour
     }
 
     /* 
-     * These SetTo functions refer to the triple up arrows and triple down arrows on the drop panel
+     * @brief These SetTo functions refer to the triple up arrows and triple down arrows on the drop panel
      */ 
     public void SetToMax()
     {

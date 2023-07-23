@@ -64,8 +64,8 @@ TeeHaw: Maybe I can even use it to investigate about the new SU Monster I have b
 TeeHaw: Anyway, Thanks for the help!
 ~questCG2111ADone = true
 ~CEGValidTime = false
-~CEGQuestDone = false
 ~CEGAllDone = true
+~CEGQuestDone = false
 ->END
 
 
