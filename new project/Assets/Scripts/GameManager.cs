@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     public List<string> seedNames = new List<string>();
     public List<float> seedNextGrowths = new List<float>();
 
-    public float energy;
+    public float energy = 100;
 
     void Awake()
     { 

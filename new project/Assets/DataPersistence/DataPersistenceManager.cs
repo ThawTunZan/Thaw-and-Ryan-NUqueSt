@@ -70,12 +70,15 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         DatabaseManager.instance.LoadGameData();
-        gameData.placeHolderStory = gameData.story;
         //if no saved data found
         if (gameData == null)
         {       
             Debug.Log("No saved data was found. New game needs to be started. Please click NewGame Button -Thaw");
             return;
+        }
+        else
+        {
+            gameData.placeHolderStory = gameData.story;
         }
 
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
