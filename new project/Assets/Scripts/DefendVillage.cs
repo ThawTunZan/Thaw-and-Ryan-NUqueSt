@@ -16,6 +16,7 @@ public class DefendVillage : MonoBehaviour
     private bool wave1;
     private bool wave2;
     private bool wave3;
+    private bool hasWon;
 
     private Vector2 leftPos1 = new Vector2(-8.927f, -3.237f);
     private Vector2 leftPos2 = new Vector2(-8.924f, -3.623f);
@@ -55,15 +56,15 @@ public class DefendVillage : MonoBehaviour
                 bossHealthBar.SetActive(true);
                 Invoke(nameof(SpawnWave3), 0.1f);
                 wave3 = true;
-                playerQuests.endingProgress = 4;
             }
         }
-        else if (playerQuests.endingProgress == 4)
+        else if (!hasWon && playerQuests.endingProgress == 4)
         {
             if (GameObject.Find("Slime(Clone)") == null && GameObject.Find("Skeleton(Clone)") == null
                 && GameObject.Find("goblin(Clone)") == null && GameObject.Find("01(Clone)") == null)
             {
                 Invoke(nameof(DefendSuccess), 2f);
+                hasWon = true;
             }
         }
     }
@@ -105,6 +106,7 @@ public class DefendVillage : MonoBehaviour
         Instantiate(enemySpawner.GetEnemyByName("goblin"), topPos1, Quaternion.identity);
         Instantiate(enemySpawner.GetEnemyByName("Skeleton"), botPos1, Quaternion.identity);
         Instantiate(enemySpawner.GetEnemyByName("01"), leftPos1, Quaternion.identity);
+        playerQuests.endingProgress = 4;
     }
 
     private void DefendSuccess()
