@@ -24,7 +24,11 @@ public class PlayerMoney : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        if (playerTutorial.tutorialProgress >= 3)
+        if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2)
+        {
+            moneyText.text = "";
+        }
+        else if (playerTutorial.tutorialProgress >= 3)
         {
             GameManager.instance.money = money;
             moneyText.text = "GPA: " + money;

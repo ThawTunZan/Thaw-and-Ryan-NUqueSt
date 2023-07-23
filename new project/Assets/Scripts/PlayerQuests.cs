@@ -161,17 +161,27 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             if (endingProgress >= 2)
             {
                 GameObject.Find("ToVillage").SetActive(false);
+                GameObject.Find("EndingStuff").SetActive(true);
                 GameObject.Find("ForceSleep").SetActive(false);
-                Invoke(nameof(StartDialogue), 1f);
             }
             else if (endingProgress == 1)
             {
+                GameObject.Find("ToVillage").SetActive(false);
                 GameObject.Find("EndingStuff").SetActive(false);
+                GameObject.Find("ForceSleep").SetActive(true);
             }
             else if (endingProgress == 0)
             {
-                GameObject.Find("ForceSleep").SetActive(false);
+                GameObject.Find("ToVillage").SetActive(true);
                 GameObject.Find("EndingStuff").SetActive(false);
+                GameObject.Find("ForceSleep").SetActive(false);
+            }
+        }
+        else if (currScene == "DefendVillage")
+        {
+            if (endingProgress == 2)
+            {
+                endingProgress = 3;
             }
         }
     }

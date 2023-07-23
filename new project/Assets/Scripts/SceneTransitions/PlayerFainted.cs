@@ -69,7 +69,13 @@ public class PlayerFainted : MonoBehaviour
         playerPositionSO.playerDead = true;
         playerPositionSO.InitialValue = new Vector2((float)-0.072, (float)-0.264);
 
-
-        SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
+        if (SceneManager.GetActiveScene().name == "DefendVillage")
+        {
+            SceneManager.LoadScene("NorthForest", LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene("FarmHouse", LoadSceneMode.Single);
+        }
     }
 }

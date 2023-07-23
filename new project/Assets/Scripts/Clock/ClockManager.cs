@@ -32,10 +32,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     private PlayerTutorial playerTutorial;
 
-    private void Awake()
-    {
-    }
-
     void Start()
     {
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
@@ -100,11 +96,9 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         dayText.text = "Day: " + days;
         timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
-        if (playerTutorial.tutorialProgress >= 3)
-        {
-            CalcTime();
-        }
-        else if (playerTutorial.tutorialProgress == 2)
+        // When player wakes up after sleeping from tutorial, their tutorialProgress is set to 2 via BedSleep script.
+        // Then the time stays still until they have read the note, which makes tutorialProgress = 3 via PlayerHouseTutorial_UI script.
+        if (playerTutorial.tutorialProgress == 2)
         {
             hours = 8;
             ControlPPV();
@@ -112,7 +106,25 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             timeText.text = "";
             goToSleepText.text = "";
         }
-        else
+        // When player goes to sleep after killing SU monster, their endingProgress is set to 2 via BedSleep script.
+        // Then they oversleep and its 5pm. Also hides the day and time text.
+        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2)
+        {
+            hours = 17;
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
+        // Time only moves when the player finishes tutorial or goes to DefendVillage scene.
+        // Also the day and time text will appear.
+        else if (playerTutorial.tutorialProgress >= 3)
+        {
+            CalcTime();
+        }
+        // Sets time to night when player is in tutorial at IntroTutorial scene, Village scene and FarmHouse scene.
+        // Also hides the day and time text.
+        else if (playerTutorial.tutorialProgress <= 1)
         {
             hours = 22;
             ControlPPV();
