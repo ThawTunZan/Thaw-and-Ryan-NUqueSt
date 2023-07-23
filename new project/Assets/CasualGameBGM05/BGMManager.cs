@@ -16,7 +16,7 @@ public class BGMManager : MonoBehaviour
 
     // In update, when the Play() method of AudioSource is called, it will keep playing the start of the song.
     // The bools below make sure the method is called only once.
-    private List<bool> isPlayingList = new List<bool>() { false, false, false, false, false, false };
+    private List<bool> isPlayingList = new List<bool>() { false, false, false, false, false, false, false };
 
     private void Awake()
     {
@@ -66,6 +66,10 @@ public class BGMManager : MonoBehaviour
             {
                 ChangeAudio(3);
             }
+        }
+        else if (sceneName == "EndingCredits")
+        {
+            ChangeAudio(6);
         }
         else if (!isInside && !inCave)
         {
