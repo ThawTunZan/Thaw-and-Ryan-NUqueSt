@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DefendVillage : MonoBehaviour
 {
     [SerializeField] private GameObject bossHealthBar;
     [SerializeField] private TextAsset inkJSON;
     [SerializeField] private GameObject townCollider;
+    [SerializeField] private Slider healthBar;
 
     private EnemySpawner enemySpawner;
     private PlayerQuests playerQuests;

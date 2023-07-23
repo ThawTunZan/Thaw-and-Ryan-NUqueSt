@@ -83,8 +83,6 @@ public class PlayerFainted : MonoBehaviour
             playerItems.inventory.slots[0].AddItem(ItemManager.instance.GetItemByName("CPU Piece"));
             healthScript.health = 100;
             GameManager.instance.health = 100;
-            PlayerQuests playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
-            playerQuests.endingProgress = 6;
         }
         else
         {

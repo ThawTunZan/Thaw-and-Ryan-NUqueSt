@@ -191,6 +191,15 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
                 Invoke(nameof(StartDialogue2), 1f);
                 endingProgress = 3;
             }
+            else if (endingProgress == 5)
+            {
+                GameObject.Find("TownCentreBarricade").SetActive(false);
+                GameObject.Find("RemoveIfSuccess").SetActive(false);
+            }
+        }
+        else if (currScene == "DefendNorthForest")
+        {
+            endingProgress = 6;
         }
     }
 
