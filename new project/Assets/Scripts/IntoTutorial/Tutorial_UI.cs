@@ -135,7 +135,7 @@ public class Tutorial_UI : MonoBehaviour
     {
         for (int i = 0; i < 7; i++)
         {
-            if (!playerItems.toolbar.slots[i].IsEmpty)
+            if (playerItems.toolbar.slots[i].itemName == "Stone Sword")
             {
                 moveSwordDone = true;
                 panelText.text = "Press TAB to close inventory";
