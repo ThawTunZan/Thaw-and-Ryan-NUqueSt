@@ -56,7 +56,7 @@ public class PlayerEnergy : MonoBehaviour
         }
         if (!hasAttacked && energy <= 100)
         {
-            energy += Time.fixedDeltaTime * 1.3f;
+            energy += Time.fixedDeltaTime * 1.6f;
         }
     }
 }
