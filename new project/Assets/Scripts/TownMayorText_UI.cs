@@ -31,13 +31,21 @@ public class TownMayorText_UI : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            curr++
+        }
         if (curr == 0)
         {
             text.text = "You feel a strange warmth on your back, as if you were sleeping on a bed.";
         }
         else if (curr == 1)
         {
-            text.text = "Your head hurts. You get up anyway.";
+            text.text = "Your head hurts. You don't remember anything.";
+        }
+        else if (curr == 2)
+        {
+            text.text = "You get up anyway.";
         }
         else if (!done)
         {

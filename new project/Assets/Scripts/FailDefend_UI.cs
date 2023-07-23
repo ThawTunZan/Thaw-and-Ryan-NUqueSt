@@ -13,12 +13,20 @@ public class FailDefend_UI : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerItems playerItems;
 
-    public void Start()
+    private void Start()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItems = GameObject.Find("Player").GetComponent<PlayerItems>();
         playerItems.disableToolbar = true;
         playerMovement.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ContinueButton();
+        }
     }
 
     public void ContinueButton()

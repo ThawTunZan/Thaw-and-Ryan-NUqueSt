@@ -25,6 +25,10 @@ public class TutorialText_UI : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            curr++
+        }
         if (curr == 0)
         {
             text.text = "You were running for your life after being invaded by monsters.";

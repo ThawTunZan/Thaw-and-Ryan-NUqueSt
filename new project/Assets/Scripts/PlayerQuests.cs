@@ -31,6 +31,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
 
     public int endingProgress;
 
+    private string dialogueObjectName;
+
     private void Start()
     {
         if (startingPosition.transittedScene || startingPosition.playerDead)
@@ -163,6 +165,7 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
                 GameObject.Find("ToVillage").SetActive(false);
                 GameObject.Find("EndingStuff").SetActive(true);
                 GameObject.Find("ForceSleep").SetActive(false);
+                dialogueObjectName = "EndingStuff";
                 Invoke(nameof(StartDialogue), 2f);
             }
             else if (endingProgress == 1)
@@ -188,7 +191,8 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         {
             if (endingProgress == 2)
             {
-                Invoke(nameof(StartDialogue2), 1f);
+                dialogueObjectName = "DefendVillage";
+                Invoke(nameof(StartDialogue), 1f);
                 endingProgress = 3;
             }
             else if (endingProgress == 5)
@@ -199,18 +203,15 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
         }
         else if (currScene == "DefendNorthForest")
         {
+            dialogueObjectName = "ToFailToDefendVillage";
+            Invoke(nameof(StartDialogue), 0.2f);
             endingProgress = 6;
         }
     }
 
     private void StartDialogue()
     {
-        DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find("EndingStuff").GetComponent<DialogueFileHolder>().inkJSON);
-    }
-
-    private void StartDialogue2()
-    {
-        DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find("DefendVillage").GetComponent<DialogueFileHolder>().inkJSON);
+        DialogueManager.GetInstance().EnterDialogueMode(GameObject.Find(dialogueObjectName).GetComponent<DialogueFileHolder>().inkJSON);
     }
 
     private void AllowEntryIfQuestStarted(string questName, int questProgress, string colliderName)
