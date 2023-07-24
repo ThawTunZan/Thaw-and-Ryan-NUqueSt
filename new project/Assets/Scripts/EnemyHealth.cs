@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 animator.SetBool("alive", false);
                 ChangeListState();
-                Invoke(nameof(SlimeDeath), 1f);
+                Invoke(nameof(SlimeDeath), 1.8f);
             }
         }
         get
