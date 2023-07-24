@@ -84,6 +84,7 @@ public class GameData
         playerPosition = Vector3.zero;
        // gameScene = 3;
         maxHealth = 100;
+        health = 100;
 
         questList = new QuestList(6);
 
