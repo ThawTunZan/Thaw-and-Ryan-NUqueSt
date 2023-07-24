@@ -76,7 +76,7 @@ public class PlayfabManager : MonoBehaviour
 
     void OnPasswordReset(SendAccountRecoveryEmailResult result)
     {
-        warningLoginText.text = "passwordLoginField reset mail sent!";
+        warningLoginText.text = "Check your Email!";
     }
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
