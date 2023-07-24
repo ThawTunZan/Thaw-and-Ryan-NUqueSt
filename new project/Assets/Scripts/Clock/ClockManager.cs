@@ -32,13 +32,17 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     private PlayerTutorial playerTutorial;
 
+    public bool freezeTime;
+
     void Start()
     {
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
         timeText = GameObject.Find("Time").GetComponent<TextMeshProUGUI>();
         goToSleepText = GameObject.Find("GoToSleepText").GetComponent<TextMeshProUGUI>();
         playerTutorial = GameObject.Find("Player").GetComponent<PlayerTutorial>();
-        
+
+        instance = this;
+
         if (startingPosition.transittedScene) {
             hours = GameManager.instance.hours;
             minutes = GameManager.instance.minutes;
@@ -98,7 +102,11 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
         // When player wakes up after sleeping from tutorial, their tutorialProgress is set to 2 via BedSleep script.
         // Then the time stays still until they have read the note, which makes tutorialProgress = 3 via PlayerHouseTutorial_UI script.
-        if (playerTutorial.tutorialProgress == 2)
+        if (freezeTime)
+        {
+            ControlPPV();
+        }
+        else if (playerTutorial.tutorialProgress == 2)
         {
             hours = 8;
             ControlPPV();

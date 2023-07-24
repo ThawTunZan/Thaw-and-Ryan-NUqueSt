@@ -46,8 +46,8 @@ public class Health : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        data.maxHealth = 100;
-        health = data.maxHealth;
+        maxHealth = data.maxHealth;
+        health = data.health;
         healthBar.SetMaxHealth(health);
         healthBar.SetHealth(health);
         maxHealth = data.maxHealth;
@@ -55,6 +55,7 @@ public class Health : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
+        data.health = health;
         data.maxHealth = maxHealth;
     }
 

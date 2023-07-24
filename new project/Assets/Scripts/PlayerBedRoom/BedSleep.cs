@@ -52,6 +52,7 @@ public class BedSleep : MonoBehaviour
     public void SaveData()
     {
         HideMessage();
+        ClockManager.instance.freezeTime = true;
         playerMovement.enabled = false;
         clockManager.days += 1;
         if (GameManager.instance.tutorialProgress == 1)
@@ -106,10 +107,10 @@ public class BedSleep : MonoBehaviour
         clockManager.minutes = 0;
         clockManager.seconds = 0;
         playerEnergy.energy = 100;
-        
         GameManager.instance.hours = 8;
         GameManager.instance.minutes = 0;
         GameManager.instance.seconds = 0;
         GameManager.instance.energy = 100;
+        ClockManager.instance.freezeTime = false;
     }
 }

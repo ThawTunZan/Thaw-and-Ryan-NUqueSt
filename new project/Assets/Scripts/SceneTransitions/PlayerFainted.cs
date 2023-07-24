@@ -42,7 +42,11 @@ public class PlayerFainted : MonoBehaviour
         volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
         if (clockManager.hours > 23 || volumeHealthSlider <= 0)
         {
-             GoBackHome();
+            if (SceneManager.GetActiveScene().name == "PlayerHouse")
+            {
+                GameObject.Find("Bed").GetComponent<BedSleep>().Message.SetActive(false);
+            }
+            GoBackHome();
         }
     }
 
@@ -109,6 +113,10 @@ public class PlayerFainted : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "DefendVillage")
         {
             SceneManager.LoadScene("DefendNorthForest", LoadSceneMode.Single);
+        }
+        else if (SceneManager.GetActiveScene().name == "PlayerHouse")
+        {
+            SceneManager.LoadScene("PlayerHouse", LoadSceneMode.Single);
         }
         else
         {
