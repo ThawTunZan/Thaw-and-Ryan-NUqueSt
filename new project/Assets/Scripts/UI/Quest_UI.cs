@@ -76,7 +76,8 @@ public class Quest_UI : MonoBehaviour
 
     void ActiveQuestSetup()
     {
-        if (playerQuests.endingProgress == 2 || playerQuests.endingProgress == 5 || playerQuests.endingProgress == 6)
+        if (playerQuests.endingProgress == 1||playerQuests.endingProgress == 2 
+            || playerQuests.endingProgress == 5 || playerQuests.endingProgress == 6)
         {
             activeQuests.text = "";
             return;

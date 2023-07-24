@@ -106,6 +106,13 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             timeText.text = "";
             goToSleepText.text = "";
         }
+        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 1)
+        {
+            ControlPPV();
+            dayText.text = "";
+            timeText.text = "";
+            goToSleepText.text = "";
+        }
         // When player goes to sleep after killing SU monster, their endingProgress is set to 2 via BedSleep script.
         // Then they oversleep and its 4pm. Also hides the day and time text.
         else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2)

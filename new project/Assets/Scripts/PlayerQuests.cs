@@ -156,6 +156,12 @@ public class PlayerQuests : MonoBehaviour, IDataPersistence
             if (endingProgress >= 1)
             {
                 GameObject.Find("BlockEastPath").SetActive(false);
+                GameObject.Find("ToCave_1").SetActive(false);
+                GameObject.Find("EnemySpawner").SetActive(false);
+            }
+            else
+            {
+                GameObject.Find("BlockPathEnd").SetActive(false);
             }
         }
         else if (currScene == "FarmHouse")
