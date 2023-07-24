@@ -52,7 +52,7 @@ public class BedSleep : MonoBehaviour
     public void SaveData()
     {
         HideMessage();
-        ClockManager.instance.freezeTime = true;
+        GameObject.Find("Canvas").GetComponent<PlayerFainted>().isSleeping = true;
         playerMovement.enabled = false;
         clockManager.days += 1;
         if (GameManager.instance.tutorialProgress == 1)
@@ -111,6 +111,6 @@ public class BedSleep : MonoBehaviour
         GameManager.instance.minutes = 0;
         GameManager.instance.seconds = 0;
         GameManager.instance.energy = 100;
-        ClockManager.instance.freezeTime = false;
+        GameObject.Find("Canvas").GetComponent<PlayerFainted>().isSleeping = false;
     }
 }

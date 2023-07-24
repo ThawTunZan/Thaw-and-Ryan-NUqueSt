@@ -20,6 +20,8 @@ public class PlayerFainted : MonoBehaviour
 
     private PlayerMovement playerMovement;
     public PlayerEnergy playerEnergy;
+
+    public bool isSleeping;
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,7 @@ public class PlayerFainted : MonoBehaviour
     void Update()
     {
         volumeHealthSlider = originalGameObject.GetComponent<Slider>().value;
-        if (clockManager.hours > 23 || volumeHealthSlider <= 0)
+        if (!isSleeping && (clockManager.hours > 23 || volumeHealthSlider <= 0))
         {
             if (SceneManager.GetActiveScene().name == "PlayerHouse")
             {

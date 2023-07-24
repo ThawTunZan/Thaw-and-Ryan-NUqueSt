@@ -32,8 +32,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     private PlayerTutorial playerTutorial;
 
-    public bool freezeTime;
-
     void Start()
     {
         dayText = GameObject.Find("Day").GetComponent<TextMeshProUGUI>();
@@ -100,14 +98,9 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         dayText.text = "Day: " + days;
         timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
-        // Freezes time which is set to true in BedSleep
-        if (freezeTime)
-        {
-            ControlPPV();
-        }
         // When player wakes up after sleeping from tutorial, their tutorialProgress is set to 2 via BedSleep script.
         // Then the time stays still until they have read the note, which makes tutorialProgress = 3 via PlayerHouseTutorial_UI script.
-        else if (playerTutorial.tutorialProgress == 2)
+        if (playerTutorial.tutorialProgress == 2)
         {
             hours = 8;
             ControlPPV();
@@ -115,7 +108,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             timeText.text = "";
             goToSleepText.text = "";
         }
-        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 1)
+        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 1
+            || GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 5)
         {
             ControlPPV();
             dayText.text = "";
@@ -127,14 +121,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 2)
         {
             hours = 16;
-            ControlPPV();
-            dayText.text = "";
-            timeText.text = "";
-            goToSleepText.text = "";
-        }
-        // Once battle is over, the UIs cant be seen anymore except for health.
-        else if (GameObject.Find("Player").GetComponent<PlayerQuests>().endingProgress == 5)
-        {
             ControlPPV();
             dayText.text = "";
             timeText.text = "";
