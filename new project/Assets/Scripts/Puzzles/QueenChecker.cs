@@ -22,7 +22,10 @@ public class QueenChecker : MonoBehaviour
         playerQuests = GameObject.Find("Player").GetComponent<PlayerQuests>();
         foreach (Vector2Int seenBefore in seenBeforeList)
         {
-            seenBeforeDict.Add(seenBefore, 1);
+            if (!seenBeforeDict.ContainsKey(seenBefore))
+            {
+                seenBeforeDict.Add(seenBefore, 1);
+            }
         }
     }
 

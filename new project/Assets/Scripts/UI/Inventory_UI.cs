@@ -310,7 +310,10 @@ public class Inventory_UI : MonoBehaviour
             }
             else
             {
+                buyButton.interactable = false;
+                sellButton.interactable = false;
                 helpButton.interactable = false;
+                trashButton.interactable = false;
             }
             if (shopPanel.activeSelf)
             {

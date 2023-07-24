@@ -17,7 +17,7 @@ public class NQueensPuzzle : WallPuzzle
     {
         base.Start();
         queenChecker = GameObject.Find("QueenPieces").GetComponent<QueenChecker>();
-        currQ = GameManager.instance.cs2040Progress + 1;
+        currQ = GameManager.instance.cs2040Progress + 2;
     }
 
     protected override void Update()
@@ -95,6 +95,7 @@ public class NQueensPuzzle : WallPuzzle
             if (queenChecker.HasSeenBefore())
             {
                 puzzleText.text = "(" + currQ + "/" + totalQ + ") You have tried this configuration already.\n\nTry again!";
+                puzzleClose.SetActive(true);
             }
             else if (currQ == totalQ)
             {

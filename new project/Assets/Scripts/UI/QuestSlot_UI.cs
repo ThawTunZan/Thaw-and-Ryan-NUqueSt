@@ -66,7 +66,7 @@ public class QuestSlot_UI : MonoBehaviour
     public void QuestHandler(QuestList.QuestSlot questSlot)
     {
         if (questSlot.questName == "HSA1000" || questSlot.questName == "PC1101" || questSlot.questName == "HSI1000"
-            || questSlot.questName == "HSS1000" || questSlot.questName == "GEA1000")
+            || questSlot.questName == "HSS1000" || questSlot.questName == "GEA1000" || questSlot.questName == "GESS1001")
         {
             if (questSlot.placesToVisit.Count == 0)
             {
