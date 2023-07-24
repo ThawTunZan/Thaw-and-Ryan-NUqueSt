@@ -100,12 +100,13 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         dayText.text = "Day: " + days;
         timeText.text = "Time: " + bufferHours +hours + " " + bufferMinutes + minutes;
-        // When player wakes up after sleeping from tutorial, their tutorialProgress is set to 2 via BedSleep script.
-        // Then the time stays still until they have read the note, which makes tutorialProgress = 3 via PlayerHouseTutorial_UI script.
+        // Freezes time which is set to true in BedSleep
         if (freezeTime)
         {
             ControlPPV();
         }
+        // When player wakes up after sleeping from tutorial, their tutorialProgress is set to 2 via BedSleep script.
+        // Then the time stays still until they have read the note, which makes tutorialProgress = 3 via PlayerHouseTutorial_UI script.
         else if (playerTutorial.tutorialProgress == 2)
         {
             hours = 8;
