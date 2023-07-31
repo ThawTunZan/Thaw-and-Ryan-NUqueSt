@@ -58,7 +58,7 @@ public class ControlRobot : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 //if there is an active quest in the slot
                 if (playerQuest.questList.questSlots[i].questName == questName && !playerQuest.questList.questSlots[i].done)

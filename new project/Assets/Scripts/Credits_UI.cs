@@ -14,6 +14,10 @@ public class Credits_UI : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            curr++;
+        }
         if (curr == 0)
         {
             text.text = "Thank you for playing our game!";
@@ -40,7 +44,8 @@ public class Credits_UI : MonoBehaviour
             button.SetActive(false);
             credits.gameObject.SetActive(true);
             credits.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +
-            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei, Sean William Bulawan Villamin, Project Sage" +
+            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei, Sean William Bulawan Villamin, Project Sage, " +
+            "Anders Foong Zer Hong, Danial Hisham" +
             "\n\nPeer Evaluators: Unmei no Farfalla, PestControl, GrassToucher";
         }
         else if (curr == 6)

@@ -138,7 +138,8 @@ public class Settings_UI : MonoBehaviour
     {
         StartSizeSetup(creditsText);
         creditsText.text = "Game Developers: Thaw Tun Zan, Lee Yan Le Ryan\n\nProject Advisor: Eugene Tang Kang Jie\n\n" +
-            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei, Sean William Bulawan Villamin, Project Sage" +
+            "Game Testers: Edwin Zheng Yuan Yi, Toh Li Yuan, Brannon Aw Xu Wei, Sean William Bulawan Villamin, Project Sage, " +
+            "Anders Foong Zer Hong, Danial Hisham" +
             "\n\nPeer Evaluators: Unmei no Farfalla, PestControl, GrassToucher";
         StartScrollSetup(creditsText, creditsScrollbar, creditsContainer);
         creditsPanel.SetActive(true);

@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
     public void LoginScreen()
     {
         loginUI.SetActive(true);
-        registerUI.SetActive(false);
     }
 
     public void RegisterScreen()
